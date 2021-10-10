@@ -1,0 +1,45 @@
+const mongoose = require("mongoose");
+
+const deviceSchema = new mongoose.Schema({
+  deviceID: { type: String, required: true, unique: true },
+  name: { type: String, required: true },
+  label: { type: String, required: true, unique: true },
+  type: { type: String, required: true },
+  status: { type: String, required: true },
+  commands: { type: Array, required: false },
+});
+
+Device = mongoose.model("devices", deviceSchema);
+// module.exports = Device;s
+
+exports.docChecker = async function (object) {
+  await Device.exists({ deviceID: object.deviceID }, function (err, result) {
+    if (err) {
+      return console.log(err);
+    }
+    result == true ? updateDocument(object) : createDocument(object);
+  });
+};
+const createDocument = async function (object) {
+  try {
+    await Device.create(object).then((res) => console.log(`doc created: ${object.deviceID}`));
+  } catch (error) {
+    console.log(error);
+  }
+};
+const updateDocument = async function (object) {
+  try {
+    await Device.findOneAndUpdate({ deviceID: object.deviceID }, object);
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+// exports.readCollection = function () {
+//   // return DeviceModel.find();
+//   try {
+//     DeviceModel.find();
+//   } catch (error) {
+//     console.log(error);
+//   }
+// };
