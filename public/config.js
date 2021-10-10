@@ -19,3 +19,9 @@ configToggle.addEventListener("change", (e) => {
     inputTargetHeader.textContent = "Hub address";
   }
 });
+
+const configSubmitBtn = document.querySelector(".submitBtn");
+configSubmitBtn.addEventListener("click", (e) => {
+  e.preventDefault;
+  configSubmitBtn.submit();
+});

@@ -321,21 +321,21 @@ input:focus {
   flex-direction: row;
   justify-content: space-between;
 }
-.detailIcon{
+.detailIcon {
   padding: 5px;
 }
-.cloudIcon:hover{
-  color: grey
+.cloudIcon:hover {
+  color: grey;
 }
-.locationIcon:hover{
-  color:rgba(251, 30, 30, 0.757)
+.locationIcon:hover {
+  color: rgba(251, 30, 30, 0.757);
 }
-.lockIcon:hover{
-  color: rgb(226, 154, 0)
+.lockIcon:hover {
+  color: rgb(226, 154, 0);
 }
 .detailField {
   padding: 5px 15px;
-  text-align:justify
+  text-align: justify;
   margin-left: 0;
   width: 100px;
 }
@@ -347,6 +347,34 @@ input:focus {
   text-align: left;
   width: 200px;
 }
+.divider {
+  position: relative;
+  width: 3px;
+  height: 150px;
+  background: white;
+  border-radius: 3px;
+  top: 0;
+  left: -15px;
+}
+.pcButtons {
+  display: flex;
+  flex-direction: column;
+}
+.pcButton {
+  position: relative;
+  width: 145px;
+  height: 40px;
+  font-size: 20px;
+  border-radius: 5px;
+  box-shadow: var(--boxShadow);
+  background: white;
+  color: black;
+  text-align: center;
+}
+.pcButton:hover {
+  box-shadow: var(--boxShadowHover);
+}
+
 /*-----------INPUT SECTION---------------*/
 .configInputSection {
   display: none;
