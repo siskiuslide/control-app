@@ -101,29 +101,29 @@
       <div class="headingContainer">
         <div class="sectionHeading">New Configuration</div>
       </div>
-      <form action="/config" method="post">
+      <form class="configForm"action="/config" method="post">
         <div class="indivConfigInput">
           <h2 class="confHeader headerName">Name</h2>
-          <input type="text" class="configInput configName" placeholder="Name" />
+          <input type="text"name="name" class="configInput configName" placeholder="Name" />
         </div>
         <div class="indivConfigInput">
           <h2 class="confHeader localOrCloud">Cloud?</h2>
           <label class="switch">
-            <input type="checkbox" class="configToggle" />
+            <input type="checkbox" name="type" class="configToggle" />
             <span class="slider"></span>
           </label>
         </div>
         <div class="indivConfigInput">
           <h2 class="confHeader headerTarget">Target</h2>
-          <input type="text" class="configInput inputTarget" placeholder="Target" />
+          <input type="text" name="target" class="configInput inputTarget" placeholder="Target" />
         </div>
         <div class="indivConfigInput">
           <h2 class="confHeader headerAPIKey">API Key</h2>
-          <input type="text" class="configInput inputAPIKey" placeholder="Key" />
+          <input type="text" name="APIKey" class="configInput inputAPIKey" placeholder="Key" />
         </div>
         <div class="indivConfigInput">
           <h2 class="confHeader headerAppID">App ID</h2>
-          <input type="text" class="configInput inputAppID" placeholder="ID" />
+          <input type="text" name="appID" class="configInput inputAppID" placeholder="ID" />
         </div>
         <div class="formDivider"></div>
         <div class="formButtonContainer">

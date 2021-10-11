@@ -21,7 +21,18 @@ configToggle.addEventListener("change", (e) => {
 });
 
 const configSubmitBtn = document.querySelector(".submitBtn");
+const form = document.querySelector(".configForm");
+form.addEventListener("submit", (e) => {
+  e.preventDefault();
+  const formData = new FormData(this);
+  console.log(formData);
+  fetch("127.0.0.1:5500/config", {
+    method: "post",
+    body: formData,
+  }).then((res) => console.log(res));
+});
+
 configSubmitBtn.addEventListener("click", (e) => {
-  e.preventDefault;
-  configSubmitBtn.submit();
+  e.preventDefault();
+  form.submit();
 });
