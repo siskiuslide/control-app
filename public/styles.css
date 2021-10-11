@@ -252,11 +252,11 @@ input:focus {
   display: flex;
   flex-direction: column;
   justify-self: flex-start;
-  transition: width 80ms
+  transition: width 80ms;
 }
 .preConfiguredSection:hover {
   background: var(--higherOpacityWhite);
-  width: 50vw
+  width: 50vw;
 }
 
 .preConfiguredBox {
@@ -307,7 +307,7 @@ input:focus {
 .preConfiguredBody {
   display: flex;
   flex-direction: row;
-  justify-content: flex-start;
+  justify-content: space-between;
   align-items: center;
 }
 .split-section {
@@ -361,45 +361,53 @@ input:focus {
   top: 0;
   left: -15px;
 }
+
 .pcButtons {
+  width: 150px;
+  height: auto;
   display: flex;
   flex-direction: column;
+  align-items: center;
 }
 .pcButton {
-  position: relative;
   width: 120px;
-  height: auto;
-  font-size: 20px;
+  height: 45px;
   border-radius: 5px;
-  box-shadow: var(--boxShadow);
   background: white;
-  color: black;
-  text-align: center;
-  padding: 5px;
-  transition: background 100ms;
-  transition: transform 150ms;
-  margin: 10px 0px; 
+  transition: all 80ms;
   display: flex;
   flex-direction: row;
+  justify-content: space-evenly;
+  margin: 12px 0px;
 }
-
-.pcButton:hover{
-  background:var(--lightBlueAccent);
-  color: white;
+.pcButton:hover {
+  box-shadow: var(--boxShadowHover);
 }
-.getDevices:hover{
-  transform: translateX(5px)
+.btn-item {
+  color: black;
+  padding: 7px;
+  top: 5px;
 }
-.removeConfig:hover{
+.btn-text {
+  transition: transform 120ms;
+  position: relative;
+  left: 20px;
+}
+.btn-icon {
+  transition: opacity 120ms;
+  opacity: 0;
+}
+.pcButton:hover .btn-text {
+  transform: translateX(-15px);
+}
+.pcButton:hover .btn-icon {
+  opacity: 1;
+}
+#deleteConfig:hover {
   background: rgba(251, 30, 30, 0.757);
 }
-.btn-icon{
-  opacity: 0;
-  transform: opacity 80ms
-  
-}
-.pcButton:hover .btn-icon{
-  opacity:1
+#deleteConfig:hover .deleteConfig {
+  color: white;
 }
 
 /*-----------INPUT SECTION---------------*/
@@ -415,7 +423,7 @@ input:focus {
   transition: width 80ms;
   width: 47vw;
 }
-.configInputSection:hover{
+.configInputSection:hover {
   width: 50vw;
   transition: width 80ms;
   background: var(--higherOpacityWhite);
