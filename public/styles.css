@@ -208,10 +208,13 @@ input:focus {
   justify-content: center;
   align-items: center;
   background: var(--LowerOpacityWhite);
+  justify-self: flex-end;
+  transition: width 80ms;
 }
 .createNewConfigBox:hover {
   cursor: pointer;
   background: var(--higherOpacityWhite);
+  width: 50vw;
 }
 .createNewConfigClickable {
   cursor: pointer;
@@ -248,10 +251,12 @@ input:focus {
   background-color: var(--LowerOpacityWhite);
   display: flex;
   flex-direction: column;
-  justify-self: flex-end;
+  justify-self: flex-start;
+  transition: width 80ms
 }
 .preConfiguredSection:hover {
   background: var(--higherOpacityWhite);
+  width: 50vw
 }
 
 .preConfiguredBox {
@@ -322,7 +327,7 @@ input:focus {
   justify-content: space-between;
 }
 .detailIcon {
-  padding: 5px;
+  padding: 10px 0px 5px 10px;
 }
 .cloudIcon:hover {
   color: grey;
@@ -334,7 +339,7 @@ input:focus {
   color: rgb(226, 154, 0);
 }
 .detailField {
-  padding: 5px 15px;
+  padding: 10px 15px;
   text-align: justify;
   margin-left: 0;
   width: 100px;
@@ -343,7 +348,7 @@ input:focus {
   content: ":";
 }
 .detailText {
-  padding: 5px 15px;
+  padding: 10px 15px;
   text-align: left;
   width: 200px;
 }
@@ -362,29 +367,58 @@ input:focus {
 }
 .pcButton {
   position: relative;
-  width: 145px;
-  height: 40px;
+  width: 120px;
+  height: auto;
   font-size: 20px;
   border-radius: 5px;
   box-shadow: var(--boxShadow);
   background: white;
   color: black;
   text-align: center;
+  padding: 5px;
+  transition: background 100ms;
+  transition: transform 150ms;
+  margin: 10px 0px; 
+  display: flex;
+  flex-direction: row;
 }
-.pcButton:hover {
-  box-shadow: var(--boxShadowHover);
+
+.pcButton:hover{
+  background:var(--lightBlueAccent);
+  color: white;
+}
+.getDevices:hover{
+  transform: translateX(5px)
+}
+.removeConfig:hover{
+  background: rgba(251, 30, 30, 0.757);
+}
+.btn-icon{
+  opacity: 0;
+  transform: opacity 80ms
+  
+}
+.pcButton:hover .btn-icon{
+  opacity:1
 }
 
 /*-----------INPUT SECTION---------------*/
 .configInputSection {
-  display: none;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
   position: relative;
+  display: none;
   background: var(--LowerOpacityWhite);
   opacity: 0.5;
   justify-self: flex-start;
+  transition: width 80ms;
+  width: 47vw;
+}
+.configInputSection:hover{
+  width: 50vw;
+  transition: width 80ms;
+  background: var(--higherOpacityWhite);
 }
 .indivConfigInput {
   display: flex;

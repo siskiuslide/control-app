@@ -10,4 +10,5 @@ router
   .patch(configController.updateConfig)
   .delete(configController.deleteConfig);
 
+  router.route("/:id").get(configController.getSingleConfig)
 module.exports = router;

@@ -20,13 +20,7 @@ exports.docChecker = async function (object) {
     result == true ? updateDocument(object) : createDocument(object);
   });
 };
-const createDocument = async function (object) {
-  try {
-    await Device.create(object).then((res) => console.log(`doc created: ${object.deviceID}`));
-  } catch (error) {
-    console.log(error);
-  }
-};
+
 const updateDocument = async function (object) {
   try {
     await Device.findOneAndUpdate({ deviceID: object.deviceID }, object);
