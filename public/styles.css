@@ -8,9 +8,14 @@
   --mainGradient: linear-gradient(to bottom, #0f2027, #203a43, #2c5364);
   --peachGradient: linear-gradient(to left, #f2709c, #ff9472);
   --lightBlueAccent: #00a8be;
+  --lightBlueAccentHover:rgba(0, 158, 179, 0.842);
   --midAccent: #0082be;
+  --midAccentHover:#0080bbdf;
   --boxShadow: 2px 1px 3px rgb(77, 76, 76);
   --boxShadowHover: 3px 1px 5px #4e4c4c;
+}
+html{
+  background: var(--mainGradient)
 }
 body {
   background: var(--mainGradient);
@@ -116,7 +121,7 @@ input:focus {
   transition: transform 50ms;
 }
 .nav-text-active {
-  color: var(--lightBlueAccent);
+  color: var(--midAccent);
   transition: color 50ms;
 }
 .nav-active:hover {
@@ -152,7 +157,8 @@ input:focus {
 .largeBox {
   position: relative;
   width: 47vw;
-  height: 80vh;
+  min-height: 87vh;
+  height: auto;
   border-radius: 10px;
   margin: 3vh 2vw;
   transition: all 100ms;
@@ -259,7 +265,7 @@ input:focus {
   width: 50vw;
 }
 
-.preConfiguredBox {
+.preConfiguredCard {
   position: relative;
   margin: 2% 6%;
   width: 88%;
@@ -280,7 +286,7 @@ input:focus {
   justify-content: space-between;
   background: white;
   border-radius: 10px 10px 0 0;
-  background: var(--peachGradient);
+  background: var(--midAccent);
   display: flex;
   flex-direction: row;
 }
@@ -303,6 +309,18 @@ input:focus {
 }
 .preConfiguredIcon {
   padding: 10px;
+  transition: all 100ms;
+}
+#preConfiguredIcon:hover{
+  background-image: var(--peachGradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.settings-icon:hover{
+  transform:rotate(20deg);
+}
+.refresh-icon:hover{
+  transform: rotate(30deg);
 }
 .preConfiguredBody {
   display: flex;
@@ -319,18 +337,19 @@ input:focus {
 }
 .pcDetails {
   align-self: flex-start;
-  width: 70%;
+  width: 65%;
 }
 .detail-flex {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  margin-top: 4px;
 }
 .detailIcon {
   padding: 10px 0px 5px 10px;
 }
 .cloudIcon:hover {
-  color: grey;
+  color: #00c3ff;
 }
 .locationIcon:hover {
   color: rgba(251, 30, 30, 0.757);
@@ -348,6 +367,7 @@ input:focus {
   content: ":";
 }
 .detailText {
+  margin: 0 5px;
   padding: 10px 15px;
   text-align: left;
   width: 200px;
@@ -362,37 +382,68 @@ input:focus {
   left: -15px;
 }
 
-.pcButtons {
-  width: 150px;
-  height: auto;
+.pc-right-split{
+  width: 35%;
+}
+.right-split-item{
+  margin: 0px 8px;
+}
+
+.deviceCountContainer{
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
+  height: 100px;
+  margin-top: 10px;
+  background: var(--lightBlueAccent);
+  border-radius: 8px;
+  width: 60%;
+  align-self: flex-end;
+}
+.deviceCountContainer:hover{
+  cursor: pointer;
+  background: var(--lightBlueAccentHover);
+}
+.deviceCount-item{
+  transition: transform 120ms ;
+}
+.deviceCountContainer:hover .deviceCount-item{
+  transform: scale(1.1)
+}
+.deviceCountNumber{
+  font-size: 30px;
+}
+
+.pcButtons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
 }
 .pcButton {
-  width: 120px;
-  height: 45px;
+  width: 60%;
+  height: 38px;
   border-radius: 5px;
-  background: white;
+  background: transparent;
   transition: all 80ms;
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
-  margin: 12px 0px;
+  margin: 20px 10px 20px 30px;
+  position: relative;
+  align-self: flex-end;
 }
 .pcButton:hover {
-  box-shadow: var(--boxShadowHover);
   cursor: pointer;
 }
 .btn-item {
   color: black;
-  padding: 7px;
-  top: 5px;
 }
 .btn-text {
   transition: transform 120ms;
   position: relative;
-  left: 20px;
+  left: 10px;
 }
 .btn-icon {
   transition: opacity 120ms;
@@ -404,11 +455,18 @@ input:focus {
 .pcButton:hover .btn-icon {
   opacity: 1;
 }
-#deleteConfig:hover {
-  background: rgba(251, 30, 30, 0.757);
+#deleteConfig{
+  position: relative;
+  top: 10px;
 }
-#deleteConfig:hover .deleteConfig {
-  color: white;
+#deleteConfig:hover {
+  box-shadow: none;
+}
+#deleteConfig:hover .deleteConfig{
+  color: rgba(251, 30, 30, 0.757);
+}
+#deleteConfig:hover .delete-icon{
+  color:rgba(251, 30, 30, 0.757)
 }
 
 /*-----------INPUT SECTION---------------*/
@@ -463,7 +521,7 @@ input:focus {
   position: relative;
   width: 80%;
   height: 2px;
-  background: var(--peachGradient);
+  background: var(--midAccentHover);
   margin: 15px;
   left: 10%;
 }
@@ -480,7 +538,7 @@ input:focus {
   text-align: center;
   opacity: 0.75;
   transform: scale(1.5);
-  transition: all 80ms;
+  transition: all 120ms;
   margin: 0 10px;
 }
 .formBtn:hover {
@@ -488,7 +546,7 @@ input:focus {
   transform: scale(1.6);
 }
 .submitBtn:hover {
-  color: var(--lightBlueAccent);
+  color: white;
 }
 
 .cancelBtn:hover {
@@ -537,7 +595,7 @@ input:focus {
 }
 
 input:checked + .slider {
-  background-color: var(--lightBlueAccent);
+  background: var(--peachGradient);
 }
 
 input:focus + .slider {

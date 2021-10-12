@@ -21,7 +21,6 @@ exports.getSingleConfig = async function(req,res){
 
 exports.createConfig= async function (req, res) {
   try {
-
     Config.exists({name: req.body.name}, function(err, result){
       if (result == true){
         return res.status(400).json({status: "failed", message: "bad request"})
@@ -46,6 +45,16 @@ exports.updateConfig = async function (object) {
   }
 };
 
-exports.deleteConfig = function (req, res) {
-  return console.log("x");
-};
+exports.deleteConfig = async function (req, res) {
+  try{   
+    console.log(req.body)
+      await Config.deleteOne({name:"Test"}).then(response=>{
+        return res.status(200).json({status: "Success", message: {text: "Deleted config from database"}})
+      })
+      
+    }
+  catch(err){
+    console.log(err)
+    return res.status(404).json({status: "failed", message: err})
+  }
+}

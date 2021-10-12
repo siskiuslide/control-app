@@ -1,5 +1,4 @@
 const createNewConfig = document.querySelector(".createNewConfigBox");
-console.log(createNewConfig);
 const configInputSection = document.querySelector(".configInputSection");
 
 createNewConfig.addEventListener("click", () => {
@@ -8,6 +7,24 @@ createNewConfig.addEventListener("click", () => {
     fadeIn(configInputSection, 220, "flex");
   }, 190);
 });
+
+const deleteConfigBtn = document.querySelector('#deleteConfig')
+
+deleteConfigBtn.addEventListener('click', ()=>{
+  const mongoID = deleteConfigBtn.dataset.mongo;
+  const body = {id: mongoID}
+  console.log(mongoID)
+  
+  fetch(`/config`,{
+    method: "delete",
+    body: '61657200f9df2a1de86d5f8b',
+  })
+  .then(response=>{
+    console.log(response)
+  }).catch(err=>{
+    console.log(err)
+  }
+)})
 
 const configToggle = document.querySelector(".configToggle");
 let inputTargetHeader = document.querySelector(".headerTarget");
@@ -30,10 +47,10 @@ form.addEventListener("submit", (e) => {
     formData.type = 'off'
   }
   console.log(formData);
-  fetch("127.0.0.1:5500/config", {
+  fetch(`127.0.0.1:5500/config`, {
     method: "post",
     body: formData,
-  }).then((res) => console.log(res));
+  }).then((res) => console.log(res)).catch(err=>{console.log(err)});
 });
 
 configSubmitBtn.addEventListener("click", (e) => {

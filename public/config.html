@@ -38,15 +38,18 @@
       <div class="headingContainer">
         <div class="sectionHeading">Existing Configurations</div>
       </div>
-      <div class="preConfiguredBox">
+      <div class="preConfiguredCard">
         <div class="preConfiguredHeaderBox">
-            <div class="preConfiguredTitle">Placeholder name</div>
-          <div class="preConfiguredIconsSection">
+            <div class="preConfiguredTitle">NAME</div>
+            <div class="preConfiguredIconsSection">
+            <div class="preConfiguredIcon preConfigured-settings">
+              <span class="material-icons refresh-icon" id="preConfiguredIcon">refresh</span>
+            </div>
             <div class="preConfiguredIcon preConfigured-edit">
-              <span class="material-icons">edit</span>
+              <span class="material-icons edit-icon" id="preConfiguredIcon">edit</span>
             </div>
             <div class="preConfiguredIcon preConfigured-settings">
-              <span class="material-icons">settings</span>
+              <span class="material-icons settings-icon" id="preConfiguredIcon">settings</span>
             </div>
           </div>
         </div>
@@ -57,21 +60,21 @@
                 <span class="material-icons cloudIcon">cloud</span>
               </div>
               <div class="detailField">Type</div>
-              <div class="detailText">Cloud</div>              
+              <div class="detailText">TYPE</div>              
             </div>
             <div class="detail-flex">
               <div class="detailIcon">
                 <span class="material-icons locationIcon">fmd_good</span>
               </div>
               <div class="detailField">Address</div>
-              <div class="detailText"> Placeholder</div>              
+              <div class="detailText">ADDRESS</div>              
             </div>
             <div class="detail-flex">
               <div class="detailIcon">
                 <span class="material-icons lockIcon">lock</span>
               </div>
               <div class="detailField">API Key</div>
-              <div class="detailText">Key</div>              
+              <div class="detailText">KEY</div>              
             </div>
             <div class="detail-flex">
               <div class="detailIcon">
@@ -81,21 +84,146 @@
               <div class="detailText">ID</div>              
             </div>
           </div>
-          <div class="pcButtons">
-            <div href="/devices.html" class="pcButton">
-              <div class="btn-item btn-text getDevices">
-                Devices
-              </div>
-              <div class="btn-item btn-icon material-icons">
-                chevron_right
+          <div class="split-section pc-right-split">
+            <div class="right-split-item deviceCountContainer">
+              <div class="deviceCount-item deviceCountNumber">COUNT</div>
+              <div class="deviceCount-item deviceCountText">Results</div>
+            </div>
+            <div class="right-split-item pcButton">
+              <div href="#" class="pcButton" id="deleteConfig" data-mongo="61657200f9df2a1de86d5f8b">
+                <div class="btn-item btn-text deleteConfig">
+                 Delete
+                </div>
+                <div class="btn-item btn-icon material-icons delete-icon">
+                 delete
+                </div>
               </div>
             </div>
-            <div href="#" class="pcButton" id="deleteConfig">
-              <div class="btn-item btn-text deleteConfig">
-                Delete
+          </div>          
+        </div>
+      </div>
+      <div class="preConfiguredCard">
+        <div class="preConfiguredHeaderBox">
+            <div class="preConfiguredTitle">NAME</div>
+            <div class="preConfiguredIconsSection">
+            <div class="preConfiguredIcon preConfigured-settings">
+              <span class="material-icons refresh-icon" id="preConfiguredIcon">refresh</span>
+            </div>
+            <div class="preConfiguredIcon preConfigured-edit">
+              <span class="material-icons edit-icon" id="preConfiguredIcon">edit</span>
+            </div>
+            <div class="preConfiguredIcon preConfigured-settings">
+              <span class="material-icons settings-icon" id="preConfiguredIcon">settings</span>
+            </div>
+          </div>
+        </div>
+        <div class="preConfiguredBody">
+          <div class="split-section pcDetails">
+            <div class="detail-flex">
+              <div class="detailIcon">
+                <span class="material-icons cloudIcon">cloud</span>
               </div>
-              <div class="btn-item btn-icon material-icons">
-                delete
+              <div class="detailField">Type</div>
+              <div class="detailText">TYPE</div>              
+            </div>
+            <div class="detail-flex">
+              <div class="detailIcon">
+                <span class="material-icons locationIcon">fmd_good</span>
+              </div>
+              <div class="detailField">Address</div>
+              <div class="detailText">ADDRESS</div>              
+            </div>
+            <div class="detail-flex">
+              <div class="detailIcon">
+                <span class="material-icons lockIcon">lock</span>
+              </div>
+              <div class="detailField">API Key</div>
+              <div class="detailText">KEY</div>              
+            </div>
+            <div class="detail-flex">
+              <div class="detailIcon">
+                <span class="material-icons">tag</span>
+              </div>
+              <div class="detailField">App ID</div>
+              <div class="detailText">ID</div>              
+            </div>
+          </div>
+          <div class="split-section pc-right-split">
+            <div class="right-split-item deviceCountContainer">
+              <div class="deviceCount-item deviceCountNumber">COUNT</div>
+              <div class="deviceCount-item deviceCountText">Results</div>
+            </div>
+            <div class="right-split-item pcButton">
+              <div href="#" class="pcButton" id="deleteConfig" data-mongo="61657200f9df2a1de86d5f8b">
+                <div class="btn-item btn-text deleteConfig">
+                 Delete
+                </div>
+                <div class="btn-item btn-icon material-icons delete-icon">
+                 delete
+                </div>
+              </div>
+            </div>
+          </div>          
+        </div>
+      </div><div class="preConfiguredCard">
+        <div class="preConfiguredHeaderBox">
+            <div class="preConfiguredTitle">NAME</div>
+          <div class="preConfiguredIconsSection">
+            <div class="preConfiguredIcon preConfigured-settings">
+              <span class="material-icons refresh-icon" id="preConfiguredIcon">refresh</span>
+            </div>
+            <div class="preConfiguredIcon preConfigured-edit">
+              <span class="material-icons edit-icon" id="preConfiguredIcon">edit</span>
+            </div>
+            <div class="preConfiguredIcon preConfigured-settings">
+              <span class="material-icons settings-icon" id="preConfiguredIcon">settings</span>
+            </div>
+          </div>
+        </div>
+        <div class="preConfiguredBody">
+          <div class="split-section pcDetails">
+            <div class="detail-flex">
+              <div class="detailIcon">
+                <span class="material-icons cloudIcon">cloud</span>
+              </div>
+              <div class="detailField">Type</div>
+              <div class="detailText">TYPE</div>              
+            </div>
+            <div class="detail-flex">
+              <div class="detailIcon">
+                <span class="material-icons locationIcon">fmd_good</span>
+              </div>
+              <div class="detailField">Address</div>
+              <div class="detailText"> ADDRESS</div>              
+            </div>
+            <div class="detail-flex">
+              <div class="detailIcon">
+                <span class="material-icons lockIcon">lock</span>
+              </div>
+              <div class="detailField">API Key</div>
+              <div class="detailText">KEY</div>              
+            </div>
+            <div class="detail-flex">
+              <div class="detailIcon">
+                <span class="material-icons">tag</span>
+              </div>
+              <div class="detailField">App ID</div>
+              <div class="detailText">ID</div>              
+            </div>
+          </div>
+          <div class="split-section pc-right-split">
+            <div class="right-split-item deviceCountContainer">
+              <div class="deviceCount-item deviceCountNumber">COUNT</div>
+              <div class="deviceCount-item deviceCountText">Results</div>
+            </div>
+            <div class="right-split-item pcButton">
+              <div href="#" class="pcButton" id="deleteConfig" data-mongo="61657200f9df2a1de86d5f8b">
+                <div class="btn-item btn-text deleteConfig">
+                 Delete
+                </div>
+                <div class="btn-item btn-icon material-icons delete-icon">
+                 delete
+                </div>
               </div>
             </div>
           </div>          

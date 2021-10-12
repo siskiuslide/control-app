@@ -8,7 +8,8 @@ router
   .get(configController.getConfig)
   .post(configController.createConfig)
   .patch(configController.updateConfig)
-  .delete(configController.deleteConfig);
+  .delete(configController.deleteConfig)
 
-  router.route("/:id").get(configController.getSingleConfig)
+  router.route("/:id")
+  .get(configController.getSingleConfig)
 module.exports = router;
