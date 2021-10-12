@@ -382,6 +382,7 @@ input:focus {
 }
 .pcButton:hover {
   box-shadow: var(--boxShadowHover);
+  cursor: pointer;
 }
 .btn-item {
   color: black;
