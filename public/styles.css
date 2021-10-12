@@ -8,14 +8,14 @@
   --mainGradient: linear-gradient(to bottom, #0f2027, #203a43, #2c5364);
   --peachGradient: linear-gradient(to left, #f2709c, #ff9472);
   --lightBlueAccent: #00a8be;
-  --lightBlueAccentHover:rgba(0, 158, 179, 0.842);
+  --lightBlueAccentHover: rgba(0, 158, 179, 0.842);
   --midAccent: #0082be;
-  --midAccentHover:#0080bbdf;
+  --midAccentHover: #0080bbdf;
   --boxShadow: 2px 1px 3px rgb(77, 76, 76);
   --boxShadowHover: 3px 1px 5px #4e4c4c;
 }
-html{
-  background: var(--mainGradient)
+html {
+  background: var(--mainGradient);
 }
 body {
   background: var(--mainGradient);
@@ -311,17 +311,23 @@ input:focus {
   padding: 10px;
   transition: all 100ms;
 }
-#preConfiguredIcon:hover{
+#preConfiguredIcon:hover {
   background-image: var(--peachGradient);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
-.settings-icon:hover{
-  transform:rotate(20deg);
+.settings-icon:hover {
+  transform: rotate(20deg);
 }
-.refresh-icon:hover{
+.refresh-icon:hover {
   transform: rotate(30deg);
 }
+.delete-icon:hover {
+  background-image: rgba(251, 30, 30, 0.757);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
 .preConfiguredBody {
   display: flex;
   flex-direction: row;
@@ -357,6 +363,9 @@ input:focus {
 .lockIcon:hover {
   color: rgb(226, 154, 0);
 }
+.tagIcon:hover {
+  color: #ff9472;
+}
 .detailField {
   padding: 10px 15px;
   text-align: justify;
@@ -382,91 +391,36 @@ input:focus {
   left: -15px;
 }
 
-.pc-right-split{
+.pc-right-split {
   width: 35%;
 }
-.right-split-item{
+.right-split-item {
   margin: 0px 8px;
 }
 
-.deviceCountContainer{
+.deviceCountContainer {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100px;
-  margin-top: 10px;
-  background: var(--lightBlueAccent);
+  height: 130px;
+  background: var(--LowerOpacityWhite);
   border-radius: 8px;
   width: 60%;
-  align-self: flex-end;
+  align-self: center;
 }
-.deviceCountContainer:hover{
+.deviceCountContainer:hover {
   cursor: pointer;
   background: var(--lightBlueAccentHover);
 }
-.deviceCount-item{
-  transition: transform 120ms ;
-}
-.deviceCountContainer:hover .deviceCount-item{
-  transform: scale(1.1)
-}
-.deviceCountNumber{
-  font-size: 30px;
-}
-
-.pcButtons {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-end;
-}
-.pcButton {
-  width: 60%;
-  height: 38px;
-  border-radius: 5px;
-  background: transparent;
-  transition: all 80ms;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
-  margin: 20px 10px 20px 30px;
-  position: relative;
-  align-self: flex-end;
-}
-.pcButton:hover {
-  cursor: pointer;
-}
-.btn-item {
-  color: black;
-}
-.btn-text {
+.deviceCount-item {
   transition: transform 120ms;
-  position: relative;
-  left: 10px;
 }
-.btn-icon {
-  transition: opacity 120ms;
-  opacity: 0;
+.deviceCountContainer:hover .deviceCount-item {
+  transform: scale(1.1);
 }
-.pcButton:hover .btn-text {
-  transform: translateX(-15px);
-}
-.pcButton:hover .btn-icon {
-  opacity: 1;
-}
-#deleteConfig{
-  position: relative;
-  top: 10px;
-}
-#deleteConfig:hover {
-  box-shadow: none;
-}
-#deleteConfig:hover .deleteConfig{
-  color: rgba(251, 30, 30, 0.757);
-}
-#deleteConfig:hover .delete-icon{
-  color:rgba(251, 30, 30, 0.757)
+.deviceCountNumber {
+  font-size: 30px;
 }
 
 /*-----------INPUT SECTION---------------*/
