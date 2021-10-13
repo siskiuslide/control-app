@@ -280,8 +280,9 @@ input:focus {
   height: 31%;
   border-radius: 10px 10px 5px 5px;
   background-color: var(--higherOpacityWhite);
-  transition: all 100ms;
   box-shadow: var(--boxShadow);
+  opacity: 0;
+  transition: opacity 250ms;
 }
 .preConfiguredBox:hover {
   box-shadow: var(--boxShadowHover);
