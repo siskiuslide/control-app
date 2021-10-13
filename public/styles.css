@@ -66,13 +66,17 @@ input:focus {
 .navbar {
   position: relative;
   width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background: rgb(35, 35, 35);
 }
 .nav-list {
   display: flex;
   flex-direction: row;
   justify-content: left;
+  align-self: flex-start;
   height: 79px;
-  background: rgb(35, 35, 35);
   margin: 0;
 }
 
@@ -127,6 +131,50 @@ input:focus {
 .nav-active:hover {
   color: white;
   background: var(--lightBlueAccent);
+}
+
+.login-section {
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  align-items: center;
+  height: 79px;
+  margin: 0;
+}
+.login-item {
+  list-style: none;
+  text-align: center;
+  padding: 0px 5px;
+  height: 79px;
+  transition: all 80ms;
+}
+.login-text {
+  font-size: 20px;
+  padding: 5px 8px;
+  transition: all 80ms;
+  border-radius: 15px;
+}
+
+.login-account:hover {
+  background: rgb(60, 60, 60);
+}
+.create-account {
+  background: var(--peachGradient);
+  color: black;
+}
+.create-account:hover {
+  color: white;
+  border-radius: 12px;
+  transform: scale(1.07);
+}
+.my-account {
+  opacity: 1;
+}
+.my-account-icon {
+  border-radius: 50%;
+}
+.my-account-icon:hover {
+  background: rgb(60, 60, 60);
 }
 
 /*--------------------------------*/
@@ -277,7 +325,6 @@ input:focus {
   position: relative;
   margin: 2% 6%;
   width: 88%;
-  height: 31%;
   border-radius: 10px 10px 5px 5px;
   background-color: var(--higherOpacityWhite);
   box-shadow: var(--boxShadow);
@@ -386,7 +433,7 @@ input:focus {
   content: ":";
 }
 .detailText {
-  margin: 0 5px;
+  margin: 0 5px 8px;
   padding: 10px 15px;
   text-align: left;
   width: 200px;
@@ -394,8 +441,8 @@ input:focus {
 .detailText-small {
   font-size: 13px;
   text-align: left;
-  width: 210px;
   min-width: 200px;
+  padding: 10px 15px;
 }
 .divider {
   position: relative;

@@ -3,6 +3,7 @@ const emptyText = `<div class="emptyText">None to show :/</div>`;
 const createNewConfig = document.querySelector(".createNewConfigBox");
 const configInputSection = document.querySelector(".configInputSection");
 
+//add pre-config card
 const preConfiguredCardSection = document.querySelector(".preConfiguredSection");
 const addCard = function (config) {
   let configType;
@@ -66,18 +67,21 @@ const addCard = function (config) {
 </div>`;
   preConfiguredCardSection.insertAdjacentHTML("beforeEnd", configCard);
   setTimeout(() => {
-    document.querySelector(".preConfiguredCard").style.opacity = "1";
+    document.querySelectorAll(".preConfiguredCard").forEach((card) => (card.style.opacity = "1"));
   }, 100);
 };
 //DISPLAY ON LOAD
 window.addEventListener("load", async () => {
   const rawConfigData = await fetch("/config").then((res) => res.json());
   const configData = rawConfigData.body;
+  console.log(configData);
+  // const rawDeviceLength = await fetch(``)
 
   if (configData.length == 0) {
     return preConfiguredCardSection.insertAdjacentHTML("beforeend", emptyText);
   }
   configData.forEach((config) => {
+    console.log("x");
     addCard(config);
   });
 });
