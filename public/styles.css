@@ -264,6 +264,14 @@ input:focus {
   background: var(--higherOpacityWhite);
   width: 50vw;
 }
+.emptyText {
+  align-self: center;
+  font-size: 40px;
+  position: relative;
+  top: 30vh;
+  width: 400px;
+  text-align: center;
+}
 
 .preConfiguredCard {
   position: relative;
@@ -297,7 +305,7 @@ input:focus {
 .preConfiguredTitle {
   justify-self: flex-start;
   position: relative;
-  font-size: 24px;
+  font-size: 28px;
   height: 70%;
   padding: 10px;
 }
@@ -371,6 +379,7 @@ input:focus {
   text-align: justify;
   margin-left: 0;
   width: 100px;
+  min-width: 100px;
 }
 .detailChild::after {
   content: ":";
@@ -380,6 +389,12 @@ input:focus {
   padding: 10px 15px;
   text-align: left;
   width: 200px;
+}
+.detailText-small {
+  font-size: 13px;
+  text-align: left;
+  width: 210px;
+  min-width: 200px;
 }
 .divider {
   position: relative;

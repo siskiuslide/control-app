@@ -1,3 +1,5 @@
+const emptyText = `<div class="emptyText">None to show :/</div>`;
+
 const createNewConfig = document.querySelector(".createNewConfigBox");
 const configInputSection = document.querySelector(".configInputSection");
 
@@ -6,25 +8,6 @@ createNewConfig.addEventListener("click", () => {
   setTimeout(() => {
     fadeIn(configInputSection, 220, "flex");
   }, 190);
-});
-
-const deleteConfigBtn = document.querySelector(".preConfigured-delete");
-
-deleteConfigBtn.addEventListener("click", (e) => {
-  const targetConfig = e.target.closest(".preConfiguredCard");
-  const reqBody = { id: targetConfig.id };
-
-  fetch(`/config`, {
-    method: "delete",
-    body: JSON.stringify(reqBody),
-    headers: { "content-type": "application/json" },
-  })
-    .then((response) => {
-      console.log(response);
-    })
-    .catch((err) => {
-      console.log(err);
-    });
 });
 
 const configToggle = document.querySelector(".configToggle");
@@ -41,37 +24,110 @@ configToggle.addEventListener("change", (e) => {
 
 const configSubmitBtn = document.querySelector(".submitBtn");
 const form = document.querySelector(".configForm");
-form.addEventListener("submit", (e) => {
-  e.preventDefault();
-  const formData = new FormData(this);
-  if (!configToggle.checked) {
-    formData.type = "off";
-  }
-  console.log(formData);
-  fetch(`127.0.0.1:5500/config`, {
-    method: "post",
-    body: formData,
-  })
-    .then((res) => {
-      console.log("x");
-      return res.json();
-    })
-    .then((data) => {
-      console.log(data);
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+configSubmitBtn.addEventListener("click", (e) => {
+  form.submit();
+  form.reset();
 });
 
-configSubmitBtn.addEventListener("click", (e) => {
-  e.preventDefault();
-  form.submit();
-});
 const cancelForm = document.querySelector(".cancelBtn");
 cancelForm.addEventListener("click", () => {
   fadeOut(configInputSection, 160);
   setTimeout(() => {
     fadeIn(createNewConfig, 220, "flex");
   }, 190);
+});
+
+const preConfiguredCardSection = document.querySelector(".preConfiguredSection");
+window.addEventListener("load", async () => {
+  const rawConfigData = await fetch("/config").then((res) => res.json());
+  const configData = rawConfigData.body;
+
+  if (configData.length == 0) {
+    return preConfiguredCardSection.insertAdjacentHTML("beforeend", emptyText);
+  }
+
+  configData.forEach((config) => {
+    let configType;
+    console.log(config.APIKey);
+    configData.type == "on" ? (configType = "Cloud") : (configType = "Local");
+    const configCard = `      <div class="preConfiguredCard" id="${config._id}">
+    <div class="preConfiguredHeaderBox">
+        <div class="preConfiguredTitle">${config.name}</div>
+        <div class="preConfiguredIconsSection">
+        <div class="preConfiguredIcon preConfigured-settings">
+          <span class="material-icons refresh-icon" id="preConfiguredIcon">refresh</span>
+        </div>
+        <div class="preConfiguredIcon preConfigured-edit">
+          <span class="material-icons edit-icon" id="preConfiguredIcon">edit</span>
+        </div>
+        <div class="preConfiguredIcon preConfigured-settings">
+          <span class="material-icons settings-icon" id="preConfiguredIcon">settings</span>
+        </div>
+        <div class="preConfiguredIcon preConfigured-delete">
+          <span class="material-icons delete-icon" id="preConfiguredIcon">delete</span>
+        </div>
+      </div>
+    </div>
+    <div class="preConfiguredBody">
+      <div class="split-section pcDetails">
+        <div class="detail-flex">
+          <div class="detailIcon">
+            <span class="material-icons cloudIcon">cloud</span>
+          </div>
+          <div class="detailField">Type</div>
+          <div class="detailText">${configType}</div>              
+        </div>
+        <div class="detail-flex">
+          <div class="detailIcon">
+            <span class="material-icons locationIcon">fmd_good</span>
+          </div>
+          <div class="detailField">Address</div>
+          <div class="detailText detailText-small">${config.target}</div>              
+        </div>
+        <div class="detail-flex">
+          <div class="detailIcon">
+            <span class="material-icons lockIcon">lock</span>
+          </div>
+          <div class="detailField">API Key</div>
+          <div class="detailText detailText-small">${config.APIKey}</div>              
+        </div>
+        <div class="detail-flex">
+          <div class="detailIcon">
+            <span class="material-icons tagIcon">tag</span>
+          </div>
+          <div class="detailField">App ID</div>
+          <div class="detailText">${config.appID}</div>              
+        </div>
+      </div>
+      <div class="split-section pc-right-split">
+        <div class="right-split-item deviceCountContainer">
+          <div class="deviceCount-item deviceCountNumber">COUNT</div>
+          <div class="deviceCount-item deviceCountText">Results</div>
+        </div>   
+      </div>          
+    </div>
+  </div>`;
+    preConfiguredCardSection.insertAdjacentHTML("beforeEnd", configCard);
+  });
+});
+
+preConfiguredCardSection.addEventListener("click", (e) => {
+  if (e.target.classList.contains("delete-icon")) {
+    console.log(e.target);
+    const targetConfig = e.target.closest(".preConfiguredCard");
+    const reqBody = { id: targetConfig.id };
+
+    fetch(`/config`, {
+      method: "delete",
+      body: JSON.stringify(reqBody),
+      headers: { "content-type": "application/json" },
+    })
+      .then((response) => {
+        console.log(response);
+        fadeOut(targetConfig, 180);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
 });
