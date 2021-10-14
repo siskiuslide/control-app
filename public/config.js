@@ -8,59 +8,68 @@ const preConfiguredCardSection = document.querySelector(".preConfiguredSection")
 const addCard = function (config) {
   let configType;
   config.type == "on" ? (configType = "Cloud") : (configType = "Local");
-  const configCard = `      <div class="preConfiguredCard" id="${config._id}">
-  <div class="preConfiguredHeaderBox">
-      <div class="preConfiguredTitle">${config.name}</div>
-      <div class="preConfiguredIconsSection">
-      <div class="preConfiguredIcon preConfigured-settings">
-        <span class="material-icons refresh-icon" id="preConfiguredIcon">refresh</span>
-      </div>
-      <div class="preConfiguredIcon preConfigured-edit">
-        <span class="material-icons edit-icon" id="preConfiguredIcon">edit</span>
-      </div>
-      <div class="preConfiguredIcon preConfigured-settings">
-        <span class="material-icons settings-icon" id="preConfiguredIcon">settings</span>
-      </div>
-      <div class="preConfiguredIcon preConfigured-delete">
-        <span class="material-icons delete-icon" id="preConfiguredIcon">delete</span>
+  const configCard = `
+  <div class="preConfiguredCard" id="${config._id}">
+    <div class="pcHeaderWrapper">
+      <div class="preConfiguredHeaderBox">
+        <div class="preConfiguredTitle">${config.name}</div>
+          <div class="preConfiguredIconsSection">
+          <div class="preConfiguredIcon preConfigured-settings">
+            <span class="material-icons refresh-icon" id="preConfiguredIcon">refresh</span>
+          </div>
+          <div class="preConfiguredIcon preConfigured-edit">
+            <span class="material-icons edit-icon" id="preConfiguredIcon" href="/configView.html">edit</span>
+          </div>
+          <div class="preConfiguredIcon preConfigured-settings">
+            <span class="material-icons settings-icon" id="preConfiguredIcon" href='/configView.html'>settings</span>
+          </div>
+          <div class="preConfiguredIcon preConfigured-delete">
+            <span class="material-icons delete-icon" id="preConfiguredIcon">delete</span>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-  <div class="preConfiguredBody">
-    <div class="split-section pcDetails">
-      <div class="detail-flex">
-        <div class="detailIcon">
-          <span class="material-icons cloudIcon">cloud</span>
+    <div class="preConfiguredBody">
+      <div class="split-section pcDetails">
+        <div class="detail-flex">
+          <div class="detailIcon">
+            <span class="material-icons cloudIcon">cloud</span>
+          </div>
+          <div class="detailField">Type</div>
+          <div class="detailText">${configType}</div>              
         </div>
-        <div class="detailField">Type</div>
-        <div class="detailText">${configType}</div>              
-      </div>
-      <div class="detail-flex">
-        <div class="detailIcon">
-          <span class="material-icons locationIcon">fmd_good</span>
+        <div class="detail-flex">
+          <div class="detailIcon">
+           <span class="material-icons locationIcon">fmd_good</span>
+          </div>
+          <div class="detailField">Address</div>
+          <div class="detailText detailText-small">${config.target}</div>              
         </div>
-        <div class="detailField">Address</div>
-        <div class="detailText detailText-small">${config.target}</div>              
-      </div>
-      <div class="detail-flex">
-        <div class="detailIcon">
-          <span class="material-icons lockIcon">lock</span>
+        <div class="detail-flex">
+          <div class="detailIcon">
+            <span class="material-icons lockIcon">lock</span>
+          </div>
+          <div class="detailField">API Key</div>
+          <div class="detailText detailText-small">${config.APIKey}</div>              
         </div>
-        <div class="detailField">API Key</div>
-        <div class="detailText detailText-small">${config.APIKey}</div>              
-      </div>
-      <div class="detail-flex">
-        <div class="detailIcon">
-          <span class="material-icons tagIcon">tag</span>
+        <div class="detail-flex">
+          <div class="detailIcon">
+            <span class="material-icons tagIcon">tag</span>
+          </div>
+          <div class="detailField">App ID</div>
+          <div class="detailText">${config.appID}</div>              
         </div>
-        <div class="detailField">App ID</div>
-        <div class="detailText">${config.appID}</div>              
       </div>
-    </div>
-    <div class="split-section pc-right-split">
-      <div class="right-split-item deviceCountContainer">
-        <div class="deviceCount-item deviceCountNumber">COUNT</div>
-        <div class="deviceCount-item deviceCountText">Results</div>
+      <div class="split-section pc-right-split">
+        <div class="right-split-item deviceCountContainer">
+          <div class="deviceCount-item deviceCountNumber">COUNT</div>
+        <div class="deviceCount-item deviceCountText">
+          <div class="deviceCount-results">Results</div>
+          <div class="deviceCount-chevron">
+            <span class="material-icons chevron-icon">chevron_right</span>
+          </div>
+        </div>
+        </div>
       </div>   
     </div>          
   </div>
@@ -74,14 +83,12 @@ const addCard = function (config) {
 window.addEventListener("load", async () => {
   const rawConfigData = await fetch("/config").then((res) => res.json());
   const configData = rawConfigData.body;
-  console.log(configData);
   // const rawDeviceLength = await fetch(``)
 
   if (configData.length == 0) {
     return preConfiguredCardSection.insertAdjacentHTML("beforeend", emptyText);
   }
   configData.forEach((config) => {
-    console.log("x");
     addCard(config);
   });
 });
@@ -99,7 +106,9 @@ preConfiguredCardSection.addEventListener("click", async (e) => {
     })
       .then((response) => {
         fadeOut(targetConfig, 180);
-        preConfiguredCardSection.removeChild(document.getElementById(`${targetConfig.id}`));
+        setTimeout(() => {
+          preConfiguredCardSection.removeChild(document.getElementById(`${targetConfig.id}`));
+        }, 200);
       })
       .catch((err) => {
         console.log(err);

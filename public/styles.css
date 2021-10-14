@@ -13,6 +13,7 @@
   --midAccentHover: #0080bbdf;
   --boxShadow: 2px 1px 3px rgb(77, 76, 76);
   --boxShadowHover: 3px 1px 5px #4e4c4c;
+  --textShadow: 1px 1px 5px #4e4c4c;
 }
 html {
   background: var(--mainGradient);
@@ -173,9 +174,6 @@ input:focus {
 .my-account-icon {
   border-radius: 50%;
 }
-.my-account-icon:hover {
-  background: rgb(60, 60, 60);
-}
 
 /*--------------------------------*/
 
@@ -334,9 +332,13 @@ input:focus {
 .preConfiguredBox:hover {
   box-shadow: var(--boxShadowHover);
 }
+.pcHeaderWrapper {
+  background: var(--peachGradient);
+  border-radius: 10px 10px 0 0;
+  padding-bottom: 2px;
+}
 .preConfiguredHeaderBox {
   position: relative;
-  width: 100%;
   height: 20%;
   align-self: flex-start;
   justify-content: space-between;
@@ -345,6 +347,8 @@ input:focus {
   background: var(--midAccent);
   display: flex;
   flex-direction: row;
+  border: 2px;
+  border-image: var(--peachGradient);
 }
 
 .preConfigured-edit {
@@ -406,6 +410,7 @@ input:focus {
   flex-direction: row;
   justify-content: space-between;
   margin-top: 4px;
+  text-shadow: var(--textShadow);
 }
 .detailIcon {
   padding: 10px 0px 5px 10px;
@@ -484,6 +489,28 @@ input:focus {
 }
 .deviceCountNumber {
   font-size: 30px;
+}
+.deviceCountText {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  position: relative;
+  top: 10px;
+}
+.deviceCount-results {
+  position: relative;
+  left: 10px;
+  transition: transform 100ms;
+}
+.chevron-icon {
+  opacity: 0;
+  transition: opacity 100ms;
+}
+.deviceCountContainer:hover .deviceCount-results {
+  transform: translateX(-10px);
+}
+.deviceCountContainer:hover .chevron-icon {
+  opacity: 1;
 }
 
 /*-----------INPUT SECTION---------------*/
