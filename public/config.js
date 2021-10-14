@@ -138,6 +138,11 @@ createNewConfig.addEventListener("click", () => {
   }, 190);
 });
 
+
+//////////
+///form///
+//////////
+
 const configToggle = document.querySelector(".configToggle");
 let inputTargetHeader = document.querySelector(".headerTarget");
 let localOrCloud = document.querySelector(".localOrCloud");
@@ -165,3 +170,7 @@ cancelForm.addEventListener("click", () => {
     fadeIn(createNewConfig, 220, "flex");
   }, 190);
 });
+
+const colourInput = document.querySelector('.inputConfigColour')
+colourInput.defaultValue = '#0082bee'
+colourInput.value = '#0082bee'
