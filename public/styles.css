@@ -376,17 +376,22 @@ input:focus {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+#preConfigured-favourite:hover{
+ color: rgb(236, 236, 0)
+}
+.favourited{
+  color: rgb(236,236,0);
+}
+#preConfigured-delete:hover{
+  color: rgba(251, 30, 30, 0.757);
+}
 .settings-icon:hover {
   transform: rotate(20deg);
 }
 .refresh-icon:hover {
   transform: rotate(30deg);
 }
-.delete-icon:hover {
-  background-image: rgba(251, 30, 30, 0.757);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
+
 
 .preConfiguredBody {
   display: flex;

@@ -23,8 +23,11 @@ const addCard = function (config) {
           <div class="preConfiguredIcon preConfigured-settings">
             <span class="material-icons settings-icon" id="preConfiguredIcon" href='/configView.html'>settings</span>
           </div>
+          <div class="preConfiguredIcon preConfigured-favourite">
+            <span class="material-icons favourite-icon" id="preConfigured-favourite">star_outline</span>
+          </div>
           <div class="preConfiguredIcon preConfigured-delete">
-            <span class="material-icons delete-icon" id="preConfiguredIcon">delete</span>
+            <span class="material-icons delete-icon" id="preConfigured-delete">delete</span>
           </div>
         </div>
       </div>
@@ -115,6 +118,15 @@ preConfiguredCardSection.addEventListener("click", async (e) => {
       });
     if (document.querySelector(".preConfiguredCard") == null) {
       preConfiguredCardSection.insertAdjacentHTML("beforeend", emptyText);
+    }
+  }
+  if(e.target.classList.contains('favourite-icon')){
+    console.log(e.target)
+    e.target.classList.toggle('favourited')
+    if(e.target.classList.contains('favourited')){
+      e.target.textContent = 'star'
+    }else {
+      e.target.textContent = 'star_outline'
     }
   }
 });
