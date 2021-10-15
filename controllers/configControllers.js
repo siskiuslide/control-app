@@ -37,9 +37,10 @@ exports.createConfig = async function (req, res) {
     res.status(404).json({ status: "failed", message: err });
   }
 };
-exports.updateConfig = async function (object) {
+exports.updateConfig = async function (req, res) {
   try {
-    await Config.findOneAndUpdate({ name: object.name }, object);
+    const object = req.body;
+    await Config.findByIdAndUpdate(`${object._id}`, object)
     res.status(200).json({ status: "success", data: object });
   } catch (err) {
     console.log(err);

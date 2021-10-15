@@ -6,7 +6,8 @@ const configSchema = new mongoose.Schema({
   target: { type: String, required: true, unique: true },
   APIKey: { type: String, required: true, unique: true },
   appID: { type: Number, required: true },
-  lastUpdated: {type: Date, default: Date.now(), required: true}
+  lastUpdated: {type: Date, default: Date.now(), required: true},
+  favourite: {type: Boolean, default: false}
 });
 
 const Config = mongoose.model("configs", configSchema);
