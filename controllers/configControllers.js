@@ -1,4 +1,5 @@
 const Config = require("./../models/configModel");
+const Device = require("./../models/deviceModel");
 const DeviceControllers = require("./deviceControllers");
 
 exports.getConfig = async function (req, res) {
@@ -45,43 +46,16 @@ exports.updateConfig = async function (req, res) {
     res.status(200).json({ status: "success", data: object });
   } catch (err) {
     console.log(err);
-    res.status(404).json({ status: "Failure", message: err });
+    return res.status(404).json({ status: "Failure", message: err });
   }
 };
 
 exports.deleteConfig = async function (req, res) {
   try {
     console.log(req.body);
-    await Config.deleteOne({ _id: req.body.id }).then((response) => {
-      return res.status(200).json({ status: "Success", message: { text: "Deleted config from database" } });
-    });
-  } catch (err) {
-    console.log(err);
-    return res.status(404).json({ status: "failed", message: err });
-  }
-};
-
-////EMBEDDED DEVICES
-
-exports.insertDevices = async (req, res) => {
-  try {
-    const data = await DeviceControllers.getAllDevices(req.params);
-    const devices = [];
-    data.forEach((item) => {
-      const document = {
-        configID: req.params.id,
-        deviceID: item.id,
-        name: item.name,
-        label: item.label,
-        type: item.type,
-        status: item.attributes.switch,
-        commands: item.commands,
-      };
-      devices.push(document);
-      Config.update({ _id: req.params.id }, { $push: { devices: document } });
-    });
-
-    return res.status(200).json({ status: "Success", data: devices });
+    await Config.deleteOne({ _id: req.body.id }).catch((err) => console.log(err));
+    await Device.deleteMany({ configID: req.body.id }).catch((err) => console.log(err));
+    return res.status(200).json({ status: "Success", message: { text: "Deleted config from database" } });
   } catch (err) {
     console.log(err);
     return res.status(404).json({ status: "failed", message: err });

@@ -87,8 +87,8 @@ const addCard = function (config) {
         </div>
       </div>
       <div class="split-section pc-right-split">
-        <div class="right-split-item deviceCountContainer">
-          <div class="deviceCount-item deviceCountNumber">COUNT</div>
+        <div class="right-split-item deviceCountContainer" href="/config/${config._id}/devices">
+          <div class="deviceCount-item deviceCountNumber">Count</div>
         <div class="deviceCount-item deviceCountText">
           <div class="deviceCount-results">Results</div>
           <div class="deviceCount-chevron">
@@ -109,6 +109,7 @@ const addCard = function (config) {
 window.addEventListener("load", async () => {
   const rawConfigData = await fetch("/config").then((res) => res.json());
   const configData = rawConfigData.body;
+  console.log(configData);
   // const rawDeviceLength = await fetch(``)
 
   if (configData.length == 0) {
@@ -201,6 +202,20 @@ preConfiguredCardSection.addEventListener("click", async (e) => {
     } else {
       alert("Unable to update data");
     }
+  }
+
+  //COUNTButton - ON CLICK make device request
+
+  if (e.target.classList.contains("deviceCountContainer")) {
+    const config = e.target.closest(".preConfiguredCard").id;
+    console.log(config);
+    const data = await fetch(`/config/${config}/devices`)
+      .then((res) => res.json())
+      .then((data) => {
+        return data;
+      })
+      .catch((err) => console.log(err));
+    console.log(data);
   }
 });
 

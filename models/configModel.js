@@ -1,8 +1,6 @@
 const mongoose = require("mongoose");
 const slugify = require("slugify");
 
-const Devices = require("./deviceModel");
-
 const configSchema = new mongoose.Schema(
   {
     name: { type: String, required: true, unique: true },
@@ -12,7 +10,6 @@ const configSchema = new mongoose.Schema(
     appID: { type: Number, required: true },
     favourite: { type: Boolean, default: false },
     slug: { type: String, unique: true },
-    // devices: { type: Array },
   },
   { timestamps: true }
 );

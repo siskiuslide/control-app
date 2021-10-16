@@ -10,7 +10,9 @@ app.use(express.urlencoded({ extended: true }));
 const deviceRouter = require("./routes/deviceRouter");
 const configRouter = require("./routes/configRouter");
 
-app.use("/devices", deviceRouter);
+//config page
 app.use("/config", configRouter);
+//devices per config
+app.use("/config/:id/devices", deviceRouter);
 
 module.exports = app;
