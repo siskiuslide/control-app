@@ -21,13 +21,24 @@ const setFavouriteIconStyle = (config) => {
   config.favourite == true ? (favouriteClass = "favourited") : (favouriteClass = "");
   return favouriteClass;
 };
+const getDevice = async (target) => {
+  const config = target.closest(".preConfiguredCard").id;
+  const data = await fetch(`/config/${config}/devices`)
+    .then((res) => res.json())
+    .then((data) => {
+      return data;
+    })
+    .catch((err) => console.log(err));
+  console.log(data);
+  return data;
+};
 
 const preConfiguredCardSection = document.querySelector(".preConfiguredSection");
 const addCard = function (config) {
   const type = checkType(config);
-  const date = new Date(config.lastUpdated);
+  const date = new Date(config.updatedAt);
   const configCard = `
-  <div class="preConfiguredCard" id="${config._id}">
+  <div class="preConfiguredCard" id="${config._id}" data-slug="${config.slug}">
     <div class="pcHeaderWrapper">
       <div class="preConfiguredHeaderBox">
         <div class="pcHeaderBox-item preConfiguredTitle">${config.name}</div>
@@ -88,7 +99,7 @@ const addCard = function (config) {
       </div>
       <div class="split-section pc-right-split">
         <div class="right-split-item deviceCountContainer" href="/config/${config._id}/devices">
-          <div class="deviceCount-item deviceCountNumber">Count</div>
+          <div class="deviceCount-item deviceCountNumber">0</div>
         <div class="deviceCount-item deviceCountText">
           <div class="deviceCount-results">Results</div>
           <div class="deviceCount-chevron">
@@ -109,14 +120,17 @@ const addCard = function (config) {
 window.addEventListener("load", async () => {
   const rawConfigData = await fetch("/config").then((res) => res.json());
   const configData = rawConfigData.body;
-  console.log(configData);
-  // const rawDeviceLength = await fetch(``)
 
   if (configData.length == 0) {
     return preConfiguredCardSection.insertAdjacentHTML("beforeend", emptyText);
   }
   configData.forEach((config) => {
     addCard(config);
+  });
+  const counts = document.querySelectorAll(".deviceCountNumber");
+  counts.forEach(async (count) => {
+    const devices = await getDevice(count);
+    count.textContent = devices.data.length;
   });
 });
 
@@ -195,6 +209,9 @@ preConfiguredCardSection.addEventListener("click", async (e) => {
       updateCard.querySelector(".targetText").textContent = responseData.target;
       updateCard.querySelector(".APIKeyText").textContent = responseData.APIKey;
       updateCard.querySelector(".AppIDText").textContent = responseData.appID;
+      const count = await getDevice(e);
+      console.log(count);
+      document.querySelector(".deviceCountNumber").textContent = count.data.length;
       if (responseData.favourite == true) {
         updateCard.querySelector(".favourite-icon").classList.add("favourited");
         updateCard.querySelector(".favourite-icon").textContent = "star";
@@ -208,7 +225,6 @@ preConfiguredCardSection.addEventListener("click", async (e) => {
 
   if (e.target.classList.contains("deviceCountContainer")) {
     const config = e.target.closest(".preConfiguredCard").id;
-    console.log(config);
     const data = await fetch(`/config/${config}/devices`)
       .then((res) => res.json())
       .then((data) => {
