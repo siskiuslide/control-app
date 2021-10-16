@@ -1,23 +1,40 @@
-
 const emptyText = `<div class="emptyText">None to show :/</div>`;
 
 const createNewConfig = document.querySelector(".createNewConfigBox");
 const configInputSection = document.querySelector(".configInputSection");
 
+////
+//PRECONFIG CARDS
+////
+let configType, favouriteContent, favouriteClass;
 
-//add pre-config card
+const checkType = (config) => {
+  config.type == "on" ? (configType = "Cloud") : (configType = "Local");
+  return configType;
+};
+
+const setFavouriteIcon = (config) => {
+  config.favourite == true ? (favouriteContent = "star") : (favouriteContent = "star_outline");
+  return favouriteContent;
+};
+const setFavouriteIconStyle = (config) => {
+  config.favourite == true ? (favouriteClass = "favourited") : (favouriteClass = "");
+  return favouriteClass;
+};
+
 const preConfiguredCardSection = document.querySelector(".preConfiguredSection");
 const addCard = function (config) {
-  let configType, favouriteContent, favouriteClass;
-  config.type == "on" ? (configType = "Cloud") : (configType = "Local");
-  config.favourite == true ? favouriteContent = 'star': favouriteContent = 'star_outline';
-  config.favourite == true ? favouriteClass = 'favourited' : favouriteClass = '';
+  const type = checkType(config);
+  const date = new Date(config.lastUpdated);
   const configCard = `
   <div class="preConfiguredCard" id="${config._id}">
     <div class="pcHeaderWrapper">
       <div class="preConfiguredHeaderBox">
-        <div class="preConfiguredTitle">${config.name}</div>
-          <div class="preConfiguredIconsSection">
+        <div class="pcHeaderBox-item preConfiguredTitle">${config.name}</div>
+        <div class="pcHeaderBox-item preConfiguredUpdate">${date.getHours()}:${date.getMinutes()} | ${date.getDate()}/${
+    date.getMonth() + 1
+  }/${date.getFullYear()}</div>
+          <div class="pcHeaderBox-item preConfiguredIconsSection">
           <div class="preConfiguredIcon preConfigured-settings">
             <span class="material-icons refresh-icon" id="preConfiguredIcon">refresh</span>
           </div>
@@ -28,7 +45,9 @@ const addCard = function (config) {
             <span class="material-icons settings-icon" id="preConfiguredIcon" href='/configView.html'>settings</span>
           </div>
           <div class="preConfiguredIcon preConfigured-favourite">
-            <span class="material-icons favourite-icon ${favouriteClass}" id="preConfigured-favourite">${favouriteContent}</span>
+            <span class="material-icons favourite-icon ${setFavouriteIconStyle(
+              config
+            )}" id="preConfigured-favourite">${setFavouriteIcon(config)}</span>
           </div>
           <div class="preConfiguredIcon preConfigured-delete">
             <span class="material-icons delete-icon" id="preConfigured-delete">delete</span>
@@ -43,7 +62,7 @@ const addCard = function (config) {
             <span class="material-icons cloudIcon">cloud</span>
           </div>
           <div class="detailField">Type</div>
-          <div class="detailText typeText">${configType}</div>              
+          <div class="detailText typeText">${checkType(config)}</div>              
         </div>
         <div class="detail-flex">
           <div class="detailIcon">
@@ -100,8 +119,8 @@ window.addEventListener("load", async () => {
   });
 });
 
-//DELETE
 preConfiguredCardSection.addEventListener("click", async (e) => {
+  //DELETE
   if (e.target.classList.contains("delete-icon")) {
     const targetConfig = e.target.closest(".preConfiguredCard");
     const reqBody = { id: targetConfig.id };
@@ -124,55 +143,65 @@ preConfiguredCardSection.addEventListener("click", async (e) => {
       preConfiguredCardSection.insertAdjacentHTML("beforeend", emptyText);
     }
   }
-  if(e.target.classList.contains('favourite-icon')){
-    console.log(e.target)
-    e.target.classList.toggle('favourited')
-    const targetConfig = e.target.closest('.preConfiguredCard')
+  //FAVOURITE
+  if (e.target.classList.contains("favourite-icon")) {
+    e.target.classList.toggle("favourited");
+    const targetConfig = e.target.closest(".preConfiguredCard");
     let favouriteStatus;
-    if(e.target.classList.contains('favourited')){
-      e.target.textContent = 'star'
-      favouriteStatus = true
-    }else {
-      e.target.textContent = 'star_outline'
+    if (e.target.classList.contains("favourited")) {
+      e.target.textContent = "star";
+      favouriteStatus = true;
+    } else {
+      e.target.textContent = "star_outline";
       favouriteStatus = false;
     }
 
     const favouriteUpdate = {
-      _id:targetConfig.id,
-      favourite: favouriteStatus
-    }
-    console.log(favouriteUpdate)
-    await fetch('/config', {
-      method: 'PATCH',
+      _id: targetConfig.id,
+      favourite: favouriteStatus,
+    };
+    await fetch("/config", {
+      method: "PATCH",
       body: JSON.stringify(favouriteUpdate),
       headers: { "content-type": "application/json" },
-    }).then(response => {
-      return response.json()
-    }).then(data=>{
-      console.log(data)
-      return data}).catch( err =>{console.log(err)})
+    })
+      .then((response) => {
+        return response.json();
+      })
+      .then((data) => {
+        return data;
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
- if(e.target.classList.contains('refresh-icon')){
-   const target = e.target.closest('.preConfiguredCard')
-   const targetID = target.id
-   console.log(targetID)
-   const response = await fetch(`/config/${target.id}`).then(response => response.json()).then(data=> { return data}).catch(err => console.log(err))
-   const responseData = response.data.find(el => el._id === targetID)
-   console.log(responseData)
 
-    if(responseData){
-      const updateCard = document.getElementById(`${targetID}`)
-      updateCard.querySelector('.typeText').textContent = responseData.type
-      updateCard.querySelector('.targetText').textContent = responseData.target
-      updateCard.querySelector('.APIKeyText').textContent = responseData.APIKey
-      updateCard.querySelector('.AppIDText').textContent = responseData.appID
-      if(responseData.favourite == true){
-        updateCard.querySelector('.favourite-icon').classList.add('favourited')
-        updateCard.querySelector('.favourite-icon').textContent = 'star'
+  ////REFRESH
+  if (e.target.classList.contains("refresh-icon")) {
+    const target = e.target.closest(".preConfiguredCard");
+    const targetID = target.id;
+    const response = await fetch(`/config/${target.id}`)
+      .then((response) => response.json())
+      .then((data) => {
+        return data;
+      })
+      .catch((err) => console.log(err));
+    const responseData = response.data.find((el) => el._id === targetID);
 
+    if (responseData) {
+      const updateCard = document.getElementById(`${targetID}`);
+      updateCard.querySelector(".typeText").textContent = checkType(responseData);
+      updateCard.querySelector(".targetText").textContent = responseData.target;
+      updateCard.querySelector(".APIKeyText").textContent = responseData.APIKey;
+      updateCard.querySelector(".AppIDText").textContent = responseData.appID;
+      if (responseData.favourite == true) {
+        updateCard.querySelector(".favourite-icon").classList.add("favourited");
+        updateCard.querySelector(".favourite-icon").textContent = "star";
       }
-    }else{alter('Unable to update data')}
- }
+    } else {
+      alert("Unable to update data");
+    }
+  }
 });
 
 createNewConfig.addEventListener("click", () => {
@@ -182,9 +211,8 @@ createNewConfig.addEventListener("click", () => {
   }, 190);
 });
 
-
 //////////
-///form///
+///FORM///
 //////////
 
 const configToggle = document.querySelector(".configToggle");
@@ -215,6 +243,6 @@ cancelForm.addEventListener("click", () => {
   }, 190);
 });
 
-const colourInput = document.querySelector('.inputConfigColour')
-colourInput.defaultValue = '#0082bee'
-colourInput.value = '#0082bee'
+const colourInput = document.querySelector(".inputConfigColour");
+colourInput.defaultValue = "#0082bee";
+colourInput.value = "#0082bee";

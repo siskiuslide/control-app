@@ -1,6 +1,6 @@
 const url = require("url");
 const urlDecider = function (setupType, targetAddr) {
-  if (setupType === "cloud") {
+  if (setupType === "on") {
     return `https://cloud.hubitat.com/api/${targetAddr}/apps`;
   } else return `http://${targetAddr}/apps/api`;
 };

@@ -1,28 +1,30 @@
 const urlHelper = require("./helpers/urlHelper");
-const Device = require("./../models/deviceModels");
+const Device = require("../models/deviceModel");
+const Config = require("./../models/configModel");
 const fetch = require("node-fetch");
 
-exports.getAllDevices = async function (req, res) {
-  //prettier-ignore
-  try{
-    const url = urlHelper.buildURL("cloud","65eae03a-9c4f-4fca-a6cd-8837829f956f",1375,"94f86fe4-44dd-4dca-8334-5c722eba83a3","devices");
-    const hubResponse = await fetch(url, { method: "GET" }).then(res => res.json()).catch(err => console.log(err))
-    hubResponse.forEach(item=> {
-      const document = {
-        deviceID: item.id,
-        name: item.name,
-        label: item.label,
-        type: item.type,
-        status: item.attributes.switch,
-        commands: item.commands
-      }
-      Device.docChecker(document)
-  })
-    res.status(200).json({status: "success", data: hubResponse})
-}catch(err){
-console.log(err)
-res.status(400).json({status: "failed"})}
+exports.getAllDevices = async function (params) {
+  try {
+    const assocConfig = await Config.find({ _id: params.id });
+    console.log(assocConfig);
+
+    const url = urlHelper.buildURL(
+      assocConfig[0].type,
+      assocConfig[0].target,
+      assocConfig[0].appID,
+      assocConfig[0].APIKey,
+      "devices"
+    );
+    const hubResponse = await fetch(url, { method: "GET" })
+      .then((res) => res.json())
+      .catch((err) => console.log(err));
+
+    return hubResponse;
+  } catch (err) {
+    console.log(err);
+  }
 };
+
 exports.getDevice = function (req, res) {
   //called when a request comes from the frontend
   //use the req object to make fetch

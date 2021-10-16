@@ -351,15 +351,28 @@ input:focus {
   border-image: var(--peachGradient);
 }
 
-.preConfigured-edit {
+.pcHeaderBox-item {
   padding: 10px;
+  transition: all 100ms;
 }
 .preConfiguredTitle {
   justify-self: flex-start;
   position: relative;
   font-size: 28px;
   height: 70%;
-  padding: 10px;
+}
+.preConfiguredUpdate {
+  color: rgb(255, 255, 255, 0.7);
+  /* justify-self: center; */
+  align-self: flex-start;
+  font-size: 17px;
+  height: 70%;
+  position: relative;
+  top: 5px;
+}
+.preConfiguredUpdate:hover {
+  color: rgba(255, 255, 255, 1);
+  cursor: default;
 }
 .preConfiguredIconsSection {
   justify-self: flex-end;
@@ -368,7 +381,7 @@ input:focus {
   justify-content: flex-end;
 }
 .preConfiguredIcon {
-  padding: 10px;
+  margin: 1px 4px;
   transition: all 100ms;
 }
 #preConfiguredIcon:hover {
@@ -376,22 +389,22 @@ input:focus {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
-#preConfigured-favourite:hover{
- color: rgb(236, 236, 0)
+#preConfigured-favourite:hover {
+  color: rgb(255, 251, 0);
 }
-.favourited{
-  color: rgb(236,236,0);
+.favourited {
+  color: rgb(231, 231, 0);
 }
-#preConfigured-delete:hover{
+#preConfigured-delete:hover {
   color: rgba(251, 30, 30, 0.757);
 }
 .settings-icon:hover {
   transform: rotate(20deg);
 }
+
 .refresh-icon:hover {
   transform: rotate(30deg);
 }
-
 
 .preConfiguredBody {
   display: flex;
