@@ -97,16 +97,18 @@ const addCard = function (config) {
           <div class="detailText appIDText">${config.appID}</div>              
         </div>
       </div>
+      <a href="/devices.html">
       <div class="split-section pc-right-split">
-        <div class="right-split-item deviceCountContainer" href="/config/${config._id}/devices">
+        <div class="right-split-item deviceCountContainer" href="/devices.html">
           <div class="deviceCount-item deviceCountNumber">0</div>
         <div class="deviceCount-item deviceCountText">
-          <div class="deviceCount-results">Results</div>
+         <div class="deviceCount-results">Results</div>
           <div class="deviceCount-chevron">
             <span class="material-icons chevron-icon">chevron_right</span>
           </div>
-        </div>
-        </div>
+          </div>
+         </div>
+        </a>
       </div>   
     </div>          
   </div>
@@ -119,6 +121,7 @@ const addCard = function (config) {
 //DISPLAY ON LOAD
 window.addEventListener("load", async () => {
   const rawConfigData = await fetch("/config").then((res) => res.json());
+  console.log(rawConfigData);
   const configData = rawConfigData.body;
 
   if (configData.length == 0) {
@@ -261,6 +264,7 @@ configToggle.addEventListener("change", (e) => {
 const configSubmitBtn = document.querySelector(".submitBtn");
 const form = document.querySelector(".configForm");
 configSubmitBtn.addEventListener("click", (e) => {
+  e.preventDefault();
   form.submit();
   form.reset();
   window.location.reload();

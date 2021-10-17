@@ -5,7 +5,7 @@ const configSchema = new mongoose.Schema(
   {
     name: { type: String, required: true, unique: true },
     type: { type: String },
-    target: { type: String, required: true, unique: true },
+    target: { type: String, required: true },
     APIKey: { type: String, required: true, unique: true },
     appID: { type: Number, required: true },
     favourite: { type: Boolean, default: false },

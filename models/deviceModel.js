@@ -2,9 +2,9 @@ const mongoose = require("mongoose");
 const deviceSchema = new mongoose.Schema(
   {
     configID: { type: String, required: true },
-    deviceID: { type: String, required: true, unique: true },
+    deviceID: { type: String, required: true },
     name: { type: String, required: true },
-    label: { type: String, required: true, unique: true },
+    label: { type: String, required: true },
     type: { type: String, required: true },
     status: { type: String, required: true },
     commands: { type: Array, required: false },

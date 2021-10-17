@@ -36,10 +36,6 @@ exports.getDevices = async (req, res) => {
           await Device.create(device)
             .then((data) => console.log(data))
             .catch((err) => console.log(err));
-        } else {
-          existing = device.deviceID;
-          console.log(`DeviceID ${existing} already exists`);
-          return existing;
         }
         if (err) {
           console.log(err);
@@ -57,16 +53,10 @@ exports.getDevices = async (req, res) => {
 };
 
 exports.getDevice = function (req, res) {
-  //called when a request comes from the frontend
-  //use the req object to make fetch
-  //make request to MONGO for device details and send it as a response
   return res.status(200).json({ status: "Success", data: { id: `${req.params.id}`, name: `Lightbulb`, status: "on" } });
 };
 
 exports.deleteDevice = function (req, res) {
-  //remove from list of devices that appear in /devices/:id page or on the individual
-  //will be added to a list of exclusions
-  //then reload the /devices page
   res.send("x");
   return console.log("z");
 };

@@ -17,10 +17,12 @@
 }
 html {
   background: var(--mainGradient);
+  background-size: cover;
 }
 body {
   background: var(--mainGradient);
   margin: 0;
+  background-repeat: no-repeat;
 }
 h1 {
   font-size: 42px;
@@ -270,15 +272,15 @@ input:focus {
 }
 .createNewConfigClickable {
   cursor: pointer;
-  width: 250px;
-  height: 250px;
+  width: 50%;
+  height: 50%;
   transition: transform 100ms;
 }
 .createNewConfigClickable:hover {
   transform: scale(1.04);
 }
 .createNewConfigText {
-  font-size: 40px;
+  font-size: 140%;
   position: relative;
   top: 10px;
   color: #ffffff;
@@ -669,30 +671,141 @@ input:checked + .slider:before {
   -ms-transform: translateX(22px);
   transform: translateX(22px);
 }
+/*
+
+
 /*devices page*/
-.controlSection {
-  position: relative;
+
+/**/
+
+.devicePageFlex {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
   width: 100%;
+  height: 100%;
+}
+
+.configListContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  width: 25vw;
+  height: 99%;
+  background: var(--LowerOpacityWhite);
+  margin: 5px;
+  border-radius: 4px;
+}
+.configListItem {
+  margin: 5px;
+  width: auto;
+}
+.configListHeaderSection {
+  background: none;
+  height: 6%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.headerText {
+  font-size: 30px;
+  margin-left: 75px;
+}
+.headerIconsSection {
+  display: flex;
+}
+.headerIcon {
+  margin: 0px 3px;
+}
+.configListEntry {
+  height: 10%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  border-radius: 4px;
+  transition: all 100ms;
+}
+.inactiveConfig {
+  background: var(--higherOpacityWhite);
+}
+.inactiveConfig:hover {
+  background: rgba(255, 255, 255, 0.85);
+}
+.inactiveConfig:hover .entryTitle {
+  color: black;
+}
+.activeConfig {
+  background: var(--midAccent);
+}
+.activeConfig:hover {
+  background: var(--midAccentHover);
+}
+.configListEntry:hover {
+  cursor: pointer;
+}
+.configListEntry:hover .entryTitle {
+  transform: translateX(25px);
+}
+.entry-chevron-icon {
+  color: white;
+}
+.configListEntry:hover .chevron-icon {
+  opacity: 1;
+  transition-delay: 150ms;
+}
+.inactiveConfig:hover .chevron-icon {
+  color: black;
+}
+.entryTitle {
+  font-size: 25px;
+  color: white;
+  transition: all 150ms;
+  text-align: left;
+  transform: translateX(45px);
+}
+
+.entry-chevron-icon {
+  transform: scale(1.3);
+  transition: all 100ms;
+  margin: 0 30px;
+}
+
+.addConfigRedirect {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.createNewConfigText-Devices {
+  font-size: 30px;
+  position: relative;
+  top: 10px;
+  color: #ffffff;
+  width: 100px;
 }
 
 .deviceListSection {
   background: #ffffff30;
   position: relative;
-  width: 76%;
-  left: 11%;
-  height: 80%;
-  top: 10%;
+  width: 73vw;
+  margin: 5px;
   border-radius: 4px;
-  margin: 3vh 2vw;
+  height: auto;
+  display: flex;
+  flex-direction: column;
 }
 
 .searchSection {
   position: relative;
-  top: 30px;
+  height: 6%;
+  width: 100%;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: flex-end;
+  align-self: flex-end;
 }
 .searchElement {
   padding: 0 10px;
@@ -721,6 +834,7 @@ input:checked + .slider:before {
   width: 150px;
   height: 40px;
   text-align: center;
+  display: none;
 }
 .tooltip:hover + .searchToolTipText {
   display: inline;
@@ -740,7 +854,6 @@ input:checked + .slider:before {
 
 .deviceContainer {
   position: relative;
-  top: 100px;
   display: flex;
   flex-direction: row;
   align-items: flex-start;

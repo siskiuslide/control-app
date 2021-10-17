@@ -1,10 +1,9 @@
 <head>
   <title>Control | Devices</title>
   <link rel="stylesheet" href="./styles.css" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Oswald&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-      rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Oswald&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
   <script src="script.js"></script>
   <script src="devices.js"></script>
 </head>
@@ -18,7 +17,7 @@
         <a href="home.html"><p class="nav-item-text">Home</p></a>
       </li>
       <li class="nav-item">
-        <a  href="/config.html"><p class="nav-item-text">Configuration</p></a>
+        <a href="/config.html"><p class="nav-item-text">Configuration</p></a>
       </li>
       <li class="nav-item nav-active">
         <a href="/devices.html"><p class="nav-item-text nav-text-active">Devices</p></a>
@@ -45,44 +44,45 @@
   <div class="headingBar">
     <div class="pageHeading">Devices</div>
   </div>
-  <div class="controlSection">
-    <div class="deviceListSection">    
-    <div class="searchSection">
-      <div class="searchElement">
-        <input type="search" class="searchBox " />
-      </div>
-      <div class="searchElement">
-        <span class="material-icons searchBtn tooltip">search</span>
-        <span class="searchToolTipText">Search by label</span>
-      </div>
-    </div>
-    <div class="deviceContainer">
-      <div id="$device.id" class="control" data-type="$device.type" data-label="$device.label">
-        <div class="typeDecorTemplate"></div>
-        <div class="controlLabel">$device.label</div>
-        <div src="" class="controlImage">image here</div>
-      </div>
-      <div id="$device.id" class="control" data-type="$device.type" data-label="$device.label">
-        <div class="typeDecorTemplate"></div>
-        <div class="controlLabel">$device.label</div>
-        <div src="" class="controlImage">image here</div>
-      </div><div id="$device.id" class="control" data-type="$device.type" data-label="$device.label">
-        <div class="typeDecorTemplate"></div>
-        <div class="controlLabel">$device.label</div>
-        <div src="" class="controlImage">image here</div>
-      </div><div id="$device.id" class="control" data-type="$device.type" data-label="$device.label">
-        <div class="typeDecorTemplate"></div>
-        <div class="controlLabel">$device.label</div>
-        <div src="" class="controlImage">image here</div>
-      </div><div id="$device.id" class="control" data-type="$device.type" data-label="$device.label">
-        <div class="typeDecorTemplate"></div>
-        <div class="controlLabel">$device.label</div>
-        <div src="" class="controlImage">image here</div>
+  <div class="devicePageFlex">
+    <div class="configListContainer">
+      <div class="configListItem configListHeaderSection">
+        <div class="headerText">Networks</div>
+        <div class="headerIconsSection">
+          <div class="headerIcon favourite-icon"><span class="material-icons">search</span></div>
+          <div class="headerIcon favourite-icon"><span class="material-icons">star</span></div>
+          <div class="headerIcon filter-icon"><span class="material-icons">sort_by_alpha</span></div>
         </div>
       </div>
+     
+      <a href="config.html">
+        <!-- <div class="configListItem addConfigRedirect">
+          <div class="createNewConfig-Devices">
+            <div class="createNewConfigClickable">
+              <div class="createNewConfigIcon">
+                <span>+</span>
+              </div>
+            </div>
+          </div>
+        </div> -->
+      </a>
+
+    </div>
+    <div class="deviceListSection">
+      <div class="searchSection">
+        <div class="searchElement">
+          <input type="search" class="searchBox" />
+        </div>
+        <div class="searchElement">
+          <span class="material-icons searchBtn tooltip">search</span>
+          <span class="searchToolTipText">Search by label</span>
+        </div>
+      </div>
+      
+        <div class="deviceContainer">          
+        </div>
+      
     </div>
   </div>
   </div>
 </body>
-
-
