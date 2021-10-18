@@ -8,11 +8,16 @@ const addConfig = function (config) {
 };
 
 const addDevice = function (device) {
+  console.log(device)
   const deviceContainer = document.querySelector(".deviceContainer");
-  let deviceHTML = `  <div id="${device.configID}" class="control" data-type="${device.type}" data-label="${device.label}">
+  let deviceHTML = ` 
+ <div id="${device.deviceID}" class="control" data-type="${device.type}" data-label="${device.label}" data-configID="${device.configID}">
   <div class="typeDecorTemplate"></div>
-  <div class="controlLabel">${device.label}</div>
-  <div src="" class="controlImage">image here</div>
+    <div class="controlLabel">${device.label}</div>
+    <div src="" class="controlImage">image here</div>
+    <div class="controlFooterSection">
+      <div class="controlFooterItem  ${setFavouriteIconStyle(device)}"><span class="material-icons favourite-icon">${setFavouriteIcon(device)}</span></div>
+  </div>
 </div>`;
   deviceContainer.insertAdjacentHTML("afterbegin", deviceHTML);
 };
@@ -52,39 +57,69 @@ window.addEventListener("load", async (e) => {
   const firstConfig = document.querySelector(".configListEntry");
   const onloadDevices = await fetch(`/config/${firstConfig.id}/devices`)
     .then((res) => {
-      removeActive(document.getElementById(firstConfig.id));
       return res.json();
     })
     .catch((err) => console.log(err));
-
+    
     if(onloadDevices.data.length > 0){
-        onloadDevices.data.forEach((device) => {
+      onloadDevices.data.forEach((device) => {
+        removeActive(document.getElementById(firstConfig.id));
         addDevice(device)
         progressiveFadeIn(document.querySelectorAll('.control'), 75, 'flex')
     }
-    )}else{
-        const noDeviceHTML = `<div class="emptyText">No Devices to show</div>`
-        document.querySelector('.deviceContainer').insertAdjacentHTML('afterbegin', noDeviceHTML)
-    }
+    )}
+
 
   const entries = document.querySelectorAll(".configListEntry");
   entries.forEach((entry) => {
     entry.addEventListener("click", async (e) => {
-     progressiveFadeOut(document.querySelectorAll('.control'), 30)
-      removeActive(document.querySelector('.activeConfig'))    
-      const target = e.target.closest(".configListEntry");
-      const targetID = target.id;
-      const devices = await fetch(`/config/${targetID}/devices`)
-        .then((res) => {
-          makeActive(target);
-          return res.json();
-        })
-        .then(devices =>{
-            devices.data.forEach(device => addDevice(device))
-            progressiveFadeIn(document.querySelectorAll('.control'), 75, 'flex')
-        })
-        .catch((err) => console.log(err));
+     progressiveFadeOut(document.querySelectorAll('.control'), 30)     
+     const target = e.target.closest(".configListEntry");
+     const targetID = target.id;
+     const currentlyActive = document.querySelector('.activeConfig')
+     const devices = await fetch(`/config/${targetID}/devices`)
+     .then((res) => {          
+       return res.json();
+      })
+      .then(devices =>{
+        if(currentlyActive !== e.target){
+          removeActive(currentlyActive)
+          makeActive(target)}
+        devices.data.forEach(device => addDevice(device))
+        progressiveFadeIn(document.querySelectorAll('.control'), 75, 'flex')
+      })
+      .catch((err) => console.log(err));
     });
     
   });
+
+
+const controls = document.querySelectorAll('.control')
+console.log(controls)
+  controls.forEach(control =>{
+    control.addEventListener('click', async (e)=>{
+    //Favourite Btn
+    if (e.target.classList.contains("favourite-icon")) {
+      const updateObj = favouriteItem(e, 'control')
+      console.log(updateObj)
+
+      await fetch(`/devices/${updateObj._id}`, {
+        method: "PATCH",
+        body: JSON.stringify(updateObj),
+        headers: { "content-type": "application/json" },
+      })
+        .then((response) => {
+          return response.json();
+        })
+        .then((data) => {
+          return data;
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  })
+
+})
 });
+

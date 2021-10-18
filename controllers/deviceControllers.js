@@ -52,6 +52,17 @@ exports.getDevices = async (req, res) => {
   }
 };
 
+exports.updateDevice = function(req,res){
+  try{
+    Device.findOneAndUpdate({configID: req.body.configID, deviceID: req.body.deviceID}, {favourite: req.body.favourite}).then(res=>console.log(res)).catch(err=>{console.log(err)})
+    return res.status(200).json({ status: "Success", data: req.body });
+
+  }catch(err){
+    return res.status(404).json({ status: "failed", message: err });
+
+  }
+}
+
 exports.getDevice = function (req, res) {
   return res.status(200).json({ status: "Success", data: { id: `${req.params.id}`, name: `Lightbulb`, status: "on" } });
 };

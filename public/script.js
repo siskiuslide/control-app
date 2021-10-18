@@ -20,7 +20,39 @@ let progressiveFadeIn = function(nodelist, interval, orntn){
 let progressiveFadeOut = function(nodelist, interval){
   nodelist.forEach((el, i)=> {
     fadeOut(el, interval*i)
-    el.remove()})}
+    el.remove()})
+  }
+
+const setFavouriteIcon = (obj) => {
+      obj.favourite == true ? (favouriteContent = "star") : (favouriteContent = "star_outline");
+      return favouriteContent;
+    };
+    
+    
+const setFavouriteIconStyle = (obj) => {
+      obj.favourite == true ? (favouriteClass = "favourited") : (favouriteClass = "");
+      return favouriteClass;
+    };
+
+  const favouriteItem = function(e, parentClassName){
+    e.target.classList.toggle("favourited");
+    const parent = e.target.closest(`.${parentClassName}`);
+    let favouriteStatus;
+    if (e.target.classList.contains("favourited")) {
+      e.target.textContent = "star";
+      favouriteStatus = true;
+    } else {
+      e.target.textContent = "star_outline";
+      favouriteStatus = false;
+    }
+    const favouriteUpdate = {
+     
+      configID: parent.dataset.configid
+      deviceID: parent.id,
+      favourite: favouriteStatus,
+    };
+    return favouriteUpdate
+    }
 /////////////////////////
 
 const listItems = document.querySelectorAll(".nav-item");

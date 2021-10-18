@@ -13,14 +13,7 @@ const checkType = (config) => {
   return configType;
 };
 
-const setFavouriteIcon = (config) => {
-  config.favourite == true ? (favouriteContent = "star") : (favouriteContent = "star_outline");
-  return favouriteContent;
-};
-const setFavouriteIconStyle = (config) => {
-  config.favourite == true ? (favouriteClass = "favourited") : (favouriteClass = "");
-  return favouriteClass;
-};
+
 const getDevices = async (target) => {
   const config = target.closest(".preConfiguredCard").id;
   const data = await fetch(`/config/${config}/devices`)
@@ -112,6 +105,7 @@ const addCard = function (config) {
       </div>   
     </div>          
   </div>
+</div>
 </div>`;
   preConfiguredCardSection.insertAdjacentHTML("beforeEnd", configCard);
   progressiveFadeIn(document.querySelectorAll('.preConfiguredCard'), 75, 'inline')
