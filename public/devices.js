@@ -26,6 +26,11 @@ const makeActive = function (entry) {
   entry.classList.toggle("inactiveConfig");
 };
 
+const removeDevicesFromCont = function(entry){
+    document.querySelectorAll('.control').forEach(control=> {if(control.id !== entry.id){fadeOut(control, 100)}})
+}
+
+
 //ONLOAD - get all configs, then load the devices of the first in the list
 
 let configListItems;
@@ -35,29 +40,38 @@ window.addEventListener("load", async (e) => {
     .then((res) => res.json())
     .then((data) => {
       if (data.body.length > 0) {
-        data.body.forEach((config) => {
+        data.body.forEach((config, ) => {
+          console.log()
           addConfig(config);
+          progressiveFadeIn(document.querySelectorAll('.configListEntry'),75, 'flex')
         });
       }
     })
     .catch((err) => console.log(err));
   //ADD CONFIG TO LIST
-
   const firstConfig = document.querySelector(".configListEntry");
   const onloadDevices = await fetch(`/config/${firstConfig.id}/devices`)
     .then((res) => {
-      removeActive(firstConfig);
+      removeActive(document.getElementById(firstConfig.id));
       return res.json();
     })
     .catch((err) => console.log(err));
-  onloadDevices.data.forEach((device) => {
-    addDevice(device);
-  });
+
+    if(onloadDevices.data.length > 0){
+        onloadDevices.data.forEach((device) => {
+        addDevice(device)
+        progressiveFadeIn(document.querySelectorAll('.control'), 75, 'flex')
+    }
+    )}else{
+        const noDeviceHTML = `<div class="emptyText">No Devices to show</div>`
+        document.querySelector('.deviceContainer').insertAdjacentHTML('afterbegin', noDeviceHTML)
+    }
 
   const entries = document.querySelectorAll(".configListEntry");
   entries.forEach((entry) => {
     entry.addEventListener("click", async (e) => {
-      removeActive(document.getElementById(firstConfig.id));
+     progressiveFadeOut(document.querySelectorAll('.control'), 30)
+      removeActive(document.querySelector('.activeConfig'))    
       const target = e.target.closest(".configListEntry");
       const targetID = target.id;
       const devices = await fetch(`/config/${targetID}/devices`)
@@ -65,8 +79,12 @@ window.addEventListener("load", async (e) => {
           makeActive(target);
           return res.json();
         })
+        .then(devices =>{
+            devices.data.forEach(device => addDevice(device))
+            progressiveFadeIn(document.querySelectorAll('.control'), 75, 'flex')
+        })
         .catch((err) => console.log(err));
-      console.log(devices);
     });
+    
   });
 });

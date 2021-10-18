@@ -4,7 +4,6 @@ const Config = require("./../models/configModel");
 const fetch = require("node-fetch");
 
 exports.getDevices = async (req, res) => {
-  console.log(req.params.id);
   try {
     const assocConfig = await Config.find({ _id: req.params.id });
 
@@ -21,7 +20,8 @@ exports.getDevices = async (req, res) => {
 
     const devices = [];
     let resData = [];
-    hubResponse.forEach(async (item, i) => {
+  
+      hubResponse.forEach(async (item, i) => {
       const device = {
         configID: req.params.id,
         deviceID: item.id,

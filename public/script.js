@@ -14,6 +14,13 @@ let fadeIn = function (element, duration, orntn) {
   }, (duration += 10));
 };
 
+let progressiveFadeIn = function(nodelist, interval, orntn){
+  nodelist.forEach((el, i)=> fadeIn(el, interval*i, orntn))
+}
+let progressiveFadeOut = function(nodelist, interval){
+  nodelist.forEach((el, i)=> {
+    fadeOut(el, interval*i)
+    el.remove()})}
 /////////////////////////
 
 const listItems = document.querySelectorAll(".nav-item");

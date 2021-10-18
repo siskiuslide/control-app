@@ -21,7 +21,7 @@ const setFavouriteIconStyle = (config) => {
   config.favourite == true ? (favouriteClass = "favourited") : (favouriteClass = "");
   return favouriteClass;
 };
-const getDevice = async (target) => {
+const getDevices = async (target) => {
   const config = target.closest(".preConfiguredCard").id;
   const data = await fetch(`/config/${config}/devices`)
     .then((res) => res.json())
@@ -114,9 +114,10 @@ const addCard = function (config) {
   </div>
 </div>`;
   preConfiguredCardSection.insertAdjacentHTML("beforeEnd", configCard);
-  setTimeout(() => {
-    document.querySelectorAll(".preConfiguredCard").forEach((card) => (card.style.opacity = "1"));
-  }, 100);
+  progressiveFadeIn(document.querySelectorAll('.preConfiguredCard'), 75, 'inline')
+  // setTimeout(() => {
+  //   document.querySelectorAll(".preConfiguredCard").forEach((card) => (card.style.opacity = "1"));
+  // }, 100);
 };
 //DISPLAY ON LOAD
 window.addEventListener("load", async () => {
@@ -132,8 +133,12 @@ window.addEventListener("load", async () => {
   });
   const counts = document.querySelectorAll(".deviceCountNumber");
   counts.forEach(async (count) => {
-    const devices = await getDevice(count);
-    count.textContent = devices.data.length;
+    try{
+      const devices = await getDevices(count);
+      if(devices){count.textContent = devices.data.length;}
+    }catch(err){
+      console.log(err)
+    }
   });
 });
 
