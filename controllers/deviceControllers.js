@@ -18,10 +18,11 @@ exports.getDevices = async (req, res) => {
       .then((res) => res.json())
       .catch((err) => console.log(err));
 
-    const devices = [];
-    let resData = [];
-  
-      hubResponse.forEach(async (item, i) => {
+    const hubDevices = [];
+    const resData = [];
+
+    //Create a document for each device
+    hubResponse.forEach(async (item, i) => {
       const device = {
         configID: req.params.id,
         deviceID: item.id,
@@ -31,39 +32,45 @@ exports.getDevices = async (req, res) => {
         status: item.attributes.switch,
         commands: item.commands,
       };
+
+      //check whether the doc already exists, if not, add it
       Device.exists({ configID: device.configID, deviceID: device.deviceID }, async function (err, result) {
         if (result === false) {
-          await Device.create(device)
-            .then((data) => console.log(data))
-            .catch((err) => console.log(err));
+          await Device.create(device).catch((err) => console.log(err));
         }
         if (err) {
           console.log(err);
         }
       });
 
-      devices.push(device);
+      hubDevices.push(device);
     });
-
-    return res.status(200).json({ status: "Success", data: devices });
+    const storedDevices = await Device.find({});
+    storedDevices.forEach((device) => resData.push(device));
+    return res.status(200).json({ status: "Success", data: resData });
   } catch (err) {
     console.log(err);
     return res.status(404).json({ status: "failed", message: err });
   }
 };
 
-exports.updateDevice = function(req,res){
-  try{
-    Device.findOneAndUpdate({configID: req.body.configID, deviceID: req.body.deviceID}, {favourite: req.body.favourite}).then(res=>console.log(res)).catch(err=>{console.log(err)})
+exports.updateDevice = function (req, res) {
+  try {
+    Device.findOneAndUpdate(
+      { configID: req.body.configID, deviceID: req.body.deviceID },
+      { favourite: req.body.favourite }
+    )
+      .then((res) => console.log(res))
+      .catch((err) => {
+        console.log(err);
+      });
     return res.status(200).json({ status: "Success", data: req.body });
-
-  }catch(err){
+  } catch (err) {
     return res.status(404).json({ status: "failed", message: err });
-
   }
-}
+};
 
-exports.getDevice = function (req, res) {
+exports.getSingleDevice = function (req, res) {
   return res.status(200).json({ status: "Success", data: { id: `${req.params.id}`, name: `Lightbulb`, status: "on" } });
 };
 

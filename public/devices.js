@@ -8,15 +8,19 @@ const addConfig = function (config) {
 };
 
 const addDevice = function (device) {
-  console.log(device)
+  console.log(device);
   const deviceContainer = document.querySelector(".deviceContainer");
   let deviceHTML = ` 
- <div id="${device.deviceID}" class="control" data-type="${device.type}" data-label="${device.label}" data-configID="${device.configID}">
+ <div id="${device.deviceID}" class="control" data-type="${device.type}" data-label="${device.label}" data-configID="${
+    device.configID
+  }">
   <div class="typeDecorTemplate"></div>
     <div class="controlLabel">${device.label}</div>
     <div src="" class="controlImage">image here</div>
     <div class="controlFooterSection">
-      <div class="controlFooterItem  ${setFavouriteIconStyle(device)}"><span class="material-icons favourite-icon">${setFavouriteIcon(device)}</span></div>
+      <div class="controlFooterItem  ${setFavouriteIconStyle(
+        device
+      )}"><span class="material-icons favourite-icon">${setFavouriteIcon(device)}</span></div>
   </div>
 </div>`;
   deviceContainer.insertAdjacentHTML("afterbegin", deviceHTML);
@@ -31,10 +35,13 @@ const makeActive = function (entry) {
   entry.classList.toggle("inactiveConfig");
 };
 
-const removeDevicesFromCont = function(entry){
-    document.querySelectorAll('.control').forEach(control=> {if(control.id !== entry.id){fadeOut(control, 100)}})
-}
-
+const removeDevicesFromCont = function (entry) {
+  document.querySelectorAll(".control").forEach((control) => {
+    if (control.id !== entry.id) {
+      fadeOut(control, 100);
+    }
+  });
+};
 
 //ONLOAD - get all configs, then load the devices of the first in the list
 
@@ -45,10 +52,9 @@ window.addEventListener("load", async (e) => {
     .then((res) => res.json())
     .then((data) => {
       if (data.body.length > 0) {
-        data.body.forEach((config, ) => {
-          console.log()
+        data.body.forEach((config) => {
           addConfig(config);
-          progressiveFadeIn(document.querySelectorAll('.configListEntry'),75, 'flex')
+          progressiveFadeIn(document.querySelectorAll(".configListEntry"), 75, "flex");
         });
       }
     })
@@ -59,67 +65,66 @@ window.addEventListener("load", async (e) => {
     .then((res) => {
       return res.json();
     })
+    .then((data) => {
+      return data;
+    })
     .catch((err) => console.log(err));
-    
-    if(onloadDevices.data.length > 0){
-      onloadDevices.data.forEach((device) => {
-        removeActive(document.getElementById(firstConfig.id));
-        addDevice(device)
-        progressiveFadeIn(document.querySelectorAll('.control'), 75, 'flex')
-    }
-    )}
 
+  if (onloadDevices.data.length > 0) {
+    onloadDevices.data.forEach((device) => {
+      removeActive(document.getElementById(firstConfig.id));
+      addDevice(device);
+      progressiveFadeIn(document.querySelectorAll(".control"), 75, "flex");
+    });
+  }
 
   const entries = document.querySelectorAll(".configListEntry");
   entries.forEach((entry) => {
     entry.addEventListener("click", async (e) => {
-     progressiveFadeOut(document.querySelectorAll('.control'), 30)     
-     const target = e.target.closest(".configListEntry");
-     const targetID = target.id;
-     const currentlyActive = document.querySelector('.activeConfig')
-     const devices = await fetch(`/config/${targetID}/devices`)
-     .then((res) => {          
-       return res.json();
-      })
-      .then(devices =>{
-        if(currentlyActive !== e.target){
-          removeActive(currentlyActive)
-          makeActive(target)}
-        devices.data.forEach(device => addDevice(device))
-        progressiveFadeIn(document.querySelectorAll('.control'), 75, 'flex')
-      })
-      .catch((err) => console.log(err));
+      progressiveFadeOut(document.querySelectorAll(".control"), 30);
+      const target = e.target.closest(".configListEntry");
+      const targetID = target.id;
+      const currentlyActive = document.querySelector(".activeConfig");
+      const devices = await fetch(`/config/${targetID}/devices`)
+        .then((res) => {
+          return res.json();
+        })
+        .then((devices) => {
+          if (currentlyActive !== e.target) {
+            removeActive(currentlyActive);
+            makeActive(target);
+          }
+          devices.data.forEach((device) => addDevice(device));
+          progressiveFadeIn(document.querySelectorAll(".control"), 75, "flex");
+        })
+        .catch((err) => console.log(err));
     });
-    
   });
 
+  const controls = document.querySelectorAll(".control");
+  console.log(controls);
+  controls.forEach((control) => {
+    control.addEventListener("click", async (e) => {
+      //Favourite Btn
+      if (e.target.classList.contains("favourite-icon")) {
+        const updateObj = favouriteItem(e, "control");
+        console.log(updateObj);
 
-const controls = document.querySelectorAll('.control')
-console.log(controls)
-  controls.forEach(control =>{
-    control.addEventListener('click', async (e)=>{
-    //Favourite Btn
-    if (e.target.classList.contains("favourite-icon")) {
-      const updateObj = favouriteItem(e, 'control')
-      console.log(updateObj)
-
-      await fetch(`/devices/${updateObj._id}`, {
-        method: "PATCH",
-        body: JSON.stringify(updateObj),
-        headers: { "content-type": "application/json" },
-      })
-        .then((response) => {
-          return response.json();
+        await fetch(`/devices/${updateObj.configID}`, {
+          method: "PATCH",
+          body: JSON.stringify(updateObj),
+          headers: { "content-type": "application/json" },
         })
-        .then((data) => {
-          return data;
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    }
-  })
-
-})
+          .then((response) => {
+            return response.json();
+          })
+          .then((data) => {
+            return data;
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      }
+    });
+  });
 });
-
