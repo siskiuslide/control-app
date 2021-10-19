@@ -8,7 +8,6 @@ const addConfig = function (config) {
 };
 
 const addDevice = function (device) {
-  console.log(device);
   const deviceContainer = document.querySelector(".deviceContainer");
   let deviceHTML = ` 
  <div id="${device.deviceID}" class="control" data-type="${device.type}" data-label="${device.label}" data-configID="${
@@ -20,7 +19,10 @@ const addDevice = function (device) {
     <div class="controlFooterSection">
       <div class="controlFooterItem  ${setFavouriteIconStyle(
         device
-      )}"><span class="material-icons favourite-icon">${setFavouriteIcon(device)}</span></div>
+      )}"><span class="material-icons favourite-icon control-fav-icon">${setFavouriteIcon(device)}</span>
+      </div>
+      <div class="controlFooterItem"><span class="material-icons control-chevron-icon">chevron_right</span>
+      </div>
   </div>
 </div>`;
   deviceContainer.insertAdjacentHTML("afterbegin", deviceHTML);
@@ -102,7 +104,6 @@ window.addEventListener("load", async (e) => {
   });
 
   const controls = document.querySelectorAll(".control");
-  console.log(controls);
   controls.forEach((control) => {
     control.addEventListener("click", async (e) => {
       //Favourite Btn

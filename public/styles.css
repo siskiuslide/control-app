@@ -7,6 +7,7 @@
   --higherOpacityWhite: rgba(255, 255, 255, 0.466);
   --mainGradient: linear-gradient(to bottom, #0f2027, #203a43, #2c5364);
   --peachGradient: linear-gradient(to left, #f2709c, #ff9472);
+  --peachGradientLowOpacity: linear-gradient(to left, #f2709bb9, #ff9372b9);
   --lightBlueAccent: #00a8be;
   --lightBlueAccentHover: rgba(0, 158, 179, 0.842);
   --midAccent: #0082be;
@@ -397,7 +398,8 @@ input:focus {
   color: rgb(255, 251, 0);
 }
 .favourited {
-  color: yellow
+  color: rgb(233, 233, 96);
+  text-shadow: var(--textShadow);
 }
 #preConfigured-delete:hover {
   color: rgba(251, 30, 30, 0.757);
@@ -702,7 +704,7 @@ input:checked + .slider:before {
   border-radius: 4px;
 }
 .configListItem {
-  margin: 5px 8px;;
+  margin: 5px 8px;
   width: auto;
 }
 .configListHeaderSection {
@@ -710,18 +712,18 @@ input:checked + .slider:before {
   height: 6%;
   display: flex;
   flex-direction: row;
-  justify-content:space-between;
+  justify-content: space-between;
   align-items: center;
 }
 .headerText {
   font-size: 30px;
   margin: 0px 10px;
   align-self: center;
-  justify-self:center;
+  justify-self: center;
 }
 .headerIconsSection {
   display: flex;
-  justify-self: flex-end;  
+  justify-self: flex-end;
 }
 .headerIcon {
   margin: 0px 3px;
@@ -885,8 +887,8 @@ input:checked + .slider:before {
   opacity: 0;
   transition: all 150ms ease-out;
 }
-.control:hover{
-  transform: scale(1.04)
+.control:hover {
+  transform: scale(1.04);
 }
 .typeDecorTemplate {
   width: 100%;
@@ -896,14 +898,13 @@ input:checked + .slider:before {
   background: yellow;
   border-radius: 5px 5px 0px 0px;
 }
-.control
-.controlLabel {
+.control .controlLabel {
   font-size: 22px;
   font-weight: bolder;
   text-align: center;
   align-self: center;
   color: black;
-  justify-self: center;
+  justify-self: flex-start;
 }
 .controlImage {
   top: 30%;
@@ -917,21 +918,33 @@ input:checked + .slider:before {
   width: 400px;
 }
 
-.controlFooterSection{
+.controlFooterSection {
   justify-self: flex-start;
   align-self: flex-end;
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-end;
+  width: 100%;
+  height: auto;
+  background: #5a5a5a;
+  border-radius: 0 0 10px 10px;
+  color: white;
 }
-.controlFooterItem{
+.controlFooterItem {
   max-width: 50px;
-  margin: 10px;
+  margin: 3px 2px;
+  position: relative;
+  right: 8px;
 }
-.deviceType{
-  font-size: 12px;
+.controlFooterSection:hover .control-chevron-icon {
+  transform: translateX(6px);
+}
 
+.control-chevron-icon {
+  position: relative;
+  transform: scale(1.1);
+  transition: all 100ms;
 }
 
 /*single device page*/
