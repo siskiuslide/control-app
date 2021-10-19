@@ -3,10 +3,12 @@ const Device = require("../models/deviceModel");
 const Config = require("./../models/configModel");
 const fetch = require("node-fetch");
 
+
 exports.getDevices = async (req, res) => {
   try {
+    //Get the associated config 
     const assocConfig = await Config.find({ _id: req.params.id });
-
+    //build the url for that config
     const url = urlHelper.buildURL(
       assocConfig[0].type,
       assocConfig[0].target,
@@ -14,17 +16,19 @@ exports.getDevices = async (req, res) => {
       assocConfig[0].APIKey,
       "devices"
     );
+    //make request
     const hubResponse = await fetch(url, { method: "GET" })
       .then((res) => res.json())
       .catch((err) => console.log(err));
 
-    const hubDevices = [];
+    //Array to push db results to
     const resData = [];
 
     //Create a document for each device
     hubResponse.forEach(async (item, i) => {
+      //create a doc to upload to db
       const device = {
-        configID: req.params.id,
+        configID: req.params.configID,
         deviceID: item.id,
         name: item.name,
         label: item.label,
@@ -43,8 +47,8 @@ exports.getDevices = async (req, res) => {
         }
       });
 
-      hubDevices.push(device);
     });
+    //get data from db and send
     const storedDevices = await Device.find({});
     storedDevices.forEach((device) => resData.push(device));
     return res.status(200).json({ status: "Success", data: resData });
@@ -54,24 +58,26 @@ exports.getDevices = async (req, res) => {
   }
 };
 
-exports.updateDevice = function (req, res) {
+exports.updateDevice = async function  (req, res) {
   try {
-    Device.findOneAndUpdate(
-      { configID: req.body.configID, deviceID: req.body.deviceID },
-      { favourite: req.body.favourite }
-    )
-      .then((res) => console.log(res))
-      .catch((err) => {
-        console.log(err);
-      });
+    //check which properties are being updated and update them.
+    if(req.body.hasOwnProperty('favourite')){
+      console.log(req.body)
+      Device.findOneAndUpdate({configID: req.body.configID, deviceID: req.body.deviceID },{favourite: req.body.favourite})
+        .catch((err) => {
+          console.log(err);
+        });
+    }
     return res.status(200).json({ status: "Success", data: req.body });
   } catch (err) {
     return res.status(404).json({ status: "failed", message: err });
   }
 };
 
-exports.getSingleDevice = function (req, res) {
-  return res.status(200).json({ status: "Success", data: { id: `${req.params.id}`, name: `Lightbulb`, status: "on" } });
+exports.getSingleDevice = async function (req, res) {
+  const device =  await Device.findOneAndUpdate({configID: req.params.configID, deviceID: req.params.deviceID}).then(res=>res.json()).catch(err=>console.log(err))
+  console.log(device)
+  return res.status(200).json({ status: "Success", data: device });
 };
 
 exports.deleteDevice = function (req, res) {

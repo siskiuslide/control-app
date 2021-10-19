@@ -14,12 +14,7 @@ mongoose
   .then((con) => {
     console.log("successfully connected with mongo DB");
   });
-const deviceSchema = new mongoose.Schema({
-  id: { type: Number, required: [true, "Device must have an ID - provided by Hubitat"], unique: true },
-  name: { type: String, required: [true, "Device must have a name"] },
-  status: { type: String, required: [true, "Device must have a status"] },
-});
-const Device = mongoose.model("Device", deviceSchema);
+
 
 const port = 5500;
 

@@ -3,9 +3,11 @@ const deviceControllers = require("./../controllers/deviceControllers");
 const router = express.Router();
 
 router
-  .route("/:id")
+  .route("/:configID")
   .get(deviceControllers.getSingleDevice)
   .delete(deviceControllers.deleteDevice)
   .patch(deviceControllers.updateDevice);
 
-module.exports = router;
+router.route('/:configID/:deviceID').get(deviceControllers.getSingleDevice)
+
+module.exports = router

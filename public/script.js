@@ -1,3 +1,5 @@
+
+//Generic UI Features 
 let fadeOut = function (element, duration) {
   element.style.transition = `opacity ease-out ${duration + "ms"}`;
   element.style.opacity = 0;
@@ -24,6 +26,7 @@ let progressiveFadeOut = function (nodelist, interval) {
   });
 };
 
+//Favouriting Items
 const setFavouriteIcon = (obj) => {
   obj.favourite == true ? (favouriteContent = "star") : (favouriteContent = "star_outline");
   return favouriteContent;
@@ -50,10 +53,12 @@ const favouriteItem = function (e, parentClassName) {
     deviceID: parent.id,
     favourite: favouriteStatus,
   };
+  console.log(favouriteUpdate)
   return favouriteUpdate;
 };
 /////////////////////////
 
+//Nav Bar effects
 const listItems = document.querySelectorAll(".nav-item");
 listItems.forEach((item, i) => {
   if (i != listItems.length - 1) {
