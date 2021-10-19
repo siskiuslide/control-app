@@ -8,7 +8,8 @@ const deviceSchema = new mongoose.Schema(
     type: { type: String, required: true },
     status: { type: String, required: true },
     commands: { type: Array, required: false },
-    favourite: {type: Boolean, default: false}
+    favourite: { type: Boolean, default: false },
+    date: { type: Date, required: false },
   },
   { timestamps: true }
 );
