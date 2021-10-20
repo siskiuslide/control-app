@@ -107,7 +107,6 @@ window.addEventListener("load", async (e) => {
 
   const controls = document.querySelectorAll(".control");
   controls.forEach((control) => {
-    const stateChangeButton = control.querySelector(".controlStatusIconCont");
     control.addEventListener("click", async (e) => {
       e.preventDefault();
       //favourite Button
@@ -129,7 +128,10 @@ window.addEventListener("load", async (e) => {
           });
         return;
       }
+
+      //STATE CHANGE
       //get new state & set the style
+      const stateChangeButton = control.querySelector(".controlStatusIconCont");
       const newState = getNewState(control);
       const button = control.querySelector(".controlStatusIconCont");
       const newStateStyle = updateControlStyle(newState, control, button);
