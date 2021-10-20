@@ -123,7 +123,7 @@ window.addEventListener("load", async (e) => {
       //state then change it
       const originalStatus = data.data.attributes.find((attr) => attr.name == "switch");
       const updatedStatus = originalStatus.values.find((el) => el != originalStatus.currentValue);
-      if (!button.classList.contains(`device-${originalStatus.currentValue}`)) {
+      if (button.classList.contains(`device-${originalStatus.currentValue}`)) {
         button.classList.toggle(`device-${originalStatus.currentValue}`);
         button.classList.toggle(`device-${updatedStatus}`);
       }
