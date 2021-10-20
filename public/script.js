@@ -1,5 +1,4 @@
-
-//Generic UI Features 
+//Generic UI Features
 let fadeOut = function (element, duration) {
   element.style.transition = `opacity ease-out ${duration + "ms"}`;
   element.style.opacity = 0;
@@ -27,12 +26,12 @@ let progressiveFadeOut = function (nodelist, interval) {
 };
 
 //Favouriting Items
-const setFavouriteIcon = (obj) => {
+const setFavIcon = (obj) => {
   obj.favourite == true ? (favouriteContent = "star") : (favouriteContent = "star_outline");
   return favouriteContent;
 };
 
-const setFavouriteIconStyle = (obj) => {
+const setFavIconStyle = (obj) => {
   obj.favourite == true ? (favouriteClass = "favourited") : (favouriteClass = "");
   return favouriteClass;
 };
@@ -53,7 +52,7 @@ const favouriteItem = function (e, parentClassName) {
     deviceID: parent.id,
     favourite: favouriteStatus,
   };
-  console.log(favouriteUpdate)
+  console.log(favouriteUpdate);
   return favouriteUpdate;
 };
 /////////////////////////

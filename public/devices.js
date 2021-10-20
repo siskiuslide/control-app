@@ -8,22 +8,26 @@ const addConfig = function (config) {
 };
 
 const addDevice = function (device) {
-  console.log(setFavouriteIconStyle(device))
   const deviceContainer = document.querySelector(".deviceContainer");
   let deviceHTML = ` 
- <div id="${device.deviceID}" class="control" data-type="${device.type}" data-label="${device.label}" data-configID="${
-    device.configID
-  }">
-  <div class="typeDecorTemplate"></div>
-    <div class="controlLabel">${device.label}</div>
-    <div src="" class="controlImage">image here</div>
-    <div class="controlFooterSection">
-      <div class="controlFooterItem"><span class="material-icons favourite-icon  ${setFavouriteIconStyle(device)} control-fav-icon">${setFavouriteIcon(device)}</span>
-      </div>
-      <div class="controlFooterItem"><a href="devices/${device.configID}/${device.deviceID}"><span class="material-icons control-chevron-icon">chevron_right</span></a>
+  <a href="/devices/${device.configID}/${device.deviceID}">
+    <div id="${device.deviceID}" class="control" data-type="${device.type}" data-label="${
+    device.label
+  }" data-configID="${device.configID}">
+      <div class="typeDecorTemplate"></div>
+      <div class="controlLabel">${device.label}</div>
+      <div src="" class="controlImage">image here</div>
+      <div class="controlFooterSection">
+        <div class="controlFooterItem">
+          <span class="material-icons favourite-icon ${setFavIconStyle(device)} control-fav-icon">
+          ${setFavIcon(device)}
+          </span>
+        </div>
+      <div class="controlFooterItem"><span class="material-icons control-chevron-icon">chevron_right</span>
       </div>
   </div>
-</div>`;
+</div>
+</a>`;
   deviceContainer.insertAdjacentHTML("afterbegin", deviceHTML);
 };
 
@@ -105,6 +109,10 @@ window.addEventListener("load", async (e) => {
   const controls = document.querySelectorAll(".control");
   controls.forEach((control) => {
     control.addEventListener("click", async (e) => {
+      //change state
+      const 
+      const updateState = await fetch(`/devices/c`)
+
       //Favourite Btn
       if (e.target.classList.contains("favourite-icon")) {
         const updateObj = favouriteItem(e, "control");
@@ -125,6 +133,7 @@ window.addEventListener("load", async (e) => {
             console.log(err);
           });
       }
+
     });
   });
 });

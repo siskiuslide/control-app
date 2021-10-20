@@ -1,4 +1,5 @@
 const urlHelper = require("./helpers/urlHelper");
+const hubRequest = require("./helpers/hubRequest");
 const Device = require("../models/deviceModel");
 const Config = require("./../models/configModel");
 const fetch = require("node-fetch");
@@ -7,7 +8,7 @@ exports.getDevices = async (req, res) => {
   try {
     //Get the associated config
     const assocConfig = await Config.find({ _id: req.params.id });
-    //build the url for that config
+    //build the url for that config | prettier-ignore
     const url = urlHelper.buildURL(
       assocConfig[0].type,
       assocConfig[0].target,
@@ -16,10 +17,7 @@ exports.getDevices = async (req, res) => {
       "devices"
     );
     //make request
-    const hubResponse = await fetch(url, { method: "GET" })
-      .then((res) => res.json())
-      .catch((err) => console.log(err));
-
+    const hubResponse = await hubRequest(url);
     //Array to push db results to
     const resData = [];
 
