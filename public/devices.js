@@ -107,8 +107,28 @@ window.addEventListener("load", async (e) => {
 
   const controls = document.querySelectorAll(".control");
   controls.forEach((control) => {
+    const stateChangeButton = control.querySelector(".controlStatusIconCont");
     control.addEventListener("click", async (e) => {
       e.preventDefault();
+      //favourite Button
+      if (e.target.classList.contains("favourite-icon")) {
+        const updateObj = favouriteItem(e, "control");
+        await fetch(`/devices/${updateObj.configID}`, {
+          method: "PATCH",
+          body: JSON.stringify(updateObj),
+          headers: { "content-type": "application/json" },
+        })
+          .then((response) => {
+            return response.json();
+          })
+          .then((data) => {
+            return data;
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+        return;
+      }
       //get new state & set the style
       const newState = getNewState(control);
       const button = control.querySelector(".controlStatusIconCont");
@@ -126,25 +146,6 @@ window.addEventListener("load", async (e) => {
       if (button.classList.contains(`device-${originalStatus.currentValue}`)) {
         button.classList.toggle(`device-${originalStatus.currentValue}`);
         button.classList.toggle(`device-${updatedStatus}`);
-      }
-      //Favourite Btn
-      if (e.target.classList.contains("favourite-icon")) {
-        const updateObj = favouriteItem(e, "control");
-
-        await fetch(`/devices/${updateObj.configID}`, {
-          method: "PATCH",
-          body: JSON.stringify(updateObj),
-          headers: { "content-type": "application/json" },
-        })
-          .then((response) => {
-            return response.json();
-          })
-          .then((data) => {
-            return data;
-          })
-          .catch((err) => {
-            console.log(err);
-          });
       }
     });
   });
