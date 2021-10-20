@@ -55,6 +55,26 @@ const favouriteItem = function (e, parentClassName) {
   console.log(favouriteUpdate);
   return favouriteUpdate;
 };
+
+///change device state
+const getNewState = function (control) {
+  let newStatus;
+  control.classList.contains("on") ? (newStatus = "off") : (newStatus = "on");
+  console.log(newStatus);
+  return newStatus;
+};
+const updateControlStyle = function (newStatus, control) {
+  let newStyle;
+  newStatus == "on" ? (newStyle = "off") : (newStyle = "on");
+  control.classList.toggle("on");
+  control.classList.toggle("off");
+};
+//change control image
+// const setControlImage = function (device) {
+//   if (device.type == "switch") {
+//     image = ;
+//   }
+// };
 /////////////////////////
 
 //Nav Bar effects

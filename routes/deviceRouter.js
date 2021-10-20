@@ -8,6 +8,8 @@ router
   .delete(deviceControllers.deleteDevice)
   .patch(deviceControllers.updateDevice);
 
-router.route('/:configID/:deviceID').get(deviceControllers.getSingleDevice)
+router.route("/:configID/:deviceID").get(deviceControllers.getSingleDevice);
 
-module.exports = router
+router.route("/:configID/:deviceID/:status").get(deviceControllers.changeDeviceState);
+
+module.exports = router;

@@ -13,7 +13,6 @@ const checkType = (config) => {
   return configType;
 };
 
-
 const getDevices = async (target) => {
   const config = target.closest(".preConfiguredCard").id;
   const data = await fetch(`/config/${config}/devices`)
@@ -49,9 +48,9 @@ const addCard = function (config) {
             <span class="material-icons settings-icon" id="preConfiguredIcon" href='/configView.html'>settings</span>
           </div>
           <div class="preConfiguredIcon preConfigured-favourite">
-            <span class="material-icons favourite-icon ${setFavouriteIconStyle(
+            <span class="material-icons favourite-icon ${setFavIconStyle(
               config
-            )}" id="preConfigured-favourite">${setFavouriteIcon(config)}</span>
+            )}" id="preConfigured-favourite">${setFavIcon(config)}</span>
           </div>
           <div class="preConfiguredIcon preConfigured-delete">
             <span class="material-icons delete-icon" id="preConfigured-delete">delete</span>
@@ -108,7 +107,7 @@ const addCard = function (config) {
 </div>
 </div>`;
   preConfiguredCardSection.insertAdjacentHTML("beforeEnd", configCard);
-  progressiveFadeIn(document.querySelectorAll('.preConfiguredCard'), 75, 'inline')
+  progressiveFadeIn(document.querySelectorAll(".preConfiguredCard"), 75, "inline");
   // setTimeout(() => {
   //   document.querySelectorAll(".preConfiguredCard").forEach((card) => (card.style.opacity = "1"));
   // }, 100);
@@ -127,11 +126,13 @@ window.addEventListener("load", async () => {
   });
   const counts = document.querySelectorAll(".deviceCountNumber");
   counts.forEach(async (count) => {
-    try{
+    try {
       const devices = await getDevices(count);
-      if(devices){count.textContent = devices.data.length;}
-    }catch(err){
-      console.log(err)
+      if (devices) {
+        count.textContent = devices.data.length;
+      }
+    } catch (err) {
+      console.log(err);
     }
   });
 });

@@ -5,8 +5,8 @@ const urlDecider = function (setupType, targetAddr) {
   } else return `http://${targetAddr}/apps/api`;
 };
 
-exports.buildURL = function (setupType, targetAddr, appID, apiKey, endpoint = "devices", endpoint2 = "all") {
+exports.buildURL = function (setupType, targetAddr, appID, apiKey, endpoint = "all", status = "") {
   const urlStart = urlDecider(setupType, targetAddr);
-  const url = `${urlStart}/${appID}/${endpoint}/${endpoint2}?access_token=${apiKey}`;
+  const url = `${urlStart}/${appID}/devices/${endpoint}${status}?access_token=${apiKey}`;
   return url;
 };

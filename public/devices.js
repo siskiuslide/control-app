@@ -9,14 +9,14 @@ const addConfig = function (config) {
 
 const addDevice = function (device) {
   const deviceContainer = document.querySelector(".deviceContainer");
-  let deviceHTML = ` 
-  <a href="/devices/${device.configID}/${device.deviceID}">
-    <div id="${device.deviceID}" class="control" data-type="${device.type}" data-label="${
+  console.log(device.status);
+  let deviceHTML = `   
+    <div id="${device.deviceID}" class="control ${device.status}" data-type="${device.type}" data-label="${
     device.label
-  }" data-configID="${device.configID}">
+  }" data-configid="${device.configID}">
       <div class="typeDecorTemplate"></div>
       <div class="controlLabel">${device.label}</div>
-      <div src="" class="controlImage">image here</div>
+      <img src="/images/${device.imageAddress}" class="controlImage"></img>
       <div class="controlFooterSection">
         <div class="controlFooterItem">
           <span class="material-icons favourite-icon ${setFavIconStyle(device)} control-fav-icon">
@@ -26,8 +26,7 @@ const addDevice = function (device) {
       <div class="controlFooterItem"><span class="material-icons control-chevron-icon">chevron_right</span>
       </div>
   </div>
-</div>
-</a>`;
+</div>`;
   deviceContainer.insertAdjacentHTML("afterbegin", deviceHTML);
 };
 
@@ -109,9 +108,15 @@ window.addEventListener("load", async (e) => {
   const controls = document.querySelectorAll(".control");
   controls.forEach((control) => {
     control.addEventListener("click", async (e) => {
-      //change state
-      const 
-      const updateState = await fetch(`/devices/c`)
+      e.preventDefault();
+      //get new state & set the style
+      const newState = getNewState(control);
+      const newStateStyle = updateControlStyle(newState, control);
+      //make the request to the server
+      const updateState = await fetch(`/devices/${control.dataset.configid}/${control.id}/${newState}`)
+        .then((res) => res.json())
+        .then((data) => console.log(data))
+        .catch((err) => console.log(err));
 
       //Favourite Btn
       if (e.target.classList.contains("favourite-icon")) {
@@ -133,7 +138,6 @@ window.addEventListener("load", async (e) => {
             console.log(err);
           });
       }
-
     });
   });
 });

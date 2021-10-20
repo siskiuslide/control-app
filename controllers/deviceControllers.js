@@ -14,7 +14,7 @@ exports.getDevices = async (req, res) => {
       assocConfig[0].target,
       assocConfig[0].appID,
       assocConfig[0].APIKey,
-      "devices"
+      "all"
     );
     //make request
     const hubResponse = await hubRequest(url);
@@ -74,11 +74,45 @@ exports.updateDevice = async function (req, res) {
 };
 
 exports.getSingleDevice = async function (req, res) {
-  const device = await Device.findOneAndUpdate({ configID: req.params.configID, deviceID: req.params.deviceID }).catch(
-    (err) => console.log(err)
-  );
-  console.log(device);
-  return res.status(200).json({ status: "Success", data: device });
+  try {
+    const device = await Device.findOneAndUpdate({
+      configID: req.params.configID,
+      deviceID: req.params.deviceID,
+    }).catch((err) => console.log(err));
+    console.log(device);
+    return res.status(200).json({ status: "Success", data: device });
+  } catch (err) {
+    return res.status(404).json({ status: "failed", message: err });
+  }
+};
+
+exports.changeDeviceState = async function (req, res) {
+  try {
+    const assocDevice = await Device.find({ configID: req.params.configID, deviceID: req.params.deviceID })
+      .then((data) => {
+        return data;
+      })
+      .catch((err) => console.log(err));
+
+    const assocConfig = await Config.find({ _id: req.params.configID }).catch((err) => console.log(err));
+
+    //build url to make request
+    const url = urlHelper.buildURL(
+      assocConfig[0].type,
+      assocConfig[0].target,
+      assocConfig[0].appID,
+      assocConfig[0].APIKey,
+      req.params.deviceID,
+      `/${req.params.status}`
+    );
+    //make request
+    const hubResponse = await hubRequest(url);
+
+    return res.status(200).json({ status: "success", data: hubResponse });
+  } catch (err) {
+    console.log(err);
+    return res.status(404).json({ status: "failed", message: err });
+  }
 };
 
 exports.deleteDevice = function (req, res) {
