@@ -7,7 +7,8 @@
   --higherOpacityWhite: rgba(255, 255, 255, 0.466);
   --mainGradient: linear-gradient(to bottom, #0f2027, #203a43, #2c5364);
   --peachGradient: linear-gradient(to left, #f2709c, #ff9472);
-  --peachGradientLowOpacity: linear-gradient(to left, #f2709bb9, #ff9372b9);
+  --peachGradientLowOpacity: linear-gradient(to left, #f2709bca, #ff9372ca);
+  --peachGradientVeryLowOpacity: linear-gradient(to left, #f2709b91, #ff937291);
   --lightBlueAccent: #00a8be;
   --lightBlueAccentHover: rgba(0, 158, 179, 0.842);
   --midAccent: #0082be;
@@ -895,7 +896,6 @@ input:checked + .slider:before {
   height: 4%;
   position: relative;
   top: 0%;
-  background: yellow;
   border-radius: 5px 5px 0px 0px;
 }
 .control .controlLabel {
@@ -905,13 +905,42 @@ input:checked + .slider:before {
   align-self: center;
   color: black;
   justify-self: flex-start;
+  margin-top: 7px;
+  padding: 3px;
 }
-.controlImage {
-  top: 30%;
-  width: 40%;
-  height: 40%;
-  left: 30%;
-  background-color: grey;
+.controlStatusIconCont {
+  align-self: center;
+  justify-self: center;
+  border-radius: 50%;
+  width: 42%;
+  height: 42%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  transition: all 100ms;
+}
+.controlStatusIconCont:hover .status-icon {
+  transform: scale(2.4);
+}
+.status-icon {
+  transform-origin: center;
+  transition: all 100ms;
+  transform: scale(2.2);
+}
+.device-on {
+  color: #ffffff;
+  background: var(--peachGradient);
+}
+.device-on:hover {
+  background: var(--peachGradientLowOpacity);
+}
+.device-off {
+  color: #ffffff;
+  background: #5a5a5a8c;
+}
+.device-off:hover {
+  background: var(--peachGradientVeryLowOpacity);
 }
 
 .viewController {

@@ -10,20 +10,19 @@ const deviceSchema = new mongoose.Schema(
     commands: { type: Array, required: false },
     favourite: { type: Boolean, default: false },
     date: { type: Date, required: false },
-    imageAddress: { type: String, default: "#" },
   },
   { timestamps: true }
 );
 
-deviceSchema.pre("save", function (next) {
-  if (this.type.includes("Switch") || this.type.includes("Plug")) {
-    this.imageAddress = `Switch ${this.status}.png`;
-  }
-  if (this.type.includes("Bulb") || this.type.includes("Strip") || this.type.includes("RGB")) {
-    this.imageAddress = `Lightbulb ${this.status}.png`;
-  }
-  next();
-});
+// deviceSchema.pre("save", function (next) {
+//   if (this.type.includes("Switch") || this.type.includes("Plug")) {
+//     this.imageAddress = `Switch ${this.status}.png`;
+//   }
+//   if (this.type.includes("Bulb") || this.type.includes("Strip") || this.type.includes("RGB")) {
+//     this.imageAddress = `Lightbulb ${this.status}.png`;
+//   }
+//   next();
+// });
 const Device = mongoose.model("devices", deviceSchema);
 
 module.exports = Device;

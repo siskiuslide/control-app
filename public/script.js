@@ -52,7 +52,6 @@ const favouriteItem = function (e, parentClassName) {
     deviceID: parent.id,
     favourite: favouriteStatus,
   };
-  console.log(favouriteUpdate);
   return favouriteUpdate;
 };
 
@@ -60,21 +59,42 @@ const favouriteItem = function (e, parentClassName) {
 const getNewState = function (control) {
   let newStatus;
   control.classList.contains("on") ? (newStatus = "off") : (newStatus = "on");
-  console.log(newStatus);
   return newStatus;
 };
-const updateControlStyle = function (newStatus, control) {
+const updateControlStyle = function (newStatus, control, button) {
   let newStyle;
   newStatus == "on" ? (newStyle = "off") : (newStyle = "on");
   control.classList.toggle("on");
   control.classList.toggle("off");
+  button.classList.toggle("device-off");
+  button.classList.toggle("device-on");
 };
-//change control image
-// const setControlImage = function (device) {
-//   if (device.type == "switch") {
-//     image = ;
-//   }
-// };
+
+//check matching status, if !matching set back to irl status
+
+//icons on load
+const setStatusIcon = function (device) {
+  let icon;
+  //lights
+  if (
+    device.type.includes("Light") ||
+    device.type.includes("Bulb") ||
+    device.type.includes("Strip") ||
+    device.type.includes("RGB")
+  ) {
+    return (icon = "lightbulb");
+  }
+  //powered devices
+  if (device.type.includes("Switch") || device.type.includes("Plug") || device.type.includes("Controller")) {
+    return (icon = "bolt");
+  }
+};
+//style on load
+const setStatusStyle = function (device) {
+  let statusStyle;
+  device.status === "on" ? (statusStyle = "device-on") : (statusStyle = "device-off");
+  return statusStyle;
+};
 /////////////////////////
 
 //Nav Bar effects
