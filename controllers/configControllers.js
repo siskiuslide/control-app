@@ -4,10 +4,15 @@ const DeviceControllers = require("./deviceControllers");
 
 exports.getConfig = async function (req, res) {
   try {
+    if(req.query.favourite){
+      const data = await Config.find({favourite: req.query.favourite})
+      console.log(data)
+      return res.status(200).json({status: 'success', body: data})
+    }
     const configs = await Config.find();
-    res.status(200).json({ status: "success", body: configs });
+    return res.status(200).json({ status: "success", body: configs });
   } catch (err) {
-    res.status(400).json({ status: "failed", message: err });
+    return res.status(400).json({ status: "failed", message: err });
   }
 };
 exports.getSingleConfig = async function (req, res) {

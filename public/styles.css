@@ -770,6 +770,11 @@ input:checked + .slider:before {
 .inactiveConfig:hover .chevron-icon {
   color: black;
 }
+.configEntryFavourite{
+  text-shadow: none;
+  justify-self: flex-start;
+  align-items: center;
+}
 .entryTitle {
   font-size: 25px;
   color: white;
@@ -783,7 +788,6 @@ input:checked + .slider:before {
   transition: all 100ms;
   margin: 0 30px;
 }
-
 .addConfigRedirect {
   display: flex;
   flex-direction: column;
@@ -840,7 +844,7 @@ input:checked + .slider:before {
   color: white;
   border-radius: 5px;
   transition: opacity;
-  display: inline;
+  display: none;
   transition: opacity 500ms;
   transition-delay: 400ms;
   width: 150px;
@@ -849,7 +853,7 @@ input:checked + .slider:before {
   display: none;
 }
 .tooltip:hover + .searchToolTipText {
-  display: inline;
+  display: none;
   opacity: 1;
 }
 .searchBtn {
@@ -907,6 +911,7 @@ input:checked + .slider:before {
   justify-self: flex-start;
   margin-top: 7px;
   padding: 3px;
+  height: 30px;
 }
 .controlStatusIconCont {
   align-self: center;

@@ -9,7 +9,9 @@ const deviceSchema = new mongoose.Schema(
     status: { type: String, required: true },
     commands: { type: Array, required: false },
     favourite: { type: Boolean, default: false },
+    excluded: {type: Boolean, default: false},
     date: { type: Date, required: false },
+
   },
   { timestamps: true }
 );

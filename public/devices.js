@@ -1,6 +1,7 @@
 const addConfig = function (config) {
   const configListContainer = document.querySelector(".configListContainer");
   let configEntryHTML = `<div class="configListItem configListEntry inactiveConfig" id="${config._id}">
+  <span class="configEntryFavourite material-icons ${setFavIconStyle(config)}">${setFavIcon(config)}</span>
     <div class="entryTitle">${config.name}</div>
     <span class="material-icons chevron-icon entry-chevron-icon">chevron_right</span>
     </div>`;
@@ -47,6 +48,8 @@ const removeDevicesFromCont = function (entry) {
   });
 };
 
+
+
 //ONLOAD - get all configs, then load the devices of the first in the list
 
 let configListItems;
@@ -82,6 +85,28 @@ window.addEventListener("load", async (e) => {
     });
   }
 
+  //header event listeners
+const headerIcon = document.querySelectorAll('.headerIcon')
+console.log(headerIcon)
+headerIcon.forEach(icon=>{
+  icon.addEventListener('click', async (e)=>{
+    if(e.target.classList.contains('header-fav-icon')){
+      e.target.classList.toggle('favourited')
+      let favouriteQuery 
+      e.target.classList.contains('favourited') ? favouriteQuery = true : favouriteQuery = false
+      const favQueryResult = await fetch(`/config?favourite=${favouriteQuery}`)
+      .then(res=>res.json())
+      .then(data=>{return data})
+      .catch(err=>console.log(err)) 
+      document.querySelectorAll('.configListEntry').forEach(conf=>progressiveFadeOut(conf))  
+      document.querySelectorAll('control').forEach(cont=> progressiveFadeOut(cont))
+      
+      data.forEach(conf=> addConfig(conf))     
+    }
+})  
+})
+
+//entries
   const entries = document.querySelectorAll(".configListEntry");
   entries.forEach((entry) => {
     entry.addEventListener("click", async (e) => {
@@ -102,7 +127,9 @@ window.addEventListener("load", async (e) => {
           progressiveFadeIn(document.querySelectorAll(".control"), 75, "flex");
         })
         .catch((err) => console.log(err));
-    });
+        
+        
+      });
   });
 
   const controls = document.querySelectorAll(".control");
