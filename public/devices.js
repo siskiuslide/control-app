@@ -130,24 +130,24 @@ window.addEventListener("load", async (e) => {
       }
 
       //STATE CHANGE
-      //get new state & set the style
+      //get new state & set the style instantly
       const stateChangeButton = control.querySelector(".controlStatusIconCont");
-      const newState = getNewState(control);
+      //the classname of what we want to set it to. Ald
+      const targetState = getNewState(control);
       const button = control.querySelector(".controlStatusIconCont");
-      const newStateStyle = updateControlStyle(newState, control, button);
+      const newStateStyle = updateControlStyle(targetState, control, button);
+      console.log(targetState)
       //make the request to the server
-      const data = await fetch(`/devices/${control.dataset.configid}/${control.id}/${newState}`)
+      const data = await fetch(`/devices/${control.dataset.configid}/${control.id}/${targetState}`)
         .then((res) => res.json())
         .then((data) => data)
         .catch((err) => console.log(err));
-      //check if the result matches the instantly updated status.
-      //The hub returns the state tht it was in before the update. If the button is still in that
-      //state then change it
-      const originalStatus = data.data.attributes.find((attr) => attr.name == "switch");
-      const updatedStatus = originalStatus.values.find((el) => el != originalStatus.currentValue);
-      if (button.classList.contains(`device-${originalStatus.currentValue}`)) {
-        button.classList.toggle(`device-${originalStatus.currentValue}`);
-        button.classList.toggle(`device-${updatedStatus}`);
+
+      //check if the result matches the instantly updated status then toggle back if it doesn't     
+      const newStatusFromServer = data.data.attributes.find((attr) => attr.name == "switch");   
+      if(newStatusFromServer.currentValue !== targetState){
+        button.classList.toggle('device-on')
+        button.classList.toggle('device-off')
       }
     });
   });
