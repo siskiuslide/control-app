@@ -13,18 +13,6 @@ const checkType = (config) => {
   return configType;
 };
 
-const getDevices = async (target) => {
-  const config = target.closest(".preConfiguredCard").id;
-  const data = await fetch(`/config/${config}/devices`)
-    .then((res) => res.json())
-    .then((data) => {
-      return data;
-    })
-    .catch((err) => console.log(err));
-  console.log(data);
-  return data;
-};
-
 const preConfiguredCardSection = document.querySelector(".preConfiguredSection");
 const addCard = function (config) {
   const type = checkType(config);
@@ -127,7 +115,8 @@ window.addEventListener("load", async () => {
   const counts = document.querySelectorAll(".deviceCountNumber");
   counts.forEach(async (count) => {
     try {
-      const devices = await getDevices(count);
+      const config = count.closest(".preConfiguredCard").id;
+      const devices = await getDevices(config);
       if (devices) {
         count.textContent = devices.data.length;
       }

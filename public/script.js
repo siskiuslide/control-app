@@ -25,6 +25,18 @@ let progressiveFadeOut = function (nodelist, interval) {
   });
 };
 
+/////Config get devices
+const getDevices = async (config) => {
+  const data = await fetch(`/config/${config}/devices`)
+    .then((res) => res.json())
+    .then((data) => {
+      return data;
+    })
+    .catch((err) => console.log(err));
+  console.log(data);
+  return data;
+};
+
 //Favouriting Items
 const setFavIcon = (obj) => {
   obj.favourite == true ? (favouriteContent = "star") : (favouriteContent = "star_outline");
