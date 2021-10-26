@@ -12,6 +12,7 @@ app.use(express.urlencoded({ extended: true }));
 const deviceRouter = require("./routes/deviceRouter");
 const configRouter = require("./routes/configRouter");
 
+
 app.use("/config", configRouter);
 
 app.use("/devices", deviceRouter);

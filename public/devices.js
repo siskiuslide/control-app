@@ -53,6 +53,7 @@ const removeDevicesFromCont = function (entry) {
 let configListItems;
 let configs = [];
 window.addEventListener("load", async (e) => {
+  //initial request on load
   const configResponse = await fetch("/config")
     .then((res) => res.json())
     .then((data) => {
@@ -131,7 +132,8 @@ window.addEventListener("load", async (e) => {
       const target = e.target.closest(".configListEntry");
       const targetID = target.id;
       const currentlyActive = document.querySelector(".activeConfig");
-      const devices = await fetch(`/config/${targetID}/devices`)
+      const targetURL = `/config/${targetID}/devices`
+      const devices = await fetch(targetURL)
         .then((res) => {
           return res.json();
         })
@@ -144,9 +146,28 @@ window.addEventListener("load", async (e) => {
           progressiveFadeIn(document.querySelectorAll(".control"), 75, "flex");
         })
         .catch((err) => console.log(err));
+        //poll for this config's devices
+        setInterval(async ()=>{
+          document.visibilityState === 'visible' ? visible = true : visible = false;
+          console.log(visible)
+          if(visible === true){
+            const pollRes = await poll(url)
+            console.log(pollRes)
+          }
+        }, 5000)
     });
   });
+  setTimeout(()=>{    
+    setInterval(async ()=>{
+      document.visibilityState === 'visible' ? visible = true : visible = false;
+      if(visible === true){
+        const pollRes = await pollDevices(document.querySelector('.activeConfig'))
+        comparePoll(pollRes.data)
+      }
+    }, 1500)
+  }, 3000)
 
+  //event listeners for each device
   const controls = document.querySelectorAll(".control");
   controls.forEach((control) => {
     control.addEventListener("click", async (e) => {
@@ -193,4 +214,6 @@ window.addEventListener("load", async (e) => {
       }
     });
   });
+
 });
+

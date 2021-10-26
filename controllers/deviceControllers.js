@@ -36,7 +36,7 @@ exports.getDevices = catchAsync(async (req, res, next) => {
     };
 
     //check whether the doc already exists, if not, add it
-    Device.exists({ configID: device.configID, deviceID: device.deviceID }, async function (err, result) {
+    Device.exists({ configID: device.configID, deviceID: device.deviceID}, async function (err, result) {
       if (result === true) {
         //if it already exists compare the status to the hub response and update
         const existingData = await Device.find({ configID: device.configID, deviceID: device.deviceID })

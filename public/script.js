@@ -119,3 +119,23 @@ listItems.forEach((item, i) => {
     item.style.transition = "transform 1000ms";
   });
 });
+
+
+const pollDevices  = async function(activeConfig){  
+  const hubResponse = await fetch(`/config/${activeConfig.id}/devices`).then(res=>{
+    return res.json()
+  })
+  .catch(err=> console.log(err))
+  return hubResponse
+}
+const comparePoll = function(pollData){
+  pollData.forEach(device=> {
+    const deviceEl = document.getElementById(`${device.deviceID}`)
+    const deviceState = device.status
+    if(!deviceEl.classList.contains(`${device.status}`)){
+      updateControlStyle(device.status, deviceEl, deviceEl.querySelector('.controlStatusIconCont'))
+
+    }
+  })
+
+}
