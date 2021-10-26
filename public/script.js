@@ -128,7 +128,7 @@ const pollDevices  = async function(activeConfig){
   .catch(err=> console.log(err))
   return hubResponse
 }
-const comparePoll = function(pollData){
+const comparePollDevices = function(pollData){
   pollData.forEach(device=> {
     const deviceEl = document.getElementById(`${device.deviceID}`)
     const deviceState = device.status

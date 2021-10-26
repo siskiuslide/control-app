@@ -15,5 +15,5 @@ router.route("/:id").get(configController.getSingleConfig);
 module.exports = router;
 
 router.route("/:id/devices").get(deviceController.getDevices);
-router.route("/:id/devices/:poll").get(deviceController.getDevices);
+// router.route("/:id/devices/:poll").get(deviceController.getDevices);
 

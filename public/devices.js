@@ -147,14 +147,14 @@ window.addEventListener("load", async (e) => {
         })
         .catch((err) => console.log(err));
         //poll for this config's devices
-        setInterval(async ()=>{
-          document.visibilityState === 'visible' ? visible = true : visible = false;
-          console.log(visible)
-          if(visible === true){
-            const pollRes = await poll(url)
-            console.log(pollRes)
-          }
-        }, 5000)
+        // setInterval(async ()=>{
+        //   document.visibilityState === 'visible' ? visible = true : visible = false;
+        //   console.log(visible)
+        //   if(visible === true){
+        //     const pollRes = await poll(url)
+        //     console.log(pollRes)
+        //   }
+        // }, 5000)
     });
   });
   setTimeout(()=>{    
@@ -162,7 +162,7 @@ window.addEventListener("load", async (e) => {
       document.visibilityState === 'visible' ? visible = true : visible = false;
       if(visible === true){
         const pollRes = await pollDevices(document.querySelector('.activeConfig'))
-        comparePoll(pollRes.data)
+        comparePollDevices(pollRes.data)
       }
     }, 1500)
   }, 3000)
