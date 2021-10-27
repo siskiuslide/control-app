@@ -701,7 +701,7 @@ input:checked + .slider:before {
   width: 25vw;
   height: 99%;
   background: var(--LowerOpacityWhite);
-  margin: 5px;
+  margin: 7px;
   border-radius: 4px;
 }
 .configListItem {
@@ -733,7 +733,7 @@ input:checked + .slider:before {
   height: 10%;
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   border-radius: 4px;
   transition: all 150ms;
@@ -772,8 +772,9 @@ input:checked + .slider:before {
 }
 .configEntryFavourite{
   text-shadow: none;
-  justify-self: flex-start;
-  align-items: center;
+  justify-self: left;
+  align-items: flex-start;
+  margin-left: 10px;
 }
 .entryTitle {
   font-size: 25px;
@@ -806,7 +807,7 @@ input:checked + .slider:before {
   background: #ffffff30;
   position: relative;
   width: 73vw;
-  margin: 5px;
+  margin: 7px;
   border-radius: 4px;
   height: auto;
   display: flex;
@@ -864,10 +865,6 @@ input:checked + .slider:before {
   font-size: 50px;
 }
 
-.pollOff{
-  color: red
-}
-
 .deviceContainer {
   position: relative;
   display: flex;
@@ -879,7 +876,7 @@ input:checked + .slider:before {
 .control {
   position: relative;
   background: white;
-  border-radius: 10px;
+  border-radius: 6px;
   box-shadow: 0px 0px 5px 1px rgb(56, 56, 56);
   margin: 20px 25px 50px 25px;
   width: 230px;
@@ -962,7 +959,7 @@ input:checked + .slider:before {
   width: 100%;
   height: auto;
   background: #5a5a5a;
-  border-radius: 0 0 10px 10px;
+  border-radius: 0 0 6px 6px;
   color: white;
 }
 .controlFooterItem {

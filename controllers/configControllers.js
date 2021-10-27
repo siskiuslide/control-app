@@ -4,6 +4,10 @@ const DeviceControllers = require("./deviceControllers");
 const APITools = require("../utils/APITools");
 const catchAsync = require("./helpers/catchAsync");
 
+//
+//----------------
+//
+
 exports.getConfig = catchAsync(async function (req, res, next) {
   if (req.query.favourite) {
     const data = await Config.find({ favourite: req.query.favourite });
@@ -11,19 +15,22 @@ exports.getConfig = catchAsync(async function (req, res, next) {
     return res.status(200).json({ status: "success", body: data });
   }
   const configs = await Config.find();
-
-  // const query = new APITools(Config.find(), req.query).filter();
-  // console.log(query);
-  // const configs = await query.query;
-  // console.log(configs);
   return res.status(200).json({ status: "success", body: configs });
 });
+
+//
+//------------------
+//
+
 exports.getSingleConfig = catchAsync(async function (req, res, next) {
   await Config.find({ _id: req.params.id }).then((data) => {
     res.status(200).json({ status: "success", data: data });
   });
 });
 
+//
+//------------------
+//
 exports.createConfig = catchAsync(async function (req, res, next) {
   Config.exists({ name: req.body.name }, function (err, result) {
     if (result == true) {
@@ -37,11 +44,20 @@ exports.createConfig = catchAsync(async function (req, res, next) {
     res.status(200).json({ status: "success", data: req.body });
   });
 });
+
+//
+//--------------
+//
+
 exports.updateConfig = catchAsync(async function (req, res, next) {
   const object = req.body;
   await Config.findByIdAndUpdate(`${object._id}`, object);
   res.status(200).json({ status: "success", data: object });
 });
+
+//
+//-------------
+//
 
 exports.deleteConfig = catchAsync(async function (req, res, next) {
   console.log(req.body);

@@ -66,6 +66,15 @@ const favouriteItem = function (e, parentClassName) {
   };
   return favouriteUpdate;
 };
+const excludeItem = function (e, parentClassName, type) {
+  const parent = e.target.closest(`.${parentClassName}`);
+  const updateBody = {
+    configID: parent.dataset.configid,
+    excluded: true,
+  };
+  if(type==='device'){updateBody.deviceID = parent.id}
+  return updateBody;
+};
 
 ///change device state
 const getNewState = function (control) {

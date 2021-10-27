@@ -75,8 +75,13 @@ exports.updateDevice = catchAsync(async function (req, res, next) {
       console.log(err);
     });
   }
+  if(req.body.hasOwnProperty('excluded')){
+    Device.findOneAndUpdate(
+      { configID: req.body.configID, deviceID: req.body.deviceID },
+      { excluded: req.body.excluded }
+    ).catch(err=>console.log(err))
   return res.status(200).json({ status: "Success", data: req.body });
-});
+}});
 
 //
 //--------------
@@ -105,7 +110,6 @@ exports.changeDeviceState = catchAsync(async function (req, res, next) {
   const stateChangeUrl = urlHelper.buildURL(assocConfig[0].type, assocConfig[0].target, assocConfig[0].appID, assocConfig[0].APIKey, req.params.deviceID, `/${req.params.status}`);
   //make request - this does not return the new state
   const hubResponse = await hubRequest(stateChangeUrl);
-
   //get new status from hub | prettier-ignore
   const newStatusUrl = urlHelper.buildURL(assocConfig[0].type, assocConfig[0].target, assocConfig[0].appID, assocConfig[0].APIKey, req.params.deviceID, "");
   const newStatusFromHub = await hubRequest(newStatusUrl);

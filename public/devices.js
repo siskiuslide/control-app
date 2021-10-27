@@ -24,6 +24,11 @@ const addDevice = function (device) {
           <span class="material-icons favourite-icon ${setFavIconStyle(device)} control-fav-icon">
           ${setFavIcon(device)}
           </span>
+          </div>
+        <div class="controlFooterItem">
+          <span class="material-icons delete-icon control-del-icon">
+          delete
+          </span>
         </div>
       <div class="controlFooterItem"><span class="material-icons control-chevron-icon">chevron_right</span>
       </div>
@@ -38,6 +43,16 @@ const activeToggle = function (entry) {
   entry.classList.toggle("inactiveConfig");
 };
 
+const dlIconToggle = function(target, onClass, offClass, onIcon, offIcon){
+  target.classList.toggle(onClass)
+  target.classList.toggle(offClass)
+  if(target.classList.contains(onClass)){
+    target.textContent = onIcon
+  }
+  else if(target.classList.contains(offClass)){
+    target.textContent = offIcon
+  }
+}
 
 const removeDevicesFromCont = function (entry) {
   document.querySelectorAll(".control").forEach((control) => {
@@ -78,6 +93,7 @@ window.addEventListener("load", async (e) => {
 
   if (onloadDevices.data.length > 0) {
     onloadDevices.data.forEach((device) => {
+      if(device.excluded == true){return}
       activeToggle(document.getElementById(firstConfig.id));
       addDevice(device);
       progressiveFadeIn(document.querySelectorAll(".control"), 75, "flex");
@@ -135,7 +151,7 @@ window.addEventListener("load", async (e) => {
       const targetID = target.id;
       const currentlyActive = document.querySelector(".activeConfig");
       const targetURL = `/config/${targetID}/devices`
-      const devices = await fetch(targetURL)
+      devices = await fetch(targetURL)
         .then((res) => {
           return res.json();
         })
@@ -148,31 +164,35 @@ window.addEventListener("load", async (e) => {
           progressiveFadeIn(document.querySelectorAll(".control"), 75, "flex");
         })
         .catch((err) => console.log(err));
-       
     });
   });
 
   //polling
+  
+
   let interval;
   const pollSwitchBtn = document.querySelector('.pollSwitch')
   pollSwitchBtn.addEventListener('click', ()=>{
-    pollSwitchBtn.classList.toggle('pollOn')
-    pollSwitchBtn.classList.toggle('pollOff')
-    if(pollSwitchBtn.classList.contains('pollOn')){
-      pollSwitchBtn.textContent='timer'
+    dlIconToggle(pollSwitchBtn, 'pollOn', 'pollOff', 'timer', 'timer_off')
       //poll for the device state and compare.
-        interval = setInterval(async ()=>{
-          document.visibilityState === 'visible' ? visible = true : visible = false;
-          if(visible === true){
-            const pollRes = await pollDevices(document.querySelector('.activeConfig'))
-            comparePollDevices(pollRes.data)
-          }
-        }, 1500)
+    if(pollSwitchBtn.classList.contains('pollOn')){
+      interval = setInterval(async ()=>{
+        document.visibilityState === 'visible' ? visible = true : visible = false;
+        if(visible === true){
+          const pollRes = await pollDevices(document.querySelector('.activeConfig'))
+          comparePollDevices(pollRes.data)
+        }
+      }, 1500)
       return interval
     }else if(pollSwitchBtn.classList.contains('pollOff')){
       pollSwitchBtn.textContent='timer_off'
       clearInterval(interval)
     }
+  })
+
+  let visibilitySwitchBtn = document.querySelector('.visibilitySwitch')
+  visibilitySwitchBtn.addEventListener('click', ()=>{
+    dlIconToggle(visibilitySwitchBtn, 'visible', 'invisible', 'visibility', 'visibility_off')
   })
 
 
@@ -193,6 +213,25 @@ window.addEventListener("load", async (e) => {
             return response.json();
           })
           .then((data) => {
+            return data;
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+        return;
+      }
+      if (e.target.classList.contains("delete-icon")) {
+        const updateObj = excludeItem(e, "control", 'device');
+        await fetch(`/devices/${updateObj.configID}`, {
+          method: "PATCH",
+          body: JSON.stringify(updateObj),
+          headers: { "content-type": "application/json" },
+        })
+          .then((response) => {
+            return response.json();
+          })
+          .then((data) => {
+            console.log(data)
             return data;
           })
           .catch((err) => {
