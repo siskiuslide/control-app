@@ -33,7 +33,6 @@ const getDevices = async (config) => {
       return data;
     })
     .catch((err) => console.log(err));
-  console.log(data);
   return data;
 };
 
@@ -72,7 +71,9 @@ const excludeItem = function (e, parentClassName, type) {
     configID: parent.dataset.configid,
     excluded: true,
   };
-  if(type==='device'){updateBody.deviceID = parent.id}
+  if (type === "device") {
+    updateBody.deviceID = parent.id;
+  }
   return updateBody;
 };
 
@@ -129,22 +130,20 @@ listItems.forEach((item, i) => {
   });
 });
 
-
-const pollDevices  = async function(activeConfig){  
-  const hubResponse = await fetch(`/config/${activeConfig.id}/devices`).then(res=>{
-    return res.json()
-  })
-  .catch(err=> console.log(err))
-  return hubResponse
-}
-const comparePollDevices = function(pollData){
-  pollData.forEach(device=> {
-    const deviceEl = document.getElementById(`${device.deviceID}`)
-    const deviceState = device.status
-    if(!deviceEl.classList.contains(`${device.status}`)){
-      updateControlStyle(device.status, deviceEl, deviceEl.querySelector('.controlStatusIconCont'))
-
+const pollDevices = async function (activeConfig) {
+  const hubResponse = await fetch(`/config/${activeConfig.id}/devices`)
+    .then((res) => {
+      return res.json();
+    })
+    .catch((err) => console.log(err));
+  return hubResponse;
+};
+const comparePollDevices = function (pollData) {
+  pollData.forEach((device) => {
+    const deviceEl = document.getElementById(`${device.deviceID}`);
+    const deviceState = device.status;
+    if (!deviceEl.classList.contains(`${device.status}`)) {
+      updateControlStyle(device.status, deviceEl, deviceEl.querySelector(".controlStatusIconCont"));
     }
-  })
-
-}
+  });
+};

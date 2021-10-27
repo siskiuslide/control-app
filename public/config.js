@@ -103,7 +103,6 @@ const addCard = function (config) {
 //DISPLAY ON LOAD
 window.addEventListener("load", async () => {
   const rawConfigData = await fetch("/config").then((res) => res.json());
-  console.log(rawConfigData);
   const configData = rawConfigData.body;
 
   if (configData.length == 0) {
@@ -202,7 +201,6 @@ preConfiguredCardSection.addEventListener("click", async (e) => {
       updateCard.querySelector(".APIKeyText").textContent = responseData.APIKey;
       updateCard.querySelector(".AppIDText").textContent = responseData.appID;
       const count = await getDevice(e);
-      console.log(count);
       document.querySelector(".deviceCountNumber").textContent = count.data.length;
       if (responseData.favourite == true) {
         updateCard.querySelector(".favourite-icon").classList.add("favourited");

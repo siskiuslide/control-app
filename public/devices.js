@@ -43,16 +43,15 @@ const activeToggle = function (entry) {
   entry.classList.toggle("inactiveConfig");
 };
 
-const dlIconToggle = function(target, onClass, offClass, onIcon, offIcon){
-  target.classList.toggle(onClass)
-  target.classList.toggle(offClass)
-  if(target.classList.contains(onClass)){
-    target.textContent = onIcon
+const dlIconToggle = function (target, onClass, offClass, onIcon, offIcon) {
+  target.classList.toggle(onClass);
+  target.classList.toggle(offClass);
+  if (target.classList.contains(onClass)) {
+    target.textContent = onIcon;
+  } else if (target.classList.contains(offClass)) {
+    target.textContent = offIcon;
   }
-  else if(target.classList.contains(offClass)){
-    target.textContent = offIcon
-  }
-}
+};
 
 const removeDevicesFromCont = function (entry) {
   document.querySelectorAll(".control").forEach((control) => {
@@ -90,16 +89,18 @@ window.addEventListener("load", async (e) => {
       return data;
     })
     .catch((err) => console.log(err));
+  activeToggle(document.getElementById(firstConfig.id));
 
   if (onloadDevices.data.length > 0) {
     onloadDevices.data.forEach((device) => {
-      if(device.excluded == true){return}
-      activeToggle(document.getElementById(firstConfig.id));
+      if (device.excluded == true) {
+        return;
+      }
       addDevice(device);
       progressiveFadeIn(document.querySelectorAll(".control"), 75, "flex");
     });
-  }else{
-    document.querySelector('.deviceListContainer').insertAdjacentHTML('afterbegin', emptyText)
+  } else {
+    document.querySelector(".deviceListContainer").insertAdjacentHTML("afterbegin", emptyText);
   }
 
   //header event listeners
@@ -150,7 +151,7 @@ window.addEventListener("load", async (e) => {
       const target = e.target.closest(".configListEntry");
       const targetID = target.id;
       const currentlyActive = document.querySelector(".activeConfig");
-      const targetURL = `/config/${targetID}/devices`
+      const targetURL = `/config/${targetID}/devices`;
       devices = await fetch(targetURL)
         .then((res) => {
           return res.json();
@@ -168,33 +169,31 @@ window.addEventListener("load", async (e) => {
   });
 
   //polling
-  
 
   let interval;
-  const pollSwitchBtn = document.querySelector('.pollSwitch')
-  pollSwitchBtn.addEventListener('click', ()=>{
-    dlIconToggle(pollSwitchBtn, 'pollOn', 'pollOff', 'timer', 'timer_off')
-      //poll for the device state and compare.
-    if(pollSwitchBtn.classList.contains('pollOn')){
-      interval = setInterval(async ()=>{
-        document.visibilityState === 'visible' ? visible = true : visible = false;
-        if(visible === true){
-          const pollRes = await pollDevices(document.querySelector('.activeConfig'))
-          comparePollDevices(pollRes.data)
+  const pollSwitchBtn = document.querySelector(".pollSwitch");
+  pollSwitchBtn.addEventListener("click", () => {
+    dlIconToggle(pollSwitchBtn, "pollOn", "pollOff", "timer", "timer_off");
+    //poll for the device state and compare.
+    if (pollSwitchBtn.classList.contains("pollOn")) {
+      interval = setInterval(async () => {
+        document.visibilityState === "visible" ? (visible = true) : (visible = false);
+        if (visible === true) {
+          const pollRes = await pollDevices(document.querySelector(".activeConfig"));
+          comparePollDevices(pollRes.data);
         }
-      }, 1500)
-      return interval
-    }else if(pollSwitchBtn.classList.contains('pollOff')){
-      pollSwitchBtn.textContent='timer_off'
-      clearInterval(interval)
+      }, 1500);
+      return interval;
+    } else if (pollSwitchBtn.classList.contains("pollOff")) {
+      pollSwitchBtn.textContent = "timer_off";
+      clearInterval(interval);
     }
-  })
+  });
 
-  let visibilitySwitchBtn = document.querySelector('.visibilitySwitch')
-  visibilitySwitchBtn.addEventListener('click', ()=>{
-    dlIconToggle(visibilitySwitchBtn, 'visible', 'invisible', 'visibility', 'visibility_off')
-  })
-
+  let visibilitySwitchBtn = document.querySelector(".visibilitySwitch");
+  visibilitySwitchBtn.addEventListener("click", () => {
+    dlIconToggle(visibilitySwitchBtn, "visible", "invisible", "visibility", "visibility_off");
+  });
 
   //event listeners for each device
   const controls = document.querySelectorAll(".control");
@@ -221,7 +220,7 @@ window.addEventListener("load", async (e) => {
         return;
       }
       if (e.target.classList.contains("delete-icon")) {
-        const updateObj = excludeItem(e, "control", 'device');
+        const updateObj = excludeItem(e, "control", "device");
         await fetch(`/devices/${updateObj.configID}`, {
           method: "PATCH",
           body: JSON.stringify(updateObj),
@@ -231,7 +230,7 @@ window.addEventListener("load", async (e) => {
             return response.json();
           })
           .then((data) => {
-            console.log(data)
+            console.log(data);
             return data;
           })
           .catch((err) => {
@@ -254,10 +253,8 @@ window.addEventListener("load", async (e) => {
       //check if the result matches the instantly updated status then toggle back if it doesn't
       const newStatusFromServer = data.data.attributes.find((attr) => attr.name == "switch");
       if (newStatusFromServer.currentValue !== targetState) {
-        setStatusStyle(control)
+        setStatusStyle(control);
       }
     });
   });
-
 });
-
