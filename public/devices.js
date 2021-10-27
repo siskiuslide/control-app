@@ -161,7 +161,6 @@ window.addEventListener("load", async (e) => {
     if(pollSwitchBtn.classList.contains('pollOn')){
       pollSwitchBtn.textContent='timer'
       //poll for the device state and compare.
-      //wait 3s for the page to load fully then at every 1.5s interval make a request.             
         interval = setInterval(async ()=>{
           document.visibilityState === 'visible' ? visible = true : visible = false;
           if(visible === true){
@@ -175,8 +174,6 @@ window.addEventListener("load", async (e) => {
       clearInterval(interval)
     }
   })
-
-
 
 
   //event listeners for each device
@@ -206,8 +203,6 @@ window.addEventListener("load", async (e) => {
 
       //STATE CHANGE
       //get new state & set the style instantly
-      const stateChangeButton = control.querySelector(".controlStatusIconCont");
-      //the classname of what we want to set it to.
       const targetState = getNewState(control);
       const button = control.querySelector(".controlStatusIconCont");
       const newStateStyle = updateControlStyle(targetState, control, button);
@@ -221,8 +216,6 @@ window.addEventListener("load", async (e) => {
       const newStatusFromServer = data.data.attributes.find((attr) => attr.name == "switch");
       if (newStatusFromServer.currentValue !== targetState) {
         setStatusStyle(control)
-        // button.classList.toggle("device-on");
-        // button.classList.toggle("device-off");
       }
     });
   });
