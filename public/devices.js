@@ -1,3 +1,4 @@
+//inserting dynamic elements
 const addConfig = function (config) {
   const configListContainer = document.querySelector(".configListContainer");
   let configEntryHTML = `<div class="configListItem configListEntry inactiveConfig" id="${config._id}">
@@ -31,14 +32,12 @@ const addDevice = function (device) {
   deviceContainer.insertAdjacentHTML("afterbegin", deviceHTML);
 };
 
-const removeActive = function (entry) {
+//list entry functions
+const activeToggle = function (entry) {
   entry.classList.toggle("activeConfig");
   entry.classList.toggle("inactiveConfig");
 };
-const makeActive = function (entry) {
-  entry.classList.toggle("activeConfig");
-  entry.classList.toggle("inactiveConfig");
-};
+
 
 const removeDevicesFromCont = function (entry) {
   document.querySelectorAll(".control").forEach((control) => {
@@ -48,12 +47,12 @@ const removeDevicesFromCont = function (entry) {
   });
 };
 
-//ONLOAD - get all configs, then load the devices of the first in the list
+//------------------------
+//page LOAD event listener
+//------------------------
 
-let configListItems;
-let configs = [];
 window.addEventListener("load", async (e) => {
-  //initial request on load
+  //request configs first & add them to the list
   const configResponse = await fetch("/config")
     .then((res) => res.json())
     .then((data) => {
@@ -65,7 +64,8 @@ window.addEventListener("load", async (e) => {
       }
     })
     .catch((err) => console.log(err));
-  //ADD CONFIG TO LIST
+
+  //get the devices from the first config in the list
   const firstConfig = document.querySelector(".configListEntry");
   const onloadDevices = await fetch(`/config/${firstConfig.id}/devices`)
     .then((res) => {
@@ -78,10 +78,12 @@ window.addEventListener("load", async (e) => {
 
   if (onloadDevices.data.length > 0) {
     onloadDevices.data.forEach((device) => {
-      removeActive(document.getElementById(firstConfig.id));
+      activeToggle(document.getElementById(firstConfig.id));
       addDevice(device);
       progressiveFadeIn(document.querySelectorAll(".control"), 75, "flex");
     });
+  }else{
+    document.querySelector('.deviceListContainer').insertAdjacentHTML('afterbegin', emptyText)
   }
 
   //header event listeners
@@ -139,33 +141,43 @@ window.addEventListener("load", async (e) => {
         })
         .then((devices) => {
           if (currentlyActive !== e.target) {
-            removeActive(currentlyActive);
-            makeActive(target);
+            activeToggle(currentlyActive);
+            activeToggle(target);
           }
           devices.data.forEach((device) => addDevice(device));
           progressiveFadeIn(document.querySelectorAll(".control"), 75, "flex");
         })
         .catch((err) => console.log(err));
-        //poll for this config's devices
-        // setInterval(async ()=>{
-        //   document.visibilityState === 'visible' ? visible = true : visible = false;
-        //   console.log(visible)
-        //   if(visible === true){
-        //     const pollRes = await poll(url)
-        //     console.log(pollRes)
-        //   }
-        // }, 5000)
+       
     });
   });
-  setTimeout(()=>{    
-    setInterval(async ()=>{
-      document.visibilityState === 'visible' ? visible = true : visible = false;
-      if(visible === true){
-        const pollRes = await pollDevices(document.querySelector('.activeConfig'))
-        comparePollDevices(pollRes.data)
-      }
-    }, 1500)
-  }, 3000)
+
+  //polling
+  let interval;
+  const pollSwitchBtn = document.querySelector('.pollSwitch')
+  pollSwitchBtn.addEventListener('click', ()=>{
+    pollSwitchBtn.classList.toggle('pollOn')
+    pollSwitchBtn.classList.toggle('pollOff')
+    if(pollSwitchBtn.classList.contains('pollOn')){
+      pollSwitchBtn.textContent='timer'
+      //poll for the device state and compare.
+      //wait 3s for the page to load fully then at every 1.5s interval make a request.             
+        interval = setInterval(async ()=>{
+          document.visibilityState === 'visible' ? visible = true : visible = false;
+          if(visible === true){
+            const pollRes = await pollDevices(document.querySelector('.activeConfig'))
+            comparePollDevices(pollRes.data)
+          }
+        }, 1500)
+      return interval
+    }else if(pollSwitchBtn.classList.contains('pollOff')){
+      pollSwitchBtn.textContent='timer_off'
+      clearInterval(interval)
+    }
+  })
+
+
+
 
   //event listeners for each device
   const controls = document.querySelectorAll(".control");
@@ -195,11 +207,10 @@ window.addEventListener("load", async (e) => {
       //STATE CHANGE
       //get new state & set the style instantly
       const stateChangeButton = control.querySelector(".controlStatusIconCont");
-      //the classname of what we want to set it to. Ald
+      //the classname of what we want to set it to.
       const targetState = getNewState(control);
       const button = control.querySelector(".controlStatusIconCont");
       const newStateStyle = updateControlStyle(targetState, control, button);
-      console.log(targetState);
       //make the request to the server
       const data = await fetch(`/devices/${control.dataset.configid}/${control.id}/${targetState}`)
         .then((res) => res.json())
@@ -209,8 +220,9 @@ window.addEventListener("load", async (e) => {
       //check if the result matches the instantly updated status then toggle back if it doesn't
       const newStatusFromServer = data.data.attributes.find((attr) => attr.name == "switch");
       if (newStatusFromServer.currentValue !== targetState) {
-        button.classList.toggle("device-on");
-        button.classList.toggle("device-off");
+        setStatusStyle(control)
+        // button.classList.toggle("device-on");
+        // button.classList.toggle("device-off");
       }
     });
   });
