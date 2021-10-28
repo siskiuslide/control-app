@@ -114,6 +114,7 @@ window.addEventListener("load", async () => {
     try {
       const config = count.closest(".preConfiguredCard").id;
       const devices = await getDevices(config);
+      console.log(devices);
       if (devices) {
         count.textContent = devices.data.length;
       }

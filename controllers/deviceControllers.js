@@ -22,6 +22,8 @@ exports.getDevices = catchAsync(async (req, res, next) => {
   );
   //make request
   const hubResponse = await hubRequest(url);
+  console.log(url);
+  // console.log(hubResponse);
   //Array to push db results to
   const resData = [];
   //Create a document for each device
@@ -43,6 +45,7 @@ exports.getDevices = catchAsync(async (req, res, next) => {
         //if it already exists compare the status to the hub response and update
         const existingData = await Device.find({ configID: device.configID, deviceID: device.deviceID })
           .then((res) => {
+            // console.log(res);
             return res[0];
           })
           .catch((err) => console.log(err));
@@ -62,7 +65,7 @@ exports.getDevices = catchAsync(async (req, res, next) => {
     });
   });
   //get data from db and send
-  const storedDevices = await Device.find({});
+  const storedDevices = await Device.find({ configID: req.params.id });
   storedDevices.forEach((device) => resData.push(device));
   return res.status(200).json({ status: "Success", data: resData });
 });

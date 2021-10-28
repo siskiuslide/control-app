@@ -85,9 +85,10 @@ const checkActiveConfigForPolling = function (active) {
 };
 const pollDevices = function (active) {
   let interval;
+  let pollSwitch = document.querySelector(".pollSwitch");
   interval = setInterval(async () => {
     document.visibilityState === "visible" ? (visible = true) : (visible = false);
-    if (visible === true) {
+    if (visible === true && pollSwitch.classList.contains("pollOn")) {
       const pollRes = await getDevices(document.querySelector(".activeConfig").id);
       comparePollDevices(pollRes.data);
     }
@@ -271,6 +272,7 @@ window.addEventListener("load", async (e) => {
   const activeConfig = document.querySelector(".activeConfig");
   if (checkActiveConfigForPolling(activeConfig) == true) {
     pollInterval = pollDevices(activeConfig);
+    console.log(pollInterval);
   }
 
   const pollSwitchBtn = document.querySelector(".pollSwitch");
@@ -278,9 +280,6 @@ window.addEventListener("load", async (e) => {
     dlIconToggle(pollSwitchBtn, "pollOn", "pollOff", "timer", "timer_off");
     if (pollSwitchBtn.classList.contains("pollOn")) {
       pollDevices(activeConfig);
-    }
-    if (pollSwitchBtn.classList.contains("pollOff")) {
-      clearInterval(pollInterval);
     }
   });
 
@@ -295,6 +294,7 @@ window.addEventListener("load", async (e) => {
   const controls = document.querySelectorAll(".control");
   controls.forEach((control) => {
     control.addEventListener("click", async (e) => {
+      console.log("x");
       e.preventDefault();
       //favourite Button
       if (e.target.classList.contains("favourite-icon")) {
