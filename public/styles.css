@@ -568,7 +568,7 @@ input:focus {
   margin: 0px 20px;
   align-items: center;
   width: 400px;
-  padding: 20px 5px;
+  padding: 10px 5px;
   transition: box-shadow 75ms;
 }
 .confHeader {
@@ -770,7 +770,7 @@ input:checked + .slider:before {
 .inactiveConfig:hover .chevron-icon {
   color: black;
 }
-.configEntryFavourite{
+.configEntryFavourite {
   text-shadow: none;
   justify-self: left;
   align-items: flex-start;

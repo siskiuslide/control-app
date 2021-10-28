@@ -40,6 +40,7 @@ exports.createConfig = catchAsync(async function (req, res, next) {
       console.log(err);
     }
   });
+  console.log(req.body);
   await Config.create(req.body).then((data) => {
     res.status(200).json({ status: "success", data: req.body });
   });

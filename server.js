@@ -15,6 +15,7 @@ mongoose
     console.log("successfully connected with mongo DB");
   });
 
+console.log(`Environment: ${process.env.NODE_ENV}`);
 
 const port = 5500;
 

@@ -96,9 +96,6 @@ const addCard = function (config) {
 </div>`;
   preConfiguredCardSection.insertAdjacentHTML("beforeEnd", configCard);
   progressiveFadeIn(document.querySelectorAll(".preConfiguredCard"), 75, "inline");
-  // setTimeout(() => {
-  //   document.querySelectorAll(".preConfiguredCard").forEach((card) => (card.style.opacity = "1"));
-  // }, 100);
 };
 //DISPLAY ON LOAD
 window.addEventListener("load", async () => {
@@ -109,6 +106,7 @@ window.addEventListener("load", async () => {
     return preConfiguredCardSection.insertAdjacentHTML("beforeend", emptyText);
   }
   configData.forEach((config) => {
+    console.log(config);
     addCard(config);
   });
   const counts = document.querySelectorAll(".deviceCountNumber");
@@ -236,16 +234,25 @@ createNewConfig.addEventListener("click", () => {
 ///FORM///
 //////////
 
+const toggleHeading = function (e, heading, checkedText, uncheckedText) {
+  if (e.target.checked) {
+    heading.textContent = checkedText;
+  } else {
+    heading.textContent = uncheckedText;
+  }
+};
+
 const configToggle = document.querySelector(".configToggle");
 let inputTargetHeader = document.querySelector(".headerTarget");
-let localOrCloud = document.querySelector(".localOrCloud");
 
 configToggle.addEventListener("change", (e) => {
-  if (e.target.checked) {
-    inputTargetHeader.textContent = "Cloud Address";
-  } else {
-    inputTargetHeader.textContent = "Hub address";
-  }
+  toggleHeading(e, inputTargetHeader, "Cloud Address", "Hub Address");
+});
+
+const pollToggle = document.querySelector(".pollToggle");
+const pollHeader = document.querySelector(".headerPoll");
+pollToggle.addEventListener("change", (e) => {
+  toggleHeading(e, pollHeader, "Polling On", "Polling Off");
 });
 
 const configSubmitBtn = document.querySelector(".submitBtn");

@@ -9,6 +9,7 @@ const configSchema = new mongoose.Schema(
     APIKey: { type: String, required: true, unique: true },
     appID: { type: Number, required: true },
     favourite: { type: Boolean, default: false },
+    polling: { type: String, default: "off" },
     slug: { type: String, unique: true },
   },
   { timestamps: true }

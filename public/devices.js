@@ -1,7 +1,9 @@
 //inserting dynamic elements
 const addConfig = function (config) {
   const configListContainer = document.querySelector(".configListContainer");
-  let configEntryHTML = `<div class="configListItem configListEntry inactiveConfig" id="${config._id}">
+  let configEntryHTML = `<div class="configListItem configListEntry inactiveConfig ${entryPollingStatus(config)}" id="${
+    config._id
+  }">
   <span class="configEntryFavourite material-icons ${setFavIconStyle(config)}">${setFavIcon(config)}</span>
     <div class="entryTitle">${config.name}</div>
     <span class="material-icons chevron-icon entry-chevron-icon">chevron_right</span>
@@ -37,12 +39,13 @@ const addDevice = function (device) {
   deviceContainer.insertAdjacentHTML("afterbegin", deviceHTML);
 };
 
-//list entry functions
+//List Entry
 const activeToggle = function (entry) {
   entry.classList.toggle("activeConfig");
   entry.classList.toggle("inactiveConfig");
 };
 
+//Device list
 const dlIconToggle = function (target, onClass, offClass, onIcon, offIcon) {
   target.classList.toggle(onClass);
   target.classList.toggle(offClass);
@@ -59,6 +62,103 @@ const removeDevicesFromCont = function (entry) {
       fadeOut(control, 100);
     }
   });
+};
+
+//
+//Polling functions
+//
+
+const entryPollingStatus = function (config) {
+  let className;
+  config.polling == "on" ? (className = "pollingOn") : (className = "pollingOff");
+  return className;
+};
+
+const checkActiveConfigForPolling = function (active) {
+  let pollingBtn = document.querySelector(".pollSwitch");
+  let pollingStatus;
+  if (active.classList.contains("pollingOn")) {
+    dlIconToggle(pollingBtn, "pollOn", "pollOff", "timer", "timer_off");
+    pollingStatus = true;
+    return pollingStatus;
+  }
+};
+const pollDevices = function (active) {
+  let interval;
+  interval = setInterval(async () => {
+    document.visibilityState === "visible" ? (visible = true) : (visible = false);
+    if (visible === true) {
+      const pollRes = await getDevices(document.querySelector(".activeConfig").id);
+      comparePollDevices(pollRes.data);
+    }
+  }, 1000);
+  return interval;
+};
+
+const comparePollDevices = function (pollData) {
+  pollData.forEach((device) => {
+    const deviceEl = document.getElementById(`${device.deviceID}`);
+    const deviceState = device.status;
+    if (!deviceEl.classList.contains(`${device.status}`)) {
+      updateControlStyle(device.status, deviceEl, deviceEl.querySelector(".controlStatusIconCont"));
+    }
+  });
+};
+
+//
+//Controls
+//
+
+//style on load
+const setStatusStyle = function (device) {
+  let statusStyle;
+  device.status === "on" ? (statusStyle = "device-on") : (statusStyle = "device-off");
+  return statusStyle;
+};
+
+//icons on load
+const setStatusIcon = function (device) {
+  let icon;
+  //lights
+  if (
+    device.type.includes("Light") ||
+    device.type.includes("Bulb") ||
+    device.type.includes("Strip") ||
+    device.type.includes("RGB")
+  ) {
+    return (icon = "lightbulb");
+  }
+  //powered devices
+  if (device.type.includes("Switch") || device.type.includes("Plug") || device.type.includes("Controller")) {
+    return (icon = "bolt");
+  }
+};
+
+///change device state
+const getNewState = function (control) {
+  let newStatus;
+  control.classList.contains("on") ? (newStatus = "off") : (newStatus = "on");
+  return newStatus;
+};
+const updateControlStyle = function (newStatus, control, button) {
+  let newStyle;
+  newStatus == "on" ? (newStyle = "off") : (newStyle = "on");
+  control.classList.toggle("on");
+  control.classList.toggle("off");
+  button.classList.toggle("device-off");
+  button.classList.toggle("device-on");
+};
+//exclude device
+const excludeItem = function (e, parentClassName, type) {
+  const parent = e.target.closest(`.${parentClassName}`);
+  const updateBody = {
+    configID: parent.dataset.configid,
+    excluded: true,
+  };
+  if (type === "device") {
+    updateBody.deviceID = parent.id;
+  }
+  return updateBody;
 };
 
 //------------------------
@@ -81,18 +181,11 @@ window.addEventListener("load", async (e) => {
 
   //get the devices from the first config in the list
   const firstConfig = document.querySelector(".configListEntry");
-  const onloadDevices = await fetch(`/config/${firstConfig.id}/devices`)
-    .then((res) => {
-      return res.json();
-    })
-    .then((data) => {
-      return data;
-    })
-    .catch((err) => console.log(err));
+  const loadDevices = await getDevices(firstConfig.id);
   activeToggle(document.getElementById(firstConfig.id));
 
-  if (onloadDevices.data.length > 0) {
-    onloadDevices.data.forEach((device) => {
+  if (loadDevices.data.length > 0) {
+    loadDevices.data.forEach((device) => {
       if (device.excluded == true) {
         return;
       }
@@ -168,27 +261,30 @@ window.addEventListener("load", async (e) => {
     });
   });
 
+  //-----------------------
+  //DL Icon event listeners
+  //-----------------------
+
   //polling
 
-  let interval;
+  let pollInterval;
+  const activeConfig = document.querySelector(".activeConfig");
+  if (checkActiveConfigForPolling(activeConfig) == true) {
+    pollInterval = pollDevices(activeConfig);
+  }
+
   const pollSwitchBtn = document.querySelector(".pollSwitch");
   pollSwitchBtn.addEventListener("click", () => {
     dlIconToggle(pollSwitchBtn, "pollOn", "pollOff", "timer", "timer_off");
-    //poll for the device state and compare.
     if (pollSwitchBtn.classList.contains("pollOn")) {
-      interval = setInterval(async () => {
-        document.visibilityState === "visible" ? (visible = true) : (visible = false);
-        if (visible === true) {
-          const pollRes = await pollDevices(document.querySelector(".activeConfig"));
-          comparePollDevices(pollRes.data);
-        }
-      }, 1500);
-      return interval;
-    } else if (pollSwitchBtn.classList.contains("pollOff")) {
-      pollSwitchBtn.textContent = "timer_off";
-      clearInterval(interval);
+      pollDevices(activeConfig);
+    }
+    if (pollSwitchBtn.classList.contains("pollOff")) {
+      clearInterval(pollInterval);
     }
   });
+
+  //visibility
 
   let visibilitySwitchBtn = document.querySelector(".visibilitySwitch");
   visibilitySwitchBtn.addEventListener("click", () => {
