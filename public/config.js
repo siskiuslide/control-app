@@ -1,3 +1,8 @@
+
+//    <div class="detail-flex"><div class="detailIcon"><span class="material-icons locationIcon">fmd_good</span>//    </div>//    <div class="detailField">Address</div>//    <div class="detailText detailText-small targetText">${config.target}</div>    
+//  </div>//  <div class="detail-flex">//    <div class="detailIcon">//      <span class="material-icons lockIcon">lock</span>//    </div>//    <div class="detailField">API Key</div>//    <div class="detailText detailText-small APIKeyText">${config.APIKey}</div>              
+//  </div>
+
 const emptyText = `<div class="emptyText">None to show :/</div>`;
 
 const createNewConfig = document.querySelector(".createNewConfigBox");
@@ -12,6 +17,9 @@ const checkType = (config) => {
   config.type == "on" ? (configType = "Cloud") : (configType = "Local");
   return configType;
 };
+const checkPollingSetup = (config)=>{
+
+}
 
 const preConfiguredCardSection = document.querySelector(".preConfiguredSection");
 const addCard = function (config) {
@@ -57,17 +65,10 @@ const addCard = function (config) {
         </div>
         <div class="detail-flex">
           <div class="detailIcon">
-           <span class="material-icons locationIcon">fmd_good</span>
+            <span class="material-icons timerIcon">timer</span>
           </div>
-          <div class="detailField">Address</div>
-          <div class="detailText detailText-small targetText">${config.target}</div>              
-        </div>
-        <div class="detail-flex">
-          <div class="detailIcon">
-            <span class="material-icons lockIcon">lock</span>
-          </div>
-          <div class="detailField">API Key</div>
-          <div class="detailText detailText-small APIKeyText">${config.APIKey}</div>              
+          <div class="detailField">Polling</div>
+          <div class="detailText pollingSettingText">${config.polling.charAt(0).toUpperCase()}${config.polling.slice(1)}</div>              
         </div>
         <div class="detail-flex">
           <div class="detailIcon">
@@ -79,8 +80,7 @@ const addCard = function (config) {
       </div>
       <a href="/devices.html">
       <div class="split-section pc-right-split">
-        <div class="right-split-item deviceCountContainer" href="/devices.html">
-          <div class="deviceCount-item deviceCountNumber">0</div>
+        <div class="right-split-item devicesButton" href="/devices.html">
         <div class="deviceCount-item deviceCountText">
          <div class="deviceCount-results">Results</div>
           <div class="deviceCount-chevron">
@@ -110,18 +110,20 @@ window.addEventListener("load", async () => {
     addCard(config);
   });
   const counts = document.querySelectorAll(".deviceCountNumber");
-  counts.forEach(async (count) => {
-    try {
-      const config = count.closest(".preConfiguredCard").id;
-      const devices = await getDevices(config);
-      console.log(devices);
-      if (devices) {
-        count.textContent = devices.data.length;
-      }
-    } catch (err) {
-      console.log(err);
-    }
-  });
+
+  // Device counts
+  // counts.forEach(async (count) => {
+  //   try {
+  //     const config = count.closest(".preConfiguredCard").id;
+  //     const devices = await getDevices(config);
+  //     console.log(devices);
+  //     if (devices) {
+  //       count.textContent = devices.data.length;
+  //     }
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // });
 });
 
 preConfiguredCardSection.addEventListener("click", async (e) => {

@@ -492,27 +492,27 @@ input:focus {
   margin: 0px 8px;
 }
 
-.deviceCountContainer {
+.devicesButton {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 130px;
+  height: auto;
   background: var(--LowerOpacityWhite);
   border-radius: 8px;
-  width: 60%;
+  width: 62%;
   position: relative;
   left: 50px;
   align-self: center;
 }
-.deviceCountContainer:hover {
+.devicesButton:hover {
   cursor: pointer;
   background: var(--lightBlueAccentHover);
 }
 .deviceCount-item {
   transition: transform 120ms;
 }
-.deviceCountContainer:hover .deviceCount-item {
+.devicesButton:hover .deviceCount-item {
   transform: scale(1.1);
 }
 .deviceCountNumber {
@@ -523,7 +523,7 @@ input:focus {
   flex-direction: row;
   align-items: center;
   position: relative;
-  top: 10px;
+  padding: 10px;
 }
 .deviceCount-results {
   position: relative;
@@ -534,10 +534,10 @@ input:focus {
   opacity: 0;
   transition: opacity 100ms;
 }
-.deviceCountContainer:hover .deviceCount-results {
+.devicesButton:hover .deviceCount-results {
   transform: translateX(-10px);
 }
-.deviceCountContainer:hover .chevron-icon {
+.devicesButton:hover .chevron-icon {
   opacity: 1;
 }
 

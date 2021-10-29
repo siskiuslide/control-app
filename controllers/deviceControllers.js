@@ -45,7 +45,7 @@ exports.getDevices = catchAsync(async (req, res, next) => {
         //if it already exists compare the status to the hub response and update
         const existingData = await Device.find({ configID: device.configID, deviceID: device.deviceID })
           .then((res) => {
-            // console.log(res);
+            console.log('existing')
             return res[0];
           })
           .catch((err) => console.log(err));
@@ -57,7 +57,8 @@ exports.getDevices = catchAsync(async (req, res, next) => {
         }
       }
       if (result === false) {
-        await Device.create(device).catch((err) => console.log(err));
+        const createdDevice = await Device.create(device).then(res=>res.json()).catch((err) => console.log(err));
+        return resData.push(createdDevice)
       }
       if (err) {
         new AppError(400, err.message);

@@ -66,6 +66,10 @@ const favouriteItem = function (e, parentClassName) {
   return favouriteUpdate;
 };
 
+checkActiveConfigForPolling()
+
+
+
 //
 //Nav Bar effects
 //
