@@ -46,14 +46,30 @@ const activeToggle = function (entry) {
 };
 
 //Device list
-const dlIconToggle = function (target, onClass, offClass, onIcon, offIcon) {
-  target.classList.toggle(onClass);
-  target.classList.toggle(offClass);
-  if (target.classList.contains(onClass)) {
-    target.textContent = onIcon;
-  } else if (target.classList.contains(offClass)) {
-    target.textContent = offIcon;
+const pollingIconToggle = function (pollingBool) {
+  const onClass = 'pollOn'
+  const offClass = 'pollOff'
+  const onIcon = 'timer'
+  const offIcon = 'timer_off'
+  const target = document.querySelector('.pollSwitch')
+
+  if(pollingBool === undefined){
+    console.log(target)
+    target.classList.toggle(onClass)
+    target.classList.toggle(offClass)
+    target.classList.contains(onClass) ? target.textContent = onIcon : target.textContent = offIcon
   }
+  if(pollingBool==true){
+    target.textContent=onIcon
+    target.classList.add(onClass)
+    target.classList.remove(offClass)
+  }
+  if(pollingBool == false){
+    target.textContet = offIcon;
+    target.classList.add(offClass)
+    target.classList.remove(onClass)
+  }
+  
 };
 
 const removeDevicesFromCont = function (entry) {
@@ -78,10 +94,13 @@ const checkActiveConfigForPolling = function (active) {
   let pollingBtn = document.querySelector(".pollSwitch");
   let pollingStatus;
   if (active.classList.contains("pollingOn")) {
-    dlIconToggle(pollingBtn, "pollOn", "pollOff", "timer", "timer_off");
     pollingStatus = true;
-    return pollingStatus;
+    pollingIconToggle(pollingStatus);
+  }else if(active.classList.contains('pollingOff')){
+    pollingStatus = false;
+    pollingIconToggle(pollingStatus);
   }
+  return pollingStatus;
 };
 const pollDevices = function (active) {
   let interval;
@@ -199,7 +218,7 @@ window.addEventListener("load", async (e) => {
 
   //header event listeners
   const headerIcon = document.querySelectorAll(".headerIcon");
-  console.log(headerIcon);
+  // console.log(headerIcon);
   headerIcon.forEach((icon) => {
     icon.addEventListener("click", async (e) => {
       if (e.target.classList.contains("header-fav-icon")) {
@@ -217,7 +236,6 @@ window.addEventListener("load", async (e) => {
         //fetch the data for the first in list
         const firstFavourite = favQueryResult[0]._id;
         const firstFavDevices = await getDevices(firstFavourite);
-        console.log(firstFavDevices.data);
         firstFavDevices.data.forEach((device) => {
           addDevice(device);
           progressiveFadeIn(document.querySelectorAll(".control"), 75, "flex");
@@ -241,25 +259,29 @@ window.addEventListener("load", async (e) => {
   const entries = document.querySelectorAll(".configListEntry");
   entries.forEach((entry) => {
     entry.addEventListener("click", async (e) => {
-      progressiveFadeOut(document.querySelectorAll(".control"), 30);
       const target = e.target.closest(".configListEntry");
       const targetID = target.id;
       const currentlyActive = document.querySelector(".activeConfig");
+      if (currentlyActive !== e.target) {
+        activeToggle(currentlyActive);
+        activeToggle(target);
+        progressiveFadeOut(document.querySelectorAll(".control"), 30);  
+        console.log(checkActiveConfigForPolling(target))
+        if(checkActiveConfigForPolling(target) == true){
+          
+        }
       const targetURL = `/config/${targetID}/devices`;
       devices = await fetch(targetURL)
         .then((res) => {
           return res.json();
         })
         .then((devices) => {
-          if (currentlyActive !== e.target) {
-            activeToggle(currentlyActive);
-            activeToggle(target);
-          }
+         
           devices.data.forEach((device) => addDevice(device));
           progressiveFadeIn(document.querySelectorAll(".control"), 75, "flex");
         })
         .catch((err) => console.log(err));
-    });
+    }});
   });
 
   //-----------------------
@@ -268,16 +290,15 @@ window.addEventListener("load", async (e) => {
 
   //polling
 
-  let pollInterval;
+  
   const activeConfig = document.querySelector(".activeConfig");
   if (checkActiveConfigForPolling(activeConfig) == true) {
-    pollInterval = pollDevices(activeConfig);
-    console.log(pollInterval);
+     pollDevices(activeConfig);
   }
 
   const pollSwitchBtn = document.querySelector(".pollSwitch");
   pollSwitchBtn.addEventListener("click", () => {
-    dlIconToggle(pollSwitchBtn, "pollOn", "pollOff", "timer", "timer_off");
+    pollingIconToggle();
     if (pollSwitchBtn.classList.contains("pollOn")) {
       pollDevices(activeConfig);
     }
@@ -294,7 +315,6 @@ window.addEventListener("load", async (e) => {
   const controls = document.querySelectorAll(".control");
   controls.forEach((control) => {
     control.addEventListener("click", async (e) => {
-      console.log("x");
       e.preventDefault();
       //favourite Button
       if (e.target.classList.contains("favourite-icon")) {
