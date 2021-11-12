@@ -500,7 +500,7 @@ input:focus {
   align-items: center;
   justify-content: center;
   height: auto;
-  background: var(--LowerOpacityWhite);
+  background: var(--lightBlueAccent);
   border-radius: 8px;
   width: 62%;
   position: relative;
@@ -525,7 +525,7 @@ input:focus {
   flex-direction: row;
   align-items: center;
   position: relative;
-  padding: 10px;
+  padding: 15px;
 }
 .deviceCount-results {
   position: relative;

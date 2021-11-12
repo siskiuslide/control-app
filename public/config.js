@@ -82,7 +82,7 @@ const addCard = function (config) {
       <div class="split-section pc-right-split">
         <div class="right-split-item devicesButton" href="/devices.html">
         <div class="deviceCount-item deviceCountText">
-         <div class="deviceCount-results">Results</div>
+         <div class="deviceCount-results">Devices</div>
           <div class="deviceCount-chevron">
             <span class="material-icons chevron-icon">chevron_right</span>
           </div>
