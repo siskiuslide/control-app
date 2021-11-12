@@ -54,7 +54,6 @@ const pollingIconToggle = function (pollingBool) {
   const target = document.querySelector('.pollSwitch')
 
   if(pollingBool === undefined){
-    console.log(target)
     target.classList.toggle(onClass)
     target.classList.toggle(offClass)
     target.classList.contains(onClass) ? target.textContent = onIcon : target.textContent = offIcon
@@ -244,7 +243,6 @@ window.addEventListener("load", async (e) => {
 
   //header event listeners
   const headerIcon = document.querySelectorAll(".headerIcon");
-  // console.log(headerIcon);
   headerIcon.forEach((icon) => {
     icon.addEventListener("click", async (e) => {
       if (e.target.classList.contains("header-fav-icon")) {
@@ -292,7 +290,6 @@ window.addEventListener("load", async (e) => {
         activeToggle(currentlyActive);
         activeToggle(target);
         progressiveFadeOut(document.querySelectorAll(".control"), 30);  
-        console.log(checkActiveConfigForPolling(target))
         if(checkActiveConfigForPolling(target) == true){
           
         }
@@ -384,7 +381,6 @@ window.addEventListener("load", async (e) => {
       //get new state & set the style instantly
       applyRecentClick()
       recentClickTimeout()
-      setTimeout(()=>{console.log(recentClick)},500) // false
       const targetState = getNewState(control);
       const button = control.querySelector(".controlStatusIconCont");
       const newStateStyle = updateControlStyle(targetState, control, button);
