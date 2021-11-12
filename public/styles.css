@@ -113,6 +113,7 @@ input:focus {
   font-size: 25px;
   position: relative;
   font-weight: bolder;
+  height: 100%;
 }
 .nav-item:hover .nav-item-text {
   background-image: var(--peachGradient);
