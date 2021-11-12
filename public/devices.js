@@ -119,11 +119,36 @@ const comparePollDevices = function (pollData) {
   pollData.forEach((device) => {
     const deviceEl = document.getElementById(`${device.deviceID}`);
     const deviceState = device.status;
-    if (!deviceEl.classList.contains(`${device.status}`)) {
+    if (!deviceEl.classList.contains(`${device.status}`) && (recentClick===false)) {
       updateControlStyle(device.status, deviceEl, deviceEl.querySelector(".controlStatusIconCont"));
     }
   });
 };
+////////////////////////////////////////////
+// recentClick
+///////////////////////////////////////////
+
+let recentClick = false
+  
+recentClickChecker = function(){
+  let returnVal
+  recentClick = true ? returnVal = true : returnVal = false;
+  return returnVal
+}
+
+applyRecentClick = function(){
+  recentClick = true
+  return recentClick
+}
+recentClickTimeout = function(){
+  setTimeout(()=>{
+      recentClick = false
+      return recentClick
+  }, 450)
+  return recentClick
+}
+
+
 
 //
 //Controls
@@ -180,6 +205,7 @@ const excludeItem = function (e, parentClassName, type) {
   }
   return updateBody;
 };
+
 
 //------------------------
 //page LOAD event listener
@@ -305,7 +331,6 @@ window.addEventListener("load", async (e) => {
   });
 
   //visibility
-
   let visibilitySwitchBtn = document.querySelector(".visibilitySwitch");
   visibilitySwitchBtn.addEventListener("click", () => {
     dlIconToggle(visibilitySwitchBtn, "visible", "invisible", "visibility", "visibility_off");
@@ -357,6 +382,9 @@ window.addEventListener("load", async (e) => {
 
       //STATE CHANGE
       //get new state & set the style instantly
+      applyRecentClick()
+      recentClickTimeout()
+      setTimeout(()=>{console.log(recentClick)},500) // false
       const targetState = getNewState(control);
       const button = control.querySelector(".controlStatusIconCont");
       const newStateStyle = updateControlStyle(targetState, control, button);
@@ -368,9 +396,11 @@ window.addEventListener("load", async (e) => {
 
       //check if the result matches the instantly updated status then toggle back if it doesn't
       const newStatusFromServer = data.data.attributes.find((attr) => attr.name == "switch");
-      if (newStatusFromServer.currentValue !== targetState) {
+      if (newStatusFromServer.currentValue !== targetState && recentClick === false) {
         setStatusStyle(control);
       }
     });
   });
+
+
 });
