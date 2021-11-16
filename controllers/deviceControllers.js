@@ -10,20 +10,13 @@ const AppError = require("./../utils/error");
 //----------------
 //
 exports.getDevices = catchAsync(async (req, res, next) => {
+   
   //Get the associated config
   const assocConfig = await Config.find({ _id: req.params.id });
   //build the url for that config | prettier-ignore
-  const url = urlHelper.buildURL(
-    assocConfig[0].type,
-    assocConfig[0].target,
-    assocConfig[0].appID,
-    assocConfig[0].APIKey,
-    "all"
-  );
+  const url = urlHelper.buildURL(assocConfig[0].type, assocConfig[0].target, assocConfig[0].appID, assocConfig[0].APIKey, "all");
   //make request
   const hubResponse = await hubRequest(url);
-  console.log(url);
-  // console.log(hubResponse);
   //Array to push db results to
   const resData = [];
   //Create a document for each device
@@ -39,11 +32,22 @@ exports.getDevices = catchAsync(async (req, res, next) => {
       commands: item.commands,
       date: item.date,
     };
+
+    //query results from DB ONLY first
+    const query = req.query
+    console.log(query)
+    if(req.query.favourite){
+      const favourites = await Device.find({query, configID: device.configID}).then(res=>res.json()).catch(err=>console.log(err))
+      resData.push(favourites)
+      console.log('🍌')
+      console.log(resData)
+      return resData
+    }
     //check whether the doc already exists, if not, add it
-    Device.exists({ configID: device.configID, deviceID: device.deviceID }, async function (err, result) {
+    Device.exists({ configID: device.configID, deviceID: device.deviceID}, async function (err, result) {
       if (result === true) {
         //if it already exists compare the status to the hub response and update
-        const existingData = await Device.find({ configID: device.configID, deviceID: device.deviceID })
+        const existingData = await Device.find({ configID: device.configID, deviceID: device.deviceID})
           .then((res) => {
             return res[0];
           })
@@ -54,6 +58,7 @@ exports.getDevices = catchAsync(async (req, res, next) => {
             { status: device.status }
           ).catch((err) => console.log(err));
         }
+        resData.push(existingData)
       }
       if (result === false) {
         const createdDevice = await Device.create(device).then(res=>res.json()).catch((err) => console.log(err));

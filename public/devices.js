@@ -246,35 +246,35 @@ window.addEventListener("load", async (e) => {
   headerIcon.forEach((icon) => {
     icon.addEventListener("click", async (e) => {
       if (e.target.classList.contains("header-fav-icon")) {
-        e.target.classList.toggle("favourited");
         let favouriteQuery;
-        e.target.classList.contains("favourited") ? (favouriteQuery = true) : (favouriteQuery = false);
-        const favQueryResult = await fetch(`/config?favourite=${favouriteQuery}`)
-          .then((res) => res.json())
-          .then((data) => {
-            console.log(data);
-            return data.body;
-          })
-          .catch((err) => console.log(err));
+        e.target.classList.contains("favourited") ? (favouriteQuery = false) : (favouriteQuery = true);
+        let type;
+        e.target.classList.contains('deviceFavGetter') ? type = 'devices' : type = 'config';
+        // favouriteItem(e,e.target.classList[3])
+        favouriteItem(e, '', true, 'star')
+        getFavouriteItems(type, favouriteQuery)
 
         //fetch the data for the first in list
-        const firstFavourite = favQueryResult[0]._id;
-        const firstFavDevices = await getDevices(firstFavourite);
-        firstFavDevices.data.forEach((device) => {
-          addDevice(device);
-          progressiveFadeIn(document.querySelectorAll(".control"), 75, "flex");
-        });
+        if(type == 'configFavGetter'){
 
-        //remove all entries
-        progressiveFadeOut(document.querySelectorAll(".configListEntry"));
-        progressiveFadeOut(document.querySelectorAll(".control"));
-        //add a new entry for each favourite
-        favQueryResult.forEach((conf) => {
-          addConfig(conf);
-        });
-
-        //display it
-        progressiveFadeIn(document.querySelectorAll(".configListEntry"), 75, "flex");
+          const firstFavourite = favQueryResult[0]._id;
+          const firstFavDevices = await getDevices(firstFavourite);
+          firstFavDevices.data.forEach((device) => {
+            addDevice(device);
+            progressiveFadeIn(document.querySelectorAll(".control"), 75, "flex");
+          });
+          
+          //remove all entries
+          progressiveFadeOut(document.querySelectorAll(".configListEntry"));
+          progressiveFadeOut(document.querySelectorAll(".control"));
+          //add a new entry for each favourite
+          favQueryResult.forEach((conf) => {
+            addConfig(conf);
+          });
+          
+          //display it
+          progressiveFadeIn(document.querySelectorAll(".configListEntry"), 75, "flex");
+        }
       }
     });
   });

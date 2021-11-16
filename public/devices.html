@@ -4,8 +4,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Oswald&display=swap" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
-  <script async src="script.js"></script>
-  <script async src="devices.js"></script>
+  <script defer src="script.js"></script>
+  <script defer src="devices.js"></script>
 </head>
 <body>
   <div class="navbar">
@@ -48,9 +48,15 @@
       <div class="configListItem configListHeaderSection">
         <div class="headerText">Networks</div>
         <div class="headerIconsSection">
-          <div class="headerIcon search-icon"><span class="material-icons">search</span></div>
-          <div class="headerIcon favourite-icon"><span class="material-icons header-fav-icon">star</span></div>
-          <div class="headerIcon filter-icon"><span class="material-icons">sort_by_alpha</span></div>
+          <div class="headerIcon search-icon">
+            <span class="material-icons">search</span>
+          </div>
+          <div class="headerIcon favourite-icon">
+            <span class="material-icons header-fav-icon configFavGetter">star</span>
+          </div>
+          <div class="headerIcon filter-icon">
+            <span class="material-icons">sort_by_alpha</span>
+          </div>
         </div>
       </div>
     </div>
@@ -59,22 +65,22 @@
         <div class="dlHeaderElement">
           <!-- <input type="search" class="searchBox" /> -->
         </div>
-        <div class="dlHeaderElement">
+        <div class="headerIcon">
           <span class="material-icons searchBtn tooltip">search</span>
           <span class="searchToolTipText">Search by label</span>
         </div>
-        <div class="dlHeaderElement">
+        <div class="headerIcon favourite-icon ">
+          <span class="material-icons header-fav-icon deviceFavGetter">star</span>
+        </div>
+        <div class="headerIcon">
           <span class="material-icons pollSwitch pollOff">timer_off</span>
         </div>
-        <div class="dlHeaderElement">
+        <div class="headerIcon">
           <span class="material-icons visibilitySwitch invisible">visibility_off</span>
         </div>
+      </div>      
+        <div class="deviceContainer"></div>
       </div>
-      
-        <div class="deviceContainer">          
-        </div>
-      
     </div>
-  </div>
   </div>
 </body>

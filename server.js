@@ -3,7 +3,7 @@ const dotenv = require("dotenv").config;
 const mongoose = require("mongoose");
 dotenv({ path: "./config.env" });
 
-const DB = "mongodb+srv://jake:wRX7o8hn6vr0mneK@control.ezphf.mongodb.net/controlDatabase?retryWrites=true&w=majority";
+const DB = process.env.DATABASE;
 mongoose
   .connect(DB, {
     useNewUrlParser: true,
@@ -12,7 +12,7 @@ mongoose
     useUnifiedTopology: true,
   })
   .then((con) => {
-    console.log("successfully connected with mongo DB");
+    console.log("Successfully connected with mongo DB");
   });
 
 console.log(`Environment: ${process.env.NODE_ENV}`);
