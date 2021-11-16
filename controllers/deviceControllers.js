@@ -39,7 +39,6 @@ exports.getDevices = catchAsync(async (req, res, next) => {
     if(req.query.favourite){
       const favourites = await Device.find({query, configID: device.configID}).then(res=>res.json()).catch(err=>console.log(err))
       resData.push(favourites)
-      console.log('🍌')
       console.log(resData)
       return resData
     }
