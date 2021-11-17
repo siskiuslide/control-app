@@ -32,7 +32,7 @@ const addDevice = function (device) {
           delete
           </span>
         </div>
-      <div class="controlFooterItem"><span class="material-icons control-chevron-icon">chevron_right</span>
+      <div class="controlFooterItem"><a href="deviceView.html"><span class="material-icons control-chevron-icon">chevron_right</span></a>
       </div>
   </div>
 </div>`;
@@ -340,7 +340,7 @@ window.addEventListener("load", async (e) => {
       e.preventDefault();
       //favourite Button
       if (e.target.classList.contains("favourite-icon")) {
-        const updateObj = favouriteItem(e, "control");
+        const updateObj = favouriteItem(e, "control", false, 'star_outline');
         await fetch(`/devices/${updateObj.configID}`, {
           method: "PATCH",
           body: JSON.stringify(updateObj),
