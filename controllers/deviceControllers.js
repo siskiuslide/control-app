@@ -54,14 +54,15 @@ exports.getDevices = catchAsync(async (req, res, next) => {
           return resData.push(createdDevice)
         }
         if (err) {
-          new AppError(400, err.message);
+          console.log(err)
+          // new AppError(400, err.message);
         }
+        //get data from db and send
       });           
-    //get data from db and send
+    });
     const storedDevices = await Device.find({ configID: req.params.id }).catch(err=>console.log(err));
     storedDevices.forEach((device) => resData.push(device));
     return res.status(200).json({ status: "Success", data: resData });
-  });
 })
 
 // })

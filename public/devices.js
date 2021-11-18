@@ -316,9 +316,9 @@ window.addEventListener("load", async (e) => {
   const controls = document.querySelectorAll(".control");
   controls.forEach((control) => {
     control.addEventListener("click", async (e) => {
-      e.preventDefault();
       //favourite Button
       if (e.target.classList.contains("favourite-icon")) {
+        e.preventDefault();
         const updateObj = favouriteItem(e, "control", false, 'star_outline');
         await fetch(`/devices/${updateObj.configID}`, {
           method: "PATCH",
@@ -353,9 +353,10 @@ window.addEventListener("load", async (e) => {
           .catch((err) => {
             console.log(err);
           });
-        return;
-      }
-
+          return;
+        }
+        
+        if(e.target.classList.contains('control-chevron-icon')){return}
       //STATE CHANGE
       //get new state & set the style instantly
       applyRecentClick()
@@ -374,8 +375,7 @@ window.addEventListener("load", async (e) => {
       if (newStatusFromServer.currentValue !== targetState && recentClick === false) {
         setStatusStyle(control);
       }
+
     });
   });
-
-
 });
