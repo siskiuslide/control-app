@@ -79,48 +79,11 @@ const getFavouriteItems = async function(type, favouriteQuery){
     favQueryResult = await fetch(`/${type}?favourite=${favouriteQuery}`).then(res=>res.json()).catch(err=>console.log(err))
   }
   if(type == 'devices'){
-    let activeConfId = document.querySelector('.activeConfig').id
-    favQueryResult = await fetch(`/config/${activeConfId}/devices?favourite=${favouriteQuery}`).then(res=>res.json()).catch(err=>console.log(err))
-    progressiveFadeOut(document.querySelectorAll('.control'), 25)
-    favQueryResult.data.forEach(device=> addDevice(device))
-    progressiveFadeIn(document.querySelectorAll('.control'), 75, 'flex')
-    console.log(favQueryResult)
+    
   }
-
-
-    //handle config favs
-    // if(type == 'configFavGetter'){
-    //   const firstFavourite = favQueryResult[0]._id;
-    //   const firstFavDevices = await getDevices(firstFavourite);
-    //   firstFavDevices.data.forEach((device) => {
-    //     addDevice(device);
-    //     progressiveFadeIn(document.querySelectorAll(".control"), 75, "flex");
-    //   });
-    //   //remove all entries
-    //   progressiveFadeOut(document.querySelectorAll(".configListEntry"));
-    //   progressiveFadeOut(document.querySelectorAll(".control"));
-    //   //add a new entry for each favourite
-    //   favQueryResult.forEach((conf) => {
-    //     addConfig(conf);
-    //   });
-    //   //display it
-    //   progressiveFadeIn(document.querySelectorAll(".configListEntry"), 75, "flex");
-    // }
-
-    // //handle device favs
-    // if(type == 'devicesFavGetter'){
-    //   const currentlyActiveConfig = document.querySelector('.activeConfig').id
-    //   const favDevices = await getDevices(currentlyActiveConfig)
-    //   favDevices.forEach(device=>{
-    //     addDevice(device)
-    //   })
-
-
-    // }
 }
 
 
-// checkActiveConfigForPolling()
 
 //
 //Nav Bar effects

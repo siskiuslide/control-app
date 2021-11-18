@@ -53,20 +53,24 @@ const pollingIconToggle = function (pollingBool) {
   const offIcon = 'timer_off'
   const target = document.querySelector('.pollSwitch')
 
+  //for the eventlistener to change state without knowing
   if(pollingBool === undefined){
     target.classList.toggle(onClass)
     target.classList.toggle(offClass)
     target.classList.contains(onClass) ? target.textContent = onIcon : target.textContent = offIcon
   }
+  //T/F are given when clicking on a config entry
   if(pollingBool==true){
-    target.textContent=onIcon
+    target.textContent = 'timer'
     target.classList.add(onClass)
     target.classList.remove(offClass)
+    return true
   }
   if(pollingBool == false){
-    target.textContet = offIcon;
+    target.textContent = 'timer_off';
     target.classList.add(offClass)
     target.classList.remove(onClass)
+    return false
   }
   
 };
@@ -127,25 +131,6 @@ const comparePollDevices = function (pollData) {
 // recentClick
 ///////////////////////////////////////////
 
-let recentClick = false
-  
-recentClickChecker = function(){
-  let returnVal
-  recentClick = true ? returnVal = true : returnVal = false;
-  return returnVal
-}
-
-applyRecentClick = function(){
-  recentClick = true
-  return recentClick
-}
-recentClickTimeout = function(){
-  setTimeout(()=>{
-      recentClick = false
-      return recentClick
-  }, 450)
-  return recentClick
-}
 
 
 
@@ -238,7 +223,8 @@ window.addEventListener("load", async (e) => {
       progressiveFadeIn(document.querySelectorAll(".control"), 75, "flex");
     });
   } else {
-    document.querySelector(".deviceListContainer").insertAdjacentHTML("afterbegin", emptyText);
+    console.log('no devices found')
+    // document.querySelector(".deviceListContainer").insertAdjacentHTML("afterbegin", emptyText);
   }
 
   //header event listeners
@@ -256,7 +242,6 @@ window.addEventListener("load", async (e) => {
 
         //fetch the data for the first in list
         if(type == 'configFavGetter'){
-
           const firstFavourite = favQueryResult[0]._id;
           const firstFavDevices = await getDevices(firstFavourite);
           firstFavDevices.data.forEach((device) => {
@@ -287,19 +272,21 @@ window.addEventListener("load", async (e) => {
       const targetID = target.id;
       const currentlyActive = document.querySelector(".activeConfig");
       if (currentlyActive !== e.target) {
+        //change active
         activeToggle(currentlyActive);
         activeToggle(target);
         progressiveFadeOut(document.querySelectorAll(".control"), 30);  
-        if(checkActiveConfigForPolling(target) == true){
-          
-        }
-      const targetURL = `/config/${targetID}/devices`;
-      devices = await fetch(targetURL)
-        .then((res) => {
+        //polling status (changes the icon too)
+       checkActiveConfigForPolling(target) 
+        
+      //make request
+        const targetURL = `/config/${targetID}/devices`;
+        devices = await fetch(targetURL)
+          .then((res) => {
           return res.json();
-        })
-        .then((devices) => {
-         
+          })
+          .then((devices) => {
+        //add control element for each device returned
           devices.data.forEach((device) => addDevice(device));
           progressiveFadeIn(document.querySelectorAll(".control"), 75, "flex");
         })
@@ -320,7 +307,8 @@ window.addEventListener("load", async (e) => {
   }
 
   const pollSwitchBtn = document.querySelector(".pollSwitch");
-  pollSwitchBtn.addEventListener("click", () => {
+  pollSwitchBtn.addEventListener("click", (e) => {
+
     pollingIconToggle();
     if (pollSwitchBtn.classList.contains("pollOn")) {
       pollDevices(activeConfig);
