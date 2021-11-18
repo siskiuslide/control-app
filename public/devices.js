@@ -229,8 +229,8 @@ window.addEventListener("load", async (e) => {
         e.target.classList.contains("favourited") ? (favouriteQuery = false) : (favouriteQuery = true);
         let type;
         e.target.classList.contains('deviceFavGetter') ? type = 'devices' : type = 'config';
-        favouriteItemIcon(e, '', true, 'star')
         getFavouriteItems(type, favouriteQuery)
+        favouriteItemIcon(e, '', true, 'star')
 
         //fetch the data for the first in list
         if(type == 'configFavGetter'){

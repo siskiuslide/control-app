@@ -55,7 +55,6 @@ const setFavIconStyle = (obj) => {
 const favouriteItemIcon = function (e, typeClassName, buttonOnly, secondaryIcon) {
   e.target.classList.toggle('.favourited')
   let favouriteStatus;
-  console.log(e.target.classList)
   if (e.target.classList.contains("favourited")) {
     e.target.textContent = "star";
     if(buttonOnly == false){
