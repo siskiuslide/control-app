@@ -1,9 +1,4 @@
-
-//    <div class="detail-flex"><div class="detailIcon"><span class="material-icons locationIcon">fmd_good</span>//    </div>//    <div class="detailField">Address</div>//    <div class="detailText detailText-small targetText">${config.target}</div>    
-//  </div>//  <div class="detail-flex">//    <div class="detailIcon">//      <span class="material-icons lockIcon">lock</span>//    </div>//    <div class="detailField">API Key</div>//    <div class="detailText detailText-small APIKeyText">${config.APIKey}</div>              
-//  </div>
-
-const emptyText = `<div class="emptyText">None to show :/</div>`;
+// const emptyText = `<div class="emptyText">None to show :/</div>`;
 
 const createNewConfig = document.querySelector(".createNewConfigBox");
 const configInputSection = document.querySelector(".configInputSection");
@@ -12,14 +7,11 @@ const configInputSection = document.querySelector(".configInputSection");
 //PRECONFIG CARDS
 ////
 let configType, favouriteContent, favouriteClass;
-
+//uses 'on'/'off' because that is the default for checkboxes
 const checkType = (config) => {
   config.type == "on" ? (configType = "Cloud") : (configType = "Local");
   return configType;
 };
-const checkPollingSetup = (config)=>{
-
-}
 
 const preConfiguredCardSection = document.querySelector(".preConfiguredSection");
 const addCard = function (config) {
@@ -101,29 +93,12 @@ const addCard = function (config) {
 window.addEventListener("load", async () => {
   const rawConfigData = await fetch("/config").then((res) => res.json());
   const configData = rawConfigData.body;
-
   if (configData.length == 0) {
     return preConfiguredCardSection.insertAdjacentHTML("beforeend", emptyText);
   }
   configData.forEach((config) => {
-    console.log(config);
     addCard(config);
   });
-  const counts = document.querySelectorAll(".deviceCountNumber");
-
-  // Device counts
-  // counts.forEach(async (count) => {
-  //   try {
-  //     const config = count.closest(".preConfiguredCard").id;
-  //     const devices = await getDevices(config);
-  //     console.log(devices);
-  //     if (devices) {
-  //       count.textContent = devices.data.length;
-  //     }
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  // });
 });
 
 preConfiguredCardSection.addEventListener("click", async (e) => {
@@ -131,7 +106,6 @@ preConfiguredCardSection.addEventListener("click", async (e) => {
   if (e.target.classList.contains("delete-icon")) {
     const targetConfig = e.target.closest(".preConfiguredCard");
     const reqBody = { id: targetConfig.id };
-
     await fetch(`/config`, {
       method: "delete",
       body: JSON.stringify(reqBody),
@@ -155,13 +129,14 @@ preConfiguredCardSection.addEventListener("click", async (e) => {
     e.target.classList.toggle("favourited");
     const targetConfig = e.target.closest(".preConfiguredCard");
     let favouriteStatus;
-    if (e.target.classList.contains("favourited")) {
-      e.target.textContent = "star";
-      favouriteStatus = true;
-    } else {
-      e.target.textContent = "star_outline";
-      favouriteStatus = false;
-    }
+    favouriteItemIcon(e, 'preConfiguredCard', false, 'star_outline')
+    // if (e.target.classList.contains("favourited")) {
+    //   e.target.textContent = "star";
+    //   favouriteStatus = true;
+    // } else {
+    //   e.target.textContent = "star_outline";
+    //   favouriteStatus = false;
+    // }
 
     const favouriteUpdate = {
       _id: targetConfig.id,
@@ -210,19 +185,6 @@ preConfiguredCardSection.addEventListener("click", async (e) => {
     } else {
       alert("Unable to update data");
     }
-  }
-
-  //COUNTButton - ON CLICK make device request
-
-  if (e.target.classList.contains("deviceCountContainer")) {
-    const config = e.target.closest(".preConfiguredCard").id;
-    const data = await fetch(`/config/${config}/devices`)
-      .then((res) => res.json())
-      .then((data) => {
-        return data;
-      })
-      .catch((err) => console.log(err));
-    console.log(data);
   }
 });
 

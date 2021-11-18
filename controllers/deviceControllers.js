@@ -9,18 +9,17 @@ const AppError = require("./../utils/error");
 //
 //----------------
 //
-exports.getDevices = catchAsync(async (req, res, next) => {   
+exports.getDevices = catchAsync(async (req, res, next) => {  
    //Get the associated config
   const assocConfig = await Config.find({ _id: req.params.id });
   //build the url for that config | prettier-ignore
   const url = urlHelper.buildURL(assocConfig[0].type, assocConfig[0].target, assocConfig[0].appID, assocConfig[0].APIKey, "all");
-  //make request
-  const hubResponse = await hubRequest(url);
   //Array to push db results to
   const resData = [];
-  //Create a document for each device
+  //make request
+  const hubResponse = await hubRequest(url);
+  //create a doc to upload to db for each device
   hubResponse.forEach(async (item, i) => {
-    //create a doc to upload to db
     const device = {
       configID: req.params.id,
       deviceID: item.id,
@@ -55,11 +54,11 @@ exports.getDevices = catchAsync(async (req, res, next) => {
         }
         if (err) {
           console.log(err)
-          // new AppError(400, err.message);
+          new AppError(400, err.message);
         }
-        //get data from db and send
       });           
     });
+    //get data from db and send
     const storedDevices = await Device.find({ configID: req.params.id }).catch(err=>console.log(err));
     storedDevices.forEach((device) => resData.push(device));
     return res.status(200).json({ status: "Success", data: resData });

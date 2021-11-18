@@ -1,5 +1,7 @@
 //Script.js is for generic functions that are shared between multiple pages that aren't large enough to warrant their own script.
 
+const emptyText = `<div class="emptyText">No results to show</div>`
+
 //Generic UI Features
 let fadeOut = function (element, duration) {
   element.style.transition = `opacity ease-out ${duration + "ms"}`;
@@ -50,10 +52,10 @@ const setFavIconStyle = (obj) => {
 };
 
 //favourite item (change data)
-const favouriteItem = function (e, typeClassName, buttonOnly, secondaryIcon) {
+const favouriteItemIcon = function (e, typeClassName, buttonOnly, secondaryIcon) {
+  e.target.classList.toggle('.favourited')
   let favouriteStatus;
-  
-  e.target.classList.toggle("favourited");
+  console.log(e.target.classList)
   if (e.target.classList.contains("favourited")) {
     e.target.textContent = "star";
     if(buttonOnly == false){
@@ -65,13 +67,14 @@ const favouriteItem = function (e, typeClassName, buttonOnly, secondaryIcon) {
       favouriteStatus = false;
     }
   }
+  //for controls
   if(buttonOnly == false){
     const parent = e.target.closest(`.${typeClassName}`);
     const favouriteUpdate = {
       configID: parent.dataset.configid,
-      deviceID: parent.id,
       favourite: favouriteStatus,
     };
+    if(typeClassName == 'control'){favouriteUpdate.deviceID = parent.id}
     return favouriteUpdate;
   }
 };

@@ -186,20 +186,21 @@ input:focus {
   width: 100%;
   background-color: var(--lightBlueAccent);
   top: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
 }
-.pageHeading {
-  font-size: 40px;
-  font-family: Oswald;
-  letter-spacing: 2px;
-}
+
 .pageHeading {
   font-size: 40px;
   font-family: Oswald;
   letter-spacing: 2px;
   position: relative;
-  padding: 20px 50px 10px 50px;
+  padding: 20px 50px;
   text-align: left;
 }
+
 
 /*config page*/
 
@@ -701,7 +702,7 @@ input:checked + .slider:before {
   width: 25vw;
   height: 99%;
   background: var(--LowerOpacityWhite);
-  margin: 7px;
+  margin: 7px 4px 7px 7px;
   border-radius: 4px;
 }
 .configListItem {
@@ -809,7 +810,7 @@ input:checked + .slider:before {
   background: #ffffff30;
   position: relative;
   width: 73vw;
-  margin: 7px;
+  margin: 7px 7px 7px 4px;
   border-radius: 4px;
   height: auto;
   display: flex;

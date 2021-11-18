@@ -229,8 +229,7 @@ window.addEventListener("load", async (e) => {
         e.target.classList.contains("favourited") ? (favouriteQuery = false) : (favouriteQuery = true);
         let type;
         e.target.classList.contains('deviceFavGetter') ? type = 'devices' : type = 'config';
-        // favouriteItem(e,e.target.classList[3])
-        favouriteItem(e, '', true, 'star')
+        favouriteItemIcon(e, '', true, 'star')
         getFavouriteItems(type, favouriteQuery)
 
         //fetch the data for the first in list
@@ -313,11 +312,11 @@ window.addEventListener("load", async (e) => {
   });
 
   //event listeners for each device
-  const controls = document.querySelectorAll(".control");
-  controls.forEach((control) => {
-    control.addEventListener("click", async (e) => {
+  // const controls = document.querySelectorAll(".control");
+  // controls.forEach((control) => {
+    window.addEventListener("click", async (e) => {
       //favourite Button
-      if (e.target.classList.contains("favourite-icon")) {
+      if (e.target.classList.contains('control-fav-icon')) {
         e.preventDefault();
         const updateObj = favouriteItem(e, "control", false, 'star_outline');
         await fetch(`/devices/${updateObj.configID}`, {
@@ -336,7 +335,7 @@ window.addEventListener("load", async (e) => {
           });
         return;
       }
-      if (e.target.classList.contains("delete-icon")) {
+      if (e.target.classList.contains('control-del-icon')) {
         const updateObj = excludeItem(e, "control", "device");
         await fetch(`/devices/${updateObj.configID}`, {
           method: "PATCH",
@@ -356,26 +355,31 @@ window.addEventListener("load", async (e) => {
           return;
         }
         
-        if(e.target.classList.contains('control-chevron-icon')){return}
+        if(e.target.classList.contains('control') && e.target.classList.contains('control-chevron-icon')){return}
+
       //STATE CHANGE
       //get new state & set the style instantly
-      applyRecentClick()
-      recentClickTimeout()
-      const targetState = getNewState(control);
+      if(e.target.classList.contains('control')){
+        const control = e.target.closest('.control')
+        applyRecentClick()
+        recentClickTimeout()
+        const targetState = getNewState(control);
       const button = control.querySelector(".controlStatusIconCont");
       const newStateStyle = updateControlStyle(targetState, control, button);
       //make the request to the server
       const data = await fetch(`/devices/${control.dataset.configid}/${control.id}/${targetState}`)
-        .then((res) => res.json())
-        .then((data) => data)
-        .catch((err) => console.log(err));
+      .then((res) => res.json())
+      .then((data) => data)
+      .catch((err) => console.log(err));
 
       //check if the result matches the instantly updated status then toggle back if it doesn't
       const newStatusFromServer = data.data.attributes.find((attr) => attr.name == "switch");
       if (newStatusFromServer.currentValue !== targetState && recentClick === false) {
         setStatusStyle(control);
       }
+    }
 
     });
   });
-});
+  // });
+  
