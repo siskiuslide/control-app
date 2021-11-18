@@ -1,3 +1,5 @@
+//Script.js is for generic functions that are shared between multiple pages that aren't large enough to warrant their own script.
+
 //Generic UI Features
 let fadeOut = function (element, duration) {
   element.style.transition = `opacity ease-out ${duration + "ms"}`;
@@ -25,7 +27,7 @@ let progressiveFadeOut = function (nodelist, interval) {
   });
 };
 
-/////Config get devices
+///Config get devices
 const getDevices = async (config) => {
   const data = await fetch(`/config/${config}/devices`)
     .then((res) => res.json())
@@ -36,7 +38,7 @@ const getDevices = async (config) => {
   return data;
 };
 
-//Favouriting Items
+//Favouriting (on load)
 const setFavIcon = (obj) => {
   obj.favourite == true ? (favouriteContent = "star") : (favouriteContent = "star_outline");
   return favouriteContent;
@@ -47,6 +49,7 @@ const setFavIconStyle = (obj) => {
   return favouriteClass;
 };
 
+//favourite item (change data)
 const favouriteItem = function (e, typeClassName, buttonOnly, secondaryIcon) {
   let favouriteStatus;
   

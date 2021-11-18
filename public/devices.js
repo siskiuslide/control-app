@@ -127,18 +127,11 @@ const comparePollDevices = function (pollData) {
     }
   });
 };
-////////////////////////////////////////////
-// recentClick
-///////////////////////////////////////////
+////////////
+//Controls//
+////////////
 
-
-
-
-//
-//Controls
-//
-
-//style on load
+//style controls on load
 const setStatusStyle = function (device) {
   let statusStyle;
   device.status === "on" ? (statusStyle = "device-on") : (statusStyle = "device-off");
@@ -163,7 +156,7 @@ const setStatusIcon = function (device) {
   }
 };
 
-///change device state
+///Change device state
 const getNewState = function (control) {
   let newStatus;
   control.classList.contains("on") ? (newStatus = "off") : (newStatus = "on");
@@ -298,9 +291,7 @@ window.addEventListener("load", async (e) => {
   //DL Icon event listeners
   //-----------------------
 
-  //polling
-
-  
+  //polling  
   const activeConfig = document.querySelector(".activeConfig");
   if (checkActiveConfigForPolling(activeConfig) == true) {
      pollDevices(activeConfig);
