@@ -15,6 +15,7 @@ exports.getConfig = catchAsync(async function (req, res, next) {
     return res.status(200).json({ status: "success", body: data });
   }
   const configs = await Config.find();
+  console.log(configs);
   return res.status(200).json({ status: "success", body: configs });
 });
 

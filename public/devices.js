@@ -47,32 +47,31 @@ const activeToggle = function (entry) {
 
 //Device list
 const pollingIconToggle = function (pollingBool) {
-  const onClass = 'pollOn'
-  const offClass = 'pollOff'
-  const onIcon = 'timer'
-  const offIcon = 'timer_off'
-  const target = document.querySelector('.pollSwitch')
+  const onClass = "pollOn";
+  const offClass = "pollOff";
+  const onIcon = "timer";
+  const offIcon = "timer_off";
+  const target = document.querySelector(".pollSwitch");
 
   //for the eventlistener to change state without knowing
-  if(pollingBool === undefined){
-    target.classList.toggle(onClass)
-    target.classList.toggle(offClass)
-    target.classList.contains(onClass) ? target.textContent = onIcon : target.textContent = offIcon
+  if (pollingBool === undefined) {
+    target.classList.toggle(onClass);
+    target.classList.toggle(offClass);
+    target.classList.contains(onClass) ? (target.textContent = onIcon) : (target.textContent = offIcon);
   }
   //T/F are given when clicking on a config entry
-  if(pollingBool==true){
-    target.textContent = 'timer'
-    target.classList.add(onClass)
-    target.classList.remove(offClass)
-    return true
+  if (pollingBool == true) {
+    target.textContent = "timer";
+    target.classList.add(onClass);
+    target.classList.remove(offClass);
+    return true;
   }
-  if(pollingBool == false){
-    target.textContent = 'timer_off';
-    target.classList.add(offClass)
-    target.classList.remove(onClass)
-    return false
+  if (pollingBool == false) {
+    target.textContent = "timer_off";
+    target.classList.add(offClass);
+    target.classList.remove(onClass);
+    return false;
   }
-  
 };
 
 const removeDevicesFromCont = function (entry) {
@@ -99,7 +98,7 @@ const checkActiveConfigForPolling = function (active) {
   if (active.classList.contains("pollingOn")) {
     pollingStatus = true;
     pollingIconToggle(pollingStatus);
-  }else if(active.classList.contains('pollingOff')){
+  } else if (active.classList.contains("pollingOff")) {
     pollingStatus = false;
     pollingIconToggle(pollingStatus);
   }
@@ -122,7 +121,7 @@ const comparePollDevices = function (pollData) {
   pollData.forEach((device) => {
     const deviceEl = document.getElementById(`${device.deviceID}`);
     const deviceState = device.status;
-    if (!deviceEl.classList.contains(`${device.status}`) && (recentClick===false)) {
+    if (!deviceEl.classList.contains(`${device.status}`) && recentClick === false) {
       updateControlStyle(device.status, deviceEl, deviceEl.querySelector(".controlStatusIconCont"));
     }
   });
@@ -183,7 +182,6 @@ const excludeItem = function (e, parentClassName, type) {
   return updateBody;
 };
 
-
 //------------------------
 //page LOAD event listener
 //------------------------
@@ -216,7 +214,7 @@ window.addEventListener("load", async (e) => {
       progressiveFadeIn(document.querySelectorAll(".control"), 75, "flex");
     });
   } else {
-    console.log('no devices found')
+    console.log("no devices found");
     // document.querySelector(".deviceListContainer").insertAdjacentHTML("afterbegin", emptyText);
   }
 
@@ -228,19 +226,19 @@ window.addEventListener("load", async (e) => {
         let favouriteQuery;
         e.target.classList.contains("favourited") ? (favouriteQuery = false) : (favouriteQuery = true);
         let type;
-        e.target.classList.contains('deviceFavGetter') ? type = 'devices' : type = 'config';
-        getFavouriteItems(type, favouriteQuery)
-        favouriteItemIcon(e, '', true, 'star')
+        e.target.classList.contains("deviceFavGetter") ? (type = "devices") : (type = "config");
+        getFavouriteItems(type, favouriteQuery);
+        favouriteItemIcon(e, "", true, "star");
 
         //fetch the data for the first in list
-        if(type == 'configFavGetter'){
+        if (type == "configFavGetter") {
           const firstFavourite = favQueryResult[0]._id;
           const firstFavDevices = await getDevices(firstFavourite);
           firstFavDevices.data.forEach((device) => {
             addDevice(device);
             progressiveFadeIn(document.querySelectorAll(".control"), 75, "flex");
           });
-          
+
           //remove all entries
           progressiveFadeOut(document.querySelectorAll(".configListEntry"));
           progressiveFadeOut(document.querySelectorAll(".control"));
@@ -248,7 +246,7 @@ window.addEventListener("load", async (e) => {
           favQueryResult.forEach((conf) => {
             addConfig(conf);
           });
-          
+
           //display it
           progressiveFadeIn(document.querySelectorAll(".configListEntry"), 75, "flex");
         }
@@ -267,38 +265,38 @@ window.addEventListener("load", async (e) => {
         //change active
         activeToggle(currentlyActive);
         activeToggle(target);
-        progressiveFadeOut(document.querySelectorAll(".control"), 30);  
+        progressiveFadeOut(document.querySelectorAll(".control"), 30);
         //polling status (changes the icon too)
-       checkActiveConfigForPolling(target) 
-        
-      //make request
+        checkActiveConfigForPolling(target);
+
+        //make request
         const targetURL = `/config/${targetID}/devices`;
         devices = await fetch(targetURL)
           .then((res) => {
-          return res.json();
+            return res.json();
           })
           .then((devices) => {
-        //add control element for each device returned
-          devices.data.forEach((device) => addDevice(device));
-          progressiveFadeIn(document.querySelectorAll(".control"), 75, "flex");
-        })
-        .catch((err) => console.log(err));
-    }});
+            //add control element for each device returned
+            devices.data.forEach((device) => addDevice(device));
+            progressiveFadeIn(document.querySelectorAll(".control"), 75, "flex");
+          })
+          .catch((err) => console.log(err));
+      }
+    });
   });
 
   //-----------------------
   //DL Icon event listeners
   //-----------------------
 
-  //polling  
+  //polling
   const activeConfig = document.querySelector(".activeConfig");
   if (checkActiveConfigForPolling(activeConfig) == true) {
-     pollDevices(activeConfig);
+    pollDevices(activeConfig);
   }
 
   const pollSwitchBtn = document.querySelector(".pollSwitch");
   pollSwitchBtn.addEventListener("click", (e) => {
-
     pollingIconToggle();
     if (pollSwitchBtn.classList.contains("pollOn")) {
       pollDevices(activeConfig);
@@ -314,63 +312,69 @@ window.addEventListener("load", async (e) => {
   //event listeners for each device
   // const controls = document.querySelectorAll(".control");
   // controls.forEach((control) => {
-    window.addEventListener("click", async (e) => {
-      //favourite Button
-      if (e.target.classList.contains('control-fav-icon')) {
-        e.preventDefault();
-        const updateObj = favouriteItem(e, "control", false, 'star_outline');
-        await fetch(`/devices/${updateObj.configID}`, {
-          method: "PATCH",
-          body: JSON.stringify(updateObj),
-          headers: { "content-type": "application/json" },
+  window.addEventListener("click", async (e) => {
+    //favourite Button
+    if (e.target.classList.contains("control-fav-icon")) {
+      e.preventDefault();
+      const updateObj = favouriteItem(e, "control", false, "star_outline");
+      await fetch(`/devices/${updateObj.configID}`, {
+        method: "PATCH",
+        body: JSON.stringify(updateObj),
+        headers: { "content-type": "application/json" },
+      })
+        .then((response) => {
+          return response.json();
         })
-          .then((response) => {
-            return response.json();
-          })
-          .then((data) => {
-            return data;
-          })
-          .catch((err) => {
-            console.log(err);
-          });
-        return;
-      }
-      if (e.target.classList.contains('control-del-icon')) {
-        const updateObj = excludeItem(e, "control", "device");
-        await fetch(`/devices/${updateObj.configID}`, {
-          method: "PATCH",
-          body: JSON.stringify(updateObj),
-          headers: { "content-type": "application/json" },
+        .then((data) => {
+          return data;
         })
-          .then((response) => {
-            return response.json();
-          })
-          .then((data) => {
-            console.log(data);
-            return data;
-          })
-          .catch((err) => {
-            console.log(err);
-          });
-          return;
-        }
-        
-        if(e.target.classList.contains('control') && e.target.classList.contains('control-chevron-icon')){return}
+        .catch((err) => {
+          console.log(err);
+        });
+      return;
+    }
+    if (e.target.classList.contains("control-del-icon")) {
+      const updateObj = excludeItem(e, "control", "device");
+      await fetch(`/devices/${updateObj.configID}`, {
+        method: "PATCH",
+        body: JSON.stringify(updateObj),
+        headers: { "content-type": "application/json" },
+      })
+        .then((response) => {
+          return response.json();
+        })
+        .then((data) => {
+          console.log(data);
+          return data;
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+      return;
+    }
 
-      //STATE CHANGE
-      //get new state & set the style instantly
-      if(e.target.classList.contains('control')){
-        const control = e.target.closest('.control')
-        applyRecentClick()
-        recentClickTimeout()
-        const targetState = getNewState(control);
+    if (e.target.classList.contains("control") && e.target.classList.contains("control-chevron-icon")) {
+      return;
+    }
+
+    //STATE CHANGE
+    //get new state & set the style instantly
+    if (
+      e.target.classList.contains("control") ||
+      e.target.classList.contains("controlStatusIconCont") ||
+      e.target.classList.contains("status-icon")
+    ) {
+      const control = e.target.closest(".control");
+      applyRecentClick();
+      recentClickTimeout();
+      const targetState = getNewState(control);
       const button = control.querySelector(".controlStatusIconCont");
       const newStateStyle = updateControlStyle(targetState, control, button);
       //make the request to the server
       const data = await fetch(`/devices/${control.dataset.configid}/${control.id}/${targetState}`)
-      .then((res) => res.json())
-      .then((data) => data)
-      .catch((err) => console.log(err));
+        .then((res) => res.json())
+        .then((data) => data)
+        .catch((err) => console.log(err));
 
       //check if the result matches the instantly updated status then toggle back if it doesn't
       const newStatusFromServer = data.data.attributes.find((attr) => attr.name == "switch");
@@ -378,8 +382,6 @@ window.addEventListener("load", async (e) => {
         setStatusStyle(control);
       }
     }
-
-    });
   });
-  // });
-  
+});
+// });
