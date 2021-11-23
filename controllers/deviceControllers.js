@@ -9,11 +9,17 @@ const AppError = require("./../utils/error");
 //
 //----------------
 //
-exports.getDevices = catchAsync(async (req, res, next) => {  
-   //Get the associated config
+exports.getDevices = catchAsync(async (req, res, next) => {
+  //Get the associated config
   const assocConfig = await Config.find({ _id: req.params.id });
   //build the url for that config | prettier-ignore
-  const url = urlHelper.buildURL(assocConfig[0].type, assocConfig[0].target, assocConfig[0].appID, assocConfig[0].APIKey, "all");
+  const url = urlHelper.buildURL(
+    assocConfig[0].type,
+    assocConfig[0].target,
+    assocConfig[0].appID,
+    assocConfig[0].APIKey,
+    "all"
+  );
   //Array to push db results to
   const resData = [];
   //make request
@@ -30,39 +36,42 @@ exports.getDevices = catchAsync(async (req, res, next) => {
       commands: item.commands,
       date: item.date,
     };
-
-    Device.exists({ configID: device.configID, deviceID: device.deviceID}, async function (err, result) {
-      //check whether the doc already exists, if not, add it
-      if (result === true) {
-        //if it already exists compare the status to the hub response and update
-        const existingData = await Device.find({ configID: device.configID, deviceID: device.deviceID})
-        .then((res) => {
-          return res[0];
-        })
-        .catch((err) => console.log(err));
-        if (existingData.status !== device.status) {
-          Device.findOneAndUpdate(
-            { configID: device.configID, deviceID: device.deviceID },
-            { status: device.status }
+    //prettier-ignore
+    Device.exists({ configID: device.configID, deviceID: device.deviceID, name: device.name }, async function (err, result) {
+        //check whether the doc already exists, if not, add it
+        if (result === true) {
+          //if it already exists compare the status to the hub response and update
+          const existingData = await Device.find({ configID: device.configID, deviceID: device.deviceID })
+            .then((res) => {
+              return res[0];
+            })
+            .catch((err) => console.log(err));
+          if (existingData.status !== device.status) {
+            Device.findOneAndUpdate(
+              { configID: device.configID, deviceID: device.deviceID },
+              { status: device.status }
             ).catch((err) => console.log(err));
           }
-          resData.push(existingData)
+          resData.push(existingData);
         }
         if (result === false) {
-          const createdDevice = await Device.create(device).then(res=>res.json()).catch((err) => console.log(err));
-          return resData.push(createdDevice)
+          const createdDevice = await Device.create(device)
+            .then((res) => res.json())
+            .catch((err) => console.log(err));
+          return resData.push(createdDevice);
         }
         if (err) {
-          console.log(err)
+          console.log(err);
           new AppError(400, err.message);
         }
-      });           
-    });
-    //get data from db and send
-    const storedDevices = await Device.find({ configID: req.params.id }).catch(err=>console.log(err));
-    storedDevices.forEach((device) => resData.push(device));
-    return res.status(200).json({ status: "Success", data: resData });
-})
+      }
+    );
+  });
+  //get data from db and send
+  const storedDevices = await Device.find({ configID: req.params.id }).catch((err) => console.log(err));
+  storedDevices.forEach((device) => resData.push(device));
+  return res.status(200).json({ status: "Success", data: resData });
+});
 
 // })
 //

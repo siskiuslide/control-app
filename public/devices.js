@@ -145,7 +145,8 @@ const setStatusIcon = function (device) {
     device.type.includes("Light") ||
     device.type.includes("Bulb") ||
     device.type.includes("Strip") ||
-    device.type.includes("RGB")
+    device.type.includes("RGB") ||
+    device.type.includes("Outlet")
   ) {
     return (icon = "lightbulb");
   }
@@ -194,7 +195,7 @@ window.addEventListener("load", async (e) => {
       if (data.body.length > 0) {
         data.body.forEach((config) => {
           addConfig(config);
-          progressiveFadeIn(document.querySelectorAll(".configListEntry"), 75, "flex");
+          progressiveFadeIn(document.querySelectorAll(".configListEntry"), 45, "flex");
         });
       }
     })
@@ -211,7 +212,7 @@ window.addEventListener("load", async (e) => {
         return;
       }
       addDevice(device);
-      progressiveFadeIn(document.querySelectorAll(".control"), 75, "flex");
+      progressiveFadeIn(document.querySelectorAll(".control"), 55, "flex");
     });
   } else {
     console.log("no devices found");
@@ -236,7 +237,7 @@ window.addEventListener("load", async (e) => {
           const firstFavDevices = await getDevices(firstFavourite);
           firstFavDevices.data.forEach((device) => {
             addDevice(device);
-            progressiveFadeIn(document.querySelectorAll(".control"), 75, "flex");
+            progressiveFadeIn(document.querySelectorAll(".control"), 45, "flex");
           });
 
           //remove all entries
@@ -248,7 +249,7 @@ window.addEventListener("load", async (e) => {
           });
 
           //display it
-          progressiveFadeIn(document.querySelectorAll(".configListEntry"), 75, "flex");
+          progressiveFadeIn(document.querySelectorAll(".configListEntry"), 45, "flex");
         }
       }
     });
@@ -278,7 +279,7 @@ window.addEventListener("load", async (e) => {
           .then((devices) => {
             //add control element for each device returned
             devices.data.forEach((device) => addDevice(device));
-            progressiveFadeIn(document.querySelectorAll(".control"), 75, "flex");
+            progressiveFadeIn(document.querySelectorAll(".control"), 45, "flex");
           })
           .catch((err) => console.log(err));
       }
