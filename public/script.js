@@ -19,10 +19,10 @@ let fadeIn = function (element, duration, orntn) {
   }, (duration += 10));
 };
 
-let progressiveFadeIn = function (nodelist, interval, orntn) {
+let progressiveFadeIn = function (nodelist, interval, orntn) { // take a nodelist and fade in on interval
   nodelist.forEach((el, i) => fadeIn(el, interval * i, orntn));
 };
-let progressiveFadeOut = function (nodelist, interval) {
+let progressiveFadeOut = function (nodelist, interval) { //take a nodelist and fade each one out using an interval
   nodelist.forEach((el, i) => {
     fadeOut(el, interval * i);
     el.remove();
@@ -51,10 +51,12 @@ const setFavIconStyle = (obj) => {
   return favouriteClass;
 };
 
-//favourite item (change data)
+//favourite item (change data or just icon)
 const favouriteItemIcon = function (e, typeClassName, buttonOnly, secondaryIcon) {
+  //favourited class has yellow text
   e.target.classList.toggle('.favourited')
   let favouriteStatus;
+  //hard to read but works
   if (e.target.classList.contains("favourited")) {
     e.target.textContent = "star";
     if(buttonOnly == false){
@@ -66,13 +68,13 @@ const favouriteItemIcon = function (e, typeClassName, buttonOnly, secondaryIcon)
       favouriteStatus = false;
     }
   }
-  //for controls
   if(buttonOnly == false){
     const parent = e.target.closest(`.${typeClassName}`);
     const favouriteUpdate = {
       configID: parent.dataset.configid,
       favourite: favouriteStatus,
     };
+    //for controls
     if(typeClassName == 'control'){favouriteUpdate.deviceID = parent.id}
     return favouriteUpdate;
   }

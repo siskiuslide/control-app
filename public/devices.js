@@ -13,31 +13,38 @@ const addConfig = function (config) {
 
 const addDevice = function (device) {
   const deviceContainer = document.querySelector(".deviceContainer");
-  let deviceHTML = `   
+  const existing = document.getElementById(`${device.deviceID}`)
+  console.log(existing)
+  if(!existing){
+
+    
+    let deviceHTML = `   
     <div id="${device.deviceID}" class="control ${device.status}" data-type="${device.type}" data-label="${
-    device.label
+      device.label
   }" data-configid="${device.configID}">
-      <div class="controlLabel">${device.label}</div>
-      <div class="controlStatusIconCont ${setStatusStyle(device)}">
-        <span class="material-icons status-icon ">${setStatusIcon(device)}</span>
-      </div>
-      <div class="controlFooterSection">
+  <div class="controlLabel">${device.label}</div>
+  <div class="controlStatusIconCont ${setStatusStyle(device)}">
+  <span class="material-icons status-icon ">${setStatusIcon(device)}</span>
+        </div>
+        <div class="controlFooterSection">
         <div class="controlFooterItem">
-          <span class="material-icons favourite-icon ${setFavIconStyle(device)} control-fav-icon">
+        <span class="material-icons favourite-icon ${setFavIconStyle(device)} control-fav-icon">
           ${setFavIcon(device)}
           </span>
           </div>
         <div class="controlFooterItem">
-          <span class="material-icons delete-icon control-del-icon">
-          delete
+        <span class="material-icons delete-icon control-del-icon">
+        delete
           </span>
+          </div>
+        <div class="controlFooterItem"><a href="deviceView.html"><span class="material-icons control-chevron-icon">chevron_right</span></a>
         </div>
-      <div class="controlFooterItem"><a href="deviceView.html"><span class="material-icons control-chevron-icon">chevron_right</span></a>
-      </div>
-  </div>
-</div>`;
-  deviceContainer.insertAdjacentHTML("afterbegin", deviceHTML);
-};
+        </div>
+      </div>`;
+      deviceContainer.insertAdjacentHTML("afterbegin", deviceHTML);
+
+    }
+    };
 
 //List Entry
 const activeToggle = function (entry) {

@@ -1,4 +1,5 @@
-//recentClick is used to resolve UI bugs whilst polling where the UI changes before the result of the poll comes back.
+//recentClick is used to avoid UI bugs whilst a config is polling where the UI changes before the result of the poll comes back.
+// Avoids the flickering issue that sometimes occurs
 let recentClick = false
   
 recentClickChecker = function(){
