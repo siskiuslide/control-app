@@ -15,9 +15,7 @@ const addDevice = function (device) {
   const deviceContainer = document.querySelector(".deviceContainer");
   const existing = document.getElementById(`${device.deviceID}`)
   console.log(existing)
-  if(!existing){
-
-    
+  if(existing == null){    
     let deviceHTML = `   
     <div id="${device.deviceID}" class="control ${device.status}" data-type="${device.type}" data-label="${
       device.label
