@@ -2,6 +2,57 @@
 
 const emptyText = `<div class="emptyText">No results to show</div>`
 
+//navbar elements
+const navBar = document.querySelector('.navbar')
+const navItems = document.querySelectorAll('.nav-item')
+const navItemText = document.querySelectorAll('.nav-item-text')
+const loginButton = document.querySelector('login-account')
+const activeItem = document.querySelector('.nav-active')
+const activeItemText = document.querySelector('.nav-text-active')
+let hoverStyle //Item hover style (dark)
+let originalTextColor
+let activeTextStyle = 'var(--midAccent)'
+let activeTextHoverStyle //style active text when hovered
+
+//homepage navbar styling logic
+ if(navBar.classList.contains('homeNav')){
+  originalTextColor = 'black'
+  hoverStyle = 'rgba(255, 255, 255, 0.466)';
+  activeTextHoverStyle = 'black'
+  navItems.forEach(item=>{
+    item.style.borderRight = null
+    const itemText = item.querySelector('.nav-item-text')
+    itemText.style.color = 'black'
+  })
+}else{
+  hoverStyle = 'rgb(60,60,60)'
+  activeTextHoverStyle = 'white'
+  originalTextColor = 'white'
+}
+//apply styles set in logic above
+navItems.forEach(item=>{
+  const itemText  = item.querySelector('.nav-item-text')
+  console.log(itemText.style.color)
+  activeItemText.style.color = activeTextStyle
+  item.addEventListener('mouseenter',()=>{
+    item.style.background = hoverStyle
+
+    if(item.classList.contains('nav-active')){
+      itemText.style.color = activeTextHoverStyle
+    }
+  })
+  item.addEventListener('mouseout',()=>{
+    item.style.background = null
+    if(item.classList.contains('nav-active')){
+      itemText.style.color = activeTextStyle;
+    }else{
+      itemText.style.color = originalTextColor
+    }
+  })
+})
+
+
+
 //Generic UI Features
 let fadeOut = function (element, duration) {
   element.style.transition = `opacity ease-out ${duration + "ms"}`;
@@ -89,18 +140,3 @@ const getFavouriteItems = async function(type, favouriteQuery){
     
   }
 }
-
-
-
-//
-//Nav Bar effects
-//
-const listItems = document.querySelectorAll(".nav-item");
-listItems.forEach((item, i) => {
-  if (i != listItems.length - 1) {
-    item.style.borderRight = "2px solid rgb(66,66,66)";
-  }
-  item.addEventListener("mouseout", () => {
-    item.style.transition = "transform 1000ms";
-  });
-});
