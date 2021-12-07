@@ -51,8 +51,6 @@ navItems.forEach(item=>{
   })
 })
 
-
-
 //Generic UI Features
 let fadeOut = function (element, duration) {
   element.style.transition = `opacity ease-out ${duration + "ms"}`;
