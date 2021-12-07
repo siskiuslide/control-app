@@ -32,7 +32,6 @@ let activeTextHoverStyle //style active text when hovered
 //apply styles set in logic above
 navItems.forEach(item=>{
   const itemText  = item.querySelector('.nav-item-text')
-  console.log(itemText.style.color)
   activeItemText.style.color = activeTextStyle
   item.addEventListener('mouseenter',()=>{
     item.style.background = hoverStyle

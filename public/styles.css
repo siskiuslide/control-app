@@ -7,6 +7,7 @@
   --higherOpacityWhite: rgba(255, 255, 255, 0.466);
   --mainGradient: linear-gradient(to bottom, #0f2027, #203a43, #2c5364);
   --peachGradient: linear-gradient(to left, #f2709c, #ff9472);
+  --peachGradientReverse: linear-gradient(to right, #f2709c, #ff9472);
   --peachGradientLowOpacity: linear-gradient(to left, #f2709bca, #ff9372ca);
   --peachGradientVeryLowOpacity: linear-gradient(to left, #f2709b91, #ff937291);
   --lightBlueAccent: #00a8be;
@@ -69,7 +70,7 @@ input:focus {
   outline: none;
 }
 .peachGradient{
-  background-image: var(--peachGradient);
+  background-image: var(--peachGradientReverse);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   text-shadow: 1px 1px #fff;
@@ -94,7 +95,7 @@ input:focus {
   position: relative;
   width: 100%;
   background: linear-gradient(var(--lightBlueAccentLowOpac) 40%,rgb(239, 239, 239));
-  height: 120%;
+  height: 140%;
   border-radius: 5px;
   transition: all 300ms;
   transform-origin: bottom;
@@ -125,9 +126,9 @@ input:focus {
 .step{
   display: flex;
   flex-direction: row;
-  width:auto;
+  width:60%;
   height: 170px;
-  margin: 10px 25%;
+  margin: 10px 20%;
   background: var(--LowerOpacityWhite);
   border-radius: 4px;
 }
@@ -157,10 +158,10 @@ input:focus {
   cursor: pointer
 }
 .stepText{
-  font-size: 40px;
+  font-size: 45px;
   align-self: center;
   margin: 0px 0px 0px 90px;
-  font-family: 'Asap';
+  font-family: 'Open sans';
 }
 .step * {
   pointer-events: none;
@@ -531,11 +532,11 @@ input:focus {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  margin-top: 4px;
+  margin: 6px 0px 3px 0px;
   text-shadow: var(--textShadow);
 }
 .detailIcon {
-  padding: 10px 0px 5px 10px;
+  padding: 10px 25px 10px 20px;
 }
 .cloudIcon:hover {
   color: #00c3ff;
@@ -555,6 +556,7 @@ input:focus {
   margin-left: 0;
   width: 100px;
   min-width: 100px;
+  font-size: 22px;
 }
 .detailChild::after {
   content: ":";
@@ -564,6 +566,8 @@ input:focus {
   padding: 10px 15px;
   text-align: left;
   width: 200px;
+  font-size: 22px;
+
 }
 .detailText-small {
   font-size: 13px;
@@ -594,7 +598,7 @@ input:focus {
   align-items: center;
   justify-content: center;
   height: auto;
-  background: var(--lightBlueAccent);
+  background: var(--LowerOpacityWhite);
   border-radius: 8px;
   width: 62%;
   position: relative;
@@ -611,15 +615,14 @@ input:focus {
 .devicesButton:hover .deviceCount-item {
   transform: scale(1.1);
 }
-.deviceCountNumber {
-  font-size: 30px;
-}
+
 .deviceCountText {
   display: flex;
   flex-direction: row;
   align-items: center;
   position: relative;
-  padding: 15px;
+  margin: 25px;
+  font-size: 28px;
 }
 .deviceCount-results {
   position: relative;
