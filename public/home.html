@@ -4,12 +4,15 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Oswald&display=swap" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
-  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Asap&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Asap&family=Open+Sans:wght@350&display=swap" rel="stylesheet">
-  <script defer src="home.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Asap&display=swap" rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Anton&family=Asap&family=Open+Sans:wght@350&display=swap"
+    rel="stylesheet"
+  />
   <script defer src="script.js"></script>
+  <script defer src="home.js"></script>
 </head>
-<body class ="homeBody">
+<body class="homeBody">
   <div class="homeNav navbar">
     <ul class="nav-list">
       <li class="nav-item nav-active">
@@ -46,35 +49,39 @@
         <span class="peachGradientText">Control your networks simply.</span>
       </h1>
     </div>
-    <div class="OIFlexItem stepFlexContainer">
-      <a class="step createAccountStep" href='#'>
-        <div class="stepItem stepNumber">1</div>
-        <div class="stepItem stepIcon person_add hoverable" href="#">
-          <span class="material-icons peachGradient">person_add</span>
+    <div class="OIFlexItem mainContainer">
+      <div class="aboutContainer">
+        <div class="aboutHeading peachGradientText">About</div>
+        <div class="aboutContent">
+          Integrate with your Hubitat network using the
+          <a class="textLink" href="https://docs.hubitat.com/index.php?title=Maker_API">MakerAPI</a> to control smart
+          devices
         </div>
-        <div class="stepItem stepText">
-          Create an account
-        </div>
-      </a>
-      <a class="step addNetworkStep" href='config.html'>
-        <div class="stepItem stepNumber">2</div>
+      </div>
+      <div class="stepFlexContainer">
+        <a class="step createAccountStep" href="#">
+          <div class="stepItem stepNumber">1</div>
+          <div class="stepItem stepIcon person_add hoverable" href="#">
+            <span class="material-icons peachGradient">person_add</span>
+          </div>
+          <div class="stepItem stepText">Create an account</div>
+        </a>
+        <a class="step addNetworkStep" href="config.html">
+          <div class="stepItem stepNumber">2</div>
 
-        <div class="stepItem stepIcon tune"> 
-          <span class="material-icons peachGradient">tune</span>
-        </div>
-        <div class="stepItem stepText">
-          Add your network
-        </div>
-      </a>
-      <a class="step controlDevicesStep" href="devices.html">
-        <div class="stepItem stepNumber">3</div>
-        <div class="stepItem stepIcon tungsten">
-          <span class="material-icons peachGradient">tungsten</span>
-        </div>
-        <div class="stepItem stepText">
-          Control your devices
-        </div>
-      </a>
+          <div class="stepItem stepIcon tune">
+            <span class="material-icons peachGradient">tune</span>
+          </div>
+          <div class="stepItem stepText">Add your network</div>
+        </a>
+        <a class="step controlDevicesStep" href="devices.html">
+          <div class="stepItem stepNumber">3</div>
+          <div class="stepItem stepIcon tungsten">
+            <span class="material-icons peachGradient">tungsten</span>
+          </div>
+          <div class="stepItem stepText">Control your devices</div>
+        </a>
+      </div>
     </div>
   </div>
 </body>
