@@ -79,7 +79,7 @@ input:focus {
   background-image: var(--peachGradientReverse);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  text-shadow: 1px 1px #fff;
+  text-shadow: 5px 5px #fff;
 }
 .peachGradientText {
   background-image: var(--peachGradient);
@@ -123,11 +123,13 @@ input:focus {
   width: 80%;
 }
 .openingImageHeading {
-  font-size: 70px;
+  font-size: 65px;
   font-family: "Oswald";
   display: none;
   position: relative;
   top: -2rem;
+  align-items: flex-start;
+  text-align: left;
 }
 
 .mainContainer {
@@ -135,7 +137,7 @@ input:focus {
   justify-content: space-between;
   display: flex;
   position: relative;
-  top: -2rem;
+  margin: 3rem 0;
 }
 
 .aboutContainer {
@@ -149,13 +151,7 @@ input:focus {
   align-items: flex-start;
   justify-content: center;
 }
-.aboutHeading {
-  font-size: 55px;
-  font-family: "oswald";
-  margin: 0px 40px;
-  position: relative;
-  top: -6rem;
-}
+
 .aboutContent {
   font-family: "open sans";
   font-size: 26px;
@@ -189,7 +185,7 @@ input:focus {
   background: var(--higherOpacityWhite);
 }
 .stepItem {
-  margin: 0px 70px;
+  margin: 0px 50px;
 }
 .stepNumber {
   align-self: center;
@@ -197,12 +193,14 @@ input:focus {
   font-family: "Asap";
 }
 .stepIcon {
-  transform: scale(4);
   transform-origin: center;
   position: relative;
-  top: 173%;
-  margin: 0px 15px;
+  margin: 0px 7px;
 }
+.stepIconFont {
+  font-size: 130px !important;
+}
+
 .stepIcon:hover {
   cursor: default;
 }
@@ -231,18 +229,24 @@ input:focus {
   left: 55px;
 }
 
+.arrowContainer {
+  text-align: center;
+}
+.scrollDownBtn {
+  font-size: 75px !important;
+}
+
 .featuresSection {
   display: none;
   flex-direction: column;
   align-items: center;
   position: relative;
-  top: -20px;
   left: 2%;
   width: 96%;
   height: auto;
   background: var(--LowerOpacityWhite);
   border-radius: 6px;
-  margin-bottom: 7%;
+  margin: 6.5rem 0;
 }
 .featuresHeading {
   font-family: "oswald";
