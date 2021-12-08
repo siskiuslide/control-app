@@ -119,19 +119,23 @@ input:focus {
   transform: scale(1.0005);
 }
 .OIFlexItem {
-  margin: 10px 10%;
+  margin: 0px 10%;
   width: 80%;
 }
 .openingImageHeading {
   font-size: 70px;
   font-family: "Oswald";
   display: none;
+  position: relative;
+  top: -2rem;
 }
 
 .mainContainer {
   flex-direction: row;
   justify-content: space-between;
   display: flex;
+  position: relative;
+  top: -2rem;
 }
 
 .aboutContainer {
@@ -161,10 +165,6 @@ input:focus {
   text-align: justify;
   max-width: 500px;
 }
-
-/* .aboutText {
-  font-family: "open sans";
-} */
 
 .stepFlexContainer {
   display: flex;
@@ -236,7 +236,7 @@ input:focus {
   flex-direction: column;
   align-items: center;
   position: relative;
-  top: 3%;
+  top: -20px;
   left: 2%;
   width: 96%;
   height: auto;
@@ -323,11 +323,22 @@ input:focus {
 }
 .demoListEntry:hover {
   pointer: cursor;
+  transform: scale(1.05);
+}
+.demoListEntry:hover > .chevron-icon {
+  opacity: 1;
+}
+.demo-chevron-icon {
+  position: relative;
+  left: 45px;
 }
 .inactiveDemo {
   background: rgba(255, 255, 255);
 }
 .inactiveDemo > .demoTitle {
+  color: black;
+}
+.inactiveDemo > .chevron-icon {
   color: black;
 }
 .inactiveDemo > .demoFavourite {
