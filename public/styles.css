@@ -94,7 +94,7 @@ input:focus {
 /*homepage*/
 .homeBody {
   background: var(--homeBackground);
-  height: 240%;
+  height: 260%;
 
 }
 .homeNav {
@@ -240,12 +240,13 @@ input:focus {
  height: auto;
  background: var(--LowerOpacityWhite);
  border-radius: 6px;
+ margin-bottom: 7%;
  
   
 }
 .featuresHeading{
   font-family: 'oswald';
-  font-size: 55px;
+  font-size: 65px;
   margin: 10px;
 
 }
@@ -268,13 +269,14 @@ input:focus {
   height: auto;
   display: block;
   overflow: hidden;
-  filter: blur(2px);
 }
 .featureDivider{
   align-self: center;
   min-height: 240px;
+  width: 4px;
   /* background: var(--peachGradient) */
   background: white;
+  box-shadow: -2px -2px var(--midAccent);
 }
 .featureTextFlex{
   justify-self: flex-end;
@@ -289,16 +291,35 @@ input:focus {
   font-family: 'oswald';
   align-self: flex-start;
   text-shadow: -2px -2px var(--midAccent);
+  margin: 5% 0px 0px 0px;
 }
 .featureDesc{
-  margin: 10px 0px;
+  margin: 3% 0px;
   font-family: 'open sans';
   font-size: 24px;
   text-align: justify;
 
 }
 
+.networkImage{
+  transform: scaleY(0.9)
+}
+.pollingImage{
+  filter: blur(2px);
+}
 
+
+
+
+.linksSection{
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  background:white;
+  /* top: 10%; */
+  height: 16%;
+}
 /*Navbar*/
 .navbar {
   position: relative;
@@ -705,7 +726,7 @@ input:focus {
 .divider {
   /*apply unique stlyes with the secondary class assigned to the element where this is used.*/
   position: relative;
-  width: 3px;
+  width: 4px;
   /* height: 150px; */
   /* background: white; */
   border-radius: 3px;
@@ -829,6 +850,7 @@ input:focus {
   background: var(--midAccentHover);
   margin: 15px;
   left: 10%;
+
 }
 .formButtonContainer {
   display: flex;

@@ -31,5 +31,9 @@ window.addEventListener("load", () => {
       setTimeout(() => {
         fadeIn(featuresSection, 600, "flex");
       }, 600)
+    ).then(
+      setTimeout(() => {
+        fadeIn(linksSection, 600, "flex");
+      }, 600)
     )
 });
