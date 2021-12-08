@@ -10,9 +10,20 @@ steps.forEach((step) => {
   });
 });
 
+const mainHeading = document.querySelector(".openingImageHeading");
 const aboutContainer = document.querySelector(".aboutContainer");
 window.addEventListener("load", () => {
   const stepFadeIn = new Promise(() => {
-    progressiveFadeIn(steps, 200, "flex");
-  }).then(fadeIn(aboutContainer, 75, "flex"));
+    fadeIn(mainHeading, 150, "block");
+  })
+    .then(
+      setTimeout(() => {
+        progressiveFadeIn(steps, 200, "flex");
+      }, 600)
+    )
+    .then(
+      setTimeout(() => {
+        fadeIn(aboutContainer, 400, "flex");
+      }, 600)
+    );
 });
