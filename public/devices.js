@@ -339,7 +339,7 @@ window.addEventListener("load", async (e) => {
         });
       return;
     }
-    if (e.target.classList.contains("control-del-icon")) {
+    if (e.target.classgiList.contains("control-del-icon")) {
       const updateObj = excludeItem(e, "control", "device");
       await fetch(`/devices/${updateObj.configID}`, {
         method: "PATCH",
