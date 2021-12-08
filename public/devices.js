@@ -109,6 +109,7 @@ const checkActiveConfigForPolling = function (active) {
   }
   return pollingStatus;
 };
+
 const pollDevices = function (active) {
   let interval;
   let pollSwitch = document.querySelector(".pollSwitch");
@@ -339,7 +340,7 @@ window.addEventListener("load", async (e) => {
         });
       return;
     }
-    if (e.target.classgiList.contains("control-del-icon")) {
+    if (e.target.classList.contains("control-del-icon")) {
       const updateObj = excludeItem(e, "control", "device");
       await fetch(`/devices/${updateObj.configID}`, {
         method: "PATCH",

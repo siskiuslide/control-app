@@ -12,6 +12,8 @@ steps.forEach((step) => {
 
 const mainHeading = document.querySelector(".openingImageHeading");
 const aboutContainer = document.querySelector(".aboutContainer");
+const featuresSection = document.querySelector('.featuresSection')
+const linksSection = document.querySelector('.linksSection')
 window.addEventListener("load", () => {
   const stepFadeIn = new Promise(() => {
     fadeIn(mainHeading, 150, "block");
@@ -25,5 +27,9 @@ window.addEventListener("load", () => {
       setTimeout(() => {
         fadeIn(aboutContainer, 400, "flex");
       }, 600)
-    );
+    ).then(
+      setTimeout(() => {
+        fadeIn(featuresSection, 600, "flex");
+      }, 600)
+    )
 });
