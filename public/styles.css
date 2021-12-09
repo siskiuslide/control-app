@@ -161,7 +161,7 @@ input:focus {
   text-shadow: 4px 4px rgb(255, 255, 255) !important;
 }
 .demoControlsFlex{
-  background: var(--higherOpacityWhite);
+  /* background: rgba(255,255,255, 0.8); */
   display: none;
   flex-direction: row;
   justify-content: space-evenly;
@@ -172,14 +172,15 @@ input:focus {
   min-width: 560px;
   opacity: 1;
   margin: -88% 0 0 50%;
-  border-radius: 7px;
+  border-radius: 6px;
+  z-index: 2;
 }
 .demoControl{
   width: 29%;
   height: 90%;
   background: white;
   color: black;
-  border-radius: 6px;
+  border-radius: 5px;
   display: none;
   flex-direction: column;
   cursor: pointer;
@@ -192,6 +193,7 @@ input:focus {
 .demoControl > .controlLabel{
   font-size: 18px !important;
   font-weight: 500;
+  margin: 5px 0 0 0;
 }
 .demoControl > .controlStatusIconCont{
   width: 46% !important;
@@ -214,11 +216,12 @@ input:focus {
   top: 67%;
   left: 62%;
   opacity: 0;
+  z-index: 3;
 }
 .tryMePrompt{
   font-size: 24px;
   color: white;
-  font-family: 'Oswald';
+  font-family: 'Satisfy';
 }
 .tryMeContainer:hover > .material-icons{
   transform: rotate(30deg)
@@ -276,7 +279,7 @@ input:focus {
   height: 150px;
   margin: 10px 10% 10px 0;
   background: var(--homeStep);
-  border-radius: 7px;
+  border-radius: 6px;
   box-shadow: 0px 0px 8px rgba(100, 100, 100, 0.5);
 }
 .step:hover {
@@ -390,7 +393,7 @@ input:focus {
   width: 96%;
   height: auto;
   background: var(--LowerOpacityWhite);
-  border-radius: 6px;
+  border-radius: 4px;
   margin-top: 3rem;
   opacity: 0;
 }
@@ -416,7 +419,7 @@ input:focus {
   height: auto;
 }
 .featureImage {
-  border-radius: 7px;
+  border-radius: 6px;
   width: 100%;
   height: auto;
   display: block;
@@ -704,7 +707,7 @@ input:focus {
   width: 47vw;
   min-height: 87vh;
   height: auto;
-  border-radius: 10px;
+  border-radius: 5px;
   margin: 3vh 2vw;
   transition: all 100ms;
 }
@@ -823,7 +826,7 @@ input:focus {
   position: relative;
   margin: 2% 6%;
   width: 88%;
-  border-radius: 10px 10px 5px 5px;
+  border-radius: 6px 6px 3px 3px;
   background-color: var(--higherOpacityWhite);
   box-shadow: var(--boxShadow);
   opacity: 0;
@@ -835,7 +838,7 @@ input:focus {
 }
 .pcHeaderWrapper {
   background: var(--peachGradient);
-  border-radius: 10px 10px 0 0;
+  border-radius: 6px 6px 0 0;
   padding-bottom: 4px;
 }
 .preConfiguredHeaderBox {
@@ -843,7 +846,7 @@ input:focus {
   align-self: flex-start;
   justify-content: space-between;
   background: white;
-  border-radius: 10px 10px 0 0;
+  border-radius: 6px 6px 0 0;
   background: var(--midAccent);
   display: flex;
   flex-direction: row;
@@ -977,8 +980,6 @@ input:focus {
   /*apply unique stlyes with the secondary class assigned to the element where this is used.*/
   position: relative;
   width: 4px;
-  /* height: 150px; */
-  /* background: white; */
   border-radius: 3px;
   top: 0;
   left: -15px;
@@ -1004,7 +1005,7 @@ input:focus {
   justify-content: center;
   height: auto;
   background: var(--LowerOpacityWhite);
-  border-radius: 8px;
+  border-radius: 6px;
   width: 62%;
   position: relative;
   left: 50px;
@@ -1377,7 +1378,7 @@ input:checked + .slider:before {
 .control {
   position: relative;
   background: white;
-  border-radius: 6px;
+  border-radius: 4px;
   box-shadow: 0px 0px 5px 1px rgb(56, 56, 56);
   margin: 20px 25px 50px 25px;
   width: 230px;
