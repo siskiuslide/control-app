@@ -67,6 +67,12 @@ let fadeIn = function (element, duration, orntn) {
   }, (duration += 10));
 };
 
+//this is to fade in elements that are targets of el.GetBoundingClientRect
+let fadeInOpacOnly = function(element, duration){
+  element.style.transition = `opacity ${duration}ms`
+  element.style.opacity = '1'
+}
+
 let progressiveFadeIn = function (nodelist, interval, orntn) { // take a nodelist and fade in on interval
   nodelist.forEach((el, i) => fadeIn(el, interval * i, orntn));
 };
