@@ -18,6 +18,7 @@
   --boxShadow: 2px 1px 3px rgb(77, 76, 76);
   --boxShadowHover: 3px 1px 5px #4e4c4c;
   --textShadow: 1px 1px 5px #4e4c4c;
+  --textShadowDark: 1px 2px 5px #363636;
   --homeBackground: linear-gradient(
     to bottom,
     rgba(0, 128, 187, 1) 0%,
@@ -91,7 +92,7 @@ input:focus {
 .textLink {
   text-decoration: underline;
   transition: transform 50ms;
-  color: black;
+  color: var(--lightBlueAccent);
 }
 .textLink:hover {
   color: var(--midAccent);
@@ -137,7 +138,7 @@ input:focus {
   position: relative;
   justify-self: flex-start;
   height: auto;
-  max-width: 40%;
+  max-width: 650px;
   min-height: 500px;
   display: none;
   flex-direction: column;
@@ -160,33 +161,37 @@ input:focus {
   text-shadow: 4px 4px rgb(255, 255, 255) !important;
 }
 .demoControlsFlex{
-  background: var(--midAccentHover);
-  display: flex;
+  background: var(--higherOpacityWhite);
+  display: none;
   flex-direction: row;
   justify-content: space-evenly;
   align-items: center;
-  height: 33%;
-  width: 87%;
+  height: 34%;
+  width: 86%;
+  min-height: 150px;
+  min-width: 560px;
   opacity: 1;
-  margin: -90% 0 0 58%;
+  margin: -88% 0 0 50%;
   border-radius: 7px;
 }
 .demoControl{
-  width: 28%;
+  width: 29%;
   height: 90%;
   background: white;
   color: black;
   border-radius: 6px;
-  opacity: 1 !important;
-  display: flex;
+  display: none;
   flex-direction: column;
   cursor: pointer;
   justify-content: space-between;
   align-items: center;
+  opacity: 0;
+  box-shadow: -3px -3px var(--midAccent);
 }
 /* shares the styles of device controls elsewhere in the app*/
 .demoControl > .controlLabel{
   font-size: 18px !important;
+  font-weight: 500;
 }
 .demoControl > .controlStatusIconCont{
   width: 46% !important;
@@ -199,6 +204,60 @@ input:focus {
   margin: 1px 1px;
   font-size: 12px !important;
 }
+.tryMeContainer{
+  position: absolute;
+  width: 180px;
+  height: 50px;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  top: 67%;
+  left: 62%;
+  opacity: 0;
+}
+.tryMePrompt{
+  font-size: 24px;
+  color: white;
+  font-family: 'Oswald';
+}
+.tryMeContainer:hover > .material-icons{
+  transform: rotate(30deg)
+}
+.promptChevron{
+  position: absolute;
+  margin: -10% 0 0 16%;
+  font-size: 40px !important;
+  transform: rotate(30deg);
+  text-shadow: var(--textShadow);
+}
+/*DEMO DESIGN Media queries*/
+@media screen and (max-width: 1750px){
+  .demoControlsFlex{
+    margin: -45% 0 0 0;
+  }
+}
+/* @media screen and (max-width: 1450px){
+  .demoControlsFlex{
+    min-width: 410px;
+    min-height: 110px;
+    max-height: 110px;
+    flex-wrap: wrap;
+  }
+  .demoControl > .controlStatusIconCont{
+    justify-self: center;
+    align-self: center;
+    bottom: 20%;
+  }
+  .demoControl > .status-icon{
+    font-size: 20px !important;
+  }
+  .demoControl > .controlFooterSection{
+    display: none;
+  }
+} */
+
+
+
 
 .stepFlexContainer {
   display: flex;
@@ -282,23 +341,36 @@ input:focus {
 
 .aboutBanner {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 65%;
-  background: white;
-  color: black;
+  height: 60%;
+  color: white;
   margin: 7% 0;
   opacity: 0;
+  background-image: url('./images/about/lighting2.png');
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat:repeat-y;
+  background-size:cover;
+  min-height: 60%;
+}
+.aboutBannerHeading{
+  font-size: 70px;
+  font-family: 'oswald';
+  align-self: center;
+  text-shadow: -4px -4px var(--midAccent);
+  margin: -1% 0 5% 0 ;
 }
 .aboutContent {
   font-family: "open sans";
-  font-size: 26px;
+  font-size: 29px;
   position: relative;
   top: -4rem;
   width: 60%;
   text-align: justify;
+  text-shadow: var(--textShadowDark)
 }
 .belowBanner {
   display: flex;
@@ -334,6 +406,10 @@ input:focus {
   width: 90%;
   height: auto;
   margin: 3%;
+  transition: transform 75ms
+}
+.feature:hover{
+  transform: scale(1.04)
 }
 .featureImageContainer {
   width: 35%;
@@ -457,7 +533,9 @@ input:focus {
 .pollingImage {
   filter: blur(2px);
 }
+.signupBanner{
 
+}
 .linksSection {
   display: flex;
   flex-direction: column;
@@ -473,6 +551,7 @@ input:focus {
 .author {
   font-size: 45px;
   text-align: center;
+  margin: 3%;
 }
 .summary {
   width: 70%;

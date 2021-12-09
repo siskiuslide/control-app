@@ -1,4 +1,5 @@
 const steps = document.querySelectorAll(".step");
+const stepContainer = document.querySelector('.stepFlexContainer')
 steps.forEach((step) => {
   const stepIcon = step.querySelector(".material-icons");
   step.addEventListener("mouseenter", () => {
@@ -11,6 +12,8 @@ steps.forEach((step) => {
 
 const mainHeading = document.querySelector(".openingImageHeading");
 const headingContainer = document.querySelector(".aboutHeadingContainer");
+const demoFlex = document.querySelector('.demoControlsFlex')
+const demoControls = document.querySelectorAll('.demoControl')
 const aboutBanner = document.querySelector(".aboutBanner");
 const featuresSection = document.querySelector(".featuresSection");
 const linksSection = document.querySelector(".linksSection");
@@ -19,20 +22,26 @@ const scrollDownBtns = document.querySelectorAll(".scrollDownBtn");
 const scroll1 = document.getElementById("scroll1");
 const scroll2 = document.getElementById("scroll2");
 
+const interactiveBtn = document.querySelector('.tryMeContainer')
+
 //chain of instructions to load elements when page is opened
 window.addEventListener("load", () => {
   const stepFadeIn = new Promise(() => {
     fadeIn(headingContainer, 150, "flex");
+    fadeIn(stepContainer, 600, 'flex'); 
+    fadeIn(demoFlex, 600, "flex");
   })
+  .then(
+    setTimeout(() => {
+      progressiveFadeIn(demoControls, 200, "flex");
+      progressiveFadeIn(steps, 200, 'flex')
+    }, 600)
+  )
     .then(
       setTimeout(() => {
-        progressiveFadeIn(steps, 200, "flex");
-      }, 600)
-    )
-    .then(
-      setTimeout(() => {
-        fadeInOpacOnly(scroll1, 1000, "block");
-      }, 800)
+        fadeInOpacOnly(scroll1, 1000);
+        fadeInOpacOnly(interactiveBtn, 500)
+      }, 1000)
     )
     .then(
       setTimeout(() => {
@@ -48,24 +57,23 @@ window.addEventListener("load", () => {
       setTimeout(() => {
         fadeInOpacOnly(linksSection, 600);
       }, 600)
-    )
-    
+    )    
 });
 
 //scrolling
 const findTarget = function(offY){
   const currentLoc = window.scrollY
-  const currentOffset = currentLoc + offY + 350
-  return currentOffset
+  const targetOffset = currentLoc + offY
+  console.log(targetOffset)
+  return targetOffset
 }
 const scrollDest = document.querySelectorAll(".scrollDest");
 scrollDownBtns.forEach((btn, i) => {
   const id = btn.id.slice(6);
   const target = document.getElementById(`dest${id}`).getBoundingClientRect();
-  const destination = findTarget(target.top)
-  console.log(`Target: ${id}, toprect: ${target.top}, scrolldest: ${destination}`)
+  const destination = findTarget(target.top) + 400
   btn.addEventListener("click", () => {
-    window.scrollTo({ top: destination, left: 0, behavior: "smooth" });
+    window.scrollTo({top: destination, behavior: "smooth" });
   });
 });
 
