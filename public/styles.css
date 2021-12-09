@@ -99,8 +99,8 @@ input:focus {
 
 /*homepage*/
 .homeBody {
-  background: var(--homeBackground);
-  height: 260%;
+  background: var(--homeBackground) !important;
+  /* height: 260%; */
 }
 .homeNav {
   background: #fff;
@@ -236,7 +236,7 @@ input:focus {
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 20%;
+  height: 35%;
   background: white;
   color: black;
   margin: 7% 0;
@@ -249,6 +249,14 @@ input:focus {
   width: 60%;
   text-align: justify;
 }
+.belowBanner {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: 5%;
+  width: 100%;
+}
 
 .featuresSection {
   display: none;
@@ -260,7 +268,7 @@ input:focus {
   height: auto;
   background: var(--LowerOpacityWhite);
   border-radius: 6px;
-  margin: 8.5rem 0;
+  margin-top: 3rem;
 }
 .featuresHeading {
   font-family: "oswald";
@@ -405,7 +413,7 @@ input:focus {
   justify-content: center;
   position: relative;
   background: var(--mainGradient);
-  height: 16%;
+  height: auto;
   font-family: "open sans";
   color: white;
 }

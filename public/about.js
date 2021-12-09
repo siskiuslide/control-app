@@ -51,14 +51,12 @@ window.addEventListener("load", () => {
     );
 });
 
+//scrolling
 const scrollDest = document.querySelectorAll(".scrollDest");
-
 scrollDownBtns.forEach((btn, i) => {
   const id = btn.id.slice(6);
   const target = document.getElementById(`dest${id}`).getBoundingClientRect();
-  console.log(target);
-  const destination = target.top - 40;
-  console.log(destination);
+  const destination = target.top;
   btn.addEventListener("click", () => {
     window.scrollTo({ top: destination, left: 0, behavior: "smooth" });
   });
