@@ -53,12 +53,7 @@
         <h1 class="openingImageHeading">
           <span class="peachGradientText">Control your networks simply.</span>
         </h1>
-        <div class="aboutContent">
-          Integrate with your Hubitat network using the
-          <a class="textLink" href="https://docs.hubitat.com/index.php?title=Maker_API"><b>MakerAPI</b></a> to control
-          smart devices. A project built with <b>NodeJS</b>, <b>Express</b> & <b>MongoDB</b> that utilizes a simplistic
-          <b>HTML/CSS/JS</b> frontend.
-        </div>
+        
       </div>
       <div class="stepFlexContainer">
         <a class="step createAccountStep" href="#">
@@ -87,9 +82,24 @@
      </div>   
     </div>
     <div class="OIFlexItem arrowContainer">
-        <span class="material-icons scrollDownBtn">expand_more</span>
+        <span class="material-icons scrollDownBtn" id="scroll1">expand_more</span>
     </div>
-    <div class="featuresSection">
+
+    <div class="aboutBanner scrollDest" id="dest1">
+      <div class="aboutContent">
+        Integrate with your Hubitat network using the
+        <a class="textLink" href="https://docs.hubitat.com/index.php?title=Maker_API"><b>MakerAPI</b></a> to control
+        smart devices. A project built with <b>NodeJS</b>, <b>Express</b> & <b>MongoDB</b> that utilizes a simplistic
+        <b>HTML/CSS/JS</b> frontend.
+      </div>
+    </div>
+
+    <div class="OIFlexItem arrowContainer">
+      <span class="material-icons scrollDownBtn" id="scroll2">expand_more</span>
+  </div>
+
+
+    <div class="featuresSection scrollDest" id="dest2">
       <div class="featuresHeading peachGradientText">Features</div>
       <div class="feature multiFeature">
         <div class=" multiFeatureDesign">
@@ -110,7 +120,7 @@
           </div>       
         
         </div>
-        <div class="featureDivider divider"></div>
+        <!-- <div class="featureDivider divider"></div> -->
         <div class="featureTextFlex">
           <div class="featureName">Multiple connections</div>
           <div class="featureDesc">Allows connections to any number of Maker API instances setup on any hub with an internet connection. Use this to segment areas of your network or control multiple networks from a remote location.</div>
@@ -120,7 +130,7 @@
         <div class="featureImageContainer">
           <img class="featureImage pollingImage" src="images/about/polling.png"></img>
         </div>
-        <div class="featureDivider divider"></div>
+        <!-- <div class="featureDivider divider"></div> -->
         <div class="featureTextFlex">
           <div class="featureName">Polling</div>
           <div class="featureDesc">Make poll requests to your hub to update device status automatically. The polling system is performant and toggleable, and is subject to validation checks before repeating the check.</div>
@@ -130,7 +140,7 @@
         <div class="featureImageContainer">
           <img class="featureImage" src=""></img>
         </div>
-        <div class="featureDivider divider"></div>
+        <!-- <div class="featureDivider divider"></div> -->
         <div class="featureTextFlex">
           <div class="featureName">Instant response</div>
           <div class="featureDesc">The UI responds instantly to controlling devices and is followed by a validation check, ensuring the device's shown status is correct. Enjoy a snappy and reliable UI.</div>

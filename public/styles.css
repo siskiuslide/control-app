@@ -91,9 +91,10 @@ input:focus {
 .textLink {
   text-decoration: underline;
   transition: transform 50ms;
+  color: black;
 }
 .textLink:hover {
-  color: var(--higherOpacityWhite);
+  color: var(--midAccent);
 }
 
 /*homepage*/
@@ -127,7 +128,7 @@ input:focus {
   font-family: "Oswald";
   display: none;
   position: relative;
-  top: -2rem;
+  top: -4rem;
   align-items: flex-start;
   text-align: left;
 }
@@ -137,7 +138,7 @@ input:focus {
   justify-content: space-between;
   display: flex;
   position: relative;
-  margin: 3rem 0;
+  margin: 10% 0 0 0;
 }
 
 .aboutContainer {
@@ -152,16 +153,6 @@ input:focus {
   justify-content: center;
 }
 
-.aboutContent {
-  font-family: "open sans";
-  font-size: 26px;
-  position: relative;
-  top: -4rem;
-  width: 100%;
-  text-align: justify;
-  max-width: 500px;
-}
-
 .stepFlexContainer {
   display: flex;
   flex-direction: column;
@@ -169,6 +160,7 @@ input:focus {
   width: 55%;
   position: relative;
   left: 10%;
+  top: 15%;
 }
 
 .step {
@@ -210,7 +202,7 @@ input:focus {
 .stepText {
   font-size: 37px;
   align-self: center;
-  margin: 0px 0px 0px 90px;
+  margin: 0px 10px 0px 20px;
   font-family: "Open sans";
 }
 .step * {
@@ -231,9 +223,31 @@ input:focus {
 
 .arrowContainer {
   text-align: center;
+  margin-top: 3%;
+  display: none;
 }
 .scrollDownBtn {
   font-size: 75px !important;
+}
+
+.aboutBanner {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 20%;
+  background: white;
+  color: black;
+  margin: 7% 0;
+}
+.aboutContent {
+  font-family: "open sans";
+  font-size: 26px;
+  position: relative;
+  top: -4rem;
+  width: 60%;
+  text-align: justify;
 }
 
 .featuresSection {
@@ -246,7 +260,7 @@ input:focus {
   height: auto;
   background: var(--LowerOpacityWhite);
   border-radius: 6px;
-  margin: 6.5rem 0;
+  margin: 8.5rem 0;
 }
 .featuresHeading {
   font-family: "oswald";
@@ -256,7 +270,7 @@ input:focus {
 .feature {
   display: flex;
   flex-direction: row;
-  justify-content: space-evenly;
+  justify-content: space-around;
   width: 90%;
   height: auto;
   margin: 3%;
@@ -271,22 +285,23 @@ input:focus {
   height: auto;
   display: block;
   overflow: hidden;
+  margin: 0 3%;
 }
 .featureDivider {
   align-self: center;
   min-height: 240px;
   width: 4px;
-  /* background: var(--peachGradient) */
   background: white;
   box-shadow: -2px -2px var(--midAccent);
+  margin: 0px 2%;
 }
 .featureTextFlex {
   justify-self: flex-end;
-  /* align-self: flex-end; */
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 40%;
+  margin: 0 5% 0 0;
 }
 .featureName {
   font-size: 42px;
@@ -309,6 +324,7 @@ input:focus {
   width: 35%;
   height: auto;
   background: transparent;
+  margin: 0px 3%;
 }
 .demoListItem {
   margin: 3px 8px;
