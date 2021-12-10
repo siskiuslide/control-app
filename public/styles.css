@@ -125,7 +125,6 @@ input:focus {
   width: 80%;
 }
 
-
 .mainContainer {
   flex-direction: row;
   justify-content: space-between;
@@ -143,7 +142,7 @@ input:focus {
   display: none;
   flex-direction: column;
   align-items: center;
-  justify-content: space-around; 
+  justify-content: space-around;
 }
 .openingImageHeading {
   font-size: 65px;
@@ -157,10 +156,10 @@ input:focus {
   top: -6rem;
   padding: 20px;
 }
-.openingImageHeading > .peachGradientText{
+.openingImageHeading > .peachGradientText {
   text-shadow: 4px 4px rgb(255, 255, 255) !important;
 }
-.demoControlsFlex{
+.demoControlsFlex {
   /* background: rgba(255,255,255, 0.8); */
   display: none;
   flex-direction: row;
@@ -175,7 +174,7 @@ input:focus {
   border-radius: 6px;
   z-index: 2;
 }
-.demoControl{
+.demoControl {
   width: 29%;
   height: 90%;
   background: white;
@@ -190,23 +189,23 @@ input:focus {
   box-shadow: -3px -3px var(--midAccent);
 }
 /* shares the styles of device controls elsewhere in the app*/
-.demoControl > .controlLabel{
+.demoControl > .controlLabel {
   font-size: 18px !important;
   font-weight: 500;
   margin: 5px 0 0 0;
 }
-.demoControl > .controlStatusIconCont{
+.demoControl > .controlStatusIconCont {
   width: 46% !important;
   height: 46% !important;
 }
-.demoControl > .status-icon{
-  transform: scale((2))
+.demoControl > .status-icon {
+  transform: scale((2));
 }
-.demoControl > .material-icons{
+.demoControl > .material-icons {
   margin: 1px 1px;
   font-size: 12px !important;
 }
-.tryMeContainer{
+.tryMeContainer {
   position: absolute;
   width: 180px;
   height: 50px;
@@ -218,15 +217,15 @@ input:focus {
   opacity: 0;
   z-index: 3;
 }
-.tryMePrompt{
-  font-size: 24px;
+.tryMePrompt {
+  font-size: 28px;
   color: white;
-  font-family: 'Satisfy';
+  font-family: "Satisfy";
 }
-.tryMeContainer:hover > .material-icons{
-  transform: rotate(30deg)
+.tryMeContainer:hover > .material-icons {
+  transform: rotate(30deg);
 }
-.promptChevron{
+.promptChevron {
   position: absolute;
   margin: -10% 0 0 16%;
   font-size: 40px !important;
@@ -234,8 +233,8 @@ input:focus {
   text-shadow: var(--textShadow);
 }
 /*DEMO DESIGN Media queries*/
-@media screen and (max-width: 1750px){
-  .demoControlsFlex{
+@media screen and (max-width: 1750px) {
+  .demoControlsFlex {
     margin: -45% 0 0 0;
   }
 }
@@ -258,9 +257,6 @@ input:focus {
     display: none;
   }
 } */
-
-
-
 
 .stepFlexContainer {
   display: flex;
@@ -338,7 +334,7 @@ input:focus {
 .scrollDownBtn {
   font-size: 75px !important;
 }
-#scroll1{
+#scroll1 {
   opacity: 0;
 }
 
@@ -348,23 +344,23 @@ input:focus {
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 60%;
+  height: 67%;
   color: white;
   margin: 7% 0;
   opacity: 0;
-  background-image: url('./images/about/lighting2.png');
+  background-image: url("./images/about/lighting2.png");
   background-attachment: fixed;
   background-position: center;
-  background-repeat:repeat-y;
-  background-size:cover;
-  min-height: 60%;
+  background-repeat: repeat-y;
+  background-size: cover;
+  min-height: 67%;
 }
-.aboutBannerHeading{
+.aboutBannerHeading {
   font-size: 70px;
-  font-family: 'oswald';
+  font-family: "oswald";
   align-self: center;
   text-shadow: -4px -4px var(--midAccent);
-  margin: -1% 0 5% 0 ;
+  margin: -1% 0 5% 0;
 }
 .aboutContent {
   font-family: "open sans";
@@ -373,7 +369,7 @@ input:focus {
   top: -4rem;
   width: 60%;
   text-align: justify;
-  text-shadow: var(--textShadowDark)
+  text-shadow: var(--textShadowDark);
 }
 .belowBanner {
   display: flex;
@@ -382,6 +378,8 @@ input:focus {
   align-items: center;
   height: 5%;
   width: 100%;
+  position: relative;
+  top: -5%;
 }
 
 .featuresSection {
@@ -394,7 +392,6 @@ input:focus {
   height: auto;
   background: var(--LowerOpacityWhite);
   border-radius: 4px;
-  margin-top: 3rem;
   opacity: 0;
 }
 .featuresHeading {
@@ -409,10 +406,10 @@ input:focus {
   width: 90%;
   height: auto;
   margin: 3%;
-  transition: transform 75ms
+  transition: transform 75ms;
 }
-.feature:hover{
-  transform: scale(1.04)
+.feature:hover {
+  transform: scale(1.04);
 }
 .featureImageContainer {
   width: 35%;
@@ -536,8 +533,7 @@ input:focus {
 .pollingImage {
   filter: blur(2px);
 }
-.signupBanner{
-
+.signupBanner {
 }
 .linksSection {
   display: flex;
@@ -1461,7 +1457,7 @@ input:checked + .slider:before {
   width: 100%;
   height: auto;
   background: #5a5a5a;
-  border-radius: 0 0 6px 6px;
+  border-radius: 0 0 4px 4px;
   color: white;
 }
 .controlFooterItem {
