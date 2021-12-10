@@ -48,11 +48,11 @@
   <div class="openingImage">
     <div class="OIFlexItem mainContainer">
       <div class="aboutHeadingContainer">
-        <h1 class="openingImageHeading">
+        <h1 class="openingImageHeading neonTarget">
           <span class="peachGradientText">Control your networks simply.</span>
         </h1>
         <div class="demoControlsFlex">
-          <div class="demoControl">
+          <div class="demoControl" id="demoControl1">
             <div class="controlLabel">Hallway Light</div>
             <div class="controlStatusIconCont device-on">
               <span class="material-icons status-icon">lightbulb</span>
@@ -69,7 +69,8 @@
               </div>
             </div>
           </div>
-          <div class="demoControl"><div class="controlLabel">Neons!</div>
+          <div class="demoControl" id="demoControl2">
+          <div class="controlLabel">Neons!</div>
           <div class="controlStatusIconCont device-off">
             <span class="material-icons status-icon">bolt</span>
           </div>
@@ -85,7 +86,7 @@
             </div>
           </div>
         </div>
-          <div class="demoControl">
+          <div class="demoControl" id="demoControl3">
             <div class="controlLabel">Lounge Light</div>
             <div class="controlStatusIconCont device-on">
               <span class="material-icons status-icon">lightbulb</span>
@@ -109,21 +110,21 @@
         </div>  
       </div>    
       <div class="stepFlexContainer">
-        <a class="step createAccountStep" href="#">
+        <a class="step createAccountStep neonTarget" href="#">
           <div class="stepItem stepNumber">1</div>
           <div class="stepItem stepIcon person_add hoverable" href="#">
             <span class="material-icons peachGradient stepIconFont">person_add</span>
           </div>
           <div class="stepItem stepText">Create an account</div>
         </a>
-        <a class="step addNetworkStep" href="config.html">
+        <a class="step addNetworkStep neonTarget" href="config.html">
           <div class="stepItem stepNumber">2</div>
           <div class="stepItem stepIcon tune">
             <span class="material-icons peachGradient stepIconFont">tune</span>
           </div>
           <div class="stepItem stepText">Add your network</div>
         </a>
-        <a class="step controlDevicesStep" href="devices.html">
+        <a class="step controlDevicesStep neonTarget" href="devices.html">
           <div class="stepItem stepNumber">3</div>
           <div class="stepItem stepIcon tungsten">
             <span class="material-icons peachGradient stepIconFont">tungsten</span>
@@ -156,7 +157,7 @@
       <div class="feature multiFeature">
         <div class=" multiFeatureDesign">
           <div class="demoListItem demoListEntry inactiveDemo" id="demo1">
-            <span class="demoFavourite material-icons">star_outline</span>
+            <span class="demoFavourite material-icons non-fav">star_outline</span>
             <div class="demoTitle">Home - Kitchen</div>
             <span class="material-icons chevron-icon demo-chevron-icon">chevron_right</span>
           </div>
@@ -167,7 +168,7 @@
           </div>
           <div class="demoListItem demoListEntry inactiveDemo" id="demo3">
             <span class="demoFavourite material-icons favourited">star</span>
-            <div class="demoTitle">Steve's Network</div>
+            <div class="demoTitle">Morris' Network</div>
             <span class="material-icons chevron-icon demo-chevron-icon">chevron_right</span>
           </div>       
         
@@ -179,18 +180,19 @@
         </div>
       </div>
       <div class="feature pollingFeature">
+        
+        <!-- <div class="featureDivider divider"></div> -->
+        <div class="featureTextFlex featureTextRev">
+          <div class="featureName">Polling</div>
+          <div class="featureDesc featureDescRev">Make poll requests to your hub to update device status automatically. The polling system is performant and toggleable, and is subject to validation checks before repeating the check.</div>
+        </div>
         <div class="featureImageContainer">
           <img class="featureImage pollingImage" src="images/about/polling.png"></img>
-        </div>
-        <!-- <div class="featureDivider divider"></div> -->
-        <div class="featureTextFlex">
-          <div class="featureName">Polling</div>
-          <div class="featureDesc">Make poll requests to your hub to update device status automatically. The polling system is performant and toggleable, and is subject to validation checks before repeating the check.</div>
         </div>
       </div>
       <div class="feature responseFeature">
         <div class="featureImageContainer">
-          <img class="featureImage" src=""></img>
+          <img class="featureImage featureImageRev" src=""></img>
         </div>
         <!-- <div class="featureDivider divider"></div> -->
         <div class="featureTextFlex">

@@ -1,6 +1,11 @@
 const steps = document.querySelectorAll(".step");
 const stepContainer = document.querySelector('.stepFlexContainer')
 steps.forEach((step) => {
+  if(step.classList.contains('neonLight')){
+    step.addEventListener('mouseenter',()=>{
+      step.style.background = '';
+    })
+  }
   const stepIcon = step.querySelector(".material-icons");
   step.addEventListener("mouseenter", () => {
     stepIcon.style.transform = "scale(1.1)";
@@ -9,7 +14,7 @@ steps.forEach((step) => {
     stepIcon.style.transform = null;
   });
 });
-
+const homeBody = document.querySelector('.homeBody')
 const mainHeading = document.querySelector(".openingImageHeading");
 const headingContainer = document.querySelector(".aboutHeadingContainer");
 const demoFlex = document.querySelector('.demoControlsFlex')
@@ -71,10 +76,27 @@ const scrollDest = document.querySelectorAll(".scrollDest");
 scrollDownBtns.forEach((btn, i) => {
   const id = btn.id.slice(6);
   const target = document.getElementById(`dest${id}`).getBoundingClientRect();
-  const destination = findTarget(target.top) + 400
+  const destination = findTarget(target.top) + 475
   btn.addEventListener("click", () => {
     window.scrollTo({top: destination, behavior: "smooth" });
   });
 });
 
-console.log(document.getElementById('dest2').getBoundingClientRect().top)
+
+
+// const demoControls = document.querySelectorAll('.demoControl')
+demoControls.forEach(control=>{
+  const btn = control.querySelector('.controlStatusIconCont')
+  control.addEventListener('click',(e)=>{
+    console.log(e.target.closest('.demoControl'))
+    if(e.target.closest('.demoControl').id == 'demoControl2'){
+      const neonTargets = document.querySelectorAll('.neonTarget')
+      btn.classList.toggle('device-on')
+      btn.classList.toggle('device-off')
+      neonTargets.forEach(target=>{
+        target.style.transition = "all 100ms"
+        target.classList.toggle('neonLights')
+      })
+    }
+  })
+})

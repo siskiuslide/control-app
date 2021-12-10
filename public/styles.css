@@ -149,7 +149,7 @@ input:focus {
   font-family: "Oswald";
   position: relative;
   display: block;
-  background: var(--LowerOpacityWhite);
+  background: var(--homeStep);
   border-radius: 7px;
   text-align: left;
   width: auto;
@@ -325,6 +325,22 @@ input:focus {
   position: relative;
   left: 55px;
 }
+.neonLights{
+  border: solid 3px #00C6FF;
+  box-shadow: 0 0 4em #9ce9ff,
+  0 0 2em #00C6FF,
+  0 0 3em #00C6FF,
+  0 0 0.2em #77e2ff inset;
+  transition: box-shadow 300ms linear;
+}
+
+.neonLights:hover{
+  background: var(--homeStep);
+  box-shadow:0 0 1.2em #9ce9ff,
+  0 0 2.5em #00C6FF,
+  0 0 4em #00C6FF,
+  0 0 0.7em #9ce9ff inset;
+}
 
 .arrowContainer {
   text-align: center;
@@ -346,7 +362,7 @@ input:focus {
   width: 100%;
   height: 67%;
   color: white;
-  margin: 7% 0;
+  margin: 9% 0;
   opacity: 0;
   background-image: url("./images/about/lighting2.png");
   background-attachment: fixed;
@@ -354,6 +370,8 @@ input:focus {
   background-repeat: repeat-y;
   background-size: cover;
   min-height: 67%;
+  transform: rotate(-3deg);
+  transform: skewY(-3deg)
 }
 .aboutBannerHeading {
   font-size: 70px;
@@ -361,6 +379,8 @@ input:focus {
   align-self: center;
   text-shadow: -4px -4px var(--midAccent);
   margin: -1% 0 5% 0;
+  transform: rotate(3deg);
+  transform: skewY(3deg)
 }
 .aboutContent {
   font-family: "open sans";
@@ -370,6 +390,8 @@ input:focus {
   width: 60%;
   text-align: justify;
   text-shadow: var(--textShadowDark);
+  transform: rotate(3deg);
+  transform: skewY(3deg)
 }
 .belowBanner {
   display: flex;
@@ -386,8 +408,10 @@ input:focus {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   position: relative;
   left: 2%;
+  top: 5%;
   width: 96%;
   height: auto;
   background: var(--LowerOpacityWhite);
@@ -403,7 +427,7 @@ input:focus {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-  width: 90%;
+  width: 80%;
   height: auto;
   margin: 3%;
   transition: transform 75ms;
@@ -452,6 +476,18 @@ input:focus {
   font-size: 24px;
   text-align: justify;
 }
+.featureImageRev{
+}
+.featureTextRev{
+  margin: -3% 0 0 15%;
+}
+.featureNameRev{
+  align-self: flex-end !important;
+}
+.featureDescRev{
+  text-align: right;
+  width: 80%;
+}
 
 .multiFeatureDesign {
   display: flex;
@@ -497,9 +533,13 @@ input:focus {
 .inactiveDemo > .chevron-icon {
   color: black;
 }
-.inactiveDemo > .demoFavourite {
+.inactiveDemo > .demoTitle {
   color: black;
 }
+.non-fav{
+  color: black;
+}
+
 .activeDemo {
   background: var(--midAccent);
 }
@@ -524,6 +564,7 @@ input:focus {
 #demo2 {
   position: relative;
 }
+
 #demo3 {
   position: relative;
   top: -3%;
