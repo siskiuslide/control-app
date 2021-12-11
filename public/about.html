@@ -1,6 +1,9 @@
 <head>
   <title>Control | About</title>
-  <link rel="stylesheet" href="./styles.css" />
+  <link rel="stylesheet" href="./styles/styles.css" />
+  <link rel="stylesheet" href="./styles/about.css" />
+  <link rel="stylesheet" href="./styles/config.css" />
+  <link rel="stylesheet" href="./styles/devices.css" /> <!--Used for demo in openingImage-->
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Oswald&display=swap" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
@@ -53,7 +56,7 @@
         </h1>
         <div class="demoControlsFlex">
           <div class="demoControl" id="demoControl1">
-            <div class="controlLabel">Hallway Light</div>
+            <p class="controlLabel">Hallway Light</p>
             <div class="controlStatusIconCont device-on">
               <span class="material-icons status-icon">lightbulb</span>
             </div>
@@ -70,10 +73,10 @@
             </div>
           </div>
           <div class="demoControl" id="demoControl2">
-          <div class="controlLabel">Neons!</div>
-          <div class="controlStatusIconCont device-off">
-            <span class="material-icons status-icon">bolt</span>
-          </div>
+            <p class="controlLabel">Neons!</p>
+            <div class="controlStatusIconCont device-off">
+              <span class="material-icons status-icon">bolt</span>
+            </div>
           <div class="controlFooterSection">
             <div class="controlFooterItem">
               <span class="material-icons favourite-icon control-fav-icon favourited">star</span>
@@ -87,7 +90,7 @@
           </div>
         </div>
           <div class="demoControl" id="demoControl3">
-            <div class="controlLabel">Lounge Light</div>
+            <p class="controlLabel">Lounge Light</p>
             <div class="controlStatusIconCont device-on">
               <span class="material-icons status-icon">lightbulb</span>
             </div>
@@ -106,7 +109,7 @@
         </div>
         <div class="tryMeContainer">
           <span class="promptChevron material-icons">north</span>
-          <div class="tryMePrompt">Click Me!</div>
+          <p class="tryMePrompt">Click Me!</p>
         </div>  
       </div>    
       <div class="stepFlexContainer">
@@ -115,21 +118,21 @@
           <div class="stepItem stepIcon person_add hoverable" href="#">
             <span class="material-icons peachGradient stepIconFont">person_add</span>
           </div>
-          <div class="stepItem stepText">Create an account</div>
+          <p class="stepItem stepText">Create an account</p>
         </a>
         <a class="step addNetworkStep neonTarget" href="config.html">
           <div class="stepItem stepNumber">2</div>
           <div class="stepItem stepIcon tune">
             <span class="material-icons peachGradient stepIconFont">tune</span>
           </div>
-          <div class="stepItem stepText">Add your network</div>
+          <p class="stepItem stepText">Add your network</p>
         </a>
         <a class="step controlDevicesStep neonTarget" href="devices.html">
           <div class="stepItem stepNumber">3</div>
           <div class="stepItem stepIcon tungsten">
             <span class="material-icons peachGradient stepIconFont">tungsten</span>
           </div>
-          <div class="stepItem stepText">Control your devices</div>
+          <p class="stepItem stepText">Control your devices</p>
         </a>
       </div>
      </div>   
@@ -137,54 +140,52 @@
     <div class="OIFlexItem arrowContainer">
         <span class="material-icons scrollDownBtn" id="scroll1">expand_more</span>
     </div>
-    <div class="aboutBanner scrollDest" id="dest1">
-      <div class="aboutBannerHeading">About</div>
-      <div class="aboutContent">
+    <div class="aboutBanner scrollDest parallax" id="dest1">
+      <h2 class="aboutBannerHeading">About</h2>
+      <p class="aboutContent">
         <br>
-        We provide an integration for Hubitat users who need a simple and snappy alternative to the built in Hubitat Dashboard. Connect to any number of networks using instances of the
-        <a class="textLink" href="https://docs.hubitat.com/index.php?title=Maker_API"><b>MakerAPI</b></a> to control
-        assigned devices. 
-        <br><br>
+        We provide an integration for Hubitat users who need a simple and snappy alternative to the built in Hubitat Dashboard. Connect to any number of networks by configuring instances of the
+        <a class="textLink" href="https://docs.hubitat.com/index.php?title=Maker_API"><b>MakerAPI</b></a> to control devices you assign.
+        <br>
+        <br>
         The project is built with <b>NodeJS</b>, <b>Express</b> & <b>MongoDB</b>, and utilizes a simplistic
         <b>HTML/CSS/JS</b> frontend.
-      </div>
+      </p>
     </div>
   <div class="belowBanner arrowContainer">
       <span class="material-icons scrollDownBtn" id="scroll2">expand_more</span>
   </div>
     <div class="featuresSection scrollDest" id="dest2">
-      <div class="featuresHeading peachGradientText">Features</div>
+      <h1 class="featuresHeading peachGradientText">Features</h1>
       <div class="feature multiFeature">
-        <div class=" multiFeatureDesign">
-          <div class="demoListItem demoListEntry inactiveDemo" id="demo1">
+        <div class="multiFeatureDesign">
+          <div class="configListItem configListEntry inactiveDemo" id="demo1">
             <span class="demoFavourite material-icons non-fav">star_outline</span>
-            <div class="demoTitle">Home - Kitchen</div>
+            <p>Home - Kitchen</p>
             <span class="material-icons chevron-icon demo-chevron-icon">chevron_right</span>
           </div>
-          <div class="demoListItem demoListEntry activeDemo" id="demo2">
+          <div class="configListItem configListEntry activeDemo" id="demo2">
             <span class="demoFavourite material-icons favourited">star</span>
-            <div class="demoTitle">Home - Lounge</div>
+            <p>Home - Lounge</p>
             <span class="material-icons chevron-icon demo-chevron-icon">chevron_right</span>
           </div>
-          <div class="demoListItem demoListEntry inactiveDemo" id="demo3">
+          <div class="configListItem configListEntry inactiveDemo" id="demo3">
             <span class="demoFavourite material-icons favourited">star</span>
-            <div class="demoTitle">Morris' Network</div>
+            <p>Morris' Network</p>
             <span class="material-icons chevron-icon demo-chevron-icon">chevron_right</span>
-          </div>       
-        
+          </div>               
         </div>
         <!-- <div class="featureDivider divider"></div> -->
         <div class="featureTextFlex">
-          <div class="featureName">Multiple connections</div>
-          <div class="featureDesc">Allows connections to any number of Maker API instances setup on any hub with an internet connection. Use this to segment areas of your network or control multiple networks from a remote location.</div>
+          <h2>Multiple connections</h2>
+          <p class="featureDesc">Allows connections to any number of Maker API instances setup on any hub with an internet connection. Use this to segment areas of your network or control multiple networks from a remote location.</p>
         </div>
       </div>
-      <div class="feature pollingFeature">
-        
+      <div class="feature pollingFeature">        
         <!-- <div class="featureDivider divider"></div> -->
         <div class="featureTextFlex featureTextRev">
-          <div class="featureName">Polling</div>
-          <div class="featureDesc featureDescRev">Make poll requests to your hub to update device status automatically. The polling system is performant and toggleable, and is subject to validation checks before repeating the check.</div>
+          <h2>Polling</h2>
+          <p class="featureDesc featureDescRev">Make poll requests to your hub to update device status automatically. The polling system is performant and toggleable, and is subject to validation checks before repeating the check.</p>
         </div>
         <div class="featureImageContainer">
           <img class="featureImage pollingImage" src="images/about/polling.png"></img>
@@ -196,24 +197,23 @@
         </div>
         <!-- <div class="featureDivider divider"></div> -->
         <div class="featureTextFlex">
-          <div class="featureName">Instant response</div>
-          <div class="featureDesc">The UI responds instantly to controlling devices and is followed by a validation check, ensuring the device's shown status is correct. Enjoy a snappy and reliable UI.</div>
+          <h2>Instant response</h2>
+          <p class="featureDesc">The UI responds instantly to controlling devices and is followed by a validation check, ensuring the device's shown status is correct. Enjoy a snappy and reliable UI.</p>
         </div>
       </div>
       </div>
     </div>
-    <div class="signupBanner">
-      
-    </div>
-    <div class="linksSection">
-      <div class="author">Created by <span class="peachGradientText"><b>Jake Whatling</b></span></div>
-      <div class="summary">I built this application for fun. I will continue supporting and aim for regular updates.</div>
-      <div class="summary">Below are the links to the Github repository as well as my LinkedIn profile.</div>
-      <div class="linksFlex">
-        <a class="socialLink" href="https://github.com/siskiuslide/control-app"><i class="fab fa-github-square"></i></a>
-        <a class="socialLink" href="https://www.linkedin.com/in/jake-whatling/"><i class="fab fa-linkedin"></i></a>
-        <a class="socialLink" href="#"></a>
-      </div>      
-    </div>
-    
+    <div class="largeFooter parallax">
+      <h1>Get Started Now</h1>
+      <div class=""></div>
+  
+      <div class="linksSection">
+        <h1>Created by <span class="peachGradientText"><b>Jake Whatling</b></span></h1>
+        <p class="summary">I built this application for fun. I will continue supporting and aim for regular updates.</p>
+        <p class="summary">Below are the links to the Github repository and LinkedIn profile.</p>
+        <div class="linksFlex">
+         <a href="https://github.com/siskiuslide/control-app"><i class="fab fa-github-square"></i></a>
+         <a href="https://www.linkedin.com/in/jake-whatling/"><i class="fab fa-linkedin"></i></a>
+        </div>      
+      </div>    
 </body>

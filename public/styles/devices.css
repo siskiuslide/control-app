@@ -1,0 +1,293 @@
+/*devices page*/
+
+/**/
+
+.devicePageFlex {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  width: 100%;
+  min-height: 100%;
+}
+
+.configListContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  width: 25vw;
+  background: var(--LowerOpacityWhite);
+  margin: 7px 4px 7px 7px;
+  border-radius: 4px;
+}
+.configListItem {
+  margin: 5px 8px;
+  width: auto;
+}
+.configListHeaderSection {
+  background: none;
+  height: 4%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.headerText {
+  font-size: 30px;
+  margin: 0px 10px;
+  align-self: center;
+  justify-self: center;
+}
+.headerIconsSection {
+  display: flex;
+  justify-self: flex-end;
+}
+.headerIcon {
+  margin: 10px 3px;
+  padding: 0 10px;
+}
+.configListEntry {
+  height: 10%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  border-radius: 4px;
+  transition: all 150ms;
+  opacity: 0;
+}
+.inactiveConfig {
+  background: var(--higherOpacityWhite);
+}
+.inactiveConfig:hover {
+  background: rgba(255, 255, 255, 0.85);
+}
+.inactiveConfig:hover .entryTitle {
+  color: black;
+}
+.activeConfig {
+  background: var(--midAccent);
+}
+.activeConfig:hover {
+  background: var(--midAccentHover);
+}
+.configListEntry:hover {
+  cursor: pointer;
+}
+.configListEntry:hover > p {
+  transform: translateX(25px);
+}
+.entry-chevron-icon {
+  color: white;
+  opacity: 0;
+}
+.configListEntry:hover .chevron-icon {
+  opacity: 1;
+  transition-delay: 150ms;
+}
+.inactiveConfig:hover .chevron-icon {
+  color: black;
+}
+.configEntryFavourite {
+  text-shadow: none;
+  justify-self: left;
+  align-items: flex-start;
+  margin-left: 10px;
+}
+.configListItem > p {
+  font-size: 25px;
+  color: white;
+  transition: all 150ms;
+  text-align: left;
+  transform: translateX(45px);
+}
+
+.entry-chevron-icon {
+  transform: scale(1.3);
+  transition: all 100ms;
+  margin: 0 30px;
+}
+.addConfigRedirect {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.createNewConfigText-Devices {
+  font-size: 30px;
+  position: relative;
+  top: 10px;
+  color: #ffffff;
+  width: 100px;
+}
+
+.deviceListSection {
+  background: #ffffff30;
+  position: relative;
+  width: 73vw;
+  margin: 7px 7px 7px 4px;
+  border-radius: 4px;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.deviceListHeaderSection {
+  position: relative;
+  height: 6%;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+  align-self: flex-end;
+}
+
+.searchBox {
+  position: relative;
+  width: 150px;
+  height: 40px;
+}
+.tooltip {
+  position: relative;
+  display: inline-block;
+}
+
+.searchToolTipText {
+  position: absolute;
+  opacity: 0;
+  background: rgb(32, 29, 29);
+  color: white;
+  border-radius: 5px;
+  transition: opacity;
+  display: none;
+  transition: opacity 500ms;
+  transition-delay: 400ms;
+  width: 150px;
+  height: 40px;
+  text-align: center;
+  display: none;
+}
+.tooltip:hover + .searchToolTipText {
+  display: none;
+  /* opacity: 1; */
+}
+.searchBtn {
+  font-size: 50px;
+}
+
+.searchBtn {
+  font-size: 50px;
+}
+
+.deviceContainer {
+  position: relative;
+  display: inline-flex;
+  flex-direction: row;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.control {
+  position: relative;
+  background: white;
+  border-radius: 4px;
+  box-shadow: 0px 0px 5px 1px rgb(56, 56, 56);
+  margin: 20px 25px 50px 25px;
+  width: 230px;
+  height: 230px;
+  cursor: pointer;
+  color: black;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  opacity: 0;
+  transition: all 150ms ease-out;
+}
+.control:hover {
+  transform: scale(1.04);
+}
+.typeDecorTemplate {
+  width: 100%;
+  height: 4%;
+  position: relative;
+  top: 0%;
+  border-radius: 5px 5px 0px 0px;
+}
+.control > h1 {
+  font-size: 24px;
+  font-weight: bolder;
+  text-align: center;
+  align-self: center;
+  color: black;
+  justify-self: flex-start;
+  margin-top: 7px;
+  padding: 3px;
+  height: 30px;
+}
+.controlStatusIconCont {
+  align-self: center;
+  justify-self: center;
+  border-radius: 50%;
+  width: 42%;
+  height: 42%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  transition: all 100ms;
+}
+.controlStatusIconCont:hover .status-icon {
+  transform: scale(2.4);
+}
+.status-icon {
+  transform-origin: center;
+  transition: all 100ms;
+  transform: scale(2.2);
+}
+.device-on {
+  color: #ffffff;
+  background: var(--peachGradient);
+}
+.device-on:hover {
+  background: var(--peachGradientLowOpacity);
+}
+.device-off {
+  color: #ffffff;
+  background: #5a5a5a8c;
+}
+.device-off:hover {
+  background: var(--peachGradientVeryLowOpacity);
+}
+
+.viewController {
+  width: 400px;
+}
+
+.controlFooterSection {
+  justify-self: flex-start;
+  align-self: flex-end;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+  width: 100%;
+  height: auto;
+  background: #5a5a5a;
+  border-radius: 0 0 4px 4px;
+  color: white;
+}
+.controlFooterItem {
+  max-width: 50px;
+  margin: 3px 2px;
+  position: relative;
+  right: 8px;
+}
+.controlFooterSection:hover .control-chevron-icon {
+  transform: translateX(6px);
+}
+
+.control-chevron-icon {
+  position: relative;
+  transform: scale(1.1);
+  transition: all 100ms;
+}

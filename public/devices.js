@@ -5,7 +5,7 @@ const addConfig = function (config) {
     config._id
   }">
   <span class="configEntryFavourite material-icons ${setFavIconStyle(config)}">${setFavIcon(config)}</span>
-    <div class="entryTitle">${config.name}</div>
+    <p class="entryTitle">${config.name}</p>
     <span class="material-icons chevron-icon entry-chevron-icon">chevron_right</span>
     </div>`;
   configListContainer.insertAdjacentHTML("beforeEnd", configEntryHTML);
@@ -13,14 +13,13 @@ const addConfig = function (config) {
 
 const addDevice = function (device) {
   const deviceContainer = document.querySelector(".deviceContainer");
-  const existing = document.getElementById(`${device.deviceID}`)
-  console.log(existing)
-  if(existing == null){    
+  const existing = document.getElementById(`${device.deviceID}`);
+  if (existing == null) {
     let deviceHTML = `   
     <div id="${device.deviceID}" class="control ${device.status}" data-type="${device.type}" data-label="${
       device.label
-  }" data-configid="${device.configID}">
-  <div class="controlLabel">${device.label}</div>
+    }" data-configid="${device.configID}">
+  <h1>${device.label}</h1>
   <div class="controlStatusIconCont ${setStatusStyle(device)}">
   <span class="material-icons status-icon ">${setStatusIcon(device)}</span>
         </div>
@@ -39,10 +38,9 @@ const addDevice = function (device) {
         </div>
         </div>
       </div>`;
-      deviceContainer.insertAdjacentHTML("afterbegin", deviceHTML);
-
-    }
-    };
+    deviceContainer.insertAdjacentHTML("afterbegin", deviceHTML);
+  }
+};
 
 //List Entry
 const activeToggle = function (entry) {
@@ -351,7 +349,6 @@ window.addEventListener("load", async (e) => {
           return response.json();
         })
         .then((data) => {
-          console.log(data);
           return data;
         })
         .catch((err) => {

@@ -1,0 +1,476 @@
+/*--------------------------------*/
+/*config page*/
+
+
+
+.largeBox {
+  position: relative;
+  width: 47vw;
+  min-height: 87vh;
+  height: auto;
+  border-radius: 5px;
+  margin: 3vh 2vw;
+  transition: all 100ms;
+}
+.largeBox:hover {
+  opacity: 1;
+}
+.headingContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  height: 10%;
+  width: 100%;
+}
+.sectionHeading {
+  font-size: 35px;
+  font-family: Oswald;
+  letter-spacing: 2px;
+  margin: 0 5%;
+  align-self: center;
+  justify-self: center;
+  width: auto;
+  height: 70px;
+}
+.sectionHeading::after {
+  content: "";
+  position: relative;
+  width: 100%;
+  height: 3px;
+  border-radius: 3px;
+  background-color: white;
+  top: 0px;
+  display: inline-block;
+  opacity: 0.7;
+}
+.configSection {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  width: 100%;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+/*---------CREATE NEW BOX-------------*/
+
+.createNewConfigBox {
+  transition: opacity 200ms;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: var(--LowerOpacityWhite);
+  justify-self: flex-end;
+  transition: width 80ms;
+}
+.createNewConfigBox:hover {
+  cursor: pointer;
+  background: var(--higherOpacityWhite);
+  width: 50vw;
+}
+.createNewConfigClickable {
+  cursor: pointer;
+  width: 50%;
+  height: 50%;
+  transition: transform 100ms;
+}
+.createNewConfigClickable:hover {
+  transform: scale(1.04);
+}
+.createNewConfigText {
+  font-size: 140%;
+  position: relative;
+  top: 10px;
+  color: #ffffff;
+}
+.createNewConfigIcon {
+  font-size: 200px;
+  font-weight: 00;
+  position: relative;
+  top: -20px;
+}
+
+.invalidCredentials {
+  color: rgb(190, 0, 0);
+  font-size: 28px;
+  position: relative;
+  word-wrap: normal;
+  font-weight: bolder;
+}
+
+/*------------PRECONFIGURED BOX---------------*/
+.preConfiguredSection {
+  background-color: var(--LowerOpacityWhite);
+  display: flex;
+  flex-direction: column;
+  justify-self: flex-start;
+  transition: width 80ms;
+}
+.preConfiguredSection:hover {
+  background: var(--higherOpacityWhite);
+  width: 50vw;
+}
+.emptyText {
+  align-self: center;
+  font-size: 40px;
+  position: relative;
+  top: 30vh;
+  width: 400px;
+  text-align: center;
+  color: white;
+}
+
+.preConfiguredCard {
+  position: relative;
+  margin: 2% 6%;
+  width: 88%;
+  border-radius: 6px 6px 3px 3px;
+  background-color: var(--higherOpacityWhite);
+  box-shadow: var(--boxShadow);
+  opacity: 0;
+  transition: opacity 250ms;
+}
+.preConfiguredBox:hover {
+  box-shadow: var(--boxShadowHover);
+  cursor: pointer;
+}
+.pcHeaderWrapper {
+  background: var(--peachGradient);
+  border-radius: 6px 6px 0 0;
+  padding-bottom: 4px;
+}
+.preConfiguredHeaderBox {
+  position: relative;
+  align-self: flex-start;
+  justify-content: space-between;
+  background: white;
+  border-radius: 6px 6px 0 0;
+  background: var(--midAccent);
+  display: flex;
+  flex-direction: row;
+  border: 2px;
+  border-image: var(--peachGradient);
+}
+
+.pcHeaderBox-item {
+  padding: 15px 10px;
+  transition: all 100ms;
+  justify-self: flex-start;
+}
+.preConfiguredTitle {
+  justify-self: flex-start;
+  position: relative;
+  font-size: 28px;
+  height: 70%;
+  min-width: 120px;
+}
+.preConfiguredUpdate {
+  color: rgb(255, 255, 255, 0.7);
+  /* justify-self: center; */
+  align-self: flex-start;
+  font-size: 17px;
+  height: 70%;
+  position: relative;
+  top: 5px;
+}
+.preConfiguredUpdate:hover {
+  color: rgba(255, 255, 255, 1);
+  cursor: default;
+}
+.preConfiguredIconsSection {
+  justify-self: flex-end;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+.preConfiguredIcon {
+  margin: 1px 4px;
+  transition: all 100ms;
+}
+#preConfiguredIcon:hover {
+  background-image: var(--peachGradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.favourite-icon:hover {
+  color: rgb(255, 251, 0);
+}
+.favourited {
+  color: rgb(233, 233, 96);
+  text-shadow: var(--textShadow);
+}
+#preConfigured-delete:hover {
+  color: rgba(251, 30, 30, 0.757);
+}
+.settings-icon:hover {
+  transform: rotate(20deg);
+}
+
+.refresh-icon:hover {
+  transform: rotate(30deg);
+}
+
+.preConfiguredBody {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--high);
+}
+.split-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+  /* align-items: center; */
+}
+.pcDetails {
+  align-self: flex-start;
+  width: 65%;
+}
+.detail-flex {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 6px 0px 3px 0px;
+  text-shadow: var(--textShadow);
+}
+.detailIcon {
+  padding: 10px 25px 10px 20px;
+}
+.cloudIcon:hover {
+  color: #00c3ff;
+}
+.locationIcon:hover {
+  color: rgba(251, 30, 30, 0.757);
+}
+.lockIcon:hover {
+  color: rgb(226, 154, 0);
+}
+.tagIcon:hover {
+  color: #ff9472;
+}
+.detailField {
+  padding: 10px 15px;
+  text-align: justify;
+  margin-left: 0;
+  width: 100px;
+  min-width: 100px;
+  font-size: 22px;
+}
+.detailChild::after {
+  content: ":";
+}
+.detailText {
+  margin: 0 5px 8px;
+  padding: 10px 15px;
+  text-align: left;
+  width: 200px;
+  font-size: 22px;
+}
+.detailText-small {
+  font-size: 13px;
+  text-align: left;
+  min-width: 200px;
+  padding: 10px 15px;
+}
+
+
+.pc-right-split {
+    width: 35%;
+  }
+  .right-split-item {
+    margin: 0px 8px;
+  }
+  
+  .devicesButton {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: auto;
+    background: var(--LowerOpacityWhite);
+    border-radius: 6px;
+    width: 62%;
+    position: relative;
+    left: 50px;
+    align-self: center;
+  }
+  .devicesButton:hover {
+    cursor: pointer;
+    background: var(--lightBlueAccentHover);
+  }
+  .deviceCount-item {
+    transition: transform 120ms;
+  }
+  .devicesButton:hover .deviceCount-item {
+    transform: scale(1.1);
+  }
+  
+  .deviceCountText {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    position: relative;
+    margin: 25px;
+    font-size: 28px;
+  }
+  .deviceCount-results {
+    position: relative;
+    left: 10px;
+    transition: transform 100ms;
+  }
+  .chevron-icon {
+    opacity: 0;
+    transition: opacity 100ms;
+  }
+  .devicesButton:hover .deviceCount-results {
+    transform: translateX(-10px);
+  }
+  .devicesButton:hover .chevron-icon {
+    opacity: 1;
+  }
+  
+  /*-----------INPUT SECTION---------------*/
+  .configInputSection {
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    position: relative;
+    display: none;
+    background: var(--LowerOpacityWhite);
+    opacity: 0.5;
+    justify-self: flex-start;
+    transition: width 80ms;
+    width: 47vw;
+  }
+  .configInputSection:hover {
+    width: 50vw;
+    transition: width 80ms;
+    background: var(--higherOpacityWhite);
+  }
+  .indivConfigInput {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: top;
+    width: 400px;
+    margin: 0px 20px;
+    align-items: center;
+    width: 400px;
+    padding: 10px 5px;
+    transition: box-shadow 75ms;
+  }
+  .confHeader {
+    letter-spacing: 1px;
+    position: relative;
+    text-align: left;
+    top: 0px;
+    width: 200px;
+  }
+  .confHeader::after {
+    content: ":";
+  }
+  
+  .configInput {
+    position: relative;
+    width: 120px;
+    height: 30px;
+    padding: 15px 2px;
+    font-size: 18px;
+  }
+  .formDivider {
+    position: relative;
+    width: 80%;
+    height: 2px;
+    background: var(--midAccentHover);
+    margin: 15px;
+    left: 10%;
+  }
+  .formButtonContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 0, 15px 0 25px;
+  }
+  .formBtn {
+    color: white;
+    position: relative;
+    text-align: center;
+    opacity: 0.75;
+    transform: scale(1.5);
+    transition: all 120ms;
+    margin: 0 10px;
+  }
+  .formBtn:hover {
+    opacity: 0.95;
+    transform: scale(1.6);
+  }
+  .submitBtn:hover {
+    color: white;
+  }
+  
+  .cancelBtn:hover {
+    color: rgba(251, 30, 30, 0.757);
+  }
+  /*slider*/
+  /* The switch - the box around the slider */
+  .switch {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 28px;
+    margin: 0 35px;
+  }
+  
+  /* Hide default HTML checkbox */
+  .switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  
+  /* The slider */
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
+  }
+  
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 20px;
+    width: 20px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
+  }
+  
+  input:checked + .slider {
+    background: var(--peachGradient);
+  }
+  
+  input:focus + .slider {
+    box-shadow: 0 0 1px #2196f3;
+  }
+  
+  input:checked + .slider:before {
+    -webkit-transform: translateX(22px);
+    -ms-transform: translateX(22px);
+    transform: translateX(22px);
+  }
+  /*
+  

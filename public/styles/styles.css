@@ -1,0 +1,254 @@
+/*global stuff*/
+:root {
+  font-family: "Abel", sans-serif;
+  font-size: 20px;
+  color: white;
+  --LowerOpacityWhite: rgba(255, 255, 255, 0.233);
+  --higherOpacityWhite: rgba(255, 255, 255, 0.466);
+  --mainGradient: linear-gradient(to bottom, #0f2027, #203a43, #2c5364);
+  --peachGradient: linear-gradient(to left, #f2709c, #ff9472);
+  --peachGradientReverse: linear-gradient(to right, #f2709c, #ff9472);
+  --peachGradientLowOpacity: linear-gradient(to left, #f2709bca, #ff9372ca);
+  --peachGradientVeryLowOpacity: linear-gradient(to left, #f2709b91, #ff937291);
+  --lightBlueAccent: #00a8be;
+  --lightBlueAccentHover: rgba(0, 158, 179, 0.842);
+  --lightBlueAccentLowOpac: rgba(0, 143, 161, 0.685);
+  --midAccent: #0082be;
+  --midAccentHover: #0080bbdf;
+  --boxShadow: 2px 1px 3px rgb(77, 76, 76);
+  --boxShadowHover: 3px 1px 5px #4e4c4c;
+  --textShadow: 1px 1px 5px #4e4c4c;
+  --textShadowDark: 1px 2px 5px #363636;
+  --homeBackground: linear-gradient(
+    to bottom,
+    rgba(0, 128, 187, 1) 0%,
+    rgba(0, 155, 186, 1) 50%,
+    rgb(115, 211, 228) 90%
+  );
+}
+html {
+  background: var(--mainGradient);
+  background-size: cover;
+}
+body {
+  background: var(--mainGradient);
+  margin: 0;
+  background-repeat: no-repeat;
+}
+
+h1 {
+  font-size: 42px;
+  text-align: center;
+  font-weight: 700;
+}
+h2 {
+  font-size: 24px;
+  text-align: center;
+}
+a {
+  text-decoration: none;
+  color: white;
+}
+
+.button {
+  position: relative;
+  width: 130px;
+  border-radius: 8px;
+  padding: 10px;
+  font-weight: bold;
+  color: black;
+  background-color: white;
+  font-size: 26px;
+  text-align: center;
+  transition: all 0.3s;
+  box-shadow: 2px 2px 2px var(--boxShadow);
+}
+.button:hover {
+  color: white;
+  background-color: var(--lightBlueAccent);
+  cursor: pointer;
+  box-shadow: 3px 3px 3px var(--boxShadowHover);
+}
+input {
+  border-radius: 4px;
+}
+
+input:focus {
+  outline: none;
+}
+.peachGradient {
+  background-image: var(--peachGradientReverse);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 5px 5px #fff;
+}
+.peachGradientText {
+  background-image: var(--peachGradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 3px 3px #fff;
+  letter-spacing: 2px;
+}
+.textLink {
+  text-decoration: underline;
+  transition: transform 50ms;
+  color: var(--lightBlueAccent);
+}
+.textLink:hover {
+  color: var(--midAccent);
+}
+
+.divider {
+  /*apply unique stlyes with the secondary class assigned to the element where this is used.*/
+  position: relative;
+  width: 4px;
+  border-radius: 3px;
+  top: 0;
+  left: -15px;
+}
+.horizDivider {
+  position: relative;
+  height: 3px;
+  background: white;
+  border-radius: 3px;
+}
+
+/*Navbar*/
+.navbar {
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.regNav {
+  background: rgb(35, 35, 35);
+}
+.nav-list {
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  align-self: flex-start;
+  height: 79px;
+  margin: 0;
+}
+
+.nav-icon {
+  list-style: none;
+}
+
+.material-icons {
+  position: relative;
+  cursor: pointer;
+  transition: transform 100ms;
+}
+.material-icons:hover {
+  transform: scale(1.1);
+}
+.nav-item {
+  list-style: none;
+  text-align: center;
+  padding: 0px 20px;
+  height: 79px;
+}
+
+.nav-item-text {
+  transition: transform 50ms;
+  font-size: 25px;
+  position: relative;
+  font-weight: bolder;
+  height: 100%;
+  font-family: "Asap";
+}
+.nav-item:hover .nav-item-text {
+  background-image: var(--peachGradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.nav-item:hover .nav-item-text {
+  transform: translateY(-5px);
+  transition: transform 50ms;
+}
+.nav-text-active {
+  color: var(--midAccent);
+  transition: color 50ms;
+}
+
+.login-section {
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  align-items: center;
+  height: 79px;
+  margin: 0;
+}
+.login-item {
+  list-style: none;
+  text-align: center;
+  padding: 0px 5px;
+  height: 79px;
+  transition: all 80ms;
+}
+.login-text {
+  font-size: 20px;
+  padding: 5px 8px;
+  transition: all 80ms;
+  border-radius: 15px;
+  font-family: "Asap";
+}
+
+.login-account:hover {
+  /* background: rgb(60, 60, 60); */
+}
+.create-account {
+  background: var(--peachGradient);
+  color: black;
+}
+.create-account:hover {
+  color: white;
+  border-radius: 12px;
+  transform: scale(1.07);
+}
+.my-account {
+  opacity: 1;
+}
+.my-account-icon {
+  border-radius: 50%;
+}
+
+/*page headings*/
+.headingBar {
+  position: relative;
+  height: 100px;
+  width: 100%;
+  background-color: var(--lightBlueAccent);
+  top: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.pageHeading {
+  font-size: 40px;
+  font-family: Oswald;
+  letter-spacing: 2px;
+  position: relative;
+  padding: 20px 50px;
+  text-align: left;
+}
+
+/*single device page*/
+/*edit page*/
+
+/*test styles*/
+.testBody {
+  background: white;
+}
+.logoTestText {
+  font-size: 350px;
+  font-family: "Oswald";
+  text-shadow: 6px 6px var(--midAccent);
+  margin: 100px;
+}

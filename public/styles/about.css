@@ -1,0 +1,510 @@
+.parallax {
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: repeat-y;
+  background-size: cover;
+}
+
+/*homepage*/
+.homeBody {
+  background: var(--homeBackground) !important;
+  /* height: 260%; */
+}
+.homeNav {
+  background: #fff;
+}
+.openingImage {
+  position: relative;
+  width: 100%;
+  border-radius: 5px;
+  transition: all 300ms;
+  transform-origin: bottom;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+.openingImage:hover {
+  transform: scale(1.0005);
+}
+.OIFlexItem {
+  margin: 0px 10%;
+  width: 80%;
+}
+
+.mainContainer {
+  flex-direction: row;
+  justify-content: space-between;
+  display: flex;
+  position: relative;
+  margin: 10% 0 0 0;
+}
+
+.aboutHeadingContainer {
+  position: relative;
+  justify-self: flex-start;
+  height: auto;
+  max-width: 650px;
+  min-height: 500px;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+.openingImageHeading {
+  font-size: 65px;
+  font-family: "Oswald";
+  position: relative;
+  display: block;
+  background: var(--homeStep);
+  border-radius: 7px;
+  text-align: left;
+  width: auto;
+  top: -6rem;
+  padding: 20px;
+}
+.openingImageHeading > .peachGradientText {
+  text-shadow: 4px 4px rgb(255, 255, 255) !important;
+}
+.demoControlsFlex {
+  /* background: rgba(255,255,255, 0.8); */
+  display: none;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  height: 34%;
+  width: 86%;
+  min-height: 150px;
+  min-width: 560px;
+  opacity: 1;
+  margin: -88% 0 0 50%;
+  border-radius: 6px;
+  z-index: 2;
+}
+.demoControl {
+  width: 29%;
+  height: 90%;
+  background: white;
+  color: black;
+  border-radius: 5px;
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  justify-content: space-between;
+  align-items: center;
+  opacity: 0;
+  box-shadow: -3px -3px var(--midAccent);
+}
+/* shares the styles of device controls elsewhere in the app*/
+.demoControl > .controlLabel {
+  font-size: 18px !important;
+  font-weight: 500;
+  margin: 5px 0 0 0;
+}
+.demoControl > .controlStatusIconCont {
+  width: 46% !important;
+  height: 46% !important;
+}
+.demoControl > .status-icon {
+  transform: scale((2));
+}
+.demoControl > .material-icons {
+  margin: 1px 1px;
+  font-size: 12px !important;
+}
+.tryMeContainer {
+  position: absolute;
+  width: 180px;
+  height: 50px;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  top: 67%;
+  left: 62%;
+  opacity: 0;
+  z-index: 3;
+}
+.tryMePrompt {
+  font-size: 28px;
+  color: white;
+  font-family: "Satisfy";
+}
+.tryMeContainer:hover > .material-icons {
+  transform: rotate(30deg);
+}
+.promptChevron {
+  position: absolute;
+  margin: -10% 0 0 16%;
+  font-size: 40px !important;
+  transform: rotate(30deg);
+  text-shadow: var(--textShadow);
+}
+/*DEMO DESIGN Media queries*/
+@media screen and (max-width: 1750px) {
+  .demoControlsFlex {
+    margin: -45% 0 0 0;
+  }
+}
+/* @media screen and (max-width: 1450px){
+    .demoControlsFlex{
+      min-width: 410px;
+      min-height: 110px;
+      max-height: 110px;
+      flex-wrap: wrap;
+    }
+    .demoControl > .controlStatusIconCont{
+      justify-self: center;
+      align-self: center;
+      bottom: 20%;
+    }
+    .demoControl > .status-icon{
+      font-size: 20px !important;
+    }
+    .demoControl > .controlFooterSection{
+      display: none;
+    }
+  } */
+
+.stepFlexContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 55%;
+  position: relative;
+  left: 10%;
+  top: 15%;
+}
+
+.step {
+  display: none;
+  flex-direction: row;
+  width: 80%;
+  height: 150px;
+  margin: 10px 10% 10px 0;
+  background: var(--homeStep);
+  border-radius: 6px;
+  box-shadow: 0px 0px 8px rgba(100, 100, 100, 0.5);
+}
+.step:hover {
+  background: var(--higherOpacityWhite);
+}
+.stepItem {
+  margin: 0px 50px;
+}
+.stepNumber {
+  align-self: center;
+  font-size: 45px;
+  font-family: "Asap";
+}
+.stepIcon {
+  transform-origin: center;
+  position: relative;
+  margin: 0px 7px;
+}
+.stepIconFont {
+  font-size: 130px !important;
+}
+
+.stepIcon:hover {
+  cursor: default;
+}
+.hoverable:hover {
+  cursor: pointer;
+}
+.stepText {
+  font-size: 37px;
+  align-self: center;
+  margin: 0px 10px 0px 20px;
+  font-family: "Open sans";
+}
+.step * {
+  pointer-events: none;
+}
+
+.createAccountStep {
+  position: relative;
+  left: -55px;
+}
+.addNetworkStep {
+}
+
+.controlDevicesStep {
+  position: relative;
+  left: 55px;
+}
+.neonLights {
+  border: solid 3px #00c6ff;
+  box-shadow: 0 0 4em #9ce9ff, 0 0 2em #00c6ff, 0 0 3em #00c6ff, 0 0 0.2em #77e2ff inset;
+  transition: box-shadow 300ms linear;
+}
+
+.neonLights:hover {
+  background: var(--homeStep);
+  box-shadow: 0 0 1.2em #9ce9ff, 0 0 2.5em #00c6ff, 0 0 4em #00c6ff, 0 0 0.7em #9ce9ff inset;
+}
+
+.arrowContainer {
+  text-align: center;
+  margin-top: 3%;
+  display: block;
+}
+.scrollDownBtn {
+  font-size: 75px !important;
+}
+#scroll1 {
+  opacity: 0;
+}
+
+.aboutBanner {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 67%;
+  color: white;
+  margin: 9% 0;
+  opacity: 0;
+  background-image: url("./../images/about/lighting2.png");
+
+  min-height: 67%;
+  transform: rotate(-3deg);
+  transform: skewY(-3deg);
+}
+.aboutBannerHeading {
+  font-size: 70px;
+  font-family: "oswald";
+  align-self: center;
+  text-shadow: -4px -4px var(--midAccent);
+  margin: -1% 0 5% 0;
+  transform: rotate(3deg);
+  transform: skewY(3deg);
+}
+.aboutContent {
+  font-family: "open sans";
+  font-size: 29px;
+  position: relative;
+  top: -4rem;
+  width: 60%;
+  text-align: justify;
+  text-shadow: var(--textShadowDark);
+  transform: rotate(3deg);
+  transform: skewY(3deg);
+}
+.belowBanner {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: 5%;
+  width: 100%;
+  position: relative;
+  top: -5%;
+}
+
+.featuresSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  left: 2%;
+  top: 5%;
+  width: 96%;
+  height: auto;
+  background: var(--LowerOpacityWhite);
+  border-radius: 4px;
+  opacity: 0;
+}
+.featuresHeading {
+  font-family: "oswald";
+  font-size: 65px;
+  margin: 10px;
+}
+.feature {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  width: 80%;
+  height: auto;
+  margin: 3%;
+  transition: transform 75ms;
+}
+.feature:hover {
+  transform: scale(1.04);
+}
+.featureImageContainer {
+  width: 35%;
+  height: auto;
+}
+.featureImage {
+  border-radius: 6px;
+  width: 100%;
+  height: auto;
+  display: block;
+  overflow: hidden;
+  margin: 0 3%;
+}
+.featureDivider {
+  align-self: center;
+  min-height: 240px;
+  width: 4px;
+  background: white;
+  box-shadow: -2px -2px var(--midAccent);
+  margin: 0px 2%;
+}
+.featureTextFlex {
+  justify-self: flex-end;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 40%;
+  margin: 0 5% 0 0;
+}
+.featureTextFlex > h2 {
+  font-size: 42px;
+  font-family: "oswald";
+  align-self: flex-start;
+  text-shadow: -2px -2px var(--midAccent);
+  margin: 5% 0px 0px 0px;
+}
+.featureTextFlex > p {
+  margin: 3% 0px;
+  font-family: "open sans";
+  font-size: 24px;
+  text-align: justify;
+}
+.featureImageRev {
+}
+.featureTextRev {
+  margin: -3% 0 0 15%;
+}
+.featureNameRev {
+  align-self: flex-end !important;
+}
+.featureDescRev {
+  text-align: right;
+  width: 80%;
+}
+
+.multiFeatureDesign {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  width: 35%;
+  height: auto;
+  background: transparent;
+  margin: 0px 3%;
+}
+.multiFeatureDesign > .configListEntry {
+  opacity: 1;
+  height: 28%;
+}
+
+.demoListEntry:hover {
+  pointer: cursor;
+  transform: scale(1.05);
+}
+.demoListEntry:hover > .chevron-icon {
+  opacity: 1;
+}
+.demo-chevron-icon {
+  position: relative;
+  left: 45px;
+}
+.inactiveDemo {
+  background: rgba(255, 255, 255);
+}
+.inactiveDemo > p {
+  color: black !important;
+  opacity: 1;
+}
+.inactiveDemo > .chevron-icon {
+  color: black;
+}
+
+.non-fav {
+  color: black;
+}
+
+.activeDemo {
+  background: var(--midAccent);
+}
+.demoFavourite {
+  text-shadow: none;
+  justify-self: left;
+  align-items: flex-start;
+  margin-left: 10px;
+}
+.demoTitle {
+  font-size: 25px;
+  color: white;
+  transition: all 150ms;
+  text-align: left;
+  transform: translateX(45px);
+}
+#demo1 {
+  position: relative;
+  top: 5%;
+  left: -5%;
+}
+#demo2 {
+  position: relative;
+}
+
+#demo3 {
+  position: relative;
+  top: -3%;
+  left: 5%;
+}
+
+.pollingImage {
+  filter: blur(2px);
+}
+.largeFooter {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 75%;
+  min-height: 75%;
+  background-image: url("./../images/about/signupbackground.jpg");
+  margin: 5% 0 0 0;
+}
+.largeFooter > h1 {
+  font-family: "oswald";
+  font-size: 45px;
+}
+.linksSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  background: rgba(255, 255, 255, 0.1);
+  height: auto;
+  font-family: "open sans";
+  color: white;
+  opacity: 0;
+}
+.linksSection > h1 {
+  font-size: 45px;
+  text-align: center;
+  margin: 2j%;
+}
+.linksSection > p {
+  width: 70%;
+  font-size: 20px;
+  text-align: center;
+  margin: 1%;
+}
+.linksFlex {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.linksFlex > a {
+  margin: 5%;
+  font-size: 75px;
+}
