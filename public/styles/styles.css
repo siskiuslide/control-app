@@ -52,7 +52,8 @@ a {
 
 .button {
   position: relative;
-  width: 130px;
+  width: 130px; /* set height locally to class*/
+  height: auto;
   border-radius: 8px;
   padding: 10px;
   font-weight: bold;
@@ -68,6 +69,8 @@ a {
   background-color: var(--lightBlueAccent);
   cursor: pointer;
   box-shadow: 3px 3px 3px var(--boxShadowHover);
+  transform: scale(1.03);
+  transition: transform;
 }
 input {
   border-radius: 4px;
@@ -103,8 +106,7 @@ input:focus {
   position: relative;
   width: 4px;
   border-radius: 3px;
-  top: 0;
-  left: -15px;
+  background: var(--midAccent)
 }
 .horizDivider {
   position: relative;
@@ -239,8 +241,10 @@ input:focus {
   text-align: left;
 }
 
-/*single device page*/
-/*edit page*/
+/*flex*/
+.push-right{
+  margin-right: auto;
+}
 
 /*test styles*/
 .testBody {

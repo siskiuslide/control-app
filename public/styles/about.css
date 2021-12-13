@@ -466,8 +466,8 @@
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  height: 75%;
-  min-height: 75%;
+  height: 100%;
+  min-height: 95%;
   background-image: url("./../images/about/signupbackground.jpg");
   margin: 5% 0 0 0;
 }
@@ -475,6 +475,88 @@
   font-family: "oswald";
   font-size: 45px;
 }
+.SOLIS{
+  display: flex;
+  flex-direction: row;
+  background: white;
+  width: 70%;
+  margin: auto auto;
+  border-radius: 4px;
+  height: 65%;
+}
+.solis > .divider{
+  height: 80%;
+  background: rgba(71,64,64);
+  width: 3px;
+  margin: auto auto;
+}
+.solisItem{
+  width: 40%;
+  height: 80%;
+  margin: auto auto;
+}
+.solisItem > h2 {
+  font-family: 'oswald';
+  color:rgb(71, 64, 64);
+  font-size: 28px;
+}
+.solisItem > .button{
+  background: var(--peachGradient);
+  margin: auto auto;
+}
+
+.signUp{
+
+}
+.login{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+}
+.login > * {
+  margin: 2% auto;
+}
+.login > h4{
+  color: rgb(71, 64, 64);
+  margin: 1% auto 0 20%;
+}
+.login > input{
+  outline: none;
+  border: 2px solid rgb(71, 64, 64);
+  padding: 10px 5px;
+  width: 60%;
+
+}
+.login > input:focus{
+  border: 2px solid var(--midAccent);
+}
+.login > input:hover{
+  border: 2px solid var(--midAccentHover);
+}
+.solisItemBtnSection{
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+
+}
+.solisItemBtnSection > a {
+  margin: 2% 10px;
+
+}
+.solisItemBtnSection > a > p {
+  color: black;
+  font-size: 15px;
+}
+.solisItemBtnSection > a > p:hover {
+  color: var(--midAccent);
+}
+.solisItemBtnSection > .button{
+  background: var(--peachGradient);
+  height: 50%;
+}
+
 .linksSection {
   display: flex;
   flex-direction: column;
@@ -482,15 +564,16 @@
   justify-content: center;
   position: relative;
   background: rgba(69, 69, 69, 0.63);
-  height: auto;
+  height: 35%;
   font-family: "open sans";
   color: white;
   opacity: 0;
+  margin-top: 3%;
 }
 .linksSection > h1 {
   font-size: 45px;
   text-align: center;
-  margin: 2%;
+  margin: 1%;
 }
 .linksSection > p {
   width: 70%;
@@ -505,6 +588,6 @@
   align-items: center;
 }
 .linksFlex > a {
-  margin: 5%;
+  margin: 1% 5%;
   font-size: 75px;
 }
