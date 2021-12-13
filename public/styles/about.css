@@ -12,6 +12,7 @@
 }
 .homeNav {
   background: #fff;
+  position: static;
 }
 .openingImage {
   position: relative;
@@ -479,66 +480,64 @@
   display: flex;
   flex-direction: row;
   background: white;
-  width: 70%;
+  width: 40%;
   margin: auto auto;
   border-radius: 4px;
   height: 65%;
 }
-.solis > .divider{
-  height: 80%;
-  background: rgba(71,64,64);
-  width: 3px;
-  margin: auto auto;
-}
+
 .solisItem{
-  width: 40%;
-  height: 80%;
+  width: 90%;
+  height: 97%;
   margin: auto auto;
+  display: flex;
+  flex-direction: column
 }
 .solisItem > h2 {
   font-family: 'oswald';
   color:rgb(71, 64, 64);
-  font-size: 28px;
+  font-size: 38px;
 }
 .solisItem > .button{
   background: var(--peachGradient);
-  margin: auto auto;
 }
 
-.signUp{
-
-}
-.login{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-
-}
-.login > * {
+.solisItem > * {
   margin: 2% auto;
 }
-.login > h4{
+.solisItem > h4{
   color: rgb(71, 64, 64);
   margin: 1% auto 0 20%;
 }
-.login > input{
+.solisItem > .forgotPassword {
+  opacity: 0;
+  display: none;
+  color: rgb(71, 64, 64);
+  margin: 0 auto 0 20%;
+  font-size: 18px;
+}
+.solisItem > input{
   outline: none;
   border: 2px solid rgb(71, 64, 64);
   padding: 10px 5px;
   width: 60%;
 
 }
-.login > input:focus{
+.solisItem > input:focus{
   border: 2px solid var(--midAccent);
 }
-.login > input:hover{
+.solisItem > input:hover{
   border: 2px solid var(--midAccentHover);
 }
+.solisItem > .solisItemBtnSection > .button{
+  border: 2px solid black !important;
+}
 .solisItemBtnSection{
+  margin-top: auto;
   display: flex;
   flex-direction: row;
   justify-content: left;
+  align-items: center;  
 
 }
 .solisItemBtnSection > a {
@@ -547,7 +546,7 @@
 }
 .solisItemBtnSection > a > p {
   color: black;
-  font-size: 15px;
+  font-size: 18px;
 }
 .solisItemBtnSection > a > p:hover {
   color: var(--midAccent);
