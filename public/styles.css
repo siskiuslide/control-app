@@ -1,0 +1,1533 @@
+/*global stuff*/
+:root {
+  font-family: "Abel", sans-serif;
+  font-size: 20px;
+  color: white;
+  --LowerOpacityWhite: rgba(255, 255, 255, 0.233);
+  --higherOpacityWhite: rgba(255, 255, 255, 0.466);
+  --mainGradient: linear-gradient(to bottom, #0f2027, #203a43, #2c5364);
+  --peachGradient: linear-gradient(to left, #f2709c, #ff9472);
+  --peachGradientReverse: linear-gradient(to right, #f2709c, #ff9472);
+  --peachGradientLowOpacity: linear-gradient(to left, #f2709bca, #ff9372ca);
+  --peachGradientVeryLowOpacity: linear-gradient(to left, #f2709b91, #ff937291);
+  --lightBlueAccent: #00a8be;
+  --lightBlueAccentHover: rgba(0, 158, 179, 0.842);
+  --lightBlueAccentLowOpac: rgba(0, 143, 161, 0.685);
+  --midAccent: #0082be;
+  --midAccentHover: #0080bbdf;
+  --boxShadow: 2px 1px 3px rgb(77, 76, 76);
+  --boxShadowHover: 3px 1px 5px #4e4c4c;
+  --textShadow: 1px 1px 5px #4e4c4c;
+  --textShadowDark: 1px 2px 5px #363636;
+  --homeBackground: linear-gradient(
+    to bottom,
+    rgba(0, 128, 187, 1) 0%,
+    rgba(0, 155, 186, 1) 50%,
+    rgb(115, 211, 228) 90%
+  );
+}
+html {
+  background: var(--mainGradient);
+  background-size: cover;
+}
+body {
+  background: var(--mainGradient);
+  margin: 0;
+  background-repeat: no-repeat;
+}
+
+h1 {
+  font-size: 42px;
+  text-align: center;
+  font-weight: 700;
+}
+h2 {
+  font-size: 24px;
+  text-align: center;
+}
+a {
+  text-decoration: none;
+  color: white;
+}
+
+.button {
+  position: relative;
+  width: 130px;
+  border-radius: 8px;
+  padding: 10px;
+  font-weight: bold;
+  color: black;
+  background-color: white;
+  font-size: 26px;
+  text-align: center;
+  transition: all 0.3s;
+  box-shadow: 2px 2px 2px var(--boxShadow);
+}
+.button:hover {
+  color: white;
+  background-color: var(--lightBlueAccent);
+  cursor: pointer;
+  box-shadow: 3px 3px 3px var(--boxShadowHover);
+}
+input {
+  border-radius: 4px;
+}
+
+input:focus {
+  outline: none;
+}
+.peachGradient {
+  background-image: var(--peachGradientReverse);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 5px 5px #fff;
+}
+.peachGradientText {
+  background-image: var(--peachGradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 3px 3px #fff;
+  letter-spacing: 2px;
+}
+.textLink {
+  text-decoration: underline;
+  transition: transform 50ms;
+  color: var(--lightBlueAccent);
+}
+.textLink:hover {
+  color: var(--midAccent);
+}
+
+/*homepage*/
+.homeBody {
+  background: var(--homeBackground) !important;
+  /* height: 260%; */
+}
+.homeNav {
+  background: #fff;
+}
+.openingImage {
+  position: relative;
+  width: 100%;
+  border-radius: 5px;
+  transition: all 300ms;
+  transform-origin: bottom;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+.openingImage:hover {
+  transform: scale(1.0005);
+}
+.OIFlexItem {
+  margin: 0px 10%;
+  width: 80%;
+}
+
+.mainContainer {
+  flex-direction: row;
+  justify-content: space-between;
+  display: flex;
+  position: relative;
+  margin: 10% 0 0 0;
+}
+
+.aboutHeadingContainer {
+  position: relative;
+  justify-self: flex-start;
+  height: auto;
+  max-width: 650px;
+  min-height: 500px;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+.openingImageHeading {
+  font-size: 65px;
+  font-family: "Oswald";
+  position: relative;
+  display: block;
+  background: var(--homeStep);
+  border-radius: 7px;
+  text-align: left;
+  width: auto;
+  top: -6rem;
+  padding: 20px;
+}
+.openingImageHeading > .peachGradientText {
+  text-shadow: 4px 4px rgb(255, 255, 255) !important;
+}
+.demoControlsFlex {
+  /* background: rgba(255,255,255, 0.8); */
+  display: none;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  height: 34%;
+  width: 86%;
+  min-height: 150px;
+  min-width: 560px;
+  opacity: 1;
+  margin: -88% 0 0 50%;
+  border-radius: 6px;
+  z-index: 2;
+}
+.demoControl {
+  width: 29%;
+  height: 90%;
+  background: white;
+  color: black;
+  border-radius: 5px;
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  justify-content: space-between;
+  align-items: center;
+  opacity: 0;
+  box-shadow: -3px -3px var(--midAccent);
+}
+/* shares the styles of device controls elsewhere in the app*/
+.demoControl > .controlLabel {
+  font-size: 18px !important;
+  font-weight: 500;
+  margin: 5px 0 0 0;
+}
+.demoControl > .controlStatusIconCont {
+  width: 46% !important;
+  height: 46% !important;
+}
+.demoControl > .status-icon {
+  transform: scale((2));
+}
+.demoControl > .material-icons {
+  margin: 1px 1px;
+  font-size: 12px !important;
+}
+.tryMeContainer {
+  position: absolute;
+  width: 180px;
+  height: 50px;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  top: 67%;
+  left: 62%;
+  opacity: 0;
+  z-index: 3;
+}
+.tryMePrompt {
+  font-size: 28px;
+  color: white;
+  font-family: "Satisfy";
+}
+.tryMeContainer:hover > .material-icons {
+  transform: rotate(30deg);
+}
+.promptChevron {
+  position: absolute;
+  margin: -10% 0 0 16%;
+  font-size: 40px !important;
+  transform: rotate(30deg);
+  text-shadow: var(--textShadow);
+}
+/*DEMO DESIGN Media queries*/
+@media screen and (max-width: 1750px) {
+  .demoControlsFlex {
+    margin: -45% 0 0 0;
+  }
+}
+/* @media screen and (max-width: 1450px){
+  .demoControlsFlex{
+    min-width: 410px;
+    min-height: 110px;
+    max-height: 110px;
+    flex-wrap: wrap;
+  }
+  .demoControl > .controlStatusIconCont{
+    justify-self: center;
+    align-self: center;
+    bottom: 20%;
+  }
+  .demoControl > .status-icon{
+    font-size: 20px !important;
+  }
+  .demoControl > .controlFooterSection{
+    display: none;
+  }
+} */
+
+.stepFlexContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 55%;
+  position: relative;
+  left: 10%;
+  top: 15%;
+}
+
+.step {
+  display: none;
+  flex-direction: row;
+  width: 80%;
+  height: 150px;
+  margin: 10px 10% 10px 0;
+  background: var(--homeStep);
+  border-radius: 6px;
+  box-shadow: 0px 0px 8px rgba(100, 100, 100, 0.5);
+}
+.step:hover {
+  background: var(--higherOpacityWhite);
+}
+.stepItem {
+  margin: 0px 50px;
+}
+.stepNumber {
+  align-self: center;
+  font-size: 45px;
+  font-family: "Asap";
+}
+.stepIcon {
+  transform-origin: center;
+  position: relative;
+  margin: 0px 7px;
+}
+.stepIconFont {
+  font-size: 130px !important;
+}
+
+.stepIcon:hover {
+  cursor: default;
+}
+.hoverable:hover {
+  cursor: pointer;
+}
+.stepText {
+  font-size: 37px;
+  align-self: center;
+  margin: 0px 10px 0px 20px;
+  font-family: "Open sans";
+}
+.step * {
+  pointer-events: none;
+}
+
+.createAccountStep {
+  position: relative;
+  left: -55px;
+}
+.addNetworkStep {
+}
+
+.controlDevicesStep {
+  position: relative;
+  left: 55px;
+}
+.neonLights{
+  border: solid 3px #00C6FF;
+  box-shadow: 0 0 4em #9ce9ff,
+  0 0 2em #00C6FF,
+  0 0 3em #00C6FF,
+  0 0 0.2em #77e2ff inset;
+  transition: box-shadow 300ms linear;
+}
+
+.neonLights:hover{
+  background: var(--homeStep);
+  box-shadow:0 0 1.2em #9ce9ff,
+  0 0 2.5em #00C6FF,
+  0 0 4em #00C6FF,
+  0 0 0.7em #9ce9ff inset;
+}
+
+.arrowContainer {
+  text-align: center;
+  margin-top: 3%;
+  display: block;
+}
+.scrollDownBtn {
+  font-size: 75px !important;
+}
+#scroll1 {
+  opacity: 0;
+}
+
+.aboutBanner {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 67%;
+  color: white;
+  margin: 9% 0;
+  opacity: 0;
+  background-image: url("./images/about/lighting2.png");
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: repeat-y;
+  background-size: cover;
+  min-height: 67%;
+  transform: rotate(-3deg);
+  transform: skewY(-3deg)
+}
+.aboutBannerHeading {
+  font-size: 70px;
+  font-family: "oswald";
+  align-self: center;
+  text-shadow: -4px -4px var(--midAccent);
+  margin: -1% 0 5% 0;
+  transform: rotate(3deg);
+  transform: skewY(3deg)
+}
+.aboutContent {
+  font-family: "open sans";
+  font-size: 29px;
+  position: relative;
+  top: -4rem;
+  width: 60%;
+  text-align: justify;
+  text-shadow: var(--textShadowDark);
+  transform: rotate(3deg);
+  transform: skewY(3deg)
+}
+.belowBanner {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: 5%;
+  width: 100%;
+  position: relative;
+  top: -5%;
+}
+
+.featuresSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  left: 2%;
+  top: 5%;
+  width: 96%;
+  height: auto;
+  background: var(--LowerOpacityWhite);
+  border-radius: 4px;
+  opacity: 0;
+}
+.featuresHeading {
+  font-family: "oswald";
+  font-size: 65px;
+  margin: 10px;
+}
+.feature {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  width: 80%;
+  height: auto;
+  margin: 3%;
+  transition: transform 75ms;
+}
+.feature:hover {
+  transform: scale(1.04);
+}
+.featureImageContainer {
+  width: 35%;
+  height: auto;
+}
+.featureImage {
+  border-radius: 6px;
+  width: 100%;
+  height: auto;
+  display: block;
+  overflow: hidden;
+  margin: 0 3%;
+}
+.featureDivider {
+  align-self: center;
+  min-height: 240px;
+  width: 4px;
+  background: white;
+  box-shadow: -2px -2px var(--midAccent);
+  margin: 0px 2%;
+}
+.featureTextFlex {
+  justify-self: flex-end;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 40%;
+  margin: 0 5% 0 0;
+}
+.featureName {
+  font-size: 42px;
+  font-family: "oswald";
+  align-self: flex-start;
+  text-shadow: -2px -2px var(--midAccent);
+  margin: 5% 0px 0px 0px;
+}
+.featureDesc {
+  margin: 3% 0px;
+  font-family: "open sans";
+  font-size: 24px;
+  text-align: justify;
+}
+.featureImageRev{
+}
+.featureTextRev{
+  margin: -3% 0 0 15%;
+}
+.featureNameRev{
+  align-self: flex-end !important;
+}
+.featureDescRev{
+  text-align: right;
+  width: 80%;
+}
+
+.multiFeatureDesign {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  width: 35%;
+  height: auto;
+  background: transparent;
+  margin: 0px 3%;
+}
+.demoListItem {
+  margin: 3px 8px;
+  width: auto;
+}
+.demoListEntry {
+  height: 30%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  border-radius: 4px;
+  transition: all 150ms;
+  opacity: 1;
+  box-shadow: 2px 2px 3px #777575;
+}
+.demoListEntry:hover {
+  pointer: cursor;
+  transform: scale(1.05);
+}
+.demoListEntry:hover > .chevron-icon {
+  opacity: 1;
+}
+.demo-chevron-icon {
+  position: relative;
+  left: 45px;
+}
+.inactiveDemo {
+  background: rgba(255, 255, 255);
+}
+.inactiveDemo > .demoTitle {
+  color: black;
+}
+.inactiveDemo > .chevron-icon {
+  color: black;
+}
+.inactiveDemo > .demoTitle {
+  color: black;
+}
+.non-fav{
+  color: black;
+}
+
+.activeDemo {
+  background: var(--midAccent);
+}
+.demoFavourite {
+  text-shadow: none;
+  justify-self: left;
+  align-items: flex-start;
+  margin-left: 10px;
+}
+.demoTitle {
+  font-size: 25px;
+  color: white;
+  transition: all 150ms;
+  text-align: left;
+  transform: translateX(45px);
+}
+#demo1 {
+  position: relative;
+  top: 5%;
+  left: -5%;
+}
+#demo2 {
+  position: relative;
+}
+
+#demo3 {
+  position: relative;
+  top: -3%;
+  left: 5%;
+}
+
+.pollingImage {
+  filter: blur(2px);
+}
+.signupBanner {
+}
+.linksSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  background: var(--mainGradient);
+  height: auto;
+  font-family: "open sans";
+  color: white;
+  opacity: 0;
+}
+.author {
+  font-size: 45px;
+  text-align: center;
+  margin: 3%;
+}
+.summary {
+  width: 70%;
+  font-size: 20px;
+  text-align: center;
+  margin: 20px;
+}
+.linksFlex {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.socialLink {
+  margin: 20px 10px;
+  font-size: 75px;
+}
+
+/*Navbar*/
+.navbar {
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.regNav {
+  background: rgb(35, 35, 35);
+}
+.nav-list {
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  align-self: flex-start;
+  height: 79px;
+  margin: 0;
+}
+
+.nav-icon {
+  list-style: none;
+}
+
+.material-icons {
+  position: relative;
+  cursor: pointer;
+  transition: transform 100ms;
+}
+.material-icons:hover {
+  transform: scale(1.1);
+}
+.nav-item {
+  list-style: none;
+  text-align: center;
+  padding: 0px 20px;
+  height: 79px;
+}
+
+.nav-item-text {
+  transition: transform 50ms;
+  font-size: 25px;
+  position: relative;
+  font-weight: bolder;
+  height: 100%;
+  font-family: "Asap";
+  padding: 10px 0;
+}
+.nav-item:hover .nav-item-text {
+  background-image: var(--peachGradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.nav-item:hover .nav-item-text {
+  transform: translateY(-5px);
+  transition: transform 50ms;
+}
+.nav-text-active {
+  color: var(--midAccent);
+  transition: color 50ms;
+}
+
+.login-section {
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  align-items: center;
+  height: 79px;
+  margin: 0;
+}
+.login-item {
+  list-style: none;
+  text-align: center;
+  padding: 0px 5px;
+  height: 79px;
+  transition: all 80ms;
+}
+.login-text {
+  font-size: 20px;
+  padding: 5px 8px;
+  transition: all 80ms;
+  border-radius: 15px;
+  font-family: "Asap";
+}
+
+.login-account:hover {
+  /* background: rgb(60, 60, 60); */
+}
+.create-account {
+  background: var(--peachGradient);
+  color: black;
+}
+.create-account:hover {
+  color: white;
+  border-radius: 12px;
+  transform: scale(1.07);
+}
+.my-account {
+  opacity: 1;
+}
+.my-account-icon {
+  border-radius: 50%;
+}
+
+/*--------------------------------*/
+
+.headingBar {
+  position: relative;
+  height: 100px;
+  width: 100%;
+  background-color: var(--lightBlueAccent);
+  top: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.pageHeading {
+  font-size: 40px;
+  font-family: Oswald;
+  letter-spacing: 2px;
+  position: relative;
+  padding: 20px 50px;
+  text-align: left;
+}
+
+/*config page*/
+
+.largeBox {
+  position: relative;
+  width: 47vw;
+  min-height: 87vh;
+  height: auto;
+  border-radius: 5px;
+  margin: 3vh 2vw;
+  transition: all 100ms;
+}
+.largeBox:hover {
+  opacity: 1;
+}
+.headingContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  height: 10%;
+  width: 100%;
+}
+.sectionHeading {
+  font-size: 35px;
+  font-family: Oswald;
+  letter-spacing: 2px;
+  margin: 0 5%;
+  align-self: center;
+  justify-self: center;
+  width: auto;
+  height: 70px;
+}
+.sectionHeading::after {
+  content: "";
+  position: relative;
+  width: 100%;
+  height: 3px;
+  border-radius: 3px;
+  background-color: white;
+  top: 0px;
+  display: inline-block;
+  opacity: 0.7;
+}
+.configSection {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  width: 100%;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+/*---------CREATE NEW BOX-------------*/
+
+.createNewConfigBox {
+  transition: opacity 200ms;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: var(--LowerOpacityWhite);
+  justify-self: flex-end;
+  transition: width 80ms;
+}
+.createNewConfigBox:hover {
+  cursor: pointer;
+  background: var(--higherOpacityWhite);
+  width: 50vw;
+}
+.createNewConfigClickable {
+  cursor: pointer;
+  width: 50%;
+  height: 50%;
+  transition: transform 100ms;
+}
+.createNewConfigClickable:hover {
+  transform: scale(1.04);
+}
+.createNewConfigText {
+  font-size: 140%;
+  position: relative;
+  top: 10px;
+  color: #ffffff;
+}
+.createNewConfigIcon {
+  font-size: 200px;
+  font-weight: 00;
+  position: relative;
+  top: -20px;
+}
+
+.invalidCredentials {
+  color: rgb(190, 0, 0);
+  font-size: 28px;
+  position: relative;
+  word-wrap: normal;
+  font-weight: bolder;
+}
+
+/*------------PRECONFIGURED BOX---------------*/
+.preConfiguredSection {
+  background-color: var(--LowerOpacityWhite);
+  display: flex;
+  flex-direction: column;
+  justify-self: flex-start;
+  transition: width 80ms;
+}
+.preConfiguredSection:hover {
+  background: var(--higherOpacityWhite);
+  width: 50vw;
+}
+.emptyText {
+  align-self: center;
+  font-size: 40px;
+  position: relative;
+  top: 30vh;
+  width: 400px;
+  text-align: center;
+  color: white;
+}
+
+.preConfiguredCard {
+  position: relative;
+  margin: 2% 6%;
+  width: 88%;
+  border-radius: 6px 6px 3px 3px;
+  background-color: var(--higherOpacityWhite);
+  box-shadow: var(--boxShadow);
+  opacity: 0;
+  transition: opacity 250ms;
+}
+.preConfiguredBox:hover {
+  box-shadow: var(--boxShadowHover);
+  cursor: pointer;
+}
+.pcHeaderWrapper {
+  background: var(--peachGradient);
+  border-radius: 6px 6px 0 0;
+  padding-bottom: 4px;
+}
+.preConfiguredHeaderBox {
+  position: relative;
+  align-self: flex-start;
+  justify-content: space-between;
+  background: white;
+  border-radius: 6px 6px 0 0;
+  background: var(--midAccent);
+  display: flex;
+  flex-direction: row;
+  border: 2px;
+  border-image: var(--peachGradient);
+}
+
+.pcHeaderBox-item {
+  padding: 15px 10px;
+  transition: all 100ms;
+  justify-self: flex-start;
+}
+.preConfiguredTitle {
+  justify-self: flex-start;
+  position: relative;
+  font-size: 28px;
+  height: 70%;
+  min-width: 120px;
+}
+.preConfiguredUpdate {
+  color: rgb(255, 255, 255, 0.7);
+  /* justify-self: center; */
+  align-self: flex-start;
+  font-size: 17px;
+  height: 70%;
+  position: relative;
+  top: 5px;
+}
+.preConfiguredUpdate:hover {
+  color: rgba(255, 255, 255, 1);
+  cursor: default;
+}
+.preConfiguredIconsSection {
+  justify-self: flex-end;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+.preConfiguredIcon {
+  margin: 1px 4px;
+  transition: all 100ms;
+}
+#preConfiguredIcon:hover {
+  background-image: var(--peachGradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.favourite-icon:hover {
+  color: rgb(255, 251, 0);
+}
+.favourited {
+  color: rgb(233, 233, 96);
+  text-shadow: var(--textShadow);
+}
+#preConfigured-delete:hover {
+  color: rgba(251, 30, 30, 0.757);
+}
+.settings-icon:hover {
+  transform: rotate(20deg);
+}
+
+.refresh-icon:hover {
+  transform: rotate(30deg);
+}
+
+.preConfiguredBody {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--high);
+}
+.split-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+  /* align-items: center; */
+}
+.pcDetails {
+  align-self: flex-start;
+  width: 65%;
+}
+.detail-flex {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 6px 0px 3px 0px;
+  text-shadow: var(--textShadow);
+}
+.detailIcon {
+  padding: 10px 25px 10px 20px;
+}
+.cloudIcon:hover {
+  color: #00c3ff;
+}
+.locationIcon:hover {
+  color: rgba(251, 30, 30, 0.757);
+}
+.lockIcon:hover {
+  color: rgb(226, 154, 0);
+}
+.tagIcon:hover {
+  color: #ff9472;
+}
+.detailField {
+  padding: 10px 15px;
+  text-align: justify;
+  margin-left: 0;
+  width: 100px;
+  min-width: 100px;
+  font-size: 22px;
+}
+.detailChild::after {
+  content: ":";
+}
+.detailText {
+  margin: 0 5px 8px;
+  padding: 10px 15px;
+  text-align: left;
+  width: 200px;
+  font-size: 22px;
+}
+.detailText-small {
+  font-size: 13px;
+  text-align: left;
+  min-width: 200px;
+  padding: 10px 15px;
+}
+.divider {
+  /*apply unique stlyes with the secondary class assigned to the element where this is used.*/
+  position: relative;
+  width: 4px;
+  border-radius: 3px;
+  top: 0;
+  left: -15px;
+}
+.horizDivider {
+  position: relative;
+  height: 3px;
+  background: white;
+  border-radius: 3px;
+}
+
+.pc-right-split {
+  width: 35%;
+}
+.right-split-item {
+  margin: 0px 8px;
+}
+
+.devicesButton {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: auto;
+  background: var(--LowerOpacityWhite);
+  border-radius: 6px;
+  width: 62%;
+  position: relative;
+  left: 50px;
+  align-self: center;
+}
+.devicesButton:hover {
+  cursor: pointer;
+  background: var(--lightBlueAccentHover);
+}
+.deviceCount-item {
+  transition: transform 120ms;
+}
+.devicesButton:hover .deviceCount-item {
+  transform: scale(1.1);
+}
+
+.deviceCountText {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  position: relative;
+  margin: 25px;
+  font-size: 28px;
+}
+.deviceCount-results {
+  position: relative;
+  left: 10px;
+  transition: transform 100ms;
+}
+.chevron-icon {
+  opacity: 0;
+  transition: opacity 100ms;
+}
+.devicesButton:hover .deviceCount-results {
+  transform: translateX(-10px);
+}
+.devicesButton:hover .chevron-icon {
+  opacity: 1;
+}
+
+/*-----------INPUT SECTION---------------*/
+.configInputSection {
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  position: relative;
+  display: none;
+  background: var(--LowerOpacityWhite);
+  opacity: 0.5;
+  justify-self: flex-start;
+  transition: width 80ms;
+  width: 47vw;
+}
+.configInputSection:hover {
+  width: 50vw;
+  transition: width 80ms;
+  background: var(--higherOpacityWhite);
+}
+.indivConfigInput {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: top;
+  width: 400px;
+  margin: 0px 20px;
+  align-items: center;
+  width: 400px;
+  padding: 10px 5px;
+  transition: box-shadow 75ms;
+}
+.confHeader {
+  letter-spacing: 1px;
+  position: relative;
+  text-align: left;
+  top: 0px;
+  width: 200px;
+}
+.confHeader::after {
+  content: ":";
+}
+
+.configInput {
+  position: relative;
+  width: 120px;
+  height: 30px;
+  padding: 15px 2px;
+  font-size: 18px;
+}
+.formDivider {
+  position: relative;
+  width: 80%;
+  height: 2px;
+  background: var(--midAccentHover);
+  margin: 15px;
+  left: 10%;
+}
+.formButtonContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 0, 15px 0 25px;
+}
+.formBtn {
+  color: white;
+  position: relative;
+  text-align: center;
+  opacity: 0.75;
+  transform: scale(1.5);
+  transition: all 120ms;
+  margin: 0 10px;
+}
+.formBtn:hover {
+  opacity: 0.95;
+  transform: scale(1.6);
+}
+.submitBtn:hover {
+  color: white;
+}
+
+.cancelBtn:hover {
+  color: rgba(251, 30, 30, 0.757);
+}
+/*slider*/
+/* The switch - the box around the slider */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 28px;
+  margin: 0 35px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 20px;
+  width: 20px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+input:checked + .slider {
+  background: var(--peachGradient);
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196f3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(22px);
+  -ms-transform: translateX(22px);
+  transform: translateX(22px);
+}
+/*
+
+
+/*devices page*/
+
+/**/
+
+.devicePageFlex {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  width: 100%;
+  min-height: 100%;
+}
+
+.configListContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  width: 25vw;
+  background: var(--LowerOpacityWhite);
+  margin: 7px 4px 7px 7px;
+  border-radius: 4px;
+}
+.configListItem {
+  margin: 5px 8px;
+  width: auto;
+}
+.configListHeaderSection {
+  background: none;
+  height: 4%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.headerText {
+  font-size: 30px;
+  margin: 0px 10px;
+  align-self: center;
+  justify-self: center;
+}
+.headerIconsSection {
+  display: flex;
+  justify-self: flex-end;
+}
+.headerIcon {
+  margin: 10px 3px;
+  padding: 0 10px;
+}
+.configListEntry {
+  height: 10%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  border-radius: 4px;
+  transition: all 150ms;
+  opacity: 0;
+}
+.inactiveConfig {
+  background: var(--higherOpacityWhite);
+}
+.inactiveConfig:hover {
+  background: rgba(255, 255, 255, 0.85);
+}
+.inactiveConfig:hover .entryTitle {
+  color: black;
+}
+.activeConfig {
+  background: var(--midAccent);
+}
+.activeConfig:hover {
+  background: var(--midAccentHover);
+}
+.configListEntry:hover {
+  cursor: pointer;
+}
+.configListEntry:hover .entryTitle {
+  transform: translateX(25px);
+}
+.entry-chevron-icon {
+  color: white;
+}
+.configListEntry:hover .chevron-icon {
+  opacity: 1;
+  transition-delay: 150ms;
+}
+.inactiveConfig:hover .chevron-icon {
+  color: black;
+}
+.configEntryFavourite {
+  text-shadow: none;
+  justify-self: left;
+  align-items: flex-start;
+  margin-left: 10px;
+}
+.entryTitle {
+  font-size: 25px;
+  color: white;
+  transition: all 150ms;
+  text-align: left;
+  transform: translateX(45px);
+}
+
+.entry-chevron-icon {
+  transform: scale(1.3);
+  transition: all 100ms;
+  margin: 0 30px;
+}
+.addConfigRedirect {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.createNewConfigText-Devices {
+  font-size: 30px;
+  position: relative;
+  top: 10px;
+  color: #ffffff;
+  width: 100px;
+}
+
+.deviceListSection {
+  background: #ffffff30;
+  position: relative;
+  width: 73vw;
+  margin: 7px 7px 7px 4px;
+  border-radius: 4px;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.deviceListHeaderSection {
+  position: relative;
+  height: 6%;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+  align-self: flex-end;
+}
+
+.searchBox {
+  position: relative;
+  width: 150px;
+  height: 40px;
+}
+.tooltip {
+  position: relative;
+  display: inline-block;
+}
+
+.searchToolTipText {
+  position: absolute;
+  opacity: 0;
+  background: rgb(32, 29, 29);
+  color: white;
+  border-radius: 5px;
+  transition: opacity;
+  display: none;
+  transition: opacity 500ms;
+  transition-delay: 400ms;
+  width: 150px;
+  height: 40px;
+  text-align: center;
+  display: none;
+}
+.tooltip:hover + .searchToolTipText {
+  display: none;
+  /* opacity: 1; */
+}
+.searchBtn {
+  font-size: 50px;
+}
+
+.searchBtn {
+  font-size: 50px;
+}
+
+.deviceContainer {
+  position: relative;
+  display: inline-flex;
+  flex-direction: row;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.control {
+  position: relative;
+  background: white;
+  border-radius: 4px;
+  box-shadow: 0px 0px 5px 1px rgb(56, 56, 56);
+  margin: 20px 25px 50px 25px;
+  width: 230px;
+  height: 230px;
+  cursor: pointer;
+  color: black;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  opacity: 0;
+  transition: all 150ms ease-out;
+}
+.control:hover {
+  transform: scale(1.04);
+}
+.typeDecorTemplate {
+  width: 100%;
+  height: 4%;
+  position: relative;
+  top: 0%;
+  border-radius: 5px 5px 0px 0px;
+}
+.control .controlLabel {
+  font-size: 24px;
+  font-weight: bolder;
+  text-align: center;
+  align-self: center;
+  color: black;
+  justify-self: flex-start;
+  margin-top: 7px;
+  padding: 3px;
+  height: 30px;
+}
+.controlStatusIconCont {
+  align-self: center;
+  justify-self: center;
+  border-radius: 50%;
+  width: 42%;
+  height: 42%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  transition: all 100ms;
+}
+.controlStatusIconCont:hover .status-icon {
+  transform: scale(2.4);
+}
+.status-icon {
+  transform-origin: center;
+  transition: all 100ms;
+  transform: scale(2.2);
+}
+.device-on {
+  color: #ffffff;
+  background: var(--peachGradient);
+}
+.device-on:hover {
+  background: var(--peachGradientLowOpacity);
+}
+.device-off {
+  color: #ffffff;
+  background: #5a5a5a8c;
+}
+.device-off:hover {
+  background: var(--peachGradientVeryLowOpacity);
+}
+
+.viewController {
+  width: 400px;
+}
+
+.controlFooterSection {
+  justify-self: flex-start;
+  align-self: flex-end;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+  width: 100%;
+  height: auto;
+  background: #5a5a5a;
+  border-radius: 0 0 4px 4px;
+  color: white;
+}
+.controlFooterItem {
+  max-width: 50px;
+  margin: 3px 2px;
+  position: relative;
+  right: 8px;
+}
+.controlFooterSection:hover .control-chevron-icon {
+  transform: translateX(6px);
+}
+
+.control-chevron-icon {
+  position: relative;
+  transform: scale(1.1);
+  transition: all 100ms;
+}
+
+/*single device page*/
+/*edit page*/
+
+/*test styles*/
+.testBody {
+  background: white;
+}
+.logoTestText {
+  font-size: 350px;
+  font-family: "Oswald";
+  text-shadow: 6px 6px var(--midAccent);
+  margin: 100px;
+}

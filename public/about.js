@@ -69,11 +69,10 @@ window.addEventListener("load", () => {
 const findTarget = function(offY){
   const currentLoc = window.scrollY
   const targetOffset = currentLoc + offY
-  console.log(targetOffset)
   return targetOffset
 }
 const scrollDest = document.querySelectorAll(".scrollDest");
-scrollDownBtns.forEach((btn, i) => {
+scrollDownBtns.forEach((btn) => {
   const id = btn.id.slice(6);
   const target = document.getElementById(`dest${id}`).getBoundingClientRect();
   const destination = findTarget(target.top) + 475
@@ -88,7 +87,6 @@ scrollDownBtns.forEach((btn, i) => {
 demoControls.forEach(control=>{
   const btn = control.querySelector('.controlStatusIconCont')
   control.addEventListener('click',(e)=>{
-    console.log(e.target.closest('.demoControl'))
     if(e.target.closest('.demoControl').id == 'demoControl2'){
       const neonTargets = document.querySelectorAll('.neonTarget')
       btn.classList.toggle('device-on')
