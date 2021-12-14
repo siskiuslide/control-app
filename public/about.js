@@ -131,6 +131,13 @@ SOLISAltText.addEventListener("click", (e) => {
   }
 });
 
+// //links section
+// const newTabLinks = document.querySelectorAll('.newTabLink')
+// newTabLinks.forEach(link=>{
+//   link.addEventListener('click',()=>{
+//     window.open(link.href, "_blank")
+//   })
+// })
 
 const elementAfterMain = [aboutBanner, featuresSection, SOLIS, linksSection]
 const fadeInThreshold = window.innerHeight - 75
