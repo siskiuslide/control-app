@@ -7,16 +7,28 @@
 
 /*homepage*/
 .homeBody {
-  background: var(--homeBackground) !important;
+  background: var(--darkHome) !important;
   /* height: 260%; */
 }
 .homeNav {
   background: #fff;
   position: static;
 }
+.mainFlex{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  /* height: auto; */
+  justify-content: space-evenly;
+  align-items: center;
+}
+.mainFlex > * {
+  margin: 5% 0 ;
+}
 .openingImage {
   position: relative;
   width: 100%;
+  height: 83%;
   border-radius: 5px;
   transition: all 300ms;
   transform-origin: bottom;
@@ -29,7 +41,7 @@
   transform: scale(1.0005);
 }
 .OIFlexItem {
-  margin: 0px 10%;
+  margin: auto;
   width: 80%;
 }
 
@@ -38,7 +50,6 @@
   justify-content: space-between;
   display: flex;
   position: relative;
-  margin: 10% 0 0 0;
 }
 
 .aboutHeadingContainer {
@@ -246,11 +257,14 @@
 
 .arrowContainer {
   text-align: center;
-  margin-top: 3%;
   display: block;
+  margin: auto;
+  height: 10%;
+  top: -5%;
 }
 .scrollDownBtn {
   font-size: 75px !important;
+  padding-bottom: 20px;
 }
 #scroll1 {
   opacity: 0;
@@ -262,24 +276,18 @@
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 67%;
+  height: 35rem;
   color: white;
-  margin: 9% 0;
   opacity: 0;
   background-image: url("./../images/about/lighting2.png");
-
-  min-height: 67%;
-  transform: rotate(-3deg);
-  transform: skewY(-3deg);
+  top: 11%;
+  
 }
 .aboutBannerHeading {
   font-size: 70px;
   font-family: "oswald";
   align-self: center;
   text-shadow: -4px -4px var(--midAccent);
-  margin: -1% 0 5% 0;
-  transform: rotate(3deg);
-  transform: skewY(3deg);
 }
 .aboutContent {
   font-family: "open sans";
@@ -288,9 +296,6 @@
   top: -4rem;
   width: 60%;
   text-align: justify;
-  text-shadow: var(--textShadowDark);
-  transform: rotate(3deg);
-  transform: skewY(3deg);
 }
 .belowBanner {
   display: flex;
@@ -300,7 +305,6 @@
   height: 5%;
   width: 100%;
   position: relative;
-  top: -5%;
 }
 
 .featuresSection {
@@ -309,33 +313,33 @@
   align-items: center;
   justify-content: center;
   position: relative;
-  left: 2%;
-  top: 5%;
-  width: 96%;
+  margin: auto;
+  width: 95%;
   height: auto;
-  background: var(--LowerOpacityWhite);
+  min-height: 100%;
   border-radius: 4px;
   opacity: 0;
 }
 .featuresHeading {
   font-family: "oswald";
   font-size: 65px;
-  margin: 10px;
+  margin-top: 10px;
+  margin-bottom: auto;
 }
 .feature {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-  width: 80%;
+  width: 65%;
   height: auto;
-  margin: 3%;
   transition: transform 75ms;
+  margin: 2% auto auto auto;
 }
 .feature:hover {
   transform: scale(1.04);
 }
 .featureImageContainer {
-  width: 35%;
+  width: 40%;
   height: auto;
 }
 .featureImage {
@@ -344,49 +348,29 @@
   height: auto;
   display: block;
   overflow: hidden;
-  margin: 0 3%;
-}
-.featureDivider {
-  align-self: center;
-  min-height: 240px;
-  width: 4px;
-  background: white;
-  box-shadow: -2px -2px var(--midAccent);
-  margin: 0px 2%;
 }
 .featureTextFlex {
-  justify-self: flex-end;
   display: flex;
+  align-items: flex-start;
+  justify-content: center;
   flex-direction: column;
-  align-items: center;
-  width: 40%;
-  margin: 0 5% 0 0;
+  width: 55%;
+  margin: auto;
+
 }
 .featureTextFlex > h2 {
-  font-size: 42px;
-  font-family: "oswald";
-  align-self: flex-start;
-  text-shadow: -2px -2px var(--midAccent);
-  margin: 5% 0px 0px 0px;
+  align-text: left;
+  font-size: 38px;
+  font-family: 'oswald';
+  text-shadow: -3px -3px var(--midAccent)
+
 }
 .featureTextFlex > p {
-  margin: 3% 0px;
-  font-family: "open sans";
-  font-size: 24px;
   text-align: justify;
-}
-.featureImageRev {
-}
-.featureTextRev {
-  margin: -3% 0 0 15%;
-}
-.featureNameRev {
-  align-self: flex-end !important;
-}
-.featureDescRev {
-  text-align: right;
   width: 80%;
+
 }
+
 
 .multiFeatureDesign {
   display: flex;
@@ -467,14 +451,18 @@
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  height: 110%;
+  height: 130%;
   min-height: 95%;
   background-image: url("./../images/about/signupbackground.jpg");
   margin: 5% 0 0 0;
+  transform: rotate(3deg);
+  
 }
 .largeFooter > h1 {
   font-family: "oswald";
   font-size: 45px;
+  padding: 10% 0 0 0;
+
 }
 .SOLIS {
   display: flex;
@@ -483,16 +471,15 @@
   width: 35%;
   margin: auto auto;
   border-radius: 4px;
-  height: 65%;
+
 }
 
 .solisItem {
   width: 90%;
-  height: 97%;
+  min-height: 500px;;
   margin: auto auto;
   display: flex;
   flex-direction: column;
-  margin: auto;
 }
 .solisItem > h2 {
   font-family: "oswald";
@@ -504,7 +491,7 @@
 }
 
 .solisItem > * {
-  margin: 2% auto;
+  margin: 3% auto;
 }
 .solisItem > h4 {
   color: rgb(71, 64, 64);
@@ -571,12 +558,13 @@
   align-items: center;
   justify-content: center;
   position: relative;
-  background: rgba(47, 47, 47, 0.671);
-  height: 35%;
+  background: rgba(0, 0, 0, 0.871);
+  height: auto;
   font-family: "open sans";
   color: white;
   opacity: 0;
-  margin-top: 3%;
+  margin-top: 15%;
+  margin-bottom: 0;
 }
 .linksSection > h1 {
   font-size: 45px;
@@ -598,4 +586,16 @@
 .linksFlex > a {
   margin: 1% 5%;
   font-size: 75px;
+}
+
+
+
+
+.skew{
+  transform: rotate(-2deg);
+  transform: skewY(2deg);
+}
+.offsetSkew{
+  transform: rotate(2deg);
+  transform: skewY(-2deg);
 }

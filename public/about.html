@@ -49,10 +49,11 @@
       </li>
     </ul>
   </div>
-  <div class="openingImage">
-    <div class="OIFlexItem mainContainer">
-      <div class="aboutHeadingContainer">
-        <h1 class="openingImageHeading neonTarget">
+  <div class="mainFlex">
+    <div class="openingImage">
+      <div class="OIFlexItem mainContainer">
+        <div class="aboutHeadingContainer">
+          <h1 class="openingImageHeading neonTarget">
           <span class="peachGradientText">Control your networks simply.</span>
         </h1>
         <div class="demoControlsFlex">
@@ -78,7 +79,7 @@
             <div class="controlStatusIconCont device-off">
               <span class="material-icons status-icon">bolt</span>
             </div>
-          <div class="controlFooterSection">
+            <div class="controlFooterSection">
             <div class="controlFooterItem">
               <span class="material-icons favourite-icon control-fav-icon favourited">star</span>
             </div>
@@ -136,14 +137,14 @@
           <p class="stepItem stepText">Control your devices</p>
         </a>
       </div>
-     </div>   
-    </div>
+    </div>   
+  </div>
     <div class="OIFlexItem arrowContainer">
-        <span class="material-icons scrollDownBtn" id="scroll1">expand_more</span>
+      <span class="material-icons scrollDownBtn" id="scroll1">expand_more</span>
     </div>
-    <div class="aboutBanner scrollDest parallax" id="dest1">
-      <h2 class="aboutBannerHeading">About</h2>
-      <p class="aboutContent">
+    <div class="aboutBanner scrollDest parallax skew" id="dest1">
+      <h2 class="aboutBannerHeading offsetSkew">About</h2>
+      <p class="aboutContent offsetSkew">
         <br>
         We provide an integration for Hubitat users who need a simple and snappy alternative to the built in Hubitat Dashboard. Connect to any number of networks by configuring instances of the
         <a class="textLink" href="https://docs.hubitat.com/index.php?title=Maker_API"><b>MakerAPI</b></a> to control devices you assign.
@@ -152,12 +153,12 @@
         The project is built with <b>NodeJS</b>, <b>Express</b> & <b>MongoDB</b>, and utilizes a simplistic
         <b>HTML/CSS/JS</b> frontend.
       </p>
+      <div class="belowBanner arrowContainer">
     </div>
-  <div class="belowBanner arrowContainer">
       <span class="material-icons scrollDownBtn" id="scroll2">expand_more</span>
-  </div>
+    </div>
     <div class="featuresSection scrollDest" id="dest2">
-      <h1 class="featuresHeading peachGradientText">Features</h1>
+      <!-- <h1 class="featuresHeading peachGradientText">Features</h1> -->
       <div class="feature multiFeature">
         <div class="multiFeatureDesign">
           <div class="configListItem configListEntry inactiveDemo" id="demo1">
@@ -183,14 +184,13 @@
       </div>
       <div class="feature pollingFeature">        
         <!-- <div class="featureDivider divider"></div> -->
-        <div class="featureTextFlex featureTextRev">
-          <h2>Polling</h2>
-          <p style="color:red; font-weight: bolder;">WIP</p>
-          <p class="featureDesc featureDescRev">Make poll requests to your hub to update device status automatically. The polling system is performant and toggleable, and is subject to validation checks before repeating the check.</p>
-        </div>
         <div class="featureImageContainer">
           <img class="featureImage pollingImage" src="images/about/polling.png"></img>
         </div>
+        <div class="featureTextFlex">
+          <h2>Polling</h2>          
+          <p class="featureDesc">Make poll requests to your hub to update device status automatically. The polling system is performant and toggleable, and is subject to validation checks before repeating the check.</p>
+        </div>       
       </div>
       <div class="feature responseFeature">
         <div class="featureImageContainer">
@@ -202,11 +202,11 @@
           <p class="featureDesc">The UI responds instantly to controlling devices and is followed by a validation check, ensuring the device's shown status is correct. Enjoy a snappy and reliable UI.</p>
         </div>
       </div>
-      </div>
     </div>
-    <div class="largeFooter parallax">
-      <h1 class="peachGradientText">Get Started Now</h1>
-      <div class="SOLIS">
+  </div>
+  <div class="largeFooter parallax skew">
+      <h1 class="peachGradientText offsetSkew">Get Started Now</h1>
+      <div class="SOLIS offsetSkew">
         <form class="solisItem signUp">
           <h2>Sign up</h2>
           <h4>Email:</h4>
@@ -222,13 +222,16 @@
           </div>
         </form>
       </div>  
-      <div class="linksSection">
+      <div class="linksSection offsetSkew">
         <h1>Created by <span class="peachGradientText"><b>Jake Whatling</b></span></h1>
         <p>I built this application for fun. I will continue supporting and aim for regular updates.</p>
-        <p>Below are the links to the Github repository and LinkedIn profile.</p>
+        <p>Below are the links to the Github repository, LinkedIn profile and Personal website</p>
         <div class="linksFlex">
-         <a href="https://github.com/siskiuslide/control-app"><i class="fab fa-github-square"></i></a>
+          <a href="https://github.com/siskiuslide/control-app"><i class="fab fa-github-square"></i></a>
+         <a href="#"><i class="fas fa-user-alt" style="font-size: 45px;"></i></a>
          <a href="https://www.linkedin.com/in/jake-whatling/"><i class="fab fa-linkedin"></i></a>
         </div>      
       </div>    
-</body>
+    </div>
+    </body>
+    

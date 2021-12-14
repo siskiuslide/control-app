@@ -19,7 +19,8 @@
   --boxShadowHover: 3px 1px 5px #4e4c4c;
   --textShadow: 1px 1px 5px #4e4c4c;
   --textShadowDark: 1px 2px 5px #363636;
-  --homeBackground: linear-gradient(100deg, rgba(0, 128, 187, 1) 0%, rgba(0, 155, 186, 1) 50%, rgb(115, 211, 228) 90%);
+  --homeBackground: linear-gradient(to bottom, rgba(0, 128, 187, 1) 0%, rgba(0, 155, 186, 1) 50%, rgb(115, 211, 228) 90%);
+  --darkHome: linear-gradient(to bottom, #0080bb 7%, #2aa0cc 14%, #55bfdb 21%,  #60a9c4 28%,  #4d6f8b 38%, #343642df 40%, #16131a 78%);
 }
 html {
   background: var(--mainGradient);

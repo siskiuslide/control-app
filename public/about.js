@@ -75,7 +75,7 @@ const scrollDest = document.querySelectorAll(".scrollDest");
 scrollDownBtns.forEach((btn) => {
   const id = btn.id.slice(6);
   const target = document.getElementById(`dest${id}`).getBoundingClientRect();
-  const destination = findTarget(target.top) + 500;
+  const destination = findTarget(target.top) + 450
   btn.addEventListener("click", () => {
     window.scrollTo({ top: destination, behavior: "smooth" });
   });
@@ -126,6 +126,7 @@ SOLISAltText.addEventListener("click", (e) => {
     fadeOut(SOLISForm.querySelector(".forgotPassword"), 00);
   }
   if (SOLISState == "login") {
+    SOLISForm.style.height
     SOLISHeading.textContent = "Login";
     SOLISAltText.textContent = "Create an account";
     SOLISConfirm.forEach((el) => (el.style.display = "none"));
