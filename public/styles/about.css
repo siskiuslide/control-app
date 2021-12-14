@@ -467,7 +467,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  height: 100%;
+  height: 110%;
   min-height: 95%;
   background-image: url("./../images/about/signupbackground.jpg");
   margin: 5% 0 0 0;
@@ -476,36 +476,37 @@
   font-family: "oswald";
   font-size: 45px;
 }
-.SOLIS{
+.SOLIS {
   display: flex;
   flex-direction: row;
   background: white;
-  width: 40%;
+  width: 35%;
   margin: auto auto;
   border-radius: 4px;
   height: 65%;
 }
 
-.solisItem{
+.solisItem {
   width: 90%;
   height: 97%;
   margin: auto auto;
   display: flex;
-  flex-direction: column
+  flex-direction: column;
+  margin: auto;
 }
 .solisItem > h2 {
-  font-family: 'oswald';
-  color:rgb(71, 64, 64);
+  font-family: "oswald";
+  color: rgb(71, 64, 64);
   font-size: 38px;
 }
-.solisItem > .button{
+.solisItem > .button {
   background: var(--peachGradient);
 }
 
 .solisItem > * {
   margin: 2% auto;
 }
-.solisItem > h4{
+.solisItem > h4 {
   color: rgb(71, 64, 64);
   margin: 1% auto 0 20%;
 }
@@ -516,44 +517,52 @@
   margin: 0 auto 0 20%;
   font-size: 18px;
 }
-.solisItem > input{
+.solisItem > .forgotPassword:hover {
+  color: var(--midAccent);
+}
+.solisItem > input {
   outline: none;
   border: 2px solid rgb(71, 64, 64);
   padding: 10px 5px;
   width: 60%;
-
 }
-.solisItem > input:focus{
+.solisItem > input:focus {
   border: 2px solid var(--midAccent);
 }
-.solisItem > input:hover{
+.solisItem > input:hover {
   border: 2px solid var(--midAccentHover);
 }
-.solisItem > .solisItemBtnSection > .button{
+.solisItem > .solisItemBtnSection > .button {
   border: 2px solid black !important;
 }
-.solisItemBtnSection{
-  margin-top: auto;
+.solisItemBtnSection {
+  margin: auto;
   display: flex;
   flex-direction: row;
   justify-content: left;
-  align-items: center;  
-
+  align-items: center;
 }
 .solisItemBtnSection > a {
   margin: 2% 10px;
-
-}
-.solisItemBtnSection > a > p {
   color: black;
-  font-size: 18px;
+  font-size: 17px;
 }
-.solisItemBtnSection > a > p:hover {
+.solisItemBtnSection > a:hover {
   color: var(--midAccent);
 }
-.solisItemBtnSection > .button{
+
+.solisItemBtnSection > .button {
   background: var(--peachGradient);
   height: 50%;
+  font-size: 25px;
+  border-radius: 20px;
+  transition: all 100ms;
+}
+.solisItemBtnSection > .button:hover {
+  background: white;
+  height: 50%;
+  border-radius: 10px;
+  color: black;
 }
 
 .linksSection {
@@ -562,7 +571,7 @@
   align-items: center;
   justify-content: center;
   position: relative;
-  background: rgba(69, 69, 69, 0.63);
+  background: rgba(47, 47, 47, 0.671);
   height: 35%;
   font-family: "open sans";
   color: white;

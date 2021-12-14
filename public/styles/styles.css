@@ -19,12 +19,7 @@
   --boxShadowHover: 3px 1px 5px #4e4c4c;
   --textShadow: 1px 1px 5px #4e4c4c;
   --textShadowDark: 1px 2px 5px #363636;
-  --homeBackground: linear-gradient(
-    to bottom,
-    rgba(0, 128, 187, 1) 0%,
-    rgba(0, 155, 186, 1) 50%,
-    rgb(115, 211, 228) 90%
-  );
+  --homeBackground: linear-gradient(100deg, rgba(0, 128, 187, 1) 0%, rgba(0, 155, 186, 1) 50%, rgb(115, 211, 228) 90%);
 }
 html {
   background: var(--mainGradient);
@@ -106,7 +101,7 @@ input:focus {
   position: relative;
   width: 4px;
   border-radius: 3px;
-  background: var(--midAccent)
+  background: var(--midAccent);
 }
 .horizDivider {
   position: relative;
@@ -242,7 +237,7 @@ input:focus {
 }
 
 /*flex*/
-.push-right{
+.push-right {
   margin-right: auto;
 }
 
