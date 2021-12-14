@@ -48,21 +48,6 @@ window.addEventListener("load", () => {
         fadeInOpacOnly(interactiveBtn, 500);
       }, 1000)
     )
-    // .then(
-    //   setTimeout(() => {
-    //     fadeInOpacOnly(aboutBanner, 600);
-    //   }, 1300)
-    // )
-    // .then(
-    //   setTimeout(() => {
-    //     fadeInOpacOnly(featuresSection, 600);
-    //   }, 1500)
-    // )
-    // .then(
-    //   setTimeout(() => {
-    //     fadeInOpacOnly(linksSection, 600);
-    //   }, 600)
-    // );
 });
 
 
@@ -96,6 +81,11 @@ demoControls.forEach((control) => {
         target.classList.toggle("neonLights");
       });
     }
+    if(e.target.closest('.demoControl').id == 'demoControl1'){
+      btn.classList.toggle("device-on");
+      btn.classList.toggle("device-off");
+      aboutBanner.classList.toggle('aboutBannerGray')
+    }
   });
 });
 
@@ -117,7 +107,7 @@ SOLISAltText.addEventListener("click", (e) => {
   SOLISForm.classList.contains("signUp") ? (SOLISState = "signUp") : (SOLISState = "login");
 
   if (SOLISState == "signUp") {
-    SOLISHeading.textContent = "Sign Up";
+    SOLISHeading.textContent = "Get Started Now";
     SOLISAltText.textContent = "Already have an account?";
     SOLISConfirm.forEach((el) => (el.style.display = "inline"));
     SOLISButton.textContent = "Sign Up";
@@ -143,7 +133,7 @@ SOLISAltText.addEventListener("click", (e) => {
 
 
 const elementAfterMain = [aboutBanner, featuresSection, SOLIS, linksSection]
-const fadeInThreshold = window.innerHeight - 150
+const fadeInThreshold = window.innerHeight - 75
 class Fadeable {
   constructor(element){
     this.element = element
