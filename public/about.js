@@ -48,22 +48,24 @@ window.addEventListener("load", () => {
         fadeInOpacOnly(interactiveBtn, 500);
       }, 1000)
     )
-    .then(
-      setTimeout(() => {
-        fadeInOpacOnly(aboutBanner, 600);
-      }, 1300)
-    )
-    .then(
-      setTimeout(() => {
-        fadeInOpacOnly(featuresSection, 600);
-      }, 1500)
-    )
-    .then(
-      setTimeout(() => {
-        fadeInOpacOnly(linksSection, 600);
-      }, 600)
-    );
+    // .then(
+    //   setTimeout(() => {
+    //     fadeInOpacOnly(aboutBanner, 600);
+    //   }, 1300)
+    // )
+    // .then(
+    //   setTimeout(() => {
+    //     fadeInOpacOnly(featuresSection, 600);
+    //   }, 1500)
+    // )
+    // .then(
+    //   setTimeout(() => {
+    //     fadeInOpacOnly(linksSection, 600);
+    //   }, 600)
+    // );
 });
+
+
 
 //scrolling
 const findTarget = function (offY) {
@@ -138,3 +140,31 @@ SOLISAltText.addEventListener("click", (e) => {
     fadeIn(SOLISForm.querySelector(".forgotPassword"), 150, "inline");
   }
 });
+
+
+const elementAfterMain = [aboutBanner, featuresSection, SOLIS, linksSection]
+const fadeInThreshold = window.innerHeight - 150
+class Fadeable {
+  constructor(element){
+    this.element = element
+    this.offset = this.findOffset(this.element)
+    this.inViewPortTransition = function(offset){
+      if(offset <= fadeInThreshold && element.style.opacity !== '1'){
+        fadeIn(element, 230, 'flex')
+      }
+    }
+  }
+  findOffset = function(element){
+    const rect = element.getBoundingClientRect();
+    const offset = rect.top
+    return rect.top
+  }
+}
+const fadeablesArr = []
+elementAfterMain.forEach(el=>{return fadeablesArr.push(new Fadeable(el))})
+
+window.addEventListener('scroll',()=>{
+  fadeablesArr.forEach(el=>{
+    el.inViewPortTransition(el.findOffset(el.element))
+  })
+})

@@ -352,7 +352,7 @@
 .featureTextFlex {
   display: flex;
   align-items: flex-start;
-  justify-content: center;
+  justify-content: space-around;
   flex-direction: column;
   width: 55%;
   margin: auto;
@@ -368,7 +368,7 @@
 .featureTextFlex > p {
   text-align: justify;
   width: 80%;
-
+  margin-top: -5%;
 }
 
 
@@ -439,7 +439,7 @@
 
 #demo3 {
   position: relative;
-  top: -3%;
+  top: -5%;
   left: 5%;
 }
 
@@ -461,16 +461,17 @@
 .largeFooter > h1 {
   font-family: "oswald";
   font-size: 45px;
-  padding: 10% 0 0 0;
+  padding: 5% 0 0 0;
 
 }
 .SOLIS {
-  display: flex;
+  display: none;
   flex-direction: row;
   background: white;
   width: 35%;
   margin: auto auto;
   border-radius: 4px;
+  opacity: 0;
 
 }
 
