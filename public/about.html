@@ -1,10 +1,11 @@
 <head>
   <title>Control | About</title>
-  <link rel="icon" href="./logos/dark theme logo.png"/>
+  <link rel="icon" href="./logos/dark theme logo.png" />
   <link rel="stylesheet" href="./styles/styles.css" />
   <link rel="stylesheet" href="./styles/about.css" />
   <link rel="stylesheet" href="./styles/config.css" />
-  <link rel="stylesheet" href="./styles/devices.css" /> <!--Used for demo in openingImage-->
+  <link rel="stylesheet" href="./styles/devices.css" />
+  <!--Used for demo in openingImage-->
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Oswald&display=swap" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
@@ -13,7 +14,10 @@
     href="https://fonts.googleapis.com/css2?family=Anton&family=Asap&family=Open+Sans:wght@350&display=swap"
     rel="stylesheet"
   />
-  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Asap&family=Open+Sans:wght@300&family=Satisfy&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Anton&family=Asap&family=Open+Sans:wght@300&family=Satisfy&display=swap"
+    rel="stylesheet"
+  />
   <script src="https://kit.fontawesome.com/b764314baa.js" crossorigin="anonymous"></script>
   <script defer src="script.js"></script>
   <script defer src="about.js"></script>
@@ -54,107 +58,108 @@
       <div class="OIFlexItem mainContainer">
         <div class="aboutHeadingContainer">
           <h1 class="openingImageHeading neonTarget">
-          <span class="peachGradientText">Control your networks simply.</span>
-        </h1>
-        <div class="demoControlsFlex">
-          <div class="demoControl" id="demoControl1">
-            <p class="controlLabel">Hanging Lights</p>
-            <div class="controlStatusIconCont device-on">
-              <span class="material-icons status-icon">lightbulb</span>
+            <span class="peachGradientText">Control your networks simply.</span>
+          </h1>
+          <div class="demoControlsFlex">
+            <div class="demoControl" id="demoControl1">
+              <p class="controlLabel">Hanging Lights</p>
+              <div class="controlStatusIconCont device-on">
+                <span class="material-icons status-icon">lightbulb</span>
+              </div>
+              <div class="controlFooterSection">
+                <div class="controlFooterItem">
+                  <span class="material-icons favourite-icon control-fav-icon">star_outline</span>
+                </div>
+                <div class="controlFooterItem">
+                  <span class="material-icons delete-icon control-del-icon">delete</span>
+                </div>
+                <div class="controlFooterItem">
+                  <span class="material-icons control-chevron-icon">chevron_right</span>
+                </div>
+              </div>
             </div>
-            <div class="controlFooterSection">
-              <div class="controlFooterItem">
-                <span class="material-icons favourite-icon control-fav-icon">star_outline</span>
+            <div class="demoControl" id="demoControl2">
+              <p class="controlLabel">Neons!</p>
+              <div class="controlStatusIconCont device-off">
+                <span class="material-icons status-icon">bolt</span>
               </div>
-              <div class="controlFooterItem">
-                <span class="material-icons delete-icon control-del-icon">delete</span>
+              <div class="controlFooterSection">
+                <div class="controlFooterItem">
+                  <span class="material-icons favourite-icon control-fav-icon favourited">star</span>
+                </div>
+                <div class="controlFooterItem">
+                  <span class="material-icons delete-icon control-del-icon">delete</span>
+                </div>
+                <div class="controlFooterItem">
+                  <span class="material-icons control-chevron-icon">chevron_right</span>
+                </div>
               </div>
-              <div class="controlFooterItem">
-                <span class="material-icons control-chevron-icon">chevron_right</span>
+            </div>
+            <div class="demoControl" id="demoControl3">
+              <p class="controlLabel">Lounge Light</p>
+              <div class="controlStatusIconCont device-on">
+                <span class="material-icons status-icon">lightbulb</span>
+              </div>
+              <div class="controlFooterSection">
+                <div class="controlFooterItem">
+                  <span class="material-icons favourite-icon control-fav-icon">star_outline</span>
+                </div>
+                <div class="controlFooterItem">
+                  <span class="material-icons delete-icon control-del-icon">delete</span>
+                </div>
+                <div class="controlFooterItem">
+                  <span class="material-icons control-chevron-icon">chevron_right</span>
+                </div>
               </div>
             </div>
           </div>
-          <div class="demoControl" id="demoControl2">
-            <p class="controlLabel">Neons!</p>
-            <div class="controlStatusIconCont device-off">
-              <span class="material-icons status-icon">bolt</span>
-            </div>
-            <div class="controlFooterSection">
-            <div class="controlFooterItem">
-              <span class="material-icons favourite-icon control-fav-icon favourited">star</span>
-            </div>
-            <div class="controlFooterItem">
-              <span class="material-icons delete-icon control-del-icon">delete</span>
-            </div>
-            <div class="controlFooterItem">
-              <span class="material-icons control-chevron-icon">chevron_right</span>
-            </div>
+          <div class="tryMeContainer">
+            <span class="promptChevron material-icons">north</span>
+            <p class="tryMePrompt">Click Me!</p>
           </div>
         </div>
-          <div class="demoControl" id="demoControl3">
-            <p class="controlLabel">Lounge Light</p>
-            <div class="controlStatusIconCont device-on">
-              <span class="material-icons status-icon">lightbulb</span>
+        <div class="stepFlexContainer">
+          <a class="step createAccountStep neonTarget" href="#">
+            <div class="stepItem stepNumber">1</div>
+            <div class="stepItem stepIcon person_add hoverable" href="#">
+              <span class="material-icons peachGradient stepIconFont">person_add</span>
             </div>
-            <div class="controlFooterSection">
-              <div class="controlFooterItem">
-                <span class="material-icons favourite-icon control-fav-icon">star_outline</span>
-              </div>
-              <div class="controlFooterItem">
-                <span class="material-icons delete-icon control-del-icon">delete</span>
-              </div>
-              <div class="controlFooterItem">
-                <span class="material-icons control-chevron-icon">chevron_right</span>
-              </div>
+            <p class="stepItem stepText">Create an account</p>
+          </a>
+          <a class="step addNetworkStep neonTarget" href="config.html">
+            <div class="stepItem stepNumber">2</div>
+            <div class="stepItem stepIcon tune">
+              <span class="material-icons peachGradient stepIconFont">tune</span>
             </div>
-          </div>
+            <p class="stepItem stepText">Add your network</p>
+          </a>
+          <a class="step controlDevicesStep neonTarget" href="devices.html">
+            <div class="stepItem stepNumber">3</div>
+            <div class="stepItem stepIcon tungsten">
+              <span class="material-icons peachGradient stepIconFont">tungsten</span>
+            </div>
+            <p class="stepItem stepText">Control your devices</p>
+          </a>
         </div>
-        <div class="tryMeContainer">
-          <span class="promptChevron material-icons">north</span>
-          <p class="tryMePrompt">Click Me!</p>
-        </div>  
-      </div>    
-      <div class="stepFlexContainer">
-        <a class="step createAccountStep neonTarget" href="#">
-          <div class="stepItem stepNumber">1</div>
-          <div class="stepItem stepIcon person_add hoverable" href="#">
-            <span class="material-icons peachGradient stepIconFont">person_add</span>
-          </div>
-          <p class="stepItem stepText">Create an account</p>
-        </a>
-        <a class="step addNetworkStep neonTarget" href="config.html">
-          <div class="stepItem stepNumber">2</div>
-          <div class="stepItem stepIcon tune">
-            <span class="material-icons peachGradient stepIconFont">tune</span>
-          </div>
-          <p class="stepItem stepText">Add your network</p>
-        </a>
-        <a class="step controlDevicesStep neonTarget" href="devices.html">
-          <div class="stepItem stepNumber">3</div>
-          <div class="stepItem stepIcon tungsten">
-            <span class="material-icons peachGradient stepIconFont">tungsten</span>
-          </div>
-          <p class="stepItem stepText">Control your devices</p>
-        </a>
       </div>
-    </div>   
-  </div>
+    </div>
     <div class="OIFlexItem arrowContainer">
       <span class="material-icons scrollDownBtn" id="scroll1">expand_more</span>
     </div>
     <div class="aboutBanner scrollDest parallax skew" id="dest1">
       <h2 class="aboutBannerHeading offsetSkew">About</h2>
       <p class="aboutContent offsetSkew">
-        <br>
-        We provide an integration for Hubitat users who need a simple and snappy alternative to the built in Hubitat Dashboard. Connect to any number of networks by configuring instances of the
-        <a class="textLink" href="https://docs.hubitat.com/index.php?title=Maker_API"><b>MakerAPI</b></a> to control devices you assign.
-        <br>
-        <br>
+        <br />
+        We provide an integration for Hubitat users who need a simple and snappy alternative to the built in Hubitat
+        Dashboard. Connect to any number of networks by configuring instances of the
+        <a class="textLink" href="https://docs.hubitat.com/index.php?title=Maker_API"><b>MakerAPI</b></a> to control
+        devices you assign.
+        <br />
+        <br />
         The project is built with <b>NodeJS</b>, <b>Express</b> & <b>MongoDB</b>, and utilizes a simplistic
         <b>HTML/CSS/JS</b> frontend.
       </p>
-      <div class="belowBanner arrowContainer">
-    </div>
+      <div class="belowBanner arrowContainer"></div>
       <span class="material-icons scrollDownBtn" id="scroll2">expand_more</span>
     </div>
     <div class="featuresSection scrollDest" id="dest2">
@@ -175,26 +180,32 @@
             <span class="demoFavourite material-icons favourited">star</span>
             <p>Morris' Network</p>
             <span class="material-icons chevron-icon demo-chevron-icon">chevron_right</span>
-          </div>               
+          </div>
         </div>
         <div class="featureTextFlex">
           <h2>Multiple connections</h2>
-          <p class="featureDesc">Allows connections to any number of Maker API instances setup on any hub with an internet connection. Use this to segment areas of your network or control multiple networks from a remote location.</p>
+          <p class="featureDesc">
+            Allows connections to any number of Maker API instances setup on any hub with an internet connection. Use
+            this to segment areas of your network or control multiple networks from a remote location.
+          </p>
         </div>
       </div>
-      <div class="feature pollingFeature inactiveFeature">        
-        <div class="featureImageContainer">
-          <img class="featureImage pollingImage" src="images/about/polling.png"></img>
-        </div>
+      <div class="feature pollingFeature inactiveFeature">
         <div class="featureTextFlex">
-          <h2>Polling</h2>          
-          <p class="featureDesc">Make poll requests to your hub to update device status automatically. The polling system is performant and toggleable, and is subject to validation checks before repeating the check.</p>
-        </div>       
+          <h2>Polling</h2>
+          <p class="featureDesc">
+            Make poll requests to your hub to update device status automatically. The polling system is performant and
+            toggleable, and is subject to validation checks before repeating the check.
+          </p>
+        </div>
       </div>
       <div class="feature responseFeature inactiveFeature">
         <div class="featureTextFlex">
           <h2>Instant response</h2>
-          <p class="featureDesc">The UI responds instantly to controlling devices and is followed by a validation check, ensuring the device's shown status is correct. Enjoy a snappy and reliable UI.</p>
+          <p class="featureDesc">
+            The UI responds instantly to controlling devices and is followed by a validation check, ensuring the
+            device's shown status is correct. Enjoy a snappy and reliable UI.
+          </p>
         </div>
       </div>
       <div class="featBtn featNextBtn material-icons">chevron_right</div>
@@ -204,32 +215,33 @@
     </div>
   </div>
   <div class="largeFooter parallax" id="dest3">
-      <div class="SOLIS">
-        <form class="solisItem signUp">
-          <h2 class="peachGradientText">Get Started Now</h2>
-          <h4>Email:</h4>
-          <input type="email">
-          <h4>Password:</h4>
-          <input type="password">
-          <a href="#" class="forgotPassword">Forgot password?</a>
-          <h4 class="solisConfirm">Confirm Password:</h4>
-          <input class="solisConfirm"type="password">
-          <div class="solisItemBtnSection">
-            <a href="#" class="button">Sign Up</a>
-            <a href="#" class="altLink"><p>Already have an account?</p></a>
-          </div>
-        </form>
-      </div>  
+    <div class="SOLIS">
+      <form class="solisItem signUp">
+        <h2 class="peachGradientText">Get Started Now</h2>
+        <h4>Email:</h4>
+        <input type="email" />
+        <h4>Password:</h4>
+        <input type="password" />
+        <a href="#" class="forgotPassword">Forgot password?</a>
+        <h4 class="solisConfirm">Confirm Password:</h4>
+        <input class="solisConfirm" type="password" />
+        <div class="solisItemBtnSection">
+          <a href="#" class="button">Sign Up</a>
+          <a href="#" class="altLink"><p>Already have an account?</p></a>
+        </div>
+      </form>
     </div>
-      <div class="linksSection">
-        <h1>Created by <span class="peachGradientText"><b>Jake Whatling</b></span></h1>
-        <p>I built this application for fun. I will continue supporting and aim for regular updates.</p>
-        <p>Below are the links to the Github repository, LinkedIn profile and Personal website</p>
-        <div class="linksFlex">
-          <a href="https://github.com/siskiuslide/control-app"><i class="fab fa-github-square"></i></a>
-         <a href="#"><i class="fas fa-user-alt" style="font-size: 45px;"></i></a>
-         <a href="https://www.linkedin.com/in/jake-whatling/"><i class="fab fa-linkedin"></i></a>
-        </div>      
-      </div>    
-    </body>
-    
+  </div>
+  <div class="linksSection">
+    <h1>
+      Created by <span class="peachGradientText"><b>Jake Whatling</b></span>
+    </h1>
+    <p>I built this application for fun. I will continue supporting and aim for regular updates.</p>
+    <p>Below are the links to the Github repository, LinkedIn profile and Personal website</p>
+    <div class="linksFlex">
+      <a href="https://github.com/siskiuslide/control-app"><i class="fab fa-github-square"></i></a>
+      <a href="#"><i class="fas fa-user-alt" style="font-size: 45px"></i></a>
+      <a href="https://www.linkedin.com/in/jake-whatling/"><i class="fab fa-linkedin"></i></a>
+    </div>
+  </div>
+</body>

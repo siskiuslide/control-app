@@ -351,7 +351,6 @@
 .feature {
   display: none;
   flex-direction: row;
-  /* justify-content: center; */
   width: 80%;
   height: 100%;
   min-height: 100%;
@@ -369,7 +368,7 @@
   transform: scale(1.04);
 }
 .featureImageContainer {
-  width: 35%;
+  width: 45%;
   height: 80%;
   min-height: 80%;
   max-height: 80%;
@@ -393,11 +392,20 @@
   height: 100%;
   margin: auto;
 }
+.featureTextFlex:only-child {
+  width: 80%;
+  margin: auto 0 auto auto;
+}
+
 .featureTextFlex > h2 {
   align-text: left;
-  font-size: 54px;
+  font-size: 60px;
   font-family: "oswald";
   text-shadow: -3px -3px var(--midAccent);
+}
+.featureTextFlex:only-child > h2 {
+  padding: 20px 20px 10px 100px;
+  font-size: 75px;
 }
 .featureTextFlex > p {
   text-align: justify;
@@ -405,6 +413,14 @@
   margin-top: -5%;
   font-size: 25px;
   font-family: "open sans";
+}
+.featureTextFlex:only-child > p {
+  margin-top: -10%;
+  padding: 50px 20px 20px 20px;
+  font-size: 28px;
+  background: var(--LowerOpacityWhite);
+  z-index: 0;
+  border-radius: 6px;
 }
 
 .multiFeatureDesign {
