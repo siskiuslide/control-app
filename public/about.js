@@ -21,7 +21,6 @@ const demoFlex = document.querySelector(".demoControlsFlex");
 const demoControls = document.querySelectorAll(".demoControl");
 const aboutBanner = document.querySelector(".aboutBanner");
 const aboutChildNodes = Array.from(aboutBanner.children);
-console.log(aboutChildNodes);
 
 const largeFooter = document.querySelector(".largeFooter");
 const linksSection = document.querySelector(".linksSection");
@@ -93,6 +92,31 @@ demoControls.forEach((control) => {
 //features section
 const featuresSection = document.querySelector(".featuresSection");
 const features = Array.from(document.querySelectorAll(".feature"));
+console.log(features);
+const featBtn = document.querySelectorAll(".featBtn");
+
+const changeFeatState = function (feat) {
+  feat.classList.toggle("inactiveFeature");
+  feat.classList.toggle("activeFeature");
+};
+featBtn.forEach((btn) => {
+  btn.addEventListener("click", () => {
+    const current = features.find((el) => el.classList.contains("activeFeature"));
+    const currentIndex = features.findIndex((el) => el.classList.contains("activeFeature"));
+    current.classList.toggle("activeFeature");
+    current.classList.toggle("inactiveFeature");
+    if (btn.classList.contains("featNextBtn")) {
+      const nextFeat = currentIndex + 1;
+      nextFeat < features.length - 1 ? applyActive(features[nextFeat]) : applyActive(features[0]);
+    }
+    if (btn.classList.contains("featPrevBtn")) {
+      const prevFeat = currentIndex - 1;
+      prevFeat > 0 ? applyActive(features[prevFeat]) : applyActive(features[features.length - 1]);
+    }
+  });
+});
+// const featNext = document.querySelectorAll(".featNextBtn");
+// const featPrev = document.querySelectorAll(".featPrevBtn");
 
 //SOLIS//
 const SOLIS = document.querySelector(".SOLIS");
@@ -148,7 +172,6 @@ const elementAfterMain = [...aboutChildNodes, featuresSection, ...features, larg
 const fadeInThreshold = window.innerHeight - 300;
 class Fadeable {
   constructor(element) {
-    console.log(element.tagName);
     this.element = element;
     this.offset = this.findOffset(this.element);
     this.nodeType = element;
