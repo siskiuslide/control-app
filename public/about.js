@@ -20,7 +20,10 @@ const headingContainer = document.querySelector(".aboutHeadingContainer");
 const demoFlex = document.querySelector(".demoControlsFlex");
 const demoControls = document.querySelectorAll(".demoControl");
 const aboutBanner = document.querySelector(".aboutBanner");
-const featuresSection = document.querySelector(".featuresSection");
+const aboutChildNodes = Array.from(aboutBanner.children);
+console.log(aboutChildNodes);
+
+const largeFooter = document.querySelector(".largeFooter");
 const linksSection = document.querySelector(".linksSection");
 const scrollBtnContainer = document.querySelector(".arrowContainer");
 const scrollDownBtns = document.querySelectorAll(".scrollDownBtn");
@@ -47,10 +50,8 @@ window.addEventListener("load", () => {
         fadeInOpacOnly(scroll1, 1000);
         fadeInOpacOnly(interactiveBtn, 500);
       }, 1000)
-    )
+    );
 });
-
-
 
 //scrolling
 const findTarget = function (offY) {
@@ -62,7 +63,7 @@ const scrollDest = document.querySelectorAll(".scrollDest");
 scrollDownBtns.forEach((btn) => {
   const id = btn.id.slice(6);
   const target = document.getElementById(`dest${id}`).getBoundingClientRect();
-  const destination = findTarget(target.top) + 450
+  const destination = findTarget(target.top) + 450;
   btn.addEventListener("click", () => {
     window.scrollTo({ top: destination, behavior: "smooth" });
   });
@@ -81,13 +82,17 @@ demoControls.forEach((control) => {
         target.classList.toggle("neonLights");
       });
     }
-    if(e.target.closest('.demoControl').id == 'demoControl1'){
+    if (e.target.closest(".demoControl").id == "demoControl1") {
       btn.classList.toggle("device-on");
       btn.classList.toggle("device-off");
-      aboutBanner.classList.toggle('aboutBannerGray')
+      aboutBanner.classList.toggle("aboutBannerGray");
     }
   });
 });
+
+//features section
+const featuresSection = document.querySelector(".featuresSection");
+const features = Array.from(document.querySelectorAll(".feature"));
 
 //SOLIS//
 const SOLIS = document.querySelector(".SOLIS");
@@ -118,7 +123,7 @@ SOLISAltText.addEventListener("click", (e) => {
     fadeOut(SOLISForm.querySelector(".forgotPassword"), 00);
   }
   if (SOLISState == "login") {
-    SOLISForm.style.height
+    SOLISForm.style.height;
     SOLISHeading.textContent = "Login";
     SOLISAltText.textContent = "Create an account";
     SOLISConfirm.forEach((el) => (el.style.display = "none"));
@@ -139,29 +144,34 @@ SOLISAltText.addEventListener("click", (e) => {
 //   })
 // })
 
-const elementAfterMain = [aboutBanner, featuresSection, SOLIS, linksSection]
-const fadeInThreshold = window.innerHeight - 75
+const elementAfterMain = [...aboutChildNodes, featuresSection, ...features, largeFooter, SOLIS, linksSection];
+const fadeInThreshold = window.innerHeight - 300;
 class Fadeable {
-  constructor(element){
-    this.element = element
-    this.offset = this.findOffset(this.element)
-    this.inViewPortTransition = function(offset){
-      if(offset <= fadeInThreshold && element.style.opacity !== '1'){
-        fadeIn(element, 230, 'flex')
+  constructor(element) {
+    console.log(element.tagName);
+    this.element = element;
+    this.offset = this.findOffset(this.element);
+    this.nodeType = element;
+    this.inViewPortTransition = function (offset) {
+      if (offset <= fadeInThreshold && element.style.opacity !== "1") {
+        //divs are all flex elements, others tend not to be
+        this.nodeType == "DIV" ? fadeIn(element, 840, "flex") : fadeInOpacOnly(element, 840);
       }
-    }
+    };
   }
-  findOffset = function(element){
+  findOffset = function (element) {
     const rect = element.getBoundingClientRect();
-    const offset = rect.top
-    return rect.top
-  }
+    const offset = rect.top;
+    return rect.top;
+  };
 }
-const fadeablesArr = []
-elementAfterMain.forEach(el=>{return fadeablesArr.push(new Fadeable(el))})
+const fadeablesArr = [];
+elementAfterMain.forEach((el) => {
+  return fadeablesArr.push(new Fadeable(el));
+});
 
-window.addEventListener('scroll',()=>{
-  fadeablesArr.forEach(el=>{
-    el.inViewPortTransition(el.findOffset(el.element))
-  })
-})
+window.addEventListener("scroll", () => {
+  fadeablesArr.forEach((el) => {
+    el.inViewPortTransition(el.findOffset(el.element));
+  });
+});

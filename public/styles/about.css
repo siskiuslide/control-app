@@ -14,7 +14,7 @@
   background: #fff;
   position: static;
 }
-.mainFlex{
+.mainFlex {
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -23,7 +23,7 @@
   align-items: center;
 }
 .mainFlex > * {
-  margin: 5% 0 ;
+  margin: 5% 0;
 }
 .openingImage {
   position: relative;
@@ -246,7 +246,8 @@
 }
 .neonLights {
   border: solid 3px #5cdcff;
-  box-shadow: 0 0 1em #9ce9ff, 0 0 1.5em #3bd5ff, 0 0 2.5em #00c6ff, 0 0 3em #479dff,0 0 4em #006eb8,0 0 6em #015a95,  0 0 0.2em #77e2ff inset;
+  box-shadow: 0 0 1em #9ce9ff, 0 0 1.5em #3bd5ff, 0 0 2.5em #00c6ff, 0 0 3em #479dff, 0 0 4em #006eb8, 0 0 6em #015a95,
+    0 0 0.2em #77e2ff inset;
   transition: box-shadow 300ms linear;
 }
 
@@ -276,14 +277,13 @@
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 35rem;
+  height: 38rem;
   color: white;
-  opacity: 0;
+  opacity: 1;
   background-image: url("./../images/about/lighting2.png");
   top: 11%;
-  
 }
-.aboutBannerGray{
+.aboutBannerGray {
   background-image: url(./../images/about/lighting2gray.png) !important;
 }
 .aboutBannerHeading {
@@ -291,6 +291,7 @@
   font-family: "oswald";
   align-self: center;
   text-shadow: -4px -4px var(--midAccent);
+  opacity: 0;
 }
 .aboutContent {
   font-family: "open sans";
@@ -299,6 +300,7 @@
   top: -4rem;
   width: 60%;
   text-align: justify;
+  opacity: 0;
 }
 .belowBanner {
   display: flex;
@@ -316,7 +318,7 @@
   align-items: center;
   justify-content: center;
   position: relative;
-  margin: auto;
+  margin: -3% auto auto auto;
   width: 95%;
   height: auto;
   min-height: 100%;
@@ -337,12 +339,13 @@
   height: auto;
   transition: transform 75ms;
   margin: 2% auto auto auto;
+  opacity: 0;
 }
 .feature:hover {
   transform: scale(1.04);
 }
 .featureImageContainer {
-  width: 40%;
+  width: 35%;
   height: auto;
 }
 .featureImage {
@@ -359,21 +362,18 @@
   flex-direction: column;
   width: 55%;
   margin: auto;
-
 }
 .featureTextFlex > h2 {
   align-text: left;
   font-size: 38px;
-  font-family: 'oswald';
-  text-shadow: -3px -3px var(--midAccent)
-
+  font-family: "oswald";
+  text-shadow: -3px -3px var(--midAccent);
 }
 .featureTextFlex > p {
   text-align: justify;
   width: 80%;
   margin-top: -5%;
 }
-
 
 .multiFeatureDesign {
   display: flex;
@@ -452,6 +452,7 @@
 .largeFooter {
   position: relative;
   display: flex;
+  opacity: 0;
   flex-direction: column;
   justify-content: space-around;
   height: 70%;
@@ -459,23 +460,21 @@
   background-image: url("./../images/about/signupbackground.jpg");
   margin: 5% 0 0 0;
   transform: rotate(3deg);
-  
 }
 
 .SOLIS {
-  display: none;
+  display: flex;
   flex-direction: row;
   background: transparent;
   width: 35%;
   margin: auto auto;
   border-radius: 4px;
-  opacity: 0;
-
+  opacity: 1;
 }
 
 .solisItem {
   width: 90%;
-  min-height: 500px;;
+  min-height: 500px;
   margin: auto auto;
   display: flex;
   flex-direction: column;
@@ -559,7 +558,7 @@
   position: relative;
   background: rgba(0, 0, 0, 0.871);
   height: auto;
-  margin: auto;
+  margin: -3% auto auto auto;
   font-family: "open sans";
   color: white;
   opacity: 0;
@@ -586,14 +585,11 @@
   font-size: 75px;
 }
 
-
-
-
-.skew{
+.skew {
   transform: rotate(-2deg);
   transform: skewY(2deg);
 }
-.offsetSkew{
+.offsetSkew {
   transform: rotate(2deg);
   transform: skewY(-2deg);
 }
