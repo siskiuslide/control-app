@@ -92,26 +92,38 @@ demoControls.forEach((control) => {
 //features section
 const featuresSection = document.querySelector(".featuresSection");
 const features = Array.from(document.querySelectorAll(".feature"));
-console.log(features);
 const featBtn = document.querySelectorAll(".featBtn");
 
-const changeFeatState = function (feat) {
+const toggleState = function (feat) {
+  //toggle the classes
   feat.classList.toggle("inactiveFeature");
   feat.classList.toggle("activeFeature");
 };
+
+window.addEventListener("load", () => {
+  fadeIn(document.querySelector(".activeFeature"), 300, "flex");
+});
 featBtn.forEach((btn) => {
-  btn.addEventListener("click", () => {
+  btn.addEventListener("click", async () => {
+    //find current feature in list and swap state
     const current = features.find((el) => el.classList.contains("activeFeature"));
     const currentIndex = features.findIndex((el) => el.classList.contains("activeFeature"));
-    current.classList.toggle("activeFeature");
-    current.classList.toggle("inactiveFeature");
+    await fadeOut(current, 250);
+    toggleState(current);
+
     if (btn.classList.contains("featNextBtn")) {
       const nextFeat = currentIndex + 1;
-      nextFeat < features.length - 1 ? applyActive(features[nextFeat]) : applyActive(features[0]);
+      nextFeat < features.length ? toggleState(features[nextFeat]) : toggleState(features[0]);
+      setTimeout(() => {
+        fadeIn(document.querySelector(".activeFeature"), 200, "flex");
+      }, 300);
     }
     if (btn.classList.contains("featPrevBtn")) {
       const prevFeat = currentIndex - 1;
-      prevFeat > 0 ? applyActive(features[prevFeat]) : applyActive(features[features.length - 1]);
+      prevFeat > 0 ? toggleState(features[prevFeat]) : toggleState(features[features.length - 1]);
+      setTimeout(() => {
+        fadeIn(document.querySelector(".activeFeature"), 200, "flex");
+      }, 300);
     }
   });
 });
@@ -125,6 +137,7 @@ const SOLISForm = document.querySelector(".solisItem");
 const SOLISHeading = SOLISForm.querySelector("h2");
 const SOLISConfirm = document.querySelectorAll(".solisConfirm");
 const SOLISButton = SOLISForm.querySelector(".button");
+const SOLISChildNodes = Array.from(SOLIS.children);
 let SOLISState;
 SOLIS.classList.contains("signUp") ? (SOLISState = "signUp") : (SOLISState = "login");
 
@@ -168,8 +181,8 @@ SOLISAltText.addEventListener("click", (e) => {
 //   })
 // })
 
-const elementAfterMain = [...aboutChildNodes, featuresSection, ...features, largeFooter, SOLIS, linksSection];
-const fadeInThreshold = window.innerHeight - 300;
+const elementAfterMain = [...aboutChildNodes, featuresSection, ...SOLISChildNodes];
+const fadeInThreshold = window.innerHeight - 470;
 class Fadeable {
   constructor(element) {
     this.element = element;

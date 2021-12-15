@@ -321,7 +321,8 @@
   margin: -3% auto auto auto;
   padding: 10% 0;
   width: 95%;
-  min-height: 120%;
+  min-height: 400px;
+  max-height: 400px;
   border-radius: 4px;
   opacity: 0;
 }
@@ -331,57 +332,79 @@
   margin-top: 10px;
   margin-bottom: auto;
 }
+.featBtn {
+  font-size: 80px !important;
+  position: absolute;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+.featNextBtn {
+  margin-left: 90%;
+  margin-right: 0;
+  text-shadow: -3px -4px var(--midAccent);
+}
+.featPrevBtn {
+  margin-left: 0;
+  margin-right: 90%;
+  text-shadow: 3px -4px var(--midAccent);
+}
 .feature {
-  display: flex;
+  display: none;
   flex-direction: row;
-  justify-content: space-around;
-  width: 65%;
-  height: 80%;
+  /* justify-content: center; */
+  width: 80%;
+  height: 100%;
+  min-height: 100%;
+  max-height: 100%;
   transition: transform 75ms;
-  margin: 2% auto auto auto;
+  margin: auto;
   opacity: 0;
   transition: opacity 300ms;
 }
 .inactiveFeature {
-  display: none;
-  opacity: 0;
 }
 .activeFeature {
-  display: flex;
-  opacity: 1;
 }
 .feature:hover {
   transform: scale(1.04);
 }
 .featureImageContainer {
   width: 35%;
-  height: auto;
+  height: 80%;
+  min-height: 80%;
+  max-height: 80%;
+  justify-self: flex-start;
 }
 .featureImage {
   border-radius: 8px;
   width: 100%;
-  height: auto;
+  height: 80%;
   display: block;
   overflow: hidden;
+  margin: auto;
 }
 .featureTextFlex {
+  justify-self: flex-end;
   display: flex;
   align-items: flex-start;
-  justify-content: space-around;
+  justify-content: space-evenly;
   flex-direction: column;
   width: 55%;
+  height: 100%;
   margin: auto;
 }
 .featureTextFlex > h2 {
   align-text: left;
-  font-size: 38px;
+  font-size: 54px;
   font-family: "oswald";
   text-shadow: -3px -3px var(--midAccent);
 }
 .featureTextFlex > p {
   text-align: justify;
-  width: 80%;
+  width: 75%;
   margin-top: -5%;
+  font-size: 25px;
+  font-family: "open sans";
 }
 
 .multiFeatureDesign {
@@ -458,17 +481,20 @@
 .pollingImage {
   filter: blur(2px);
 }
+.belowFeats {
+  position: relative;
+  margin: auto;
+}
 .largeFooter {
   position: relative;
   display: flex;
-  opacity: 0;
+  opacity: 1;
   flex-direction: column;
   justify-content: space-around;
   height: 70%;
   min-height: 70%;
-  background-image: url("./../images/about/signupbackground.jpg");
-  margin: 5% 0 0 0;
-  transform: rotate(3deg);
+  background-image: url("./../images/about/signupbackground.png");
+  margin: auto;
 }
 
 .SOLIS {
@@ -479,6 +505,9 @@
   margin: auto auto;
   border-radius: 4px;
   opacity: 1;
+}
+.SOLIS > * {
+  opacity: 0;
 }
 
 .solisItem {
@@ -567,10 +596,10 @@
   position: relative;
   background: rgba(0, 0, 0, 0.871);
   height: auto;
-  margin: -3% auto auto auto;
+  margin: auto;
   font-family: "open sans";
   color: white;
-  opacity: 0;
+  opacity: 1;
 }
 .linksSection > h1 {
   font-size: 45px;
