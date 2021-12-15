@@ -138,7 +138,7 @@ const SOLISForm = document.querySelector(".solisItem");
 const SOLISHeading = SOLISForm.querySelector("h2");
 const SOLISConfirm = document.querySelectorAll(".solisConfirm");
 const SOLISButton = SOLISForm.querySelector(".button");
-const SOLISChildNodes = Array.from(SOLIS.children);
+const SOLISChildNodes = Array.from(SOLISForm.children);
 let SOLISState;
 SOLIS.classList.contains("signUp") ? (SOLISState = "signUp") : (SOLISState = "login");
 
@@ -183,7 +183,7 @@ SOLISAltText.addEventListener("click", (e) => {
 // })
 
 const elementAfterMain = [...aboutChildNodes, featuresSection, ...SOLISChildNodes];
-const fadeInThreshold = window.innerHeight - 470;
+const fadeInThreshold = window.innerHeight - 300;
 class Fadeable {
   constructor(element) {
     this.element = element;
@@ -192,7 +192,7 @@ class Fadeable {
     this.inViewPortTransition = function (offset) {
       if (offset <= fadeInThreshold && element.style.opacity !== "1") {
         //divs are all flex elements, others tend not to be
-        this.nodeType == "DIV" ? fadeIn(element, 840, "flex") : fadeInOpacOnly(element, 840);
+        this.nodeType == "DIV" ? fadeIn(element, 840, "flex") : fadeInOpacOnly(element, 1000);
       }
     };
   }

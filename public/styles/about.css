@@ -522,9 +522,6 @@
   border-radius: 4px;
   opacity: 1;
 }
-.SOLIS > * {
-  opacity: 0;
-}
 
 .solisItem {
   width: 90%;
@@ -532,6 +529,10 @@
   margin: auto auto;
   display: flex;
   flex-direction: column;
+  opacity: 1;
+}
+.solisItem > * {
+  opacity: 0;
 }
 .solisItem > h2 {
   font-family: "oswald";
