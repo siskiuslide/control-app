@@ -100,6 +100,7 @@ const toggleState = function (feat) {
   feat.classList.toggle("activeFeature");
 };
 
+//set the
 window.addEventListener("load", () => {
   fadeIn(document.querySelector(".activeFeature"), 300, "flex");
 });
@@ -120,7 +121,7 @@ featBtn.forEach((btn) => {
     }
     if (btn.classList.contains("featPrevBtn")) {
       const prevFeat = currentIndex - 1;
-      prevFeat > 0 ? toggleState(features[prevFeat]) : toggleState(features[features.length - 1]);
+      prevFeat > -1 ? toggleState(features[prevFeat]) : toggleState(features[features.length - 1]);
       setTimeout(() => {
         fadeIn(document.querySelector(".activeFeature"), 200, "flex");
       }, 300);
