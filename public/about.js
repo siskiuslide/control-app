@@ -106,15 +106,20 @@ window.addEventListener("load", () => {
   fadeIn(document.querySelector(".activeFeature"), 300, "flex");
   //rotate after x seconds if it hasn't been manually rotated by user
   setInterval(() => {
-    if (recentClickChecker !== true) {
+    if (recentClick == false) {
       featBtn[1].click();
+    } else {
+      setTimeout(() => {
+        featBtn[1].click();
+      }, 7000);
     }
   }, 7000);
 });
 featBtn.forEach((btn) => {
   btn.addEventListener("click", async () => {
     applyRecentClick();
-    recentClickTimeout(5000);
+    recentClickTimeout(3500);
+
     //find current feature in list and swap state
     const current = features.find((el) => el.classList.contains("activeFeature"));
     const currentIndex = features.findIndex((el) => el.classList.contains("activeFeature"));
