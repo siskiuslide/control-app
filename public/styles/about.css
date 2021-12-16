@@ -137,9 +137,11 @@
   z-index: 3;
 }
 .tryMePrompt {
-  font-size: 28px;
+  font-size: 30px;
   color: white;
   font-family: "Satisfy";
+  position: relative;
+  top: -5%;
   animation-name: promptLoop;
   animation-duration: 7s;
   animation-delay: 3s;
@@ -163,10 +165,10 @@
   62% {
     transform: translateX(-6px);
   }
-  66% {
-    transform: translateX(6px);
+  64% {
+    transform: translateX(3px);
   }
-  68% {
+  66% {
     transform: translateX(0);
   }
 }
@@ -176,7 +178,7 @@
 .promptChevron {
   position: absolute;
   margin: -10% 0 0 16%;
-  font-size: 40px !important;
+  font-size: 45px !important;
   transform: rotate(30deg);
   text-shadow: var(--textShadow);
 }
