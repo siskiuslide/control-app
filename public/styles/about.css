@@ -365,7 +365,7 @@
 .activeFeature {
 }
 .feature:hover {
-  transform: scale(1.04);
+  transform: scale(1.01);
 }
 .featureImageContainer {
   width: 45%;
@@ -383,14 +383,13 @@
   margin: auto;
 }
 .featureTextFlex {
-  justify-self: flex-end;
   display: flex;
   align-items: flex-start;
-  justify-content: space-evenly;
+  justify-content: center;
   flex-direction: column;
   width: 55%;
   height: 100%;
-  margin: auto;
+  margin: 0 auto auto auto;
 }
 .featureTextFlex:only-child {
   width: 80%;
@@ -402,25 +401,26 @@
   font-size: 60px;
   font-family: "oswald";
   text-shadow: -3px -3px var(--midAccent);
+  padding: 00px 20px 10px 10%;
 }
 .featureTextFlex:only-child > h2 {
-  padding: 20px 20px 10px 100px;
   font-size: 75px;
+  padding: 20px 20px 10px 10%;
 }
 .featureTextFlex > p {
   text-align: justify;
   width: 75%;
-  margin-top: -5%;
+  margin-top: -13%;
   font-size: 25px;
   font-family: "open sans";
+  background: var(--LowerOpacityWhite);
+  padding: 50px 30px 40px 30px;
+  border-radius: 6px;
 }
 .featureTextFlex:only-child > p {
   margin-top: -10%;
-  padding: 50px 20px 20px 20px;
   font-size: 28px;
-  background: var(--LowerOpacityWhite);
   z-index: 0;
-  border-radius: 6px;
 }
 
 .multiFeatureDesign {

@@ -370,7 +370,7 @@ window.addEventListener("load", async (e) => {
     ) {
       const control = e.target.closest(".control");
       applyRecentClick();
-      recentClickTimeout();
+      recentClickTimeout(1000);
       const targetState = getNewState(control);
       const button = control.querySelector(".controlStatusIconCont");
       const newStateStyle = updateControlStyle(targetState, control, button);

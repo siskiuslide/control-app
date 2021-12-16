@@ -94,18 +94,27 @@ const featuresSection = document.querySelector(".featuresSection");
 const features = Array.from(document.querySelectorAll(".feature"));
 const featBtn = document.querySelectorAll(".featBtn");
 
+//toggle the classes
 const toggleState = function (feat) {
-  //toggle the classes
   feat.classList.toggle("inactiveFeature");
   feat.classList.toggle("activeFeature");
 };
 
-//set the
+//fade first feat in
+//start features interval
 window.addEventListener("load", () => {
   fadeIn(document.querySelector(".activeFeature"), 300, "flex");
+  //rotate after x seconds if it hasn't been manually rotated by user
+  setInterval(() => {
+    if (recentClickChecker !== true) {
+      featBtn[1].click();
+    }
+  }, 7000);
 });
 featBtn.forEach((btn) => {
   btn.addEventListener("click", async () => {
+    applyRecentClick();
+    recentClickTimeout(5000);
     //find current feature in list and swap state
     const current = features.find((el) => el.classList.contains("activeFeature"));
     const currentIndex = features.findIndex((el) => el.classList.contains("activeFeature"));
