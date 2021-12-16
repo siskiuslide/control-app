@@ -140,6 +140,35 @@
   font-size: 28px;
   color: white;
   font-family: "Satisfy";
+  animation-name: promptLoop;
+  animation-duration: 7s;
+  animation-delay: 3s;
+  animation-iteration-count: infinite;
+  transform-origin: center;
+  transition: transform 100ms ease-out;
+}
+@keyframes promptLoop {
+  0% {
+    transform: scale(1);
+  }
+  5% {
+    transform: scale(1.13);
+  }
+  10% {
+    transform: scale(1);
+  }
+  60% {
+    transform: rotate(0deg);
+  }
+  62% {
+    transform: translateX(-6px);
+  }
+  66% {
+    transform: translateX(6px);
+  }
+  68% {
+    transform: translateX(0);
+  }
 }
 .tryMeContainer:hover > .material-icons {
   transform: rotate(30deg);
