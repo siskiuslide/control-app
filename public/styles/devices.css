@@ -5,9 +5,13 @@
 .devicePageFlex {
   display: flex;
   flex-direction: row;
-  justify-content: flex-start;
+  justify-content: space-between;
   width: 100%;
   min-height: 100%;
+}
+.devicePageFlex > * {
+  margin: 0 auto;
+  border-radius: 0;
 }
 
 .configListContainer {
@@ -16,8 +20,6 @@
   justify-content: flex-start;
   width: 25vw;
   background: var(--LowerOpacityWhite);
-  margin: 7px 4px 7px 7px;
-  border-radius: 4px;
 }
 .configListItem {
   margin: 5px 8px;
@@ -124,8 +126,6 @@
   background: #ffffff30;
   position: relative;
   width: 73vw;
-  margin: 7px 7px 7px 4px;
-  border-radius: 4px;
   height: auto;
   display: flex;
   flex-direction: column;
