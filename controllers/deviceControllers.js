@@ -46,10 +46,10 @@ exports.getDevices = catchAsync(async (req, res, next) => {
               return res[0];
             })
             .catch((err) => console.log(err));
-          if (existingData.status !== device.status) {
+          if (existingData.status !== device.status || existingData.label !== device.label) {
             Device.findOneAndUpdate(
               { configID: device.configID, deviceID: device.deviceID },
-              { status: device.status }
+              { status: device.status, label: device.label }
             ).catch((err) => console.log(err));
           }
           resData.push(existingData);
