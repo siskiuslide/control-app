@@ -87,7 +87,7 @@ const addCard = function (config) {
 </div>
 </div>`;
   preConfiguredCardSection.insertAdjacentHTML("beforeEnd", configCard);
-  progressiveFadeIn(document.querySelectorAll(".preConfiguredCard"), 75, "inline");
+  progressiveFadeIn(document.querySelectorAll(".preConfiguredCard"), 45, "inline");
 };
 //DISPLAY ON LOAD
 window.addEventListener("load", async () => {

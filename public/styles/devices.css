@@ -19,7 +19,8 @@
   flex-direction: column;
   justify-content: flex-start;
   width: 25vw;
-  background: var(--LowerOpacityWhite);
+  background: rgba(255, 255, 255, 0.15);
+  /* background: var(--LowerOpacityWhite); */
 }
 .configListItem {
   margin: 5px 8px;
@@ -123,7 +124,7 @@
 }
 
 .deviceListSection {
-  background: #ffffff30;
+  /* background: #ffffff30; */
   position: relative;
   width: 73vw;
   height: auto;
