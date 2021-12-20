@@ -117,13 +117,13 @@ const pollDevices = async function (active, refreshFlag) {
     const pollRes = await getDevices(document.querySelector(".activeConfig").id);
     return comparePollDevices(pollRes.data);
   }
-  // if (visible === true && pollSwitch.classList.contains("pollOn") && refreshFlag == false) {
-  //   interval = setInterval(async () => {
-  //     const pollRes = await getDevices(active.id);
-  //     comparePollDevices(pollRes.data);
-  //   }, 1000);
-  //   return interval;
-  // }
+  if (visible === true && pollSwitch.classList.contains("pollOn") && refreshFlag == false) {
+    interval = setInterval(async () => {
+      const pollRes = await getDevices(active.id);
+      comparePollDevices(pollRes.data);
+    }, 1000);
+    return interval;
+  }
 };
 
 const comparePollDevices = function (pollData) {
