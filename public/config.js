@@ -214,11 +214,6 @@ configToggle.addEventListener("change", (e) => {
   toggleHeading(e, inputTargetHeader, "Cloud Address", "Hub Address");
 });
 
-const pollToggle = document.querySelector(".pollToggle");
-const pollHeader = document.querySelector(".headerPoll");
-pollToggle.addEventListener("change", (e) => {
-  toggleHeading(e, pollHeader, "Polling On", "Polling Off");
-});
 
 const configSubmitBtn = document.querySelector(".submitBtn");
 const form = document.querySelector(".configForm");

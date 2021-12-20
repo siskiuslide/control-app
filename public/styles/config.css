@@ -22,28 +22,18 @@
   justify-content: center;
   height: 10%;
   width: 100%;
-}
-.sectionHeading {
+} 
+ .headingContainer > h2 {
   font-size: 35px;
-  font-family: 'Open Sans';
-  letter-spacing: 2px;
-  margin: 0 5%;
+  font-family: 'asap';
+  font-weight: bolder;
   align-self: center;
   justify-self: center;
   width: auto;
   height: 70px;
-}
-.sectionHeading::after {
-  content: "";
-  position: relative;
-  width: 100%;
-  height: 3px;
-  border-radius: 3px;
-  background-color: white;
-  top: 0px;
-  display: inline-block;
-  opacity: 0.7;
-}
+  text-decoration: none;
+} 
+
 .configSection {
   display: flex;
   flex-direction: row;
@@ -69,7 +59,6 @@
 .createNewConfigBox:hover {
   cursor: pointer;
   background: var(--LowerOpacityWhite);
-  width: 50vw;
 }
 .createNewConfigClickable {
   cursor: pointer;
@@ -103,15 +92,10 @@
 
 /*------------PRECONFIGURED BOX---------------*/
 .preConfiguredSection {
-  background-color: var(--LowerOpacityWhite);
   display: flex;
   flex-direction: column;
   justify-self: flex-start;
   transition: width 80ms;
-}
-.preConfiguredSection:hover {
-  background: var(--higherOpacityWhite);
-  width: 50vw;
 }
 .emptyText {
   align-self: center;
@@ -341,16 +325,13 @@
     align-items: center;
     position: relative;
     display: none;
-    background: var(--LowerOpacityWhite);
     opacity: 0.5;
     justify-self: flex-start;
     transition: width 80ms;
     width: 47vw;
   }
   .configInputSection:hover {
-    width: 50vw;
     transition: width 80ms;
-    background: var(--higherOpacityWhite);
   }
   .indivConfigInput {
     display: flex;
@@ -364,7 +345,7 @@
     padding: 10px 5px;
     transition: box-shadow 75ms;
   }
-  .confHeader {
+  .indivConfigInput > h2 {
     letter-spacing: 1px;
     position: relative;
     text-align: left;
@@ -375,7 +356,7 @@
     content: ":";
   }
   
-  .configInput {
+  .indivConfigInput > input {
     position: relative;
     width: 120px;
     height: 30px;

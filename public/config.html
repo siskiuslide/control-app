@@ -50,13 +50,10 @@
     </ul>
   </div>
   <div class="headingBar">
-    <div class="pageHeading">Configuration</div>
+    <h1>Configuration</h1>
   </div>
   <div class="ConfigSection">
     <div class="largeBox preConfiguredSection">
-      <div class="headingContainer">
-        <div class="sectionHeading">Existing Configurations</div>
-      </div>      
     </div>    
       <div class="largeBox createNewConfigBox">
         <div class="createNewConfigClickable">
@@ -68,42 +65,42 @@
       </div>
     <div class="largeBox configInputSection">
       <div class="headingContainer">
-        <div class="sectionHeading">New Configuration</div>
+        <h2 class="sectionHeading">New Configuration</h2>
       </div>
       <form class="configForm" action="/config" target="hiddenFrame" method="post" autocomplete="off">
         <div class="indivConfigInput">
-          <h2 class="confHeader headerName">Name</h2>
+          <h2 class="headerName">Name</h2>
           <input type="text"name="name" class="configInput configName" placeholder="Name" />
         </div>
         <div class="indivConfigInput">
-          <h2 class="confHeader localOrCloud">Cloud?</h2>
+          <h2 class="localOrCloud">Cloud?</h2>
           <label class="switch">
             <input type="checkbox" name="type" class="configToggle" />
             <span class="slider"></span>
           </label>
         </div>
         <div class="indivConfigInput">
-          <h2 class="confHeader headerTarget">Target</h2>
-          <input type="text" name="target" class="configInput inputTarget" placeholder="Target" />
+          <h2 class="headerTarget">Target</h2>
+          <input type="text" name="target" class="inputTarget" placeholder="Target" />
         </div>
         <div class="indivConfigInput">
-          <h2 class="confHeader headerAPIKey">API Key</h2>
-          <input type="text" name="APIKey" class="configInput inputAPIKey" placeholder="Key" />
+          <h2 class="headerAPIKey">API Key</h2>
+          <input type="text" name="APIKey" class="inputAPIKey" placeholder="Key" />
         </div>
         <div class="indivConfigInput">
-          <h2 class="confHeader headerAppID">App ID</h2>
-          <input type="text" name="appID" class="configInput inputAppID" placeholder="ID" />
+          <h2 class="headerAppID">App ID</h2>
+          <input type="text" name="appID" class="inputAppID" placeholder="ID" />
         </div>
         <div class="indivConfigInput">
-          <h2 class="confHeader headerPoll">Polling Off</h2>
+          <h2 class="headerPoll">Polling</h2>
           <label class="switch">
             <input type="checkbox" name="polling" class="pollToggle" />
             <span class="slider"></span>
           </label>
         </div>
         <div class="indivConfigInput">
-          <h2 class="confHeader headerConfigColour">Colour</h2>
-          <input type="color" name="colour" class="configInput inputConfigColour" value="#00082b"/>
+          <h2 class="headerConfigColour">Colour</h2>
+          <input type="color" name="colour" class="inputConfigColour" value="#00082b"/>
         </div>
         <div class="formDivider"></div>
         <div class="formButtonContainer">

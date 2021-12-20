@@ -228,7 +228,7 @@ input:focus {
   align-items: center;
 }
 
-.pageHeading {
+.headingBar > h1 {
   font-size: 40px;
   font-family: Oswald;
   letter-spacing: 2px;
