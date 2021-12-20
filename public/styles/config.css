@@ -25,7 +25,7 @@
 }
 .sectionHeading {
   font-size: 35px;
-  font-family: Oswald;
+  font-family: 'Open Sans';
   letter-spacing: 2px;
   margin: 0 5%;
   align-self: center;
@@ -62,13 +62,13 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background: var(--LowerOpacityWhite);
+  background: transparent;
   justify-self: flex-end;
   transition: width 80ms;
 }
 .createNewConfigBox:hover {
   cursor: pointer;
-  background: var(--higherOpacityWhite);
+  background: var(--LowerOpacityWhite);
   width: 50vw;
 }
 .createNewConfigClickable {
