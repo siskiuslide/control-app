@@ -108,17 +108,22 @@ const checkActiveConfigForPolling = function (active) {
   return pollingStatus;
 };
 
-const pollDevices = function (active) {
+const pollDevices = async function (active, refreshFlag) {
   let interval;
   let pollSwitch = document.querySelector(".pollSwitch");
-  interval = setInterval(async () => {
-    document.visibilityState === "visible" ? (visible = true) : (visible = false);
-    if (visible === true && pollSwitch.classList.contains("pollOn")) {
-      const pollRes = await getDevices(document.querySelector(".activeConfig").id);
-      comparePollDevices(pollRes.data);
-    }
-  }, 1000);
-  return interval;
+  document.visibilityState === "visible" ? (visible = true) : (visible = false);
+  //if this is called when page is refreshed, don't set an interval to loop
+  if (refreshFlag == true) {
+    const pollRes = await getDevices(document.querySelector(".activeConfig").id);
+    return comparePollDevices(pollRes.data);
+  }
+  // if (visible === true && pollSwitch.classList.contains("pollOn") && refreshFlag == false) {
+  //   interval = setInterval(async () => {
+  //     const pollRes = await getDevices(active.id);
+  //     comparePollDevices(pollRes.data);
+  //   }, 1000);
+  //   return interval;
+  // }
 };
 
 const comparePollDevices = function (pollData) {
@@ -218,9 +223,10 @@ window.addEventListener("load", async (e) => {
       addDevice(device);
       progressiveFadeIn(document.querySelectorAll(".control"), 55, "flex");
     });
+    pollDevices(document.querySelector(".activeConfig"), true);
   } else {
     console.log("no devices found");
-    // document.querySelector(".deviceListContainer").insertAdjacentHTML("afterbegin", emptyText);
+    document.querySelector(".deviceListContainer").insertAdjacentHTML("afterbegin", emptyText);
   }
 
   //header event listeners
@@ -286,25 +292,22 @@ window.addEventListener("load", async (e) => {
             progressiveFadeIn(document.querySelectorAll(".control"), 45, "flex");
           })
           .catch((err) => console.log(err));
+        pollDevices(target, true);
       }
     });
   });
 
-  //-----------------------
-  //DL Icon event listeners
-  //-----------------------
-
   //polling
   const activeConfig = document.querySelector(".activeConfig");
   if (checkActiveConfigForPolling(activeConfig) == true) {
-    pollDevices(activeConfig);
+    pollDevices(activeConfig, false);
   }
 
   const pollSwitchBtn = document.querySelector(".pollSwitch");
   pollSwitchBtn.addEventListener("click", (e) => {
     pollingIconToggle();
     if (pollSwitchBtn.classList.contains("pollOn")) {
-      pollDevices(activeConfig);
+      pollDevices(activeConfig, false);
     }
   });
 
@@ -315,8 +318,6 @@ window.addEventListener("load", async (e) => {
   });
 
   //event listeners for each device
-  // const controls = document.querySelectorAll(".control");
-  // controls.forEach((control) => {
   window.addEventListener("click", async (e) => {
     //favourite Button
     if (e.target.classList.contains("control-fav-icon")) {
@@ -388,4 +389,3 @@ window.addEventListener("load", async (e) => {
     }
   });
 });
-// });
