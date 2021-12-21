@@ -55,6 +55,7 @@
   background: transparent;
   justify-self: flex-end;
   transition: width 80ms;
+  width: 55vw
 }
 .createNewConfigBox:hover {
   cursor: pointer;
@@ -96,17 +97,16 @@
   flex-direction: column;
   justify-self: flex-start;
   transition: width 80ms;
+  width: 45vw;
 }
-.emptyText {
-  align-self: center;
-  font-size: 40px;
-  position: relative;
-  top: 30vh;
-  width: 400px;
-  text-align: center;
+.noConfigCardError{
+  font-size: 25px;
+  margin: auto;
+}
+.noConfigCardError > * {
   color: white;
+  padding: 5px;
 }
-
 .preConfiguredCard {
   position: relative;
   margin: 2% 6%;
@@ -328,7 +328,7 @@
     opacity: 0.5;
     justify-self: flex-start;
     transition: width 80ms;
-    width: 47vw;
+    width: 55vw;
   }
   .configInputSection:hover {
     transition: width 80ms;

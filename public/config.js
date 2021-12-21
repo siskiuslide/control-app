@@ -94,7 +94,7 @@ window.addEventListener("load", async () => {
   const rawConfigData = await fetch("/config").then((res) => res.json());
   const configData = rawConfigData.body;
   if (configData.length == 0) {
-    return preConfiguredCardSection.insertAdjacentHTML("beforeend", emptyText);
+    throwError('.preConfiguredSection', 'beforeend','No networks to show', 'noConfigCardError')
   }
   configData.forEach((config) => {
     addCard(config);

@@ -132,6 +132,13 @@
   flex-direction: column;
 }
 
+.deviceListError{
+  width: 50%;
+  font-size: 35px;
+  margin: 10% auto;
+}
+
+
 .deviceListHeaderSection {
   position: relative;
   height: 6%;

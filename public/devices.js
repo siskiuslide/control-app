@@ -212,21 +212,21 @@ window.addEventListener("load", async (e) => {
 
   //get the devices from the first config in the list
   const firstConfig = document.querySelector(".configListEntry");
-  const loadDevices = await getDevices(firstConfig.id);
-  activeToggle(document.getElementById(firstConfig.id));
-
-  if (loadDevices.data.length > 0) {
-    loadDevices.data.forEach((device) => {
-      if (device.excluded == true) {
-        return;
-      }
-      addDevice(device);
-      progressiveFadeIn(document.querySelectorAll(".control"), 55, "flex");
+  if(!firstConfig){
+    return throwError('.deviceListSection', 'beforeend', 'Add a network before controlling devices', 'deviceListError')
+  }
+    const loadDevices = await getDevices(firstConfig.id);
+    activeToggle(document.getElementById(firstConfig.id));
+    if (loadDevices.data.length > 0) {
+      loadDevices.data.forEach((device) => {
+        if (device.excluded == true) return
+        addDevice(device);
+        progressiveFadeIn(document.querySelectorAll(".control"), 55, "flex");
     });
     pollDevices(document.querySelector(".activeConfig"), true);
   } else {
     console.log("no devices found");
-    document.querySelector(".deviceListContainer").insertAdjacentHTML("afterbegin", emptyText);
+    document.querySelector(".deviceListSection").insertAdjacentHTML("afterbegin", emptyText);
   }
 
   //header event listeners

@@ -1,6 +1,17 @@
 //Script.js is for generic functions that are shared between multiple pages that aren't large enough to warrant their own script.
 
-const emptyText = `<div class="emptyText">No results to show</div>`
+const emptyText = `<div class="error">
+  <span class="material-icons">error</span>
+  <p></p>
+</div>`
+const throwError = function(targetEl, position, message, additionalClass){
+  document.querySelector(`${targetEl}`).insertAdjacentHTML(position, emptyText);
+  const error = document.querySelector('.error')
+  error.querySelector('p').textContent = message;
+  error.classList.add(additionalClass);
+  fadeIn(error, 150, 'flex')
+
+}
 
 //navbar elements
 const navBar = document.querySelector('.navbar')

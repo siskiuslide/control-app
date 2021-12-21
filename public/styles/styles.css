@@ -97,6 +97,24 @@ input:focus {
   color: var(--midAccent);
 }
 
+.error{
+  font-family: 'open sans';
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+}
+.error > * {
+  text-align: center;
+  font-size: 30px;
+  margin: auto;
+  color: rgb(251, 70, 70);
+  
+}
+.error > span {
+  font-size: 35px;
+}
 .divider {
   /*apply unique stlyes with the secondary class assigned to the element where this is used.*/
   position: relative;
