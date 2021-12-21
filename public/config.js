@@ -60,7 +60,9 @@ const addCard = function (config) {
             <span class="material-icons timerIcon">timer</span>
           </div>
           <div class="detailField">Polling</div>
-          <div class="detailText pollingSettingText">${config.polling.charAt(0).toUpperCase()}${config.polling.slice(1)}</div>              
+          <div class="detailText pollingSettingText">${config.polling.charAt(0).toUpperCase()}${config.polling.slice(
+    1
+  )}</div>              
         </div>
         <div class="detail-flex">
           <div class="detailIcon">
@@ -94,7 +96,7 @@ window.addEventListener("load", async () => {
   const rawConfigData = await fetch("/config").then((res) => res.json());
   const configData = rawConfigData.body;
   if (configData.length == 0) {
-    throwError('.preConfiguredSection', 'beforeend','No networks to show', 'noConfigCardError')
+    throwError(".preConfiguredSection", "beforeend", "No networks to show", "noConfigCardError");
   }
   configData.forEach((config) => {
     addCard(config);
@@ -122,6 +124,7 @@ preConfiguredCardSection.addEventListener("click", async (e) => {
       });
     if (document.querySelector(".preConfiguredCard") == null) {
       preConfiguredCardSection.insertAdjacentHTML("beforeend", emptyText);
+      throwError(".preConfiguredSection", "beforeend", "No networks to show", "noConfigCardError");
     }
   }
   //FAVOURITE
@@ -129,7 +132,7 @@ preConfiguredCardSection.addEventListener("click", async (e) => {
     e.target.classList.toggle("favourited");
     const targetConfig = e.target.closest(".preConfiguredCard");
     let favouriteStatus;
-    favouriteItemIcon(e, 'preConfiguredCard', false, 'star_outline')
+    favouriteItemIcon(e, "preConfiguredCard", false, "star_outline");
     // if (e.target.classList.contains("favourited")) {
     //   e.target.textContent = "star";
     //   favouriteStatus = true;
@@ -213,7 +216,6 @@ let inputTargetHeader = document.querySelector(".headerTarget");
 configToggle.addEventListener("change", (e) => {
   toggleHeading(e, inputTargetHeader, "Cloud Address", "Hub Address");
 });
-
 
 const configSubmitBtn = document.querySelector(".submitBtn");
 const form = document.querySelector(".configForm");
