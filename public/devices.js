@@ -217,16 +217,15 @@ window.addEventListener("load", async (e) => {
   }
     const loadDevices = await getDevices(firstConfig.id);
     activeToggle(document.getElementById(firstConfig.id));
-    if (loadDevices.data.length > 0) {
+    if(loadDevices.status == "error"){
+        return throwError('.deviceListSection', 'beforeend', 'No Devices found for this network:/', 'deviceListError')
+    }else{
       loadDevices.data.forEach((device) => {
         if (device.excluded == true) return
         addDevice(device);
         progressiveFadeIn(document.querySelectorAll(".control"), 55, "flex");
     });
     pollDevices(document.querySelector(".activeConfig"), true);
-  } else {
-    console.log("no devices found");
-    document.querySelector(".deviceListSection").insertAdjacentHTML("afterbegin", emptyText);
   }
 
   //header event listeners

@@ -99,9 +99,11 @@ const getDevices = async (config) => {
   const data = await fetch(`/config/${config}/devices`)
     .then((res) => res.json())
     .then((data) => {
+      console.log(data)
       return data;
     })
-    .catch((err) => console.log(err));
+    .catch((err) => console.log(err)
+    );
   return data;
 };
 
