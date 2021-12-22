@@ -210,20 +210,26 @@ window.addEventListener("load", async (e) => {
     })
     .catch((err) => console.log(err));
 
-  //get the devices from the first config in the list
-  const firstConfig = document.querySelector(".configListEntry");
-  if(!firstConfig){
-    return throwError('.deviceListSection', 'beforeend', 'Add a network before controlling devices', 'deviceListError')
+  //search localstorage for mostrecent, or acquire the first
+  const storedConfig = localStorage.getItem("mostRecentConfig");
+  let firstConfig;
+  storedConfig !== null
+    ? (firstConfig = document.getElementById(storedConfig))
+    : (firstConfig = document.querySelector(".configListEntry"));
+  console.log(storedConfig);
+
+  if (!firstConfig) {
+    return throwError(".deviceListSection", "beforeend", "Add a network before controlling devices", "deviceListError");
   }
-    const loadDevices = await getDevices(firstConfig.id);
-    activeToggle(document.getElementById(firstConfig.id));
-    if(loadDevices.status == "error"){
-        return throwError('.deviceListSection', 'beforeend', 'No Devices found for this network:/', 'deviceListError')
-    }else{
-      loadDevices.data.forEach((device) => {
-        if (device.excluded == true) return
-        addDevice(device);
-        progressiveFadeIn(document.querySelectorAll(".control"), 55, "flex");
+  const loadDevices = await getDevices(firstConfig.id);
+  activeToggle(document.getElementById(firstConfig.id));
+  if (loadDevices.status == "error") {
+    return throwError(".deviceListSection", "beforeend", "No Devices found for this network:/", "deviceListError");
+  } else {
+    loadDevices.data.forEach((device) => {
+      if (device.excluded == true) return;
+      addDevice(device);
+      progressiveFadeIn(document.querySelectorAll(".control"), 55, "flex");
     });
     pollDevices(document.querySelector(".activeConfig"), true);
   }
@@ -271,6 +277,8 @@ window.addEventListener("load", async (e) => {
       const target = e.target.closest(".configListEntry");
       const targetID = target.id;
       const currentlyActive = document.querySelector(".activeConfig");
+      //set to storage so that it can be loaded on refresh
+      localStorage.setItem("mostRecentConfig", targetID);
       if (currentlyActive !== e.target) {
         //change active
         activeToggle(currentlyActive);
