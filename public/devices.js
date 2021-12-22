@@ -201,14 +201,14 @@ window.addEventListener("load", async (e) => {
   const configResponse = await fetch("/config")
     .then((res) => res.json())
     .then((data) => {
-      if (data.body.length > 0) {
-        data.body.forEach((config) => {
-          addConfig(config);
-          progressiveFadeIn(document.querySelectorAll(".configListEntry"), 45, "flex");
-        });
-      }
+      return data;
     })
     .catch((err) => console.log(err));
+
+  configResponse.body.forEach((config) => {
+    addConfig(config);
+  });
+  progressiveFadeIn(document.querySelectorAll(".configListEntry"), 45, "flex");
 
   //search localstorage for mostrecent, or acquire the first
   let onLoadConfig;
