@@ -211,24 +211,29 @@ window.addEventListener("load", async (e) => {
     .catch((err) => console.log(err));
 
   //search localstorage for mostrecent, or acquire the first
-  const storedConfig = localStorage.getItem("mostRecentConfig");
-  let firstConfig;
+  let onLoadConfig;
+  let storedConfig = localStorage.getItem("mostRecentConfig");
+  //below condition sets storedConfig to null before the ternary logic, if the config doesn't exist
+  if (document.getElementById(storedConfig) == null) {
+    storedConfig = null;
+  }
   storedConfig !== null
-    ? (firstConfig = document.getElementById(storedConfig))
-    : (firstConfig = document.querySelector(".configListEntry"));
+    ? (onLoadConfig = document.getElementById(storedConfig))
+    : (onLoadConfig = document.querySelector(".configListEntry"));
 
-  if (!firstConfig) {
+  if (document.querySelector(".configListEntry") == null) {
     return throwError(".deviceListSection", "beforeend", "Add a network before controlling devices", "deviceListError");
   }
-  const loadDevices = await getDevices(firstConfig.id);
-  activeToggle(document.getElementById(firstConfig.id));
+
+  const loadDevices = await getDevices(onLoadConfig.id);
+  activeToggle(document.getElementById(onLoadConfig.id));
   if (loadDevices.status == "error") {
     return throwError(".deviceListSection", "beforeend", "No Devices found for this network:/", "deviceListError");
   } else {
     loadDevices.data.forEach((device) => {
       if (device.excluded == true) return;
       addDevice(device);
-      progressiveFadeIn(document.querySelectorAll(".control"), 55, "flex");
+      progressiveFadeIn(document.querySelectorAll(".control"), 25, "flex");
     });
     pollDevices(document.querySelector(".activeConfig"), true);
   }
