@@ -430,13 +430,15 @@
   align-text: left;
   font-size: 60px;
   font-family: "oswald";
-  text-shadow: -3px -3px var(--midAccent);
+  /* text-shadow: -3px -3px var(--midAccent); */
   padding: 00px 20px 10px 10%;
 }
 .featureTextFlex:only-child > h2 {
   font-size: 75px;
   padding: 20px 20px 10px 10%;
+  z-index: 2;
 }
+
 .featureTextFlex > p {
   text-align: justify;
   width: 75%;
@@ -445,7 +447,8 @@
   font-family: "open sans";
   background: var(--LowerOpacityWhite);
   padding: 50px 30px 40px 30px;
-  border-radius: 6px;
+  box-shadow: -10px -10px 0 0 rgba(236, 231, 231, 0.192);
+  border-radius: 2px;
 }
 .featureTextFlex:only-child > p {
   margin-top: -10%;
