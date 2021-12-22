@@ -216,7 +216,6 @@ window.addEventListener("load", async (e) => {
   storedConfig !== null
     ? (firstConfig = document.getElementById(storedConfig))
     : (firstConfig = document.querySelector(".configListEntry"));
-  console.log(storedConfig);
 
   if (!firstConfig) {
     return throwError(".deviceListSection", "beforeend", "Add a network before controlling devices", "deviceListError");
