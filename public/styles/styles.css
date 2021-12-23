@@ -173,6 +173,13 @@ input:focus {
 .material-icons:hover {
   transform: scale(1.1);
 }
+.favourite-icon:hover {
+  color: rgb(255, 251, 0);
+}
+.favourited {
+  color: rgb(233, 233, 96);
+  text-shadow: var(--textShadow);
+}
 .nav-list > li {
   list-style: none;
   text-align: center;

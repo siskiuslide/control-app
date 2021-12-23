@@ -117,45 +117,37 @@ const setFavIconStyle = (obj) => {
   obj.favourite == true ? (favouriteClass = "favourited") : (favouriteClass = "");
   return favouriteClass;
 };
-
-//favourite item (change data or just icon)
-const favouriteItemIcon = function (e, typeClassName, buttonOnly, secondaryIcon) {
-  //favourited class has yellow text
-  e.target.classList.toggle(".favourited");
-  let favouriteStatus;
-  //hard to read but works
-  if (e.target.classList.contains("favourited")) {
-    e.target.textContent = "star";
-    if (buttonOnly == false) {
-      favouriteStatus = true;
-    }
-  } else {
-    e.target.textContent = secondaryIcon;
-    if (buttonOnly == false) {
-      favouriteStatus = false;
-    }
-  }
-  if (buttonOnly == false) {
-    const parent = e.target.closest(`.${typeClassName}`);
-    const favouriteUpdate = {
-      configID: parent.dataset.configid,
-      favourite: favouriteStatus,
-    };
-    //for controls
-    if (typeClassName == "control") {
-      favouriteUpdate.deviceID = parent.id;
-    }
-    return favouriteUpdate;
-  }
+const checkCurrentFavState = function (element) {
+  let currentState;
+  element.querySelector(".favourite-icon").classList.contains("favourited")
+    ? (currentState = true)
+    : (currentState = false);
+  return currentState;
+};
+const getNewFavState = function (currentState) {
+  let newState;
+  currentState == true ? (newState = false) : (newState = true);
+  return newState;
 };
 
-const getFavouriteItems = async function (type, favouriteQuery) {
-  let favQueryResult;
+const updateFavStyle = function (target, newState) {
+  newState === true ? target.classList.add("favourited") : target.classList.toggle("favourited");
+  newState === false ? (target.textContent = "star_outline") : (target.textContent = "star");
+};
+
+const favouriteObj = function (type, element, newState) {
+  let favUpdate = {
+    newState: newState,
+  };
+  if (type == "control") {
+    favUpdate.endpoint = `/devices/${element.dataset.configid}`;
+    favUpdate.configID = element.dataset.configid;
+    favUpdate.deviceID = element.id;
+  }
   if (type == "config") {
-    favQueryResult = await fetch(`/${type}?favourite=${favouriteQuery}`)
-      .then((res) => res.json())
-      .catch((err) => console.log(err));
+    favUpdate.endpoint = `/config`;
+    favUpdate.configID;
   }
-  if (type == "devices") {
-  }
+  console.log(favUpdate);
+  return favUpdate;
 };

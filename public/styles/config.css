@@ -179,13 +179,7 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
-.favourite-icon:hover {
-  color: rgb(255, 251, 0);
-}
-.favourited {
-  color: rgb(233, 233, 96);
-  text-shadow: var(--textShadow);
-}
+
 #preConfigured-delete:hover {
   color: rgba(251, 30, 30, 0.757);
 }

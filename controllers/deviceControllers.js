@@ -80,10 +80,10 @@ exports.getDevices = catchAsync(async (req, res, next) => {
 
 exports.updateDevice = catchAsync(async function (req, res, next) {
   //check which properties are being updated and update them.
-  if (req.body.hasOwnProperty("favourite")) {
+  if (req.body.hasOwnProperty("newState")) {
     Device.findOneAndUpdate(
       { configID: req.body.configID, deviceID: req.body.deviceID },
-      { favourite: req.body.favourite }
+      { favourite: req.body.newState }
     ).catch((err) => {
       console.log(err);
     });

@@ -246,34 +246,8 @@ window.addEventListener("load", async (e) => {
   const headerIcon = document.querySelectorAll(".headerIcon");
   headerIcon.forEach((icon) => {
     icon.addEventListener("click", async (e) => {
+      //fav icon
       if (e.target.classList.contains("header-fav-icon")) {
-        let favouriteQuery;
-        e.target.classList.contains("favourited") ? (favouriteQuery = false) : (favouriteQuery = true);
-        let type;
-        e.target.classList.contains("deviceFavGetter") ? (type = "devices") : (type = "config");
-        getFavouriteItems(type, favouriteQuery);
-        favouriteItemIcon(e, "", true, "star");
-
-        //fetch the data for the first in list
-        if (type == "configFavGetter") {
-          const firstFavourite = favQueryResult[0]._id;
-          const firstFavDevices = await getDevices(firstFavourite);
-          firstFavDevices.data.forEach((device) => {
-            addDevice(device);
-            progressiveFadeIn(document.querySelectorAll(".control"), 15, "flex");
-          });
-
-          //remove all entries
-          progressiveFadeOut(document.querySelectorAll(".configListEntry"));
-          progressiveFadeOut(document.querySelectorAll(".control"));
-          //add a new entry for each favourite
-          favQueryResult.forEach((conf) => {
-            addConfig(conf);
-          });
-
-          //display it
-          progressiveFadeIn(document.querySelectorAll(".configListEntry"), 5, "flex");
-        }
       }
     });
   });
@@ -337,8 +311,13 @@ window.addEventListener("load", async (e) => {
     //favourite Button
     if (e.target.classList.contains("control-fav-icon")) {
       e.preventDefault();
-      const updateObj = favouriteItem(e, "control", false, "star_outline");
-      await fetch(`/devices/${updateObj.configID}`, {
+      const controlEl = e.target.closest(".control");
+      const currentFavState = checkCurrentFavState(controlEl);
+      const newFavState = getNewFavState(currentFavState);
+      const updateObj = favouriteObj("control", controlEl, newFavState);
+      updateFavStyle(e.target, newFavState);
+
+      await fetch(`${updateObj.endpoint}`, {
         method: "PATCH",
         body: JSON.stringify(updateObj),
         headers: { "content-type": "application/json" },
