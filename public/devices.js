@@ -194,7 +194,7 @@ const excludeItem = function (e, parentClassName, type) {
 
 //refresh page when focused to poll 1x
 window.addEventListener("focus", () => {
-  // location.reload();
+  location.reload();
 });
 
 //------------------------
@@ -309,6 +309,7 @@ window.addEventListener("load", async (e) => {
   //event listeners for each device
   window.addEventListener("click", async (e) => {
     //favourite Button
+    const deviceContainer = document.querySelector(".deviceContainer");
     const activeConfig = document.querySelector(".activeConfig");
     if (e.target.classList.contains("control-fav-icon")) {
       const controlEl = e.target.closest(".control");
@@ -336,7 +337,7 @@ window.addEventListener("load", async (e) => {
     }
     //sort by favourite
     if (e.target.classList.contains("header-fav-icon")) {
-      progressiveFadeOut(document.querySelectorAll(".control"), 10);
+      progressiveFadeOut(deviceContainer.querySelectorAll("*"), 10);
       e.target.classList.toggle("favSort");
       const sort = favSortDecider(e.target);
       console.log(sort);
@@ -350,10 +351,14 @@ window.addEventListener("load", async (e) => {
         })
         .catch((err) => console.log(err));
       console.log(sorted);
-      sorted.data.forEach((dev) => {
-        addDevice(dev);
-      });
-      progressiveFadeIn(document.querySelectorAll(".control"), 10, "flex");
+      if (sorted.data.length > 0) {
+        sorted.data.forEach((dev) => {
+          addDevice(dev);
+        });
+        return progressiveFadeIn(document.querySelectorAll(".control"), 10, "flex");
+      } else {
+        return throwError(".deviceContainer", "beforeend", "No favourites set");
+      }
     }
     //deleteicons
     if (e.target.classList.contains("control-del-icon")) {

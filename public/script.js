@@ -8,7 +8,9 @@ const throwError = function (targetEl, position, message, additionalClass) {
   document.querySelector(`${targetEl}`).insertAdjacentHTML(position, emptyText);
   const error = document.querySelector(".error");
   error.querySelector("p").textContent = message;
-  error.classList.add(additionalClass);
+  if (additionalClass) {
+    error.classList.add(additionalClass);
+  }
   fadeIn(error, 150, "flex");
 };
 
