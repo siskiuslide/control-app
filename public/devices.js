@@ -212,7 +212,7 @@ window.addEventListener("load", async (e) => {
   configResponse.body.forEach((config) => {
     addConfig(config);
   });
-  progressiveFadeIn(document.querySelectorAll(".configListEntry"), 45, "flex");
+  progressiveFadeIn(document.querySelectorAll(".configListEntry"), 5, "flex");
 
   //search localstorage for mostrecent, or acquire the first
   let onLoadConfig;
@@ -260,7 +260,7 @@ window.addEventListener("load", async (e) => {
           const firstFavDevices = await getDevices(firstFavourite);
           firstFavDevices.data.forEach((device) => {
             addDevice(device);
-            progressiveFadeIn(document.querySelectorAll(".control"), 45, "flex");
+            progressiveFadeIn(document.querySelectorAll(".control"), 15, "flex");
           });
 
           //remove all entries
