@@ -48,6 +48,9 @@
   margin: 10px 3px;
   padding: 0 10px;
 }
+.header-fav-icon {
+  color: white;
+}
 .configListEntry {
   height: 10%;
   display: flex;
@@ -132,12 +135,11 @@
   flex-direction: column;
 }
 
-.deviceListError{
+.deviceListError {
   width: 40%;
   font-size: 35px;
   margin: 10% auto;
 }
-
 
 .deviceListHeaderSection {
   position: relative;

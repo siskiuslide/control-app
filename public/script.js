@@ -100,7 +100,6 @@ const getDevices = async (config) => {
   const data = await fetch(`/config/${config}/devices`)
     .then((res) => res.json())
     .then((data) => {
-      console.log(data);
       return data;
     })
     .catch((err) => console.log(err));
@@ -150,4 +149,10 @@ const favouriteObj = function (type, element, newState) {
   }
   console.log(favUpdate);
   return favUpdate;
+};
+
+const favSortDecider = function (sortBtn) {
+  let sort;
+  sortBtn.classList.contains("favSort") ? (sort = true) : (sort = false);
+  return sort;
 };

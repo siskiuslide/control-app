@@ -10,6 +10,23 @@ const AppError = require("./../utils/error");
 //----------------
 //
 exports.getDevices = catchAsync(async (req, res, next) => {
+  console.log(req.query);
+
+  //queryParams first
+  if (req.query.favourite) {
+    let devices;
+    if (req.query.favourite == "true") {
+      console.log("x");
+      devices = await Device.find({ configID: req.params.id, favourite: true }).catch((err) => console.log(err));
+      console.log(devices);
+      return res.status(200).json({ status: "Success", data: devices });
+    }
+    if (req.query.favourite == "false") {
+      const devices = await Device.find({ configID: req.params.id }).catch((err) => console.log(err));
+      return res.status(200).json({ status: "Success", data: devices });
+    }
+  }
+
   //Get the associated config
   const assocConfig = await Config.find({ _id: req.params.id });
   //build the url for that config | prettier-ignore

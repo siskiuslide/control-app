@@ -194,7 +194,7 @@ const excludeItem = function (e, parentClassName, type) {
 
 //refresh page when focused to poll 1x
 window.addEventListener("focus", () => {
-  location.reload();
+  // location.reload();
 });
 
 //------------------------
@@ -309,12 +309,13 @@ window.addEventListener("load", async (e) => {
   //event listeners for each device
   window.addEventListener("click", async (e) => {
     //favourite Button
+    const activeConfig = document.querySelector(".activeConfig");
     if (e.target.classList.contains("control-fav-icon")) {
-      e.preventDefault();
       const controlEl = e.target.closest(".control");
       const currentFavState = checkCurrentFavState(controlEl);
       const newFavState = getNewFavState(currentFavState);
       const updateObj = favouriteObj("control", controlEl, newFavState);
+      e.preventDefault();
       updateFavStyle(e.target, newFavState);
 
       await fetch(`${updateObj.endpoint}`, {
@@ -333,6 +334,28 @@ window.addEventListener("load", async (e) => {
         });
       return;
     }
+    //sort by favourite
+    if (e.target.classList.contains("header-fav-icon")) {
+      progressiveFadeOut(document.querySelectorAll(".control"), 10);
+      e.target.classList.toggle("favSort");
+      const sort = favSortDecider(e.target);
+      console.log(sort);
+      const sorted = await fetch(`/config/${activeConfig.id}/devices?favourite=${sort}`)
+        .then((response) => {
+          console.log(response);
+          return response.json();
+        })
+        .then((data) => {
+          return data;
+        })
+        .catch((err) => console.log(err));
+      console.log(sorted);
+      sorted.data.forEach((dev) => {
+        addDevice(dev);
+      });
+      progressiveFadeIn(document.querySelectorAll(".control"), 10, "flex");
+    }
+    //deleteicons
     if (e.target.classList.contains("control-del-icon")) {
       const updateObj = excludeItem(e, "control", "device");
       await fetch(`/devices/${updateObj.configID}`, {
