@@ -16,7 +16,6 @@ exports.getDevices = catchAsync(async (req, res, next) => {
   if (req.query.favourite) {
     let devices;
     if (req.query.favourite == "true") {
-      console.log("x");
       devices = await Device.find({ configID: req.params.id, favourite: true }).catch((err) => console.log(err));
       console.log(devices);
       return res.status(200).json({ status: "Success", data: devices });

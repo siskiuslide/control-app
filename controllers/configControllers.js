@@ -10,9 +10,20 @@ const { Error } = require("mongoose");
 //
 
 exports.getConfig = catchAsync(async function (req, res, next) {
+  console.log(req.url);
+  console.log(req.query);
+  //query requests first
   if (req.query.favourite) {
-    const data = await Config.find({ favourite: req.query.favourite });
-    return res.status(200).json({ status: "success", body: data });
+    let favConfigs;
+    if (req.query.favourite == "true") {
+      favConfigs = await Config.find({ favourite: true }).catch((err) => console.log(err));
+      console.log(favConfigs);
+      return res.status(200).json({ status: "Success", data: favConfigs });
+    }
+    if (req.query.favourite == "false") {
+      favConfigs = await Config.find({}).catch((err) => console.log(err));
+      return res.status(200).json({ status: "Success", data: favConfigs });
+    }
   }
   const configs = await Config.find();
   return res.status(200).json({ status: "success", body: configs });

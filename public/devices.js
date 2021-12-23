@@ -306,7 +306,7 @@ window.addEventListener("load", async (e) => {
     dlIconToggle(visibilitySwitchBtn, "visible", "invisible", "visibility", "visibility_off");
   });
 
-  //event listeners for each device
+  //event listeners
   window.addEventListener("click", async (e) => {
     //favourite Button
     const deviceContainer = document.querySelector(".deviceContainer");
@@ -335,12 +335,27 @@ window.addEventListener("load", async (e) => {
         });
       return;
     }
-    //sort by favourite
+    //sort by favourite (devices and configs)
+    //messy but works. will refactor using a Class system at some point
     if (e.target.classList.contains("header-fav-icon")) {
+      //remove devices regardless of which context
       progressiveFadeOut(deviceContainer.querySelectorAll("*"), 10);
+      //update button
       e.target.classList.toggle("favSort");
+      //decide new state
       const sort = favSortDecider(e.target);
-      const sorted = await fetch(`/config/${activeConfig.id}/devices?favourite=${sort}`)
+      //get endpoint based on context
+      let endpoint;
+      if (e.target.classList.contains("deviceFavGetter")) {
+        endpoint = `/config/${activeConfig.id}/devices`;
+      }
+      if (e.target.classList.contains("configFavGetter")) {
+        endpoint = `/config`;
+        //if configs, remove them too
+        progressiveFadeOut(document.querySelectorAll(".configListEntry"), 10);
+      }
+      //make request
+      const sorted = await fetch(`${endpoint}?favourite=${sort}`)
         .then((response) => {
           return response.json();
         })
@@ -348,10 +363,22 @@ window.addEventListener("load", async (e) => {
           return data;
         })
         .catch((err) => console.log(err));
+
+      console.log(sorted);
+
       if (sorted.data.length > 0) {
-        sorted.data.forEach((dev) => {
-          addDevice(dev);
-        });
+        //handle for each context
+        if (e.target.classList.contains("deviceFavGetter")) {
+          sorted.data.forEach((device) => {
+            addDevice(device);
+          });
+          if (e.target.classList.contains("configFavGetter")) {
+            sorted.data.forEach((config) => {
+              addConfig(config);
+              progressiveFadeIn(document.querySelectorAll(".configListEntry"), 15, "flex");
+            });
+          }
+        }
         return progressiveFadeIn(document.querySelectorAll(".control"), 10, "flex");
       } else {
         return throwError(".deviceContainer", "beforeend", "No favourites set");
