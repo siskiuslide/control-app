@@ -340,17 +340,14 @@ window.addEventListener("load", async (e) => {
       progressiveFadeOut(deviceContainer.querySelectorAll("*"), 10);
       e.target.classList.toggle("favSort");
       const sort = favSortDecider(e.target);
-      console.log(sort);
       const sorted = await fetch(`/config/${activeConfig.id}/devices?favourite=${sort}`)
         .then((response) => {
-          console.log(response);
           return response.json();
         })
         .then((data) => {
           return data;
         })
         .catch((err) => console.log(err));
-      console.log(sorted);
       if (sorted.data.length > 0) {
         sorted.data.forEach((dev) => {
           addDevice(dev);
