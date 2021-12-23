@@ -192,10 +192,14 @@ const excludeItem = function (e, parentClassName, type) {
   return updateBody;
 };
 
+//refresh page when focused to poll 1x
+window.addEventListener("focus", () => {
+  location.reload();
+});
+
 //------------------------
 //page LOAD event listener
 //------------------------
-
 window.addEventListener("load", async (e) => {
   //request configs first & add them to the list
   const configResponse = await fetch("/config")
@@ -268,7 +272,7 @@ window.addEventListener("load", async (e) => {
           });
 
           //display it
-          progressiveFadeIn(document.querySelectorAll(".configListEntry"), 45, "flex");
+          progressiveFadeIn(document.querySelectorAll(".configListEntry"), 5, "flex");
         }
       }
     });
