@@ -3,6 +3,7 @@ const Device = require("./../models/deviceModel");
 const DeviceControllers = require("./deviceControllers");
 const APITools = require("../utils/APITools");
 const catchAsync = require("./helpers/catchAsync");
+const { Error } = require("mongoose");
 
 //
 //----------------
@@ -47,11 +48,19 @@ exports.createConfig = catchAsync(async function (req, res, next) {
 //
 //--------------
 //
-
+//prettier-ignore
 exports.updateConfig = catchAsync(async function (req, res, next) {
-  const object = req.body;
-  await Config.findByIdAndUpdate(`${object._id}`, object);
-  res.status(200).json({ status: "success", data: object });
+  if (req.body.hasOwnProperty("newState")) {
+    Config.findOneAndUpdate(
+      { _id: req.body.configID },
+      { favourite: req.body.newState }
+      )
+      .catch((err) => {
+      console.log(err);
+    });
+    return res.status(200).json({ status: "success", data: req.body });
+
+  }
 });
 
 //

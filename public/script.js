@@ -146,7 +146,7 @@ const favouriteObj = function (type, element, newState) {
   }
   if (type == "config") {
     favUpdate.endpoint = `/config`;
-    favUpdate.configID;
+    favUpdate.configID = element.id;
   }
   console.log(favUpdate);
   return favUpdate;

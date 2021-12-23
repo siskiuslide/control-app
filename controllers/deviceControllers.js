@@ -87,6 +87,7 @@ exports.updateDevice = catchAsync(async function (req, res, next) {
     ).catch((err) => {
       console.log(err);
     });
+    return res.status(200).json({ status: "success", data: req.body });
   }
   if (req.body.hasOwnProperty("excluded")) {
     Device.findOneAndUpdate(

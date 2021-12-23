@@ -129,25 +129,15 @@ preConfiguredCardSection.addEventListener("click", async (e) => {
   }
   //FAVOURITE
   if (e.target.classList.contains("favourite-icon")) {
-    e.target.classList.toggle("favourited");
-    const targetConfig = e.target.closest(".preConfiguredCard");
-    let favouriteStatus;
-    favouriteItemIcon(e, "preConfiguredCard", false, "star_outline");
-    // if (e.target.classList.contains("favourited")) {
-    //   e.target.textContent = "star";
-    //   favouriteStatus = true;
-    // } else {
-    //   e.target.textContent = "star_outline";
-    //   favouriteStatus = false;
-    // }
+    const configEl = e.target.closest(".preConfiguredCard");
+    const currentFavState = checkCurrentFavState(configEl);
+    const newFavState = getNewFavState(currentFavState);
+    const updateObj = favouriteObj("config", configEl, newFavState);
+    updateFavStyle(e.target, newFavState);
 
-    const favouriteUpdate = {
-      _id: targetConfig.id,
-      favourite: favouriteStatus,
-    };
     await fetch("/config", {
       method: "PATCH",
-      body: JSON.stringify(favouriteUpdate),
+      body: JSON.stringify(updateObj),
       headers: { "content-type": "application/json" },
     })
       .then((response) => {
