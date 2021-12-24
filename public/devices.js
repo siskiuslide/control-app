@@ -294,9 +294,9 @@ window.addEventListener("load", async (e) => {
     ///////////////////////
     ///Material Buttons///
     ///////////////////////
-    if (e.target.classList.contains("material-icons")) {
-      const deviceContainer = document.querySelector(".deviceContainer");
-      const activeConfig = document.querySelector(".activeConfig");
+    const deviceContainer = document.querySelector(".deviceContainer");
+    const activeConfig = document.querySelector(".activeConfig");
+    if (e.target.classList.contains("favourite-icon")) {
       let parentEl;
       let parentClass;
       if (e.target.classList.contains("control-fav-icon")) {
@@ -328,55 +328,55 @@ window.addEventListener("load", async (e) => {
         .catch((err) => {
           console.log(err);
         });
-      //sort by favourite (devices and configs)
-      //messy but it works. will refactor using a Class system at some point
-      if (e.target.classList.contains("header-fav-icon")) {
-        //remove devices regardless of which context
-        progressiveFadeOut(deviceContainer.querySelectorAll("*"), 10);
-        //update button
-        e.target.classList.toggle("favSort");
-        //decide new state
-        const sort = favSortDecider(e.target);
-        //get endpoint based on context
-        let endpoint;
+    }
+    //sort by favourite (devices and configs)
+    //messy but it works. will refactor using a Class system at some point
+    if (e.target.classList.contains("header-fav-icon")) {
+      //remove devices regardless of which context
+      progressiveFadeOut(deviceContainer.querySelectorAll("*"), 10);
+      //update button
+      e.target.classList.toggle("favSort");
+      //decide new state
+      const sort = favSortDecider(e.target);
+      //get endpoint based on context
+      let endpoint;
+      if (e.target.classList.contains("deviceFavGetter")) {
+        endpoint = `/config/${activeConfig.id}/devices`;
+      }
+      if (e.target.classList.contains("configFavGetter")) {
+        endpoint = `/config`;
+        //if configs, remove them too
+        progressiveFadeOut(document.querySelectorAll(".configListEntry"), 10);
+      }
+      //make request
+      const sorted = await fetch(`${endpoint}?favourite=${sort}`)
+        .then((response) => {
+          return response.json();
+        })
+        .then((data) => {
+          return data;
+        })
+        .catch((err) => console.log(err));
+
+      if (sorted.data.length > 0) {
+        //handle for each context
         if (e.target.classList.contains("deviceFavGetter")) {
-          endpoint = `/config/${activeConfig.id}/devices`;
+          sorted.data.forEach((device) => {
+            addDevice(device);
+            return progressiveFadeIn(document.querySelectorAll(".control"), 10, "flex");
+          });
         }
         if (e.target.classList.contains("configFavGetter")) {
-          endpoint = `/config`;
-          //if configs, remove them too
-          progressiveFadeOut(document.querySelectorAll(".configListEntry"), 10);
+          sorted.data.forEach((config) => {
+            addConfig(config);
+            progressiveFadeIn(document.querySelectorAll(".configListEntry"), 15, "flex");
+          });
+          const active = document.querySelector(".configListEntry");
+          activeToggle(active);
+          getAndDisplayDevices(active.id);
         }
-        //make request
-        const sorted = await fetch(`${endpoint}?favourite=${sort}`)
-          .then((response) => {
-            return response.json();
-          })
-          .then((data) => {
-            return data;
-          })
-          .catch((err) => console.log(err));
-
-        if (sorted.data.length > 0) {
-          //handle for each context
-          if (e.target.classList.contains("deviceFavGetter")) {
-            sorted.data.forEach((device) => {
-              addDevice(device);
-              return progressiveFadeIn(document.querySelectorAll(".control"), 10, "flex");
-            });
-          }
-          if (e.target.classList.contains("configFavGetter")) {
-            sorted.data.forEach((config) => {
-              addConfig(config);
-              progressiveFadeIn(document.querySelectorAll(".configListEntry"), 15, "flex");
-            });
-            const active = document.querySelector(".configListEntry");
-            activeToggle(active);
-            getAndDisplayDevices(active.id);
-          }
-        } else {
-          return throwError(".deviceContainer", "beforeend", "No favourites set");
-        }
+      } else {
+        return throwError(".deviceContainer", "beforeend", "No favourites set");
       }
     }
 

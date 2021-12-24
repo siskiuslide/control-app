@@ -149,7 +149,6 @@ const favouriteObj = function (type, element, newState) {
     favUpdate.endpoint = `/config`;
     favUpdate.configID = element.id;
   }
-  console.log(favUpdate);
   return favUpdate;
 };
 
