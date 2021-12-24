@@ -270,7 +270,9 @@ window.addEventListener("load", async (e) => {
 
   //event listeners
   window.addEventListener("click", async (e) => {
-    //config list entries
+    ///////////////////////
+    //config list entries//
+    ///////////////////////
     if (e.target.classList.contains("configListEntry")) {
       const target = e.target.closest(".configListEntry");
       const currentlyActive = document.querySelector(".activeConfig");
@@ -289,7 +291,9 @@ window.addEventListener("load", async (e) => {
       }
     }
 
-    //favourite Button
+    ///////////////////////
+    ///Favourite Buttons///
+    ///////////////////////
     const deviceContainer = document.querySelector(".deviceContainer");
     const activeConfig = document.querySelector(".activeConfig");
     if (e.target.classList.contains("control-fav-icon")) {
@@ -366,7 +370,11 @@ window.addEventListener("load", async (e) => {
         return throwError(".deviceContainer", "beforeend", "No favourites set");
       }
     }
-    //deleteicons
+
+    ///////////////////////
+    ////Delete Buttons/////
+    ///////////////////////
+
     if (e.target.classList.contains("control-del-icon")) {
       const updateObj = excludeItem(e, "control", "device");
       await fetch(`/devices/${updateObj.configID}`, {
@@ -386,12 +394,16 @@ window.addEventListener("load", async (e) => {
       return;
     }
 
+    /////////////////////
+    ///Chevron Buttons///
+    /////////////////////
     if (e.target.classList.contains("control") && e.target.classList.contains("control-chevron-icon")) {
       return;
     }
 
-    //STATE CHANGE
-    //get new state & set the style instantly
+    ///////////////////////
+    ////Control Buttons////
+    ///////////////////////
     if (
       e.target.classList.contains("control") ||
       e.target.classList.contains("controlStatusIconCont") ||
