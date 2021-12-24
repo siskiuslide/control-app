@@ -1,3 +1,4 @@
+//wrapper function for getting & displaying devices, given a configid
 const getAndDisplayDevices = async function (activeId) {
   const devices = await getDevices(activeId);
   if (devices.data.length > 0) {
@@ -242,20 +243,10 @@ window.addEventListener("load", async (e) => {
     return throwError(".deviceListSection", "beforeend", "Add a network before controlling devices", "deviceListError");
   }
 
-  // const loadDevices = await getDevices(onLoadConfig.id);
+  const loadDevices = await getDevices(onLoadConfig.id);
   getAndDisplayDevices(onLoadConfig.id);
   activeToggle(document.getElementById(onLoadConfig.id));
   pollDevices(document.querySelector(".activeConfig"), true);
-
-  // if (loadDevices.status == "error") {
-  //   return throwError(".deviceListSection", "beforeend", "No Devices found for this network:/", "deviceListError");
-  // } else {
-  //   loadDevices.data.forEach((device) => {
-  //     if (device.excluded == true) return;
-  //     addDevice(device);
-  //     progressiveFadeIn(document.querySelectorAll(".control"), 25, "flex");
-  //   });
-  // }
 
   //entries
   const entries = document.querySelectorAll(".configListEntry");
@@ -286,7 +277,6 @@ window.addEventListener("load", async (e) => {
             progressiveFadeIn(document.querySelectorAll(".control"), 45, "flex");
           })
           .catch((err) => console.log(err));
-        console.log(devices);
         pollDevices(target, true);
       }
     });
@@ -369,8 +359,6 @@ window.addEventListener("load", async (e) => {
           return data;
         })
         .catch((err) => console.log(err));
-
-      console.log(sorted);
 
       if (sorted.data.length > 0) {
         //handle for each context
