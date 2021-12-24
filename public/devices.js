@@ -1,3 +1,16 @@
+const getAndDisplayDevices = async function (activeId) {
+  const devices = await getDevices(activeId);
+  if (devices.data.length > 0) {
+    devices.data.forEach((device) => {
+      addDevice(device);
+    });
+    const controls = document.querySelectorAll(".control");
+    progressiveFadeIn(controls, 10, "flex");
+  } else {
+    return throwError(".deviceListSection", "beforeend", "No Devices found for this network:/", "deviceListError");
+  }
+};
+
 //inserting dynamic elements
 const addConfig = function (config) {
   const configListContainer = document.querySelector(".configListContainer");
@@ -194,7 +207,7 @@ const excludeItem = function (e, parentClassName, type) {
 
 //refresh page when focused to poll 1x
 window.addEventListener("focus", () => {
-  location.reload();
+  // location.reload();
 });
 
 //------------------------
@@ -229,28 +242,20 @@ window.addEventListener("load", async (e) => {
     return throwError(".deviceListSection", "beforeend", "Add a network before controlling devices", "deviceListError");
   }
 
-  const loadDevices = await getDevices(onLoadConfig.id);
+  // const loadDevices = await getDevices(onLoadConfig.id);
+  getAndDisplayDevices(onLoadConfig.id);
   activeToggle(document.getElementById(onLoadConfig.id));
-  if (loadDevices.status == "error") {
-    return throwError(".deviceListSection", "beforeend", "No Devices found for this network:/", "deviceListError");
-  } else {
-    loadDevices.data.forEach((device) => {
-      if (device.excluded == true) return;
-      addDevice(device);
-      progressiveFadeIn(document.querySelectorAll(".control"), 25, "flex");
-    });
-    pollDevices(document.querySelector(".activeConfig"), true);
-  }
+  pollDevices(document.querySelector(".activeConfig"), true);
 
-  //header event listeners
-  const headerIcon = document.querySelectorAll(".headerIcon");
-  headerIcon.forEach((icon) => {
-    icon.addEventListener("click", async (e) => {
-      //fav icon
-      if (e.target.classList.contains("header-fav-icon")) {
-      }
-    });
-  });
+  // if (loadDevices.status == "error") {
+  //   return throwError(".deviceListSection", "beforeend", "No Devices found for this network:/", "deviceListError");
+  // } else {
+  //   loadDevices.data.forEach((device) => {
+  //     if (device.excluded == true) return;
+  //     addDevice(device);
+  //     progressiveFadeIn(document.querySelectorAll(".control"), 25, "flex");
+  //   });
+  // }
 
   //entries
   const entries = document.querySelectorAll(".configListEntry");
@@ -281,6 +286,7 @@ window.addEventListener("load", async (e) => {
             progressiveFadeIn(document.querySelectorAll(".control"), 45, "flex");
           })
           .catch((err) => console.log(err));
+        console.log(devices);
         pollDevices(target, true);
       }
     });
@@ -336,7 +342,7 @@ window.addEventListener("load", async (e) => {
       return;
     }
     //sort by favourite (devices and configs)
-    //messy but works. will refactor using a Class system at some point
+    //messy but it works. will refactor using a Class system at some point
     if (e.target.classList.contains("header-fav-icon")) {
       //remove devices regardless of which context
       progressiveFadeOut(deviceContainer.querySelectorAll("*"), 10);
@@ -371,15 +377,19 @@ window.addEventListener("load", async (e) => {
         if (e.target.classList.contains("deviceFavGetter")) {
           sorted.data.forEach((device) => {
             addDevice(device);
+            return progressiveFadeIn(document.querySelectorAll(".control"), 10, "flex");
           });
-          if (e.target.classList.contains("configFavGetter")) {
-            sorted.data.forEach((config) => {
-              addConfig(config);
-              progressiveFadeIn(document.querySelectorAll(".configListEntry"), 15, "flex");
-            });
-          }
         }
-        return progressiveFadeIn(document.querySelectorAll(".control"), 10, "flex");
+        if (e.target.classList.contains("configFavGetter")) {
+          sorted.data.forEach((config) => {
+            addConfig(config);
+            progressiveFadeIn(document.querySelectorAll(".configListEntry"), 15, "flex");
+          });
+          const active = document.querySelector(".configListEntry");
+          activeToggle(active);
+          getAndDisplayDevices(active.id);
+          return;
+        }
       } else {
         return throwError(".deviceContainer", "beforeend", "No favourites set");
       }
