@@ -10,14 +10,11 @@ const AppError = require("./../utils/error");
 //----------------
 //
 exports.getDevices = catchAsync(async (req, res, next) => {
-  console.log(req.query);
-
   //queryParams first
   if (req.query.favourite) {
     let devices;
     if (req.query.favourite == "true") {
       devices = await Device.find({ configID: req.params.id, favourite: true }).catch((err) => console.log(err));
-      console.log(devices);
       return res.status(200).json({ status: "Success", data: devices });
     }
     if (req.query.favourite == "false") {
