@@ -20,6 +20,7 @@
   justify-content: flex-start;
   width: 25vw;
   background: rgba(255, 255, 255, 0.15);
+  top: 0;
   /* background: var(--LowerOpacityWhite); */
 }
 .configListItem {
@@ -52,7 +53,9 @@
   color: white;
 }
 .configListEntry {
-  height: 10%;
+  height: auto;
+  min-height: 10vh;
+  max-height: 15vh;
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
