@@ -248,40 +248,6 @@ window.addEventListener("load", async (e) => {
   activeToggle(document.getElementById(onLoadConfig.id));
   pollDevices(document.querySelector(".activeConfig"), true);
 
-  //entries
-  const entries = document.querySelectorAll(".configListEntry");
-  entries.forEach((entry) => {
-    entry.addEventListener("click", async (e) => {
-      const target = e.target.closest(".configListEntry");
-      const targetID = target.id;
-      const currentlyActive = document.querySelector(".activeConfig");
-      //set to storage so that it can be loaded on refresh
-      localStorage.setItem("mostRecentConfig", targetID);
-      if (currentlyActive !== e.target) {
-        //change active
-        activeToggle(currentlyActive);
-        activeToggle(target);
-        progressiveFadeOut(document.querySelectorAll(".control"), 30);
-        //polling status (changes the icon too)
-        checkActiveConfigForPolling(target);
-
-        //make request
-        const targetURL = `/config/${targetID}/devices`;
-        devices = await fetch(targetURL)
-          .then((res) => {
-            return res.json();
-          })
-          .then((devices) => {
-            //add control element for each device returned
-            devices.data.forEach((device) => addDevice(device));
-            progressiveFadeIn(document.querySelectorAll(".control"), 45, "flex");
-          })
-          .catch((err) => console.log(err));
-        pollDevices(target, true);
-      }
-    });
-  });
-
   //polling
   const activeConfig = document.querySelector(".activeConfig");
   if (checkActiveConfigForPolling(activeConfig) == true) {
@@ -304,6 +270,25 @@ window.addEventListener("load", async (e) => {
 
   //event listeners
   window.addEventListener("click", async (e) => {
+    //config list entries
+    if (e.target.classList.contains("configListEntry")) {
+      const target = e.target.closest(".configListEntry");
+      const currentlyActive = document.querySelector(".activeConfig");
+      //set to storage so that it can be loaded on refresh
+      localStorage.setItem("mostRecentConfig", target.id);
+      if (currentlyActive !== e.target) {
+        //change active
+        activeToggle(currentlyActive);
+        activeToggle(target);
+        progressiveFadeOut(document.querySelectorAll(".control"), 30);
+        //polling status (changes the icon too)
+        checkActiveConfigForPolling(target);
+        //make request & display
+        getAndDisplayDevices(target.id);
+        pollDevices(target, true);
+      }
+    }
+
     //favourite Button
     const deviceContainer = document.querySelector(".deviceContainer");
     const activeConfig = document.querySelector(".activeConfig");
@@ -376,7 +361,6 @@ window.addEventListener("load", async (e) => {
           const active = document.querySelector(".configListEntry");
           activeToggle(active);
           getAndDisplayDevices(active.id);
-          return;
         }
       } else {
         return throwError(".deviceContainer", "beforeend", "No favourites set");
