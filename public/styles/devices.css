@@ -97,7 +97,7 @@
 .inactiveConfig:hover .chevron-icon {
   color: black;
 }
-.configEntryFavourite {
+.ce-fav-icon {
   text-shadow: none;
   justify-self: left;
   align-items: flex-start;
