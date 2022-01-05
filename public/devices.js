@@ -274,6 +274,7 @@ window.addEventListener("load", async (e) => {
     //config list entries//
     ///////////////////////
     if (e.target.classList.contains("configListEntry")) {
+      removeErrorMessage()
       const target = e.target.closest(".configListEntry");
       const currentlyActive = document.querySelector(".activeConfig");
       //set to storage so that it can be loaded on refresh
@@ -297,6 +298,7 @@ window.addEventListener("load", async (e) => {
     const deviceContainer = document.querySelector(".deviceContainer");
     const activeConfig = document.querySelector(".activeConfig");
     if (e.target.classList.contains("favourite-icon")) {
+      removeErrorMessage()
       let parentEl;
       let parentClass;
       if (e.target.classList.contains("control-fav-icon")) {

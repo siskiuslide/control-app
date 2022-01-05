@@ -13,6 +13,13 @@ const throwError = function (targetEl, position, message, additionalClass) {
   }
   fadeIn(error, 150, "flex");
 };
+const removeErrorMessage = function(){
+  const errorMessages = document.querySelectorAll('.error')
+  if(!errorMessages) return
+  errorMessages.forEach(err=>{
+    fadeOut(err, 50)
+  })
+}
 
 //navbar elements
 const navBar = document.querySelector(".navbar");
