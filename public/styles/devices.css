@@ -207,6 +207,7 @@
   cursor: pointer;
   color: black;
   flex-direction: column;
+  flex-basis: 20%;
   justify-content: space-between;
   align-items: center;
   opacity: 0;
