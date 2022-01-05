@@ -11,11 +11,13 @@ app.use(express.urlencoded({ extended: true }));
 
 const deviceRouter = require("./routes/deviceRouter");
 const configRouter = require("./routes/configRouter");
-
+const userRouter = require("./routes/userRouter");
 
 app.use("/config", configRouter);
 
 app.use("/devices", deviceRouter);
+
+app.use("/users", userRouter);
 
 app.all("*", (req, res, next) => {
   next(new AppError(`Can't find ${req.originalUrl} on the server`, 400));
