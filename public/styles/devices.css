@@ -18,7 +18,6 @@
   flex-direction: column;
   justify-content: flex-start;
   width: min(30vw, 25rem);
-  /* width: 25rem; */
   background: rgba(255, 255, 255, 0.15);
   right: auto;
 }
