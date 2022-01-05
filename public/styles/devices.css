@@ -27,7 +27,6 @@
 }
 .configListHeaderSection {
   background: none;
-  /* min-height: 8vh;ks */
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -143,6 +142,8 @@
 .deviceListHeaderSection {
   position: relative;
   width: 100%;
+  height: 44px;
+  margin: 1vh 1vw;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -226,7 +227,7 @@
   font-weight: bolder;
   text-align: center;
   align-self: center;
-  color: black;
+  color: #4e4e4e;
   justify-self: flex-start;
   margin-top: 7px;
   padding: 3px;
