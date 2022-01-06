@@ -41,8 +41,8 @@ userSchema.pre("save", async function (next) {
 });
 
 //instance method that can be used on all documents that use this schema. Return T/F.
-userSchema.methods.check = async function () {
-  console.log("x");
+userSchema.methods.comparePassword = async function (candidatePassword, password) {
+  return await bcrypt.compare(candidatePassword, password)
 };
 
 const User = mongoose.model("User", userSchema);
