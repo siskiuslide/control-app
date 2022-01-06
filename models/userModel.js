@@ -18,7 +18,7 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: [true, "Please enter a password"],
     minlength: 8,
-    maxlength: 16,
+    select: false,
   },
   passwordConfirm: {
     type: String,
@@ -40,5 +40,11 @@ userSchema.pre("save", async function (next) {
   next();
 });
 
+//instance method that can be used on all documents that use this schema. Return T/F.
+userSchema.methods.check = async function () {
+  console.log("x");
+};
+
 const User = mongoose.model("User", userSchema);
+
 module.exports = User;

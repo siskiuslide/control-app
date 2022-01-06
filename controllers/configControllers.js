@@ -3,7 +3,6 @@ const Device = require("./../models/deviceModel");
 const DeviceControllers = require("./deviceControllers");
 const APITools = require("../utils/APITools");
 const catchAsync = require("./helpers/catchAsync");
-const { Error } = require("mongoose");
 
 //
 //----------------
