@@ -1,5 +1,7 @@
 const express = require("express");
 const deviceControllers = require("./../controllers/deviceControllers");
+const authController = require("./../controllers/authController");
+
 const router = express.Router();
 
 router
@@ -11,6 +13,5 @@ router
 router.route("/:configID/:deviceID").get(deviceControllers.getSingleDevice);
 
 router.route("/:configID/:deviceID/:status").get(deviceControllers.changeDeviceState);
-
 
 module.exports = router;

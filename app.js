@@ -9,6 +9,11 @@ app.use(express.static("./public"));
 app.use(morgan("dev"));
 app.use(express.urlencoded({ extended: true }));
 
+app.use((req, res, next) => {
+  req.requestTime = new Date().toISOString();
+  next();
+});
+
 const deviceRouter = require("./routes/deviceRouter");
 const configRouter = require("./routes/configRouter");
 const userRouter = require("./routes/userRouter");

@@ -20,5 +20,5 @@ console.log(`Environment: ${process.env.NODE_ENV}`);
 const port = 5500;
 
 app.listen(port, () => {
-  console.log(`Server listening on port ${port}`);
+  console.log(`Server port ${port}`);
 });
