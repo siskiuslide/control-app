@@ -67,8 +67,10 @@ exports.protectRoute = catchAsync(async (req, res, next) => {
   if (!user) return next(new AppError("User no longer exists", 401));
 
   //check if password !changed after jwt was signed
-  if (user.changedPasswordAfterJWT(decodedPayload.iat))
-    return next(new AppError("Password has changed recently. Please login again", 401));
+  if(await user.changedPasswordAfterJWT(decodedPayload.iat)) {
+    return next(new AppError("Password has changed recently. Please login again", 401))
+  }
+
 
   //grant access and assign the user to the request
   req.user = user;

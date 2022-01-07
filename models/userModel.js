@@ -48,12 +48,11 @@ userSchema.methods.comparePassword = async function (candidatePassword, password
 
 userSchema.methods.changedPasswordAfterJWT = async function (jwtTimestamp) {
   if (this.passwordChangedAt) {
-    const changedTimeStamp = parseInt(this.passwordChangedAt.getTime() / 1000, 10); //convert date string into timestamp & parse as a number.
-    console.log(changedTimeStamp, jwtTimestamp);
-    return jwtTimestamp < changedTimeStamp;
+    // const changedTimeStamp = parseInt(this.passwordChangedAt.getTime() / 1000, 10); //convert date string into timestamp & parse as a number.
+    const changedTimeStamp = this.passwordChangedAt.getTime(); //code for if stored as timestamp (testing purposes)
+    return jwtTimestamp < changedTimeStamp
   }
-  //default return false as many users may have never changed their password
-  return false;
+  return false //default return value
 };
 
 const User = mongoose.model("User", userSchema);
