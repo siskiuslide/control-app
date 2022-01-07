@@ -41,7 +41,7 @@
   }
   .solisItem > h4 {
     color: rgb(255, 255, 255);
-    margin: 1% auto 0 20%;
+    margin: 0 auto 0 20%;
   }
   .solisItem > .forgotPassword {
     opacity: 0;
@@ -57,7 +57,7 @@
     outline: none;
     border: 2px solid rgb(255, 255, 255);
     padding: 10px 5px;
-    width: 60%;
+    width: 70%;
   }
   .solisItem > input:focus {
     border: 2px solid var(--midAccent);

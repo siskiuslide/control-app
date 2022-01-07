@@ -539,7 +539,8 @@
   display: flex;
   opacity: 1;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: center;
+  align-items: center;
   height: 40rem;
   /* min-height: 70%;  */
   background-image: url("./../images/about/signupbackground.png");
