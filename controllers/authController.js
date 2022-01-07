@@ -67,12 +67,21 @@ exports.protectRoute = catchAsync(async (req, res, next) => {
   if (!user) return next(new AppError("User no longer exists", 401));
 
   //check if password !changed after jwt was signed
-  if(await user.changedPasswordAfterJWT(decodedPayload.iat)) {
-    return next(new AppError("Password has changed recently. Please login again", 401))
+  if (await user.changedPasswordAfterJWT(decodedPayload.iat)) {
+    return next(new AppError("Password has changed recently. Please login again", 401));
   }
-
 
   //grant access and assign the user to the request
   req.user = user;
   next();
 });
+
+//roles is an array of authorized users
+exports.restrictTo = (...roles) => {
+  return (req, res, next) => {
+    if (!roles.includes(req.user.role)) {
+      return next(new AppError("You don't have permission to do this"), 403);
+    }
+    next();
+  };
+};

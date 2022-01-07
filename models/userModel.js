@@ -14,6 +14,12 @@ const userSchema = new mongoose.Schema({
     unique: true,
     validate: [validator.isEmail, "Please enter a valid email address"],
   },
+  role: {
+    type: String,
+    enum: ["dev", "admin", "user"],
+    default: "user",
+    required: true,
+  },
   password: {
     type: String,
     required: [true, "Please enter a password"],
@@ -50,9 +56,9 @@ userSchema.methods.changedPasswordAfterJWT = async function (jwtTimestamp) {
   if (this.passwordChangedAt) {
     // const changedTimeStamp = parseInt(this.passwordChangedAt.getTime() / 1000, 10); //convert date string into timestamp & parse as a number.
     const changedTimeStamp = this.passwordChangedAt.getTime(); //code for if stored as timestamp (testing purposes)
-    return jwtTimestamp < changedTimeStamp
+    return jwtTimestamp < changedTimeStamp;
   }
-  return false //default return value
+  return false; //default return value
 };
 
 const User = mongoose.model("User", userSchema);
