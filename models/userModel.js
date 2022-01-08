@@ -42,7 +42,9 @@ const userSchema = new mongoose.Schema({
   passwordResetToken: String,
   passwordResetExpires: Date,
 });
-
+///////////////////////
+//DOCUMENT MIDDLEWARE//
+///////////////////////
 userSchema.pre("save", async function (next) {
   if (!this.isModified("password")) return next();
   this.password = await bcrypt.hash(this.password, 12); // hash the password with a cost of 12
@@ -50,15 +52,24 @@ userSchema.pre("save", async function (next) {
   next();
 });
 
-//instance method that can be used on all documents that use this schema. Return T/F.
+userSchema.pre("save", function (next) {
+  if (!this.isModified("password") || this.isNew) return next();
+  this.passwordChangedAt = Date.now() - 1000; //remove some time from date - save() to db takes longer than issuing token.
+  return next();
+});
+
+////////////////////////
+//INSTANCE METHODS/////
+///////////////////////
+// Return T/F.
 userSchema.methods.comparePassword = async function (candidatePassword, password) {
   return await bcrypt.compare(candidatePassword, password);
 };
 
 userSchema.methods.changedPasswordAfterJWT = async function (jwtTimestamp) {
   if (this.passwordChangedAt) {
-    // const changedTimeStamp = parseInt(this.passwordChangedAt.getTime() / 1000, 10); //convert date string into timestamp & parse as a number.
-    const changedTimeStamp = this.passwordChangedAt.getTime(); //code for if stored as timestamp (testing purposes)
+    const changedTimeStamp = parseInt(this.passwordChangedAt.getTime() / 1000, 10); //convert date string into timestamp & parse as a number.
+    // const changedTimeStamp = this.passwordChangedAt.getTime(); //code for if stored as timestamp (testing purposes)
     return jwtTimestamp < changedTimeStamp;
   }
   return false; //default return value
