@@ -10,9 +10,9 @@ router
   .get(authController.protectRoute, configController.getConfig)
   .post(authController.protectRoute, configController.createConfig)
   .patch(authController.protectRoute, configController.updateConfig)
-  .delete(authController.protectRoute, authController.restrictTo("admin", "dev"), configController.deleteConfig);
+  .delete(authController.protectRoute, configController.deleteConfig);
 
-router.route("/:id").get(configController.getSingleConfig);
+router.route("/:id").get(authController.protectRoute, configController.getSingleConfig);
 module.exports = router;
 
-router.route("/:id/devices").get(deviceController.getDevices);
+router.route("/:id/devices").get(authController.protectRoute, deviceController.getDevices);

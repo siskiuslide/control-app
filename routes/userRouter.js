@@ -9,12 +9,15 @@ router.route("/login").post(authController.login);
 router.route("/forgotPassword").post(authController.forgotPassword);
 router.route("/resetPassword/:token").patch(authController.resetPassword);
 
-router.route("/").get(userController.getAllUsers).post(userController.createUser);
+router
+  .route("/")
+  .get(authController.protectRoute, authController.restrictTo("dev"), userController.getAllUsers)
+  .post(authController.protectRoute, authController.restrictTo("admin", "dev"), userController.createUser);
 
 router
   .route("/:id")
-  .get(userController.getSingleUser)
-  .patch(userController.updateUser)
-  .delete(userController.deleteUser);
+  .get(authController.protectRoute, authController.restrictTo("dev"), userController.getSingleUser)
+  .patch(authController.protectRoute, authController.restrictTo("dev"), userController.updateUser)
+  .delete(authController.protectRoute, authController.restrictTo("dev"), userController.deleteUser);
 
 module.exports = router;
