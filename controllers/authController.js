@@ -10,6 +10,17 @@ const signToken = (id) => {
   return jwt.sign({ id }, process.env.JWT_SECRET, { expiresIn: process.env.JWT_EXPIRATION });
 };
 
+const createAndSendToken = (user, statusCode, res) => {
+  const token = signToken(user._id);
+  res.status(statusCode).json({
+    status: "success",
+    token,
+    data: {
+      user,
+    },
+  });
+};
+
 exports.signup = catchAsync(async (req, res, next) => {
   const newUser = await User.create({
     name: req.body.name,
@@ -18,15 +29,7 @@ exports.signup = catchAsync(async (req, res, next) => {
     passwordConfirm: req.body.passwordConfirm,
   });
   //create jwt token for new user and send it back straight away
-  const token = signToken(newUser._id);
-
-  res.status(201).json({
-    status: "Success",
-    token: token,
-    data: {
-      user: newUser,
-    },
-  });
+  createAndSendToken(newUser, 201, res);
 });
 
 exports.login = catchAsync(async (req, res, next) => {
@@ -43,12 +46,7 @@ exports.login = catchAsync(async (req, res, next) => {
     return next(new AppError("Incorrect email or password", 401));
   }
   //send token back if ^ = true
-
-  const token = signToken(user._id);
-  res.status(200).json({
-    status: "Success",
-    token,
-  });
+  createAndSendToken(user, 200, res);
 });
 
 exports.protectRoute = catchAsync(async (req, res, next) => {
@@ -133,9 +131,25 @@ exports.resetPassword = catchAsync(async (req, res, next) => {
   await user.save({ validateBeforeSave: true }); //validates (password === passwordConfirm)
   //update changedPasswordAt property in document middleware in userModel.js
   //log user in with new signed token
-  const token = signToken(user._id);
-  res.status(200).json({
-    status: "Success",
-    token,
-  });
+  createAndSendToken(user, 200, res);
+});
+
+exports.updatePassword = catchAsync(async (req, res, next) => {
+  //expect 3 items in req.body.
+  //req.body.passwordCurrent === the current password before changing
+  //req.body.password === new password
+  //req.body.password === confirms new password
+
+  //get user
+  const user = await User.findById(req.user._id).select("+password"); //password not included by default
+  if (!user) return next(new AppError("User not found", 400));
+  //check posted (current) password is equal to the one user entered
+  if (!(await user.comparePassword(req.body.passwordCurrent, user.password))) {
+    return next(new AppError("Your current password is incorrect", 401));
+  }
+  user.password = req.body.password;
+  user.passwordConfirm = req.body.passwordConfirm;
+  await user.save({ validateBeforeSave: true });
+  //log user in, send JWT
+  createAndSendToken(user, 200, res);
 });
