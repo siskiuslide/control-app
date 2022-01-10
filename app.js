@@ -27,9 +27,7 @@ app.use("/users", userRouter);
 
 
 app.all("*", (req, res, next) => {
-  console.log(__dirname)
-  res.status(404).render(path.join(__dirname, 'public/404.html'))
-  next(new AppError(`Can't find ${req.originalUrl} on the server`, 400));
+  next(new AppError(`Can't find ${req.originalUrl} on the server`, 404));
 });
 app.use(globalErrorHandler);
 

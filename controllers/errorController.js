@@ -40,7 +40,8 @@ const handleValidationErrorDB = (err) => {
 const handleJWTError = (error) => new AppError("Invalid Token. Please log in", 401);
 const handleJWTExpiredError = (error) => new AppError("Token expired. Please log in again", 401);
 
-module.exports = (err, req, res, next) => {
+
+module.exports = async (err, req, res, next) => {
   let error = { ...err };
   err.statusCode = err.statusCode || 500;
   err.status = err.status || "error";
@@ -51,8 +52,12 @@ module.exports = (err, req, res, next) => {
   if (error.name === "ValidationError") error = handleValidationErrorDB(error);
   if (error.name === "JsonWebTokenError") error = handleJWTError(error);
   if (error.name === "TokenExpiredError") error = handleJWTExpiredError(error);
-  res.status(err.statusCode).json({
+  if (error.statusCode !== 404){
+    res.status(err.statusCode).json({
     status: err.status,
     message: err.message,
   });
+} else {
+  return await res.sendFile(__dirname.substring(0, __dirname.length - 11) + '\public\\pageNotFound.html')
+}
 };
