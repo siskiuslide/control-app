@@ -45,9 +45,7 @@ body {
 }
 
 @media screen and (min-width: 2000px){
-    .pageNotFoundContainer{
-        height: 60vh
-    }
+  
     .pageNotFoundContainer > * {
         padding-block: 2vh;
     }
@@ -57,16 +55,19 @@ body {
 }
 @media screen and (max-width: 1400px){
     .pageNotFoundContainer > h2{
-        width: 75%;
+        font-size: 4.5em;
+        width: 80%;
     }
     
 }
-@media screen and (max-width: 1130px){
+@media screen and (max-width: 1200px){
     .pageNotFoundContainer{
-        height: 50vh
+        height: 65vh
     }
     .pageNotFoundContainer > * {
-        padding-block: 3vh;
+        padding-block: 2.5vh;
+        margin: 0 0 0 3vw;
+
     }
     .pageNotFoundContainer > h1 {
         font-size: 12em;
@@ -80,10 +81,10 @@ body {
 
 @media screen and (max-width: 600px) {
     .pageNotFoundContainer{
-        height: 50vh
+        height: 60vh
     }
     .pageNotFoundContainer > * {
-        padding-block: 2.5vh;
+        padding-block: 2vh;
     }
     .pageNotFoundContainer > h1 {
         top: 10vh;
@@ -91,7 +92,8 @@ body {
     }
     .pageNotFoundContainer > h2{
         width: 80%;
-        font-size: 2.5em;
+        font-size: 2.2em;
+        text-align: justify;
     }
     
     
