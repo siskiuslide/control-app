@@ -43,7 +43,12 @@ const userSchema = new mongoose.Schema({
   passwordResetExpires: Date,
   lastLoggedIn: {
     type: Date,
-    default: "never",
+    default: null,
+  },
+  active: {
+    type: Boolean,
+    default: true,
+    select: false,
   },
 });
 ///////////////////////
@@ -60,6 +65,11 @@ userSchema.pre("save", function (next) {
   if (!this.isModified("password") || this.isNew) return next();
   this.passwordChangedAt = Date.now() - 1000; //remove some time from date - save() to db takes longer than issuing token.
   return next();
+});
+
+userSchema.pre(/^find/, function (next) {
+  this.find({ active: { $ne: false } }); //this = current query
+  next();
 });
 
 ////////////////////////
