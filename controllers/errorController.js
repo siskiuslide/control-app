@@ -40,24 +40,25 @@ const handleValidationErrorDB = (err) => {
 const handleJWTError = (error) => new AppError("Invalid Token. Please log in", 401);
 const handleJWTExpiredError = (error) => new AppError("Token expired. Please log in again", 401);
 
-
 module.exports = async (err, req, res, next) => {
   let error = { ...err };
   err.statusCode = err.statusCode || 500;
   err.status = err.status || "error";
-  if (process.env.NODE_ENV === "development") {
+  if (process.env.NODE_ENV === "development" && !error.code === 404) {
     sendErrorDev(err, res);
-  } else if (process.env.NODE_ENV === "production") if (error.name === "CastError") error = handleCastErrorDB(error);
+  }
+  // else
+  if (process.env.NODE_ENV === "production") if (error.name === "CastError") error = handleCastErrorDB(error);
   if (error.code === 11000) error = handleDuplicateFieldsDB(error);
   if (error.name === "ValidationError") error = handleValidationErrorDB(error);
   if (error.name === "JsonWebTokenError") error = handleJWTError(error);
   if (error.name === "TokenExpiredError") error = handleJWTExpiredError(error);
-  if (error.statusCode !== 404){
+  if (error.statusCode !== 404) {
     res.status(err.statusCode).json({
-    status: err.status,
-    message: err.message,
-  });
-} else {
-  return await res.sendFile(__dirname.substring(0, __dirname.length - 11) + '\public\\pageNotFound.html')
-}
+      status: err.status,
+      message: err.message,
+    });
+  } else {
+    return await res.sendFile(__dirname.substring(0, __dirname.length - 11) + "public\\pageNotFound.html");
+  }
 };

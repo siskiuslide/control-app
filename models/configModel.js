@@ -3,10 +3,10 @@ const slugify = require("slugify");
 
 const configSchema = new mongoose.Schema(
   {
-    user: {type: String, required: true},
+    user: { type: String, required: true },
     name: { type: String, required: true, unique: true },
     type: { type: String },
-    target: { type: String, required: true, },
+    target: { type: String, required: true },
     APIKey: { type: String, required: true, unique: true },
     appID: { type: Number, required: true },
     favourite: { type: Boolean, default: false },
@@ -15,7 +15,6 @@ const configSchema = new mongoose.Schema(
   },
   { timestamps: true }
 );
-
 
 configSchema.pre("save", function (next) {
   this.slug = slugify(this.name, { lower: true });

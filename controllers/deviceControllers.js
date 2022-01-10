@@ -12,13 +12,12 @@ const AppError = require("./../utils/error");
 exports.getDevices = catchAsync(async (req, res, next) => {
   //queryParams first
   if (req.query.favourite) {
-    let devices;
     if (req.query.favourite == "true") {
-      devices = await Device.find({ configID: req.params.id, favourite: true }).catch((err) => console.log(err));
+      const devices = await Device.find({ configID: req.params.id, favourite: true });
       return res.status(200).json({ status: "Success", data: devices });
     }
     if (req.query.favourite == "false") {
-      const devices = await Device.find({ configID: req.params.id }).catch((err) => console.log(err));
+      const devices = await Device.find({ configID: req.params.id });
       return res.status(200).json({ status: "Success", data: devices });
     }
   }
@@ -58,19 +57,17 @@ exports.getDevices = catchAsync(async (req, res, next) => {
             .then((res) => {
               return res[0];
             })
-            .catch((err) => console.log(err));
           if (existingData.status !== device.status || existingData.label !== device.label) {
             Device.findOneAndUpdate(
               { configID: device.configID, deviceID: device.deviceID },
               { status: device.status, label: device.label }
-            ).catch((err) => console.log(err));
+            )
           }
           resData.push(existingData);
         }
         if (result === false) {
           const createdDevice = await Device.create(device)
             .then((res) => res.json())
-            .catch((err) => console.log(err));
           return resData.push(createdDevice);
         }
         if (err) {
@@ -81,7 +78,7 @@ exports.getDevices = catchAsync(async (req, res, next) => {
     );
   });
   //get data from db and send
-  const storedDevices = await Device.find({ configID: req.params.id }).catch((err) => console.log(err));
+  const storedDevices = await Device.find({ configID: req.params.id });
   storedDevices.forEach((device) => resData.push(device));
   return res.status(200).json({ status: "Success", data: resData });
 });
@@ -97,16 +94,14 @@ exports.updateDevice = catchAsync(async function (req, res, next) {
     Device.findOneAndUpdate(
       { configID: req.body.configID, deviceID: req.body.deviceID },
       { favourite: req.body.newState }
-    ).catch((err) => {
-      console.log(err);
-    });
+    );
     return res.status(200).json({ status: "success", data: req.body });
   }
   if (req.body.hasOwnProperty("excluded")) {
     Device.findOneAndUpdate(
       { configID: req.body.configID, deviceID: req.body.deviceID },
       { excluded: req.body.excluded }
-    ).catch((err) => console.log(err));
+    );
     return res.status(200).json({ status: "Success", data: req.body });
   }
 });
@@ -119,7 +114,7 @@ exports.getSingleDevice = catchAsync(async function (req, res, next) {
   const device = await Device.findOneAndUpdate({
     configID: req.params.configID,
     deviceID: req.params.deviceID,
-  }).catch((err) => console.log(err));
+  });
   if (!device) {
     return new AppError("Device not found", 404);
   }
@@ -131,13 +126,13 @@ exports.getSingleDevice = catchAsync(async function (req, res, next) {
 //
 
 exports.changeDeviceState = catchAsync(async function (req, res, next) {
-  const assocDevice = await Device.find({ configID: req.params.configID, deviceID: req.params.deviceID })
-    .then((data) => {
+  const assocDevice = await Device.find({ configID: req.params.configID, deviceID: req.params.deviceID }).then(
+    (data) => {
       return data;
-    })
-    .catch((err) => console.log(err));
+    }
+  );
 
-  const assocConfig = await Config.find({ _id: req.params.configID }).catch((err) => console.log(err));
+  const assocConfig = await Config.find({ _id: req.params.configID });
   //build url to make request | prettier-ignore
   const stateChangeUrl = urlHelper.buildURL(
     assocConfig[0].type,
@@ -164,7 +159,7 @@ exports.changeDeviceState = catchAsync(async function (req, res, next) {
   const statusUpdateDB = await Device.findOneAndUpdate(
     { configID: req.params.configID, deviceID: req.params.deviceID },
     { status: newStatus.currentValue }
-  ).catch((err) => console.log(err));
+  );
 
   return res.status(200).json({ status: "success", data: newStatusFromHub });
 });
