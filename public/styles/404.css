@@ -35,9 +35,13 @@ body {
     font-size: 2em;
     text-decoration: none;
     color: white;
+    position: relative;
+    top: 3vh;
+    transition: transform;
 }
-.pageNotFoundContainer > a > span{
-  
+
+.pageNotFoundContainer > a:hover{
+    color: var(--midAccent);
 }
 
 @media screen and (min-width: 2000px){
