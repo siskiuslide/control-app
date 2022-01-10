@@ -41,6 +41,10 @@ const userSchema = new mongoose.Schema({
   passwordChangedAt: Date,
   passwordResetToken: String,
   passwordResetExpires: Date,
+  lastLoggedIn: {
+    type: Date,
+    default: "never",
+  },
 });
 ///////////////////////
 //DOCUMENT MIDDLEWARE//
