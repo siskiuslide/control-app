@@ -15,16 +15,16 @@ exports.getConfig = catchAsync(async function (req, res, next) {
   if (req.query.favourite) {
     let favConfigs;
     if (req.query.favourite == "true") {
-      favConfigs = await Config.find({ favourite: true }).catch((err) => console.log(err));
+      favConfigs = await Config.find({user: req.user.id, favourite: true }).catch((err) => console.log(err));
       console.log(favConfigs);
       return res.status(200).json({ status: "Success", data: favConfigs });
     }
     if (req.query.favourite == "false") {
-      favConfigs = await Config.find({}).catch((err) => console.log(err));
+      favConfigs = await Config.find({user: req.user.id}).catch((err) => console.log(err));
       return res.status(200).json({ status: "Success", data: favConfigs });
     }
   }
-  const configs = await Config.find();
+  const configs = await Config.find({user: req.user.id});
   return res.status(200).json({ status: "success", body: configs });
 });
 
@@ -33,29 +33,28 @@ exports.getConfig = catchAsync(async function (req, res, next) {
 //
 
 exports.getSingleConfig = catchAsync(async function (req, res, next) {
-  await Config.find({ _id: req.params.id }).then((data) => {
-    res.status(200).json({ status: "success", data: data });
+  const config = await Config.find({user: req.user.id,  _id: req.params.id })
+  res.status(200).json({ status: "success", data: config });
   });
-});
+
 
 //
 //------------------
 //
 exports.createConfig = catchAsync(async function (req, res, next) {
-  Config.exists({ name: req.body.name }, function (err, result) {
+  Config.exists({user: req.user.id, name: req.body.name }, function (err, result) {
     if (result == true) {
-      return res.status(400).json({ status: "failed", message: "bad request" });
+      return res.status(400).json({ status: "failed", message:"Config already exists! Cannot create duplicate configs" });
     }
     if (err) {
       console.log(err);
     }
   });
-  await Config.create(req.body).then((data) => {
-    res.status(200).json({ status: "success", data: req.body });
+  const config = await Config.create(req.body)
+  res.status(200).json({ status: "success", data: config });
   });
-});
 
-//
+  //
 //--------------
 //
 //prettier-ignore
