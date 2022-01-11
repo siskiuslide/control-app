@@ -11,7 +11,7 @@ const globalErrorHandler = require("./controllers/errorController");
 const authController = require("./controllers/authController");
 const app = express();
 
-// app.use(helmet()); //security headers are the first middleware
+app.use(helmet()); //security headers are the first middleware
 
 if (process.env.NODE_ENV === "development") {
   app.use(morgan("dev")); //logging

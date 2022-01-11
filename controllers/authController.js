@@ -56,6 +56,7 @@ exports.login = catchAsync(async (req, res, next) => {
   await User.findByIdAndUpdate(user.id, { lastLoggedIn: Date.now() });
   //send token back if ^ = true
   createAndSendToken(user, 200, res);
+
 });
 
 exports.protectRoute = catchAsync(async (req, res, next) => {

@@ -100,14 +100,20 @@ window.addEventListener("load", async () => {
   },
     method: 'GET'
   }).then((res) => res.json());
-  const configData = rawConfigData.body;
-  if (configData.length == 0) {
-    throwError(".preConfiguredSection", "beforeend", "No networks to show", "noConfigCardError");
+
+  if(rawConfigData.status !== "success"){
+    window.location.replace('http://127.0.0.1:5500/portal.html')
   }
-  configData.forEach((config) => {
-    addCard(config);
+
+    const configData = rawConfigData.body;
+    if (configData.length == 0) {
+      throwError(".preConfiguredSection", "beforeend", "No networks to show", "noConfigCardError");
+    }
+    configData.forEach((config) => {
+      addCard(config);
+    });
+    fadeIn(createNewConfig, 100, 'flex')
   });
-});
 
 preConfiguredCardSection.addEventListener("click", async (e) => {
   //DELETE
