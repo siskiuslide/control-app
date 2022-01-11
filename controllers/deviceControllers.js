@@ -10,7 +10,7 @@ const AppError = require("./../utils/error");
 //----------------
 //
 // const manualQuery = async function(){
-//    return await 
+//    return await
 // }()
 exports.getDevices = catchAsync(async (req, res, next) => {
   //queryParams first
@@ -44,6 +44,7 @@ exports.getDevices = catchAsync(async (req, res, next) => {
     const device = {
       configID: req.params.id,
       deviceID: item.id,
+      user: req.user.id,
       name: item.name,
       label: item.label,
       type: item.type,
@@ -63,8 +64,9 @@ exports.getDevices = catchAsync(async (req, res, next) => {
 
             //if the hub responds with a different status, update the db with it.
           if (existingData.status !== device.status || existingData.label !== device.label) {
-            Device.findOneAndUpdate(
-              { configID: device.configID, deviceID: device.deviceID },
+            //update many - this will update devices that are in any config. Match user & name too to ensure only their correct devices are updated
+            await Device.updateMany(
+              { user: req.user.id, deviceID: device.deviceID, name: device.name},
               { status: device.status, label: device.label }
             )
           }
@@ -72,7 +74,7 @@ exports.getDevices = catchAsync(async (req, res, next) => {
         }
         if (result === false) {
           const createdDevice = await Device.create(device)
-            .then((res) => res.json())
+            .then((res) => res.json()).catch(err=>console.log(err))
           return resData.push(createdDevice);
         }
         if (err) {
@@ -146,8 +148,8 @@ exports.changeDeviceState = catchAsync(async function (req, res, next) {
     assocConfig[0].APIKey,
     req.params.deviceID,
     `/${req.params.status}`
-    );
-    // //make request - this does not return the new state
+  );
+  // //make request - this does not return the new state
   const hubResponse = await hubRequest(stateChangeUrl);
   //get new status from hub | prettier-ignore
   const newStatusUrl = urlHelper.buildURL(

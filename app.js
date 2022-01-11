@@ -13,12 +13,12 @@ const app = express();
 
 app.use(helmet()); //security headers are the first middleware
 
-if (process.env.NODE_ENV === "development") {
-  app.use(morgan("dev")); //logging
-}
+// if (process.env.NODE_ENV === "development") {
+app.use(morgan("dev")); //logging
+// }
 
 const limiter = rateLimit({
-  max: process.env.NODE_ENV === 'production' ? 100 : 1000, ///allow more on dev
+  max: process.env.NODE_ENV === "production" ? 100 : 1000, ///allow more on dev
   windowMs: 60 * 60 * 1000,
   message: "Too many requests from this IP. Please try again later",
 });
@@ -28,7 +28,7 @@ app.use(limiter); //if server is restarted the limiter is reset
 //body parsing
 app.use(express.json({ limit: "10kb" }));
 app.use(express.urlencoded({ extended: true })); //allows incoming strings/arrs
-app.use(cookieParser())
+app.use(cookieParser());
 
 //data sanitization
 app.use(mongoSanitize()); //for nosql injection
