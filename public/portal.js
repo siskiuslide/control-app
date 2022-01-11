@@ -45,7 +45,6 @@ SOLISAltText.addEventListener("click", (e) => {
 });
 
 SOLISButton.addEventListener('click', async (e)=>{
-  e.preventDefault()
   const endpoint = SOLISForm.action
   const creds = {}
   SOLISForm.querySelectorAll('input').forEach(el=>creds[el.name] = el.value)

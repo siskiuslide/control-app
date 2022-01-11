@@ -1,5 +1,6 @@
 const express = require("express");
 const rateLimit = require("express-rate-limit");
+const cookieParser = require("cookie-parser");
 const mongoSanitize = require("express-mongo-sanitize");
 const xss = require("xss-clean");
 const hpp = require("hpp");
@@ -10,7 +11,7 @@ const globalErrorHandler = require("./controllers/errorController");
 const authController = require("./controllers/authController");
 const app = express();
 
-app.use(helmet()); //security headers are the first middleware
+// app.use(helmet()); //security headers are the first middleware
 
 if (process.env.NODE_ENV === "development") {
   app.use(morgan("dev")); //logging
@@ -27,6 +28,7 @@ app.use(limiter); //if server is restarted the limiter is reset
 //body parsing
 app.use(express.json({ limit: "10kb" }));
 app.use(express.urlencoded({ extended: true })); //allows incoming strings/arrs
+app.use(cookieParser())
 
 //data sanitization
 app.use(mongoSanitize()); //for nosql injection

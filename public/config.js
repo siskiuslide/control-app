@@ -93,8 +93,15 @@ const addCard = function (config) {
 };
 //DISPLAY ON LOAD
 window.addEventListener("load", async () => {
-  const rawConfigData = await fetch("/config").then((res) => res.json());
+  const rawConfigData = await fetch("/config",{
+    headers: {
+      'credentials': 'include'
+  },
+    method: 'GET'
+  }).then((res) => res.json());
+  console.log(rawConfigData)
   const configData = rawConfigData.body;
+  console.log(configData)
   if (configData.length == 0) {
     throwError(".preConfiguredSection", "beforeend", "No networks to show", "noConfigCardError");
   }
@@ -209,10 +216,11 @@ configToggle.addEventListener("change", (e) => {
 
 const configSubmitBtn = document.querySelector(".submitBtn");
 const form = document.querySelector(".configForm");
-configSubmitBtn.addEventListener("click", (e) => {
+configSubmitBtn.addEventListener("click", async (e) => {
   e.preventDefault();
   form.submit();
   form.reset();
+  
   window.location.reload();
 });
 
