@@ -2,6 +2,7 @@ const express = require("express");
 const rateLimit = require("express-rate-limit");
 const mongoSanitize = require("express-mongo-sanitize");
 const xss = require("xss-clean");
+const hpp = require("hpp");
 const morgan = require("morgan");
 const helmet = require("helmet");
 const AppError = require("./utils/error");
@@ -30,6 +31,8 @@ app.use(express.urlencoded({ extended: true })); //allows incoming strings/arrs
 //data sanitization
 app.use(mongoSanitize()); //for nosql injection
 app.use(xss()); // for xss
+// app.use(hpp()); //for param pollution
+
 //static file serving
 app.use(express.static("./public"));
 
