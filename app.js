@@ -1,5 +1,7 @@
 const express = require("express");
 const rateLimit = require("express-rate-limit");
+const mongoSanitize = require("express-mongo-sanitize");
+const xss = require("xss-clean");
 const morgan = require("morgan");
 const helmet = require("helmet");
 const AppError = require("./utils/error");
@@ -20,9 +22,16 @@ const limiter = rateLimit({
 });
 
 app.use(limiter); //if server is restarted the limiter is reset
-app.use(express.json({ limit: "10kb" })); //allows json requests 7 limit size
-app.use(express.static("./public")); // serves html files from /public
+
+//body parsing
+app.use(express.json({ limit: "10kb" }));
 app.use(express.urlencoded({ extended: true })); //allows incoming strings/arrs
+
+//data sanitization
+app.use(mongoSanitize()); //for nosql injection
+app.use(xss()); // for xss
+//static file serving
+app.use(express.static("./public"));
 
 app.use((req, res, next) => {
   req.requestTime = new Date().toISOString();
