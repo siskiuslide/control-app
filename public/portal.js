@@ -31,7 +31,6 @@ SOLISAltText.addEventListener("click", (e) => {
   if (SOLISState == "login") {
     SOLISForm.action = '/users/login'
 
-
     SOLISForm.style.height;
     SOLISHeading.textContent = "Login";
     SOLISAltText.textContent = "Create an account";
@@ -44,3 +43,22 @@ SOLISAltText.addEventListener("click", (e) => {
     fadeIn(SOLISForm.querySelector(".forgotPassword"), 150, "inline");
   }
 });
+
+SOLISButton.addEventListener('click', async (e)=>{
+  e.preventDefault()
+  const endpoint = SOLISForm.action
+  const creds = {}
+  SOLISForm.querySelectorAll('input').forEach(el=>creds[el.name] = el.value)
+  console.log(creds)
+  const login = await fetch(endpoint, {
+    headers: {
+      'Content-type' :  'application/json'
+    },
+  method: 'POST',
+  body:JSON.stringify({email: creds.email, password: creds.password, passwordConfirm: creds.passwordConfirm})
+})
+  .then(res=>res.json())
+  // .catch(err=>console.log(err))
+  
+  console.log(login)
+})

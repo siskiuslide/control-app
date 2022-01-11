@@ -235,17 +235,17 @@
   <div class="largeFooter parallax" id="dest3">
     <div class="solisAbout">
       <div class="SOLIS">
-        <form class="solisItem signUp" action="/users/signup" method="post" >
+        <form class="solisItem signUp">
           <h2 class="peachGradientText">Get Started Now</h2>
           <h4>Email:</h4>
-          <input type="email" />
+          <input type="email" name="email"/>
           <h4>Password:</h4>
-          <input type="password" />
+          <input type="password" name="password" />
           <a class="forgotPassword" action="users/forgotPassword" method="post" >Forgot password?</a>
           <h4 class="solisConfirm">Confirm Password:</h4>
-          <input class="solisConfirm" type="password" />
+          <input class="solisConfirm" type="password" name="passwordConfirm"/>
           <div class="solisItemBtnSection">
-            <a href="/config.html" class="button">Sign Up</a>
+            <a href="#" class="button">Sign Up</a>
             <a class="altLink"><p>Already have an account?</p></a>
           </div>
         </form>
