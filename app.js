@@ -18,7 +18,7 @@ if (process.env.NODE_ENV === "development") {
 }
 
 const limiter = rateLimit({
-  max: 200,
+  max: process.env.NODE_ENV === 'production' ? 100 : 1000, ///allow more on dev
   windowMs: 60 * 60 * 1000,
   message: "Too many requests from this IP. Please try again later",
 });
