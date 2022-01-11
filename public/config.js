@@ -93,6 +93,7 @@ const addCard = function (config) {
 };
 //DISPLAY ON LOAD
 window.addEventListener("load", async () => {
+  progressiveFadeOut(document.querySelectorAll('.preConfiguredCard'), 00)
   const rawConfigData = await fetch("/config",{
     headers: {
       'credentials': 'include'
