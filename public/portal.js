@@ -16,6 +16,8 @@ SOLISAltText.addEventListener("click", (e) => {
   SOLISForm.classList.contains("signUp") ? (SOLISState = "signUp") : (SOLISState = "login");
 
   if (SOLISState == "signUp") {
+    SOLISForm.action = '/users/signup'
+
     SOLISHeading.textContent = "Get Started Now";
     SOLISAltText.textContent = "Already have an account?";
     SOLISConfirm.forEach((el) => (el.style.display = "inline"));
@@ -24,9 +26,12 @@ SOLISAltText.addEventListener("click", (e) => {
     SOLISForm.style.transform = "translateY(0px)";
     SOLISButton.parentElement.style.transition = "transform 200ms";
     SOLISButton.parentElement.style.transform = "translateY(0px)";
-    fadeOut(SOLISForm.querySelector(".forgotPassword"), 00);
+    fadeOut(SOLISForm.querySelector(".forgotPassword"), 20);
   }
   if (SOLISState == "login") {
+    SOLISForm.action = '/users/login'
+
+
     SOLISForm.style.height;
     SOLISHeading.textContent = "Login";
     SOLISAltText.textContent = "Create an account";

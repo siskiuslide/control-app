@@ -34,7 +34,7 @@ let activeTextStyle = "var(--midAccent)";
 let activeTextHoverStyle; //style active text when hovered
 
 //homepage navbar styling logic
-if (navBar.classList.contains("homeNav")) {
+if ( navBar && navBar.classList.contains("homeNav")) {
   originalTextColor = "black";
   hoverStyle = "rgba(255, 255, 255, 0.466)";
   activeTextHoverStyle = "black";
