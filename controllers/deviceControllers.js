@@ -9,6 +9,9 @@ const AppError = require("./../utils/error");
 //
 //----------------
 //
+// const manualQuery = async function(){
+//    return await 
+// }()
 exports.getDevices = catchAsync(async (req, res, next) => {
   //queryParams first
   if (req.query.favourite) {
@@ -56,7 +59,9 @@ exports.getDevices = catchAsync(async (req, res, next) => {
           const existingData = await Device.find({ configID: device.configID, deviceID: device.deviceID })
             .then((res) => {
               return res[0];
-            })
+            }).catch(err=>console.log(err))
+
+            //if the hub responds with a different status, update the db with it.
           if (existingData.status !== device.status || existingData.label !== device.label) {
             Device.findOneAndUpdate(
               { configID: device.configID, deviceID: device.deviceID },
@@ -141,8 +146,8 @@ exports.changeDeviceState = catchAsync(async function (req, res, next) {
     assocConfig[0].APIKey,
     req.params.deviceID,
     `/${req.params.status}`
-  );
-  //make request - this does not return the new state
+    );
+    // //make request - this does not return the new state
   const hubResponse = await hubRequest(stateChangeUrl);
   //get new status from hub | prettier-ignore
   const newStatusUrl = urlHelper.buildURL(
@@ -153,6 +158,7 @@ exports.changeDeviceState = catchAsync(async function (req, res, next) {
     req.params.deviceID,
     ""
   );
+
   const newStatusFromHub = await hubRequest(newStatusUrl);
   //update db with new state
   const newStatus = newStatusFromHub.attributes.find((attr) => attr.name == "switch");

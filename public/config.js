@@ -99,9 +99,7 @@ window.addEventListener("load", async () => {
   },
     method: 'GET'
   }).then((res) => res.json());
-  console.log(rawConfigData)
   const configData = rawConfigData.body;
-  console.log(configData)
   if (configData.length == 0) {
     throwError(".preConfiguredSection", "beforeend", "No networks to show", "noConfigCardError");
   }
@@ -153,9 +151,6 @@ preConfiguredCardSection.addEventListener("click", async (e) => {
       .then((data) => {
         return data;
       })
-      .catch((err) => {
-        console.log(err);
-      });
   }
 
   ////REFRESH
@@ -167,7 +162,6 @@ preConfiguredCardSection.addEventListener("click", async (e) => {
       .then((data) => {
         return data;
       })
-      .catch((err) => console.log(err));
     const responseData = response.data.find((el) => el._id === targetID);
 
     if (responseData) {

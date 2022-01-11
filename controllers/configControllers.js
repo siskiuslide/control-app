@@ -9,14 +9,11 @@ const catchAsync = require("./helpers/catchAsync");
 //
 
 exports.getConfig = catchAsync(async function (req, res, next) {
-  console.log(req.url);
-  console.log(req.query);
   //query requests first
   if (req.query.favourite) {
     let favConfigs;
     if (req.query.favourite == "true") {
       favConfigs = await Config.find({ user: req.user.id, favourite: true });
-      console.log(favConfigs);
       return res.status(200).json({ status: "Success", data: favConfigs });
     }
     if (req.query.favourite == "false") {
@@ -41,7 +38,6 @@ exports.getSingleConfig = catchAsync(async function (req, res, next) {
 //------------------
 //
 exports.createConfig = catchAsync(async function (req, res, next) {
-  console.log(req.body);
   Config.exists({ user: req.user.id, name: req.body.name }, function (err, result) {
     if (result) {
       return res

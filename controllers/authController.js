@@ -42,7 +42,6 @@ exports.signup = catchAsync(async (req, res, next) => {
 });
 
 exports.login = catchAsync(async (req, res, next) => {
-  console.log(req.body)
   const { email, password } = req.body;
   //check if credentials exist
   if (!email || !password) {
@@ -50,7 +49,6 @@ exports.login = catchAsync(async (req, res, next) => {
   }
   //check if user exists & if credentials match
   const user = await User.findOne({ email }).select("+password");
-  console.log(user);
 
   if (!user || !(await user.comparePassword(password, user.password))) {
     return next(new AppError("Incorrect email or password", 401));
@@ -62,7 +60,6 @@ exports.login = catchAsync(async (req, res, next) => {
 
 exports.protectRoute = catchAsync(async (req, res, next) => {
   let token;
-  console.log(req.cookies)
   //get token from user
   if (req.headers.authorization && req.headers.authorization.startsWith("Bearer") ) {
     token = req.headers.authorization.split(" ")[1];
@@ -136,7 +133,6 @@ exports.resetPassword = catchAsync(async (req, res, next) => {
     passwordResetToken: hashedToken,
     passwordResetExpires: { $gt: Date.now() },
   });
-  console.log(hashedToken);
 
   if (!user) return next(new AppError("Token is invalid or has expired", 400));
   //set new password & update values in db

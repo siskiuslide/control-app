@@ -208,7 +208,7 @@ const excludeItem = function (e, parentClassName, type) {
 
 //refresh page when focused to poll 1x
 window.addEventListener("focus", () => {
-  // location.reload();
+  location.reload();
 });
 
 //------------------------
