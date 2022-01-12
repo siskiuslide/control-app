@@ -59,10 +59,17 @@ exports.login = catchAsync(async (req, res, next) => {
 
 });
 
+exports.logout = catchAsync( async(req,res,next)=>{
+  console.log(res.cookie)
+  req.user = undefined
+  res.clearCookie('jwt')
+  res.status(200).json({status: 'success', message: 'Logged out of account'})
+})
+
 exports.protectRoute = catchAsync(async (req, res, next) => {
   let token;
   //get token from user
-  if (req.headers.authorization && req.headers.authorization.startsWith("Bearer") ) {
+  if (req.headers.authorization && req.headers.authorization.startsWith("Bearer")) {
     token = req.headers.authorization.split(" ")[1];
   }else if (req.cookies.jwt){
     token = req.cookies.jwt

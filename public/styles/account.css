@@ -27,14 +27,16 @@
     width: 40%;
     height: 25vh;
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items:center;
 }
 .accountImage{
     background: var(--peachGradient);
     border-radius: 50%;
     height: 50% ;
     aspect-ratio: 1;
-    margin-block: 3vh;
-    margin-inline:auto;
+    margin: 3vh auto 0 auto;
     display: flex;
     flex-direction: row;
     align-items: center;
