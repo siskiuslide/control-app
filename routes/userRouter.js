@@ -11,6 +11,7 @@ router.route('/logout').get(authController.logout)
 router.route("/forgotPassword").post(authController.forgotPassword);
 router.route("/resetPassword/:token").patch(authController.resetPassword);
 router.patch("/updateMyPassword", authController.protectRoute, authController.updatePassword);
+router.get('/details',authController.protectRoute, userController.getMe)
 router.patch("/updateMe", authController.protectRoute, userController.updateMe);
 router.delete("/deleteMe", authController.protectRoute, userController.deleteMe);
 

@@ -48,6 +48,7 @@
 }
 .accountName{
     font-size: 1em;
+    text-transform: capitalize;
 }
 
 .middleThird{
@@ -61,6 +62,9 @@
 }
 .userLogoutBtn:hover{
     background: var(--peachGradient)
+}
+.devEndpointBtn:hover{
+    background: rgb(255, 0, 191)
 }
 
 .bottomThird{

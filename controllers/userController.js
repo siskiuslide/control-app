@@ -37,6 +37,10 @@ exports.updateUser = catchAsync(async (req, res, next) => {
 });
 
 //for currently authenticated user
+exports.getMe = (req,res,next)=>{
+  const user = req.user;
+  return res.status(200).json({status: 'success', data: user})
+}
 exports.updateMe = catchAsync(async (req, res, next) => {
   //if body contains password create an error
   if (req.body.password || req.body.passwordConfirm) {
