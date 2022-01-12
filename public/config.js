@@ -118,18 +118,18 @@ window.addEventListener("load", async () => {
 
 preConfiguredCardSection.addEventListener("click", async (e) => {
   //DELETE
+  const target = e.target.closest(".preConfiguredCard");
   if (e.target.classList.contains("delete-icon")) {
-    const targetConfig = e.target.closest(".preConfiguredCard");
-    const reqBody = { id: targetConfig.id };
+    const reqBody = { id: target.id };
     await fetch(`/config`, {
       method: "delete",
       body: JSON.stringify(reqBody),
       headers: { "content-type": "application/json" },
     })
       .then((response) => {
-        fadeOut(targetConfig, 180);
+        fadeOut(target, 180);
         setTimeout(() => {
-          preConfiguredCardSection.removeChild(document.getElementById(`${targetConfig.id}`));
+          preConfiguredCardSection.removeChild(document.getElementById(`${target.id}`));
         }, 200);
       })
       .catch((err) => {
@@ -142,10 +142,9 @@ preConfiguredCardSection.addEventListener("click", async (e) => {
   }
   //FAVOURITE
   if (e.target.classList.contains("favourite-icon")) {
-    const configEl = e.target.closest(".preConfiguredCard");
     const currentFavState = checkCurrentFavState(configEl);
     const newFavState = getNewFavState(currentFavState);
-    const updateObj = favouriteObj("config", configEl, newFavState);
+    const updateObj = favouriteObj("config", target, newFavState);
     updateFavStyle(e.target, newFavState);
 
     await fetch("/config", {
@@ -163,7 +162,6 @@ preConfiguredCardSection.addEventListener("click", async (e) => {
 
   ////REFRESH
   if (e.target.classList.contains("refresh-icon")) {
-    const target = e.target.closest(".preConfiguredCard");
     const targetID = target.id;
     const response = await fetch(`/config/${target.id}`)
       .then((response) => response.json())
@@ -187,6 +185,15 @@ preConfiguredCardSection.addEventListener("click", async (e) => {
     } else {
       alert("Unable to update data");
     }
+  }
+
+  if (
+    e.target.classList.contains("devicesButton") ||
+    e.target.classList.contains("deviceCount-item") ||
+    e.target.classList.contains("deviceCount-results")
+  ) {
+    window.localStorage.setItem("mostRecentConfig", target.id);
+    window.localStorage.setItem("mostRecentPage", "/devices.html");
   }
 });
 
