@@ -1,0 +1,78 @@
+
+.accountViewContainer{
+    background: var(--LowerOpacityWhite);
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    bottom: 0;
+
+}
+
+.accountChild{
+    display: flex;
+    flex-direction: column;
+}
+
+.accountDetailsSection{
+    width: 25vw;
+    height: 100%;
+    background: var(--higherOpacityWhite);
+    align-items: center;
+}
+
+.topThird{
+    justify-self: flex-start;
+    width: 40%;
+    height: 25vh;
+    text-align: center;
+}
+.accountImage{
+    background: var(--peachGradient);
+    border-radius: 50%;
+    height: 50% ;
+    aspect-ratio: 1;
+    margin-block: 3vh;
+    margin-inline:auto;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+.accountImage > p {
+    font-size: 3em;
+    
+}
+.accountName{
+    font-size: 1em;
+}
+
+.middleThird{
+    height: 45vh
+}
+.userFnBtn{
+    margin-block: 2vh;
+    font-size: 1em;
+    font-weight: lighter;
+    width: 100%;
+}
+.userLogoutBtn:hover{
+    background: var(--peachGradient)
+}
+
+.bottomThird{
+    height: 12vh;
+}
+
+.userDelBtn{
+    border: solid 1px red;
+    background: transparent;
+    color: red;
+}
+.userDelBtn:hover{
+    background: red;
+}
+
+
+.accountDashboardFlex{}

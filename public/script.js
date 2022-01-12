@@ -1,4 +1,7 @@
-//Script.js is for generic functions that are shared between multiple pages that aren't large enough to warrant their own script.
+//Script.js is for generic code that is shared between multiple pages that isn't large enough to warrant their own script.
+//set localstorage defaults
+window.localStorage.setItem('mostRecentPage', '/config.html')
+
 
 const emptyText = `<div class="error">
   <span class="material-icons">error</span>
