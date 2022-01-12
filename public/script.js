@@ -13,13 +13,13 @@ const throwError = function (targetEl, position, message, additionalClass) {
   }
   fadeIn(error, 150, "flex");
 };
-const removeErrorMessage = function(){
-  const errorMessages = document.querySelectorAll('.error')
-  if(!errorMessages) return
-  errorMessages.forEach(err=>{
-    fadeOut(err, 50)
-  })
-}
+const removeErrorMessage = function () {
+  const errorMessages = document.querySelectorAll(".error");
+  if (!errorMessages) return;
+  errorMessages.forEach((err) => {
+    fadeOut(err, 50);
+  });
+};
 
 //navbar elements
 const navBar = document.querySelector(".navbar");
@@ -34,7 +34,7 @@ let activeTextStyle = "var(--midAccent)";
 let activeTextHoverStyle; //style active text when hovered
 
 //homepage navbar styling logic
-if ( navBar && navBar.classList.contains("homeNav")) {
+if (navBar && navBar.classList.contains("homeNav")) {
   originalTextColor = "black";
   hoverStyle = "rgba(255, 255, 255, 0.466)";
   activeTextHoverStyle = "black";
@@ -51,10 +51,13 @@ if ( navBar && navBar.classList.contains("homeNav")) {
 //apply styles set in logic above
 navItems.forEach((item) => {
   const itemText = item.querySelector("a").querySelector("p");
+  item.addEventListener("click", () => {
+    window.localStorage.setItem("mostRecentPage", item.querySelector("a").getAttribute("href")); //set this to local storage to redirect users when they login
+  });
+
   activeItemText.style.color = activeTextStyle;
   item.addEventListener("mouseenter", () => {
     item.style.background = hoverStyle;
-
     if (item.classList.contains("nav-active")) {
       itemText.style.color = activeTextHoverStyle;
     }

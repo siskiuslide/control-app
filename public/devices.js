@@ -216,12 +216,22 @@ window.addEventListener("focus", () => {
 //------------------------
 window.addEventListener("load", async (e) => {
   //request configs first & add them to the list
-  const configResponse = await fetch("/config")
+  const configResponse = await fetch("/config", {
+    headers: {
+      credentials: "include",
+    },
+    method: "GET",
+  })
     .then((res) => res.json())
     .then((data) => {
       return data;
     })
     .catch((err) => console.log(err));
+
+  console.log(configResponse);
+  if (configResponse.status !== "success") {
+    window.location.replace("/portal.html"); //redirection for users who aren't logged in
+  }
 
   configResponse.body.forEach((config) => {
     addConfig(config);
@@ -274,7 +284,7 @@ window.addEventListener("load", async (e) => {
     //config list entries//
     ///////////////////////
     if (e.target.classList.contains("configListEntry")) {
-      removeErrorMessage()
+      removeErrorMessage();
       const target = e.target.closest(".configListEntry");
       const currentlyActive = document.querySelector(".activeConfig");
       //set to storage so that it can be loaded on refresh
@@ -298,7 +308,7 @@ window.addEventListener("load", async (e) => {
     const deviceContainer = document.querySelector(".deviceContainer");
     const activeConfig = document.querySelector(".activeConfig");
     if (e.target.classList.contains("favourite-icon")) {
-      removeErrorMessage()
+      removeErrorMessage();
       let parentEl;
       let parentClass;
       if (e.target.classList.contains("control-fav-icon")) {

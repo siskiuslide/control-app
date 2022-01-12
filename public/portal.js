@@ -16,7 +16,7 @@ SOLISAltText.addEventListener("click", (e) => {
   SOLISForm.classList.contains("signUp") ? (SOLISState = "signUp") : (SOLISState = "login");
 
   if (SOLISState == "signUp") {
-    SOLISForm.action = '/users/signup'
+    SOLISForm.action = "/users/signup";
 
     SOLISHeading.textContent = "Get Started Now";
     SOLISAltText.textContent = "Already have an account?";
@@ -29,7 +29,7 @@ SOLISAltText.addEventListener("click", (e) => {
     fadeOut(SOLISForm.querySelector(".forgotPassword"), 20);
   }
   if (SOLISState == "login") {
-    SOLISForm.action = '/users/login'
+    SOLISForm.action = "/users/login";
 
     SOLISForm.style.height;
     SOLISHeading.textContent = "Login";
@@ -44,20 +44,23 @@ SOLISAltText.addEventListener("click", (e) => {
   }
 });
 
-SOLISButton.addEventListener('click', async (e)=>{
-  const endpoint = SOLISForm.action
-  const creds = {}
-  SOLISForm.querySelectorAll('input').forEach(el=>creds[el.name] = el.value)
-  console.log(creds)
+SOLISButton.addEventListener("click", async (e) => {
+  e.preventDefault();
+  const endpoint = SOLISForm.action;
+  const creds = {};
+  SOLISForm.querySelectorAll("input").forEach((el) => (creds[el.name] = el.value));
   const login = await fetch(endpoint, {
     headers: {
-      'Content-type' :  'application/json'
+      "Content-type": "application/json",
     },
-  method: 'POST',
-  body:JSON.stringify({email: creds.email, password: creds.password, passwordConfirm: creds.passwordConfirm})
-})
-  .then(res=>res.json())
-  // .catch(err=>console.log(err))
-  
-  console.log(login)
-})
+    method: "POST",
+    body: JSON.stringify({ email: creds.email, password: creds.password, passwordConfirm: creds.passwordConfirm }),
+  }).then((res) => res.json());
+
+  console.log(login);
+  if (login.status !== "success") {
+    window.location.reload;
+  } //prompt to try again -- will do this later
+  const redirectPage = window.localStorage.getItem("mostRecentPage");
+  window.location.replace(`${redirectPage}`);
+});

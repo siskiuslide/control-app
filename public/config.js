@@ -93,27 +93,28 @@ const addCard = function (config) {
 };
 //DISPLAY ON LOAD
 window.addEventListener("load", async () => {
-  progressiveFadeOut(document.querySelectorAll('.preConfiguredCard'), 00)
-  const rawConfigData = await fetch("/config",{
+  progressiveFadeOut(document.querySelectorAll(".preConfiguredCard"), 00);
+
+  const rawConfigData = await fetch("/config", {
     headers: {
-      'credentials': 'include'
-  },
-    method: 'GET'
+      credentials: "include",
+    },
+    method: "GET",
   }).then((res) => res.json());
 
-  if(rawConfigData.status !== "success"){
-    window.location.replace('http://127.0.0.1:5500/portal.html')
+  if (rawConfigData.status !== "success") {
+    window.location.replace("http://127.0.0.1:5500/portal.html");
   }
 
-    const configData = rawConfigData.body;
-    if (configData.length == 0) {
-      throwError(".preConfiguredSection", "beforeend", "No networks to show", "noConfigCardError");
-    }
-    configData.forEach((config) => {
-      addCard(config);
-    });
-    fadeIn(createNewConfig, 100, 'flex')
+  const configData = rawConfigData.body;
+  if (configData.length == 0) {
+    throwError(".preConfiguredSection", "beforeend", "No networks to show", "noConfigCardError");
+  }
+  configData.forEach((config) => {
+    addCard(config);
   });
+  fadeIn(createNewConfig, 100, "flex");
+});
 
 preConfiguredCardSection.addEventListener("click", async (e) => {
   //DELETE
@@ -157,7 +158,7 @@ preConfiguredCardSection.addEventListener("click", async (e) => {
       })
       .then((data) => {
         return data;
-      })
+      });
   }
 
   ////REFRESH
@@ -168,7 +169,7 @@ preConfiguredCardSection.addEventListener("click", async (e) => {
       .then((response) => response.json())
       .then((data) => {
         return data;
-      })
+      });
     const responseData = response.data.find((el) => el._id === targetID);
 
     if (responseData) {
@@ -221,7 +222,7 @@ configSubmitBtn.addEventListener("click", async (e) => {
   e.preventDefault();
   form.submit();
   form.reset();
-  
+
   window.location.reload();
 });
 
