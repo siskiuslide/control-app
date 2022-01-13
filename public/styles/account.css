@@ -72,6 +72,7 @@
   border: solid 1px red;
   background: transparent;
   color: red;
+  font-size: 1.6vw !important;
 }
 .userDelBtn:hover {
   background: red;
