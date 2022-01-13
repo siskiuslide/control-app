@@ -25,8 +25,6 @@ exports.getConfig = catchAsync(async function (req, res, next) {
   //if no query
   const configs = await Config.find({ user: req.user.id });
 
-  // //update user configCount
-  // const user = await User.findByIdAndUpdate(req.user.id, { configCount: configs.length() });
   //send configs back
   return res.status(200).json({ status: "success", body: configs });
 });

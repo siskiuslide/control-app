@@ -1,4 +1,6 @@
 const User = require("./../models/userModel");
+const Device = require("./../models/deviceModel");
+const Config = require("./../models/configModel");
 const catchAsync = require("./helpers/catchAsync");
 const APITools = require("../utils/APITools");
 const AppError = require("./../utils/error");
@@ -38,7 +40,10 @@ exports.updateUser = catchAsync(async (req, res, next) => {
 
 //for currently authenticated user
 exports.getMe = catchAsync(async (req, res, next) => {
-  const user = await User.findById(req.user);
+  //update counts to send to dashboard first
+  const devices = await Device.find({ user: req.user.id });
+  const configs = await Config.find({ user: req.user.id });
+  const user = await User.findByIdAndUpdate(req.user.id, { deviceCount: devices.length, configCount: configs.length });
 
   return res.status(200).json({ status: "success", data: user });
 });
