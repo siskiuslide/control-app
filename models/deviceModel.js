@@ -12,6 +12,7 @@ const deviceSchema = new mongoose.Schema(
     favourite: { type: Boolean, default: false },
     excluded: { type: Boolean, default: false },
     date: { type: Date, required: false },
+    interactions: {type: Number, default: 0}
   },
   { timestamps: true }
 );

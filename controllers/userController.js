@@ -44,10 +44,22 @@ exports.getMe = catchAsync(async (req, res, next) => {
   const devices = await Device.find({ user: req.user.id });
   const uniqueDevices = await Device.find({ user: req.user.id }).distinct("deviceID");
   const configs = await Config.find({ user: req.user.id });
+  const totalInteractions = await Device.aggregate([
+    {$match: {user: req.user.id}},
+    {$group: {_id:'', interactions: {$sum: '$interactions'}}},
+    {$project: {
+      _id: 0,
+      interactions: '$interactions'
+    }}
+  ]
+  )
+ 
+
   const user = await User.findByIdAndUpdate(req.user.id, {
     deviceCount: devices.length,
     configCount: configs.length,
     uniqueDeviceCount: uniqueDevices.length,
+    interactions: totalInteractions[0].interactions
   });
 
   return res.status(200).json({ status: "success", data: user });

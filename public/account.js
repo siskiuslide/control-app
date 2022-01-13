@@ -30,6 +30,7 @@ window.addEventListener("load", async () => {
   configCount.textContent = data.configCount;
   deviceCount.textContent = data.deviceCount;
   uniqueCount.textContent = data.uniqueDeviceCount;
+  interactionCount.textContent = data.interactions
 });
 
 /////////////////

@@ -167,7 +167,7 @@ exports.changeDeviceState = catchAsync(async function (req, res, next) {
   const newStatus = newStatusFromHub.attributes.find((attr) => attr.name == "switch");
   const statusUpdateDB = await Device.findOneAndUpdate(
     { configID: req.params.configID, deviceID: req.params.deviceID },
-    { status: newStatus.currentValue }
+    { status: newStatus.currentValue, $inc: {'interactions': 1}}// increment interactions by 1
   );
 
   return res.status(200).json({ status: "success", data: newStatusFromHub });
