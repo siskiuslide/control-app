@@ -17,7 +17,10 @@ window.addEventListener("load", async () => {
     .then((res) => res.json())
     .catch((err) => console.log(err));
   const data = rawUserDetails.data;
-console.log(data)
+  //auth
+if (rawUserDetails.status !== "success") {
+  window.location.replace("http://127.0.0.1:5500/portal.html");
+}
 
   ///////////////////
   //details section//
