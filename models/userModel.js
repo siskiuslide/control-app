@@ -58,6 +58,10 @@ const userSchema = new mongoose.Schema({
     type: Number,
     default: 0,
   },
+  uniqueDeviceCount: {
+    type: Number,
+    default: 0,
+  },
 });
 ///////////////////////
 //DOCUMENT MIDDLEWARE//

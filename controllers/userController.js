@@ -42,8 +42,13 @@ exports.updateUser = catchAsync(async (req, res, next) => {
 exports.getMe = catchAsync(async (req, res, next) => {
   //update counts to send to dashboard first
   const devices = await Device.find({ user: req.user.id });
+  const uniqueDevices = await Device.find({ user: req.user.id }).distinct("deviceID");
   const configs = await Config.find({ user: req.user.id });
-  const user = await User.findByIdAndUpdate(req.user.id, { deviceCount: devices.length, configCount: configs.length });
+  const user = await User.findByIdAndUpdate(req.user.id, {
+    deviceCount: devices.length,
+    configCount: configs.length,
+    uniqueDeviceCount: uniqueDevices.length,
+  });
 
   return res.status(200).json({ status: "success", data: user });
 });
