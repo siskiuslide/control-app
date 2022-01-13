@@ -1,68 +1,91 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Control | My Account</title>
-    <link rel="stylesheet" href="/styles/styles.css">
-    <link rel="stylesheet" href="/styles/account.css">
+    <link rel="stylesheet" href="/styles/styles.css" />
+    <link rel="stylesheet" href="/styles/account.css" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Oswald&display=swap" rel="stylesheet" />
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
-  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Asap&display=swap" rel="stylesheet">
-  <link
-    href="https://fonts.googleapis.com/css2?family=Anton&family=Asap&family=Open+Sans:wght@300&family=Satisfy&display=swap"
-    rel="stylesheet"
-  />
+    <link href="https://fonts.googleapis.com/css2?family=Oswald&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Asap&display=swap" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Anton&family=Asap&family=Open+Sans:wght@300&family=Satisfy&display=swap"
+      rel="stylesheet"
+    />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200&display=swap" rel="stylesheet" />
     <script defer src="script.js"></script>
     <script defer src="account.js"></script>
-</head>
-<body>
+  </head>
+  <body>
     <div class="navbar regNav">
-        <ul class="nav-list">
-          <li class="nav-item">
-            <a href="about.html"><p class="nav-item-text">About</p></a>
-          </li>
-          <li class="nav-item">
-            <a href="/config.html"><p class="nav-item-text">Configuration</p></a>
-          </li>
-          <li class="nav-item">
-            <a href="/devices.html"><p class="nav-item-text">Devices</p></a>
-          </li>
-          <li class="nav-item">
-            <a href="/documentation.html"><p class="nav-item-text">Documentation</p></a>
-          </li>
-        </ul>
-        <ul class="login-section">
-          <li class="login-item login-icon nav-active">
-            <a href="/account.html">
-              <p class="login-text my-account-icon nav-text-active"><span class="material-icons my-account">account_circle</span></p>
-            </a>
-          </li>
+      <ul class="nav-list">
+        <li class="nav-item">
+          <a href="about.html"><p class="nav-item-text">About</p></a>
+        </li>
+        <li class="nav-item">
+          <a href="/config.html"><p class="nav-item-text">Configuration</p></a>
+        </li>
+        <li class="nav-item">
+          <a href="/devices.html"><p class="nav-item-text">Devices</p></a>
+        </li>
+        <li class="nav-item">
+          <a href="/documentation.html"><p class="nav-item-text">Documentation</p></a>
+        </li>
+      </ul>
+      <ul class="login-section">
+        <li class="login-item login-icon nav-active">
+          <a href="/account.html">
+            <p class="login-text my-account-icon nav-text-active">
+              <span class="material-icons my-account">account_circle</span>
+            </p>
+          </a>
+        </li>
       </ul>
     </div>
     <div class="headingBar">
-        <h1>My Account</h1>
+      <h1>My Account</h1>
     </div>
     <div class="accountViewContainer">
-        <div class="accountChild accountDetailsSection">
-            <div class="topThird">
-                <div class="accountImage">
-                    <p></p>
-                </div>
-                <p class="accountName"></p>
-            </div>
-            <div class="middleThird">
-                <div class="button userFnBtn">Update details</div>
-                <div class="button userFnBtn">Forgot Password</div>
-                <div class="button userFnBtn userLogoutBtn">Logout</div>
-            </div>
-            <div class="bottomThird">
-                <div class="button userFnBtn userDelBtn">Delete account</div>
-            </div>
+      <div class="accountChild accountDetailsSection">
+        <div class="topThird">
+          <div class="accountImage">
+            <p></p>
+          </div>
+          <p class="accountName"></p>
         </div>
-        <div class="accountChild accountDashboardFlex"></div>
+        <div class="middleThird">
+          <div class="button userFnBtn">Update details</div>
+          <div class="button userFnBtn">Forgot Password</div>
+          <div class="button userFnBtn userLogoutBtn">Logout</div>
+        </div>
+        <div class="bottomThird">
+          <div class="button userFnBtn userDelBtn">Delete account</div>
+        </div>
+      </div>
+      <div class="accountChild accountDashboardFlex">
+        <div class="accountMetricsFlex">
+          <div class="metric">
+            <h2>Configs</h2>
+            <div class="metricCount" id="metric1"><p>5</p></div>
+          </div>
+          <div class="metric">
+            <h2>Devices</h2>
+            <div class="metricCount" id="metric2"><p>40</p></div>
+          </div>
+          <div class="metric">
+            <h2>Unique Devices</h2>
+            <div class="metricCount" id="metric3"><p>38</p></div>
+          </div>
+          <div class="metric">
+            <h2>Interactions</h2>
+            <div class="metricCount" id="metric4"><p>142</p></div>
+          </div>
+        </div>
+        <div class="accountActivityFlex"></div>
+      </div>
     </div>
-</body>
+  </body>
 </html>
