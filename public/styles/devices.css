@@ -247,15 +247,14 @@
   align-items: center;
   transition: all 100ms;
   margin-block: 1vh;
+  user-select: none;
 }
 .controlStatusIconCont:hover .status-icon {
   font-size: 5vw !important;
 }
 .status-icon {
-  /* transform-origin: center;
-  transition: all 100ms;
-  transform: scale(2.2); */
   font-size: 4vw !important;
+  user-select: none;
 }
 .device-on {
   color: #ffffff;

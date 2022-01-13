@@ -169,6 +169,8 @@ input:focus {
   position: relative;
   cursor: pointer;
   transition: transform 100ms;
+  user-select: none;
+
 }
 .material-icons:hover {
   transform: scale(1.1);

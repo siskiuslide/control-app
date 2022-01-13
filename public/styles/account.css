@@ -39,9 +39,11 @@
   flex-direction: row;
   align-items: center;
   justify-content: center;
+  user-select: none;
 }
 .accountImage > p {
   font-size: 3em;
+  user-select: none;
 }
 .accountName {
   font-size: 1em;
@@ -97,15 +99,17 @@
   margin: auto;
   text-align: center;
   vertical-align: baseline;
+  user-select: none;
 }
 .metric > h2 {
   font-weight: lighter;
   font-family: "Montserrat", sans-serif;
+  font-size: 1.75vw;
 }
 
 .metricCount {
   margin: auto;
-  font-size: 2.3em;
+  font-size: 3.2vw;
   font-weight: 100;
   font-family: "Montserrat", sans-serif;
   width: 50%;
