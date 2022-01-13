@@ -50,6 +50,14 @@ const userSchema = new mongoose.Schema({
     default: true,
     select: false,
   },
+  configCount: {
+    type: Number,
+    default: 0,
+  },
+  deviceCount: {
+    type: Number,
+    default: 0,
+  },
 });
 ///////////////////////
 //DOCUMENT MIDDLEWARE//

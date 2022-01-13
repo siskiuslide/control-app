@@ -2,6 +2,7 @@ const urlHelper = require("./helpers/urlHelper");
 const hubRequest = require("./helpers/hubRequest");
 const Device = require("../models/deviceModel");
 const Config = require("./../models/configModel");
+const User = require("./../models/userModel");
 const fetch = require("node-fetch");
 const catchAsync = require("./helpers/catchAsync");
 const AppError = require("./../utils/error");
@@ -85,8 +86,14 @@ exports.getDevices = catchAsync(async (req, res, next) => {
     );
   });
   //get data from db and send
-  const storedDevices = await Device.find({ configID: req.params.id });
+  const storedDevices = await Device.find({ configID: req.params.id, user: req.user.id });
   storedDevices.forEach((device) => resData.push(device));
+  //update device count in users (currently errors on FE)
+  // const user = await User.findById(req.user.id);
+  // user.deviceCount = storedDevices.length();
+  // user.save();
+
+  //send data back
   return res.status(200).json({ status: "Success", data: resData });
 });
 

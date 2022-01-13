@@ -1,6 +1,6 @@
 const Config = require("./../models/configModel");
 const Device = require("./../models/deviceModel");
-const DeviceControllers = require("./deviceControllers");
+const User = require("./../models/userModel");
 const APITools = require("../utils/APITools");
 const catchAsync = require("./helpers/catchAsync");
 
@@ -21,7 +21,13 @@ exports.getConfig = catchAsync(async function (req, res, next) {
       return res.status(200).json({ status: "Success", data: favConfigs });
     }
   }
+
+  //if no query
   const configs = await Config.find({ user: req.user.id });
+
+  // //update user configCount
+  // const user = await User.findByIdAndUpdate(req.user.id, { configCount: configs.length() });
+  //send configs back
   return res.status(200).json({ status: "success", body: configs });
 });
 
