@@ -6,13 +6,19 @@ const configCount = document.querySelector("#metric1");
 const deviceCount = document.querySelector("#metric2");
 const uniqueCount = document.querySelector("#metric3");
 const interactionCount = document.querySelector("#metric4");
-
 window.addEventListener("load", async () => {
+  const ls = window.localStorage
+  //clear elements
+  configCount.textContent = ''
+  deviceCount.textContent = ''
+  uniqueCount.textContent = ''
+  interactionCount.textContent = ''
   const rawUserDetails = await fetch("/users/details")
     .then((res) => res.json())
     .catch((err) => console.log(err));
   const data = rawUserDetails.data;
-  console.log(rawUserDetails);
+console.log(data)
+
   ///////////////////
   //details section//
   ///////////////////
@@ -31,6 +37,9 @@ window.addEventListener("load", async () => {
   deviceCount.textContent = data.deviceCount;
   uniqueCount.textContent = data.uniqueDeviceCount;
   interactionCount.textContent = data.interactions
+
+  //this is an issue where the most recent data only shows after refreshing the page
+ 
 });
 
 /////////////////

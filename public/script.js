@@ -1,7 +1,7 @@
+const ls = window.localStorage
 //Script.js is for generic code that is shared between multiple pages that isn't large enough to warrant their own script.
 //set localstorage defaults
-window.localStorage.setItem('mostRecentPage', '/config.html')
-
+ls.setItem('mostRecentPage', '/config.html')
 
 const emptyText = `<div class="error">
   <span class="material-icons">error</span>
