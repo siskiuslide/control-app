@@ -19,17 +19,18 @@
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  height: 10%;
+  height: 9vh;
   width: 100%;
 } 
  .headingContainer > h2 {
-  font-size: 35px;
+  font-size: 2vw;
   font-family: 'asap';
   font-weight: bolder;
   align-self: center;
   justify-self: center;
+  text-align: center;
   width: auto;
-  height: 70px;
+  height: 6vh;
   text-decoration: none;
 } 
 
@@ -340,33 +341,34 @@
   .configInputSection:hover {
     transition: width 80ms;
   }
+
+
   .indivConfigInput {
     display: flex;
     flex-direction: row;
     justify-content: center;
-    align-items: top;
-    width: 400px;
-    margin: 0px 20px;
+    min-width: 20vw;
+    max-width: 20vw;
     align-items: center;
-    width: 400px;
-    padding: 10px 5px;
+    justify-content: unset;
+    padding: 0.5vh 0.25vw;
     transition: box-shadow 75ms;
   }
   .indivConfigInput > h2 {
     letter-spacing: 1px;
     position: relative;
-    text-align: left;
-    top: 0px;
-    width: 200px;
+    justify-self: flex-start;
+    width: 10vw;
   }
  
   
   .indivConfigInput > input {
     position: relative;
-    width: 120px;
-    height: 30px;
-    padding: 15px 2px;
-    font-size: 18px;
+    width: 5vw;
+    height: 3.5vh;
+    padding: 0.7vh ;
+    justify-self: flex-end;
+    font-size: 0.8vw; /*placeholder font size*/
   }
   .formDivider {
     position: relative;
@@ -410,7 +412,7 @@
     display: inline-block;
     width: 50px;
     height: 28px;
-    margin: 0 35px;
+    /* margin: 0 35px; */
   }
   
   /* Hide default HTML checkbox */
