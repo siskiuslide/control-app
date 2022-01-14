@@ -34,7 +34,7 @@
   height: 7.5vh;
 }
 .headerText {
-  font-size: 1.7vw;
+  font-size: 1.9vw;
   margin: 5px 10px;
   align-self: center;
   justify-self: center;
@@ -51,7 +51,7 @@
   color: white;
 }
 .configListEntry {
-  height: max(10vw 2rem);
+  height: 10vh;
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
@@ -191,7 +191,7 @@
 
 .deviceContainer {
   position: relative;
-  display: inline-flex;
+  display: flex;
   flex-direction: row;
   align-items: flex-start;
   flex-wrap: wrap;
@@ -202,7 +202,7 @@
   background: white;
   border-radius: 4px;
   box-shadow: 0px 0px 5px 1px rgb(56, 56, 56);
-  margin: 1.8vw;
+  margin: 1.5vw;
   width: 8vw;
   aspect-ratio: 1;
   cursor: pointer;
@@ -271,7 +271,6 @@
   background: var(--peachGradientVeryLowOpacity);
 }
 
-
 .controlFooterSection {
   justify-self: flex-start;
   align-self: flex-end;
@@ -290,7 +289,7 @@
   margin: 3px 2px;
   position: relative;
   right: 0.5vw;
-  font-size:1vw !important;
+  font-size: 1vw !important;
 }
 .controlFooterSection:hover .control-chevron-icon {
   transform: translateX(6px);
@@ -300,4 +299,47 @@
   position: relative;
   transform: scale(1.1);
   transition: all 100ms;
+}
+
+@media screen and (max-width: 1400px) {
+  .entryTitle {
+    font-size: 20px !important;
+  }
+  .deviceContainer {
+    justify-content: space-evenly;
+  }
+  .control {
+    flex-basis: 25% !important;
+  }
+}
+@media screen and (max-width: 1075px) {
+  .configListEntry {
+    height: 12vh;
+  }
+  .entryTitle {
+    font-size: 24px !important;
+  }
+
+  .control {
+    flex-basis: 40% !important;
+    margin: 0.5vw;
+  }
+  .control > h1 {
+    font-size: 2vw;
+  }
+  .controlStatusIconCont {
+    width: 13vw;
+  }
+  .status-icon {
+    font-size: 6vw !important;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .headingBar {
+    height: 5% !important;
+  }
+  .control {
+    flex-basis: 100% !important;
+  }
 }
