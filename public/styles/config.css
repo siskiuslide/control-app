@@ -104,7 +104,9 @@
   flex-direction: column;
   justify-self: flex-start;
   transition: width 80ms;
-  width: 45vw;
+  width: 60vw;
+  height: 78vh;
+  overflow: auto;
 }
 .noConfigCardError{
   font-size: 25px;
@@ -117,7 +119,7 @@
 .preConfiguredCard {
   position: relative;
   margin: 2vh 6vw;
-  width: 88%;
+  width: 75%;
   border-radius: 6px 6px 3px 3px;
   background-color: var(--higherOpacityWhite);
   box-shadow: var(--boxShadow);

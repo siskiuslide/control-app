@@ -311,6 +311,9 @@
   .control {
     flex-basis: 25% !important;
   }
+  .controlStatusIconCont {
+    width: 8vw;
+  }
 }
 @media screen and (max-width: 1075px) {
   .configListEntry {

@@ -7,6 +7,8 @@
   --higherOpacityWhite: rgba(255, 255, 255, 0.466);
   --mainGradient: linear-gradient(to bottom, #0f2027, #203a43, #2c5364);
   --peachGradient: linear-gradient(to left, #f2709c, #ff9472);
+  --peachGradientToBottom: linear-gradient(to bottom, #f2709c, #ff9472);
+  --peachGradientToBottomHover: linear-gradient(to bottom, #f2709bd8, #ff9372d8);
   --peachGradientReverse: linear-gradient(to right, #f2709c, #ff9472);
   --peachGradientLowOpacity: linear-gradient(to left, #f2709bca, #ff9372ca);
   --peachGradientVeryLowOpacity: linear-gradient(to left, #f2709b91, #ff937291);
@@ -87,6 +89,23 @@ input {
 
 input:focus {
   outline: none;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+::-webkit-scrollbar-track {
+  border-radius: 5px;
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.37);
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 5px;
+  background: var(--peachGradientToBottom);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--peachGradientToBottomHover);
 }
 .peachGradient {
   background-image: var(--peachGradientReverse);
@@ -170,7 +189,6 @@ input:focus {
   cursor: pointer;
   transition: transform 100ms;
   user-select: none;
-
 }
 .material-icons:hover {
   transform: scale(1.1);
