@@ -115,10 +115,15 @@ const getDevices = async (config) => {
   const data = await fetch(`/config/${config}/devices`)
     .then((res) => res.json())
     .then((data) => {
+      console.log(data)
       return data;
     })
     .catch((err) => console.log(err));
+
+    if(data.status !== 'success'){throwError('.deviceListSection', 'beforeend', 'That network does not exist', 'deviceListError' )}
   return data;
+
+
 };
 
 //Favouriting (on load)

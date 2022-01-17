@@ -228,11 +228,11 @@ window.addEventListener("load", async (e) => {
     })
     .catch((err) => console.log(err));
 
-  console.log(configResponse);
   if (configResponse.status !== "success") {
     window.location.replace("/portal.html"); //redirection for users who aren't logged in
   }
 
+  removeErrorMessage()
   configResponse.body.forEach((config) => {
     addConfig(config);
   });
@@ -289,6 +289,7 @@ window.addEventListener("load", async (e) => {
       const currentlyActive = document.querySelector(".activeConfig");
       //set to storage so that it can be loaded on refresh
       localStorage.setItem("mostRecentConfig", target.id);
+      if(!target.id){localStorage.setItem('mostRecentConfig', document.querySelectorAll('.configListEntry')[0])}
       if (currentlyActive !== e.target) {
         //change active
         activeToggle(currentlyActive);

@@ -18,16 +18,17 @@ exports.getDevices = catchAsync(async (req, res, next) => {
   if (req.query.favourite) {
     if (req.query.favourite == "true") {
       const devices = await Device.find({ configID: req.params.id, favourite: true });
-      return res.status(200).json({ status: "Success", data: devices });
+      return res.status(200).json({ status: "success", data: devices });
     }
     if (req.query.favourite == "false") {
       const devices = await Device.find({ configID: req.params.id });
-      return res.status(200).json({ status: "Success", data: devices });
+      return res.status(200).json({ status: "success", data: devices });
     }
   }
 
   //Get the associated config
   const assocConfig = await Config.find({ _id: req.params.id });
+  if(!assocConfig) return next(new AppError('This config does not exist', 400))
   //build the url for that config | prettier-ignore
   const url = urlHelper.buildURL(
     assocConfig[0].type,
@@ -88,7 +89,7 @@ exports.getDevices = catchAsync(async (req, res, next) => {
   //get data from db and send
   const storedDevices = await Device.find({ configID: req.params.id, user: req.user.id });
   storedDevices.forEach((device) => resData.push(device));
-  return res.status(200).json({ status: "Success", data: resData });
+  return res.status(200).json({ status: "success", data: resData });
 });
 
 // })
@@ -110,7 +111,7 @@ exports.updateDevice = catchAsync(async function (req, res, next) {
       { configID: req.body.configID, deviceID: req.body.deviceID },
       { excluded: req.body.excluded }
     );
-    return res.status(200).json({ status: "Success", data: req.body });
+    return res.status(200).json({ status: "success", data: req.body });
   }
 });
 
@@ -126,7 +127,7 @@ exports.getSingleDevice = catchAsync(async function (req, res, next) {
   if (!device) {
     return new AppError("Device not found", 404);
   }
-  return res.status(200).json({ status: "Success", data: device });
+  return res.status(200).json({ status: "success", data: device });
 });
 
 //
