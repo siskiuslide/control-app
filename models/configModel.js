@@ -5,7 +5,7 @@ const configSchema = new mongoose.Schema(
   {
     user: { type: String, required: true },
     name: { type: String, required: true, unique: true },
-    type: { type: String },
+    type: { type: String, default: "on" },
     target: { type: String, required: true },
     APIKey: { type: String, required: true, unique: true },
     appID: { type: Number, required: true },

@@ -232,7 +232,7 @@ window.addEventListener("load", async (e) => {
     window.location.replace("/portal.html"); //redirection for users who aren't logged in
   }
 
-  removeErrorMessage()
+  removeErrorMessage();
   configResponse.body.forEach((config) => {
     addConfig(config);
   });
@@ -253,10 +253,9 @@ window.addEventListener("load", async (e) => {
     return throwError(".deviceListSection", "beforeend", "Add a network before controlling devices", "deviceListError");
   }
 
-  const loadDevices = await getDevices(onLoadConfig.id);
-  getAndDisplayDevices(onLoadConfig.id);
-  activeToggle(document.getElementById(onLoadConfig.id));
+  const loadDevices = await getAndDisplayDevices(onLoadConfig.id);
   pollDevices(document.querySelector(".activeConfig"), true);
+  activeToggle(document.getElementById(onLoadConfig.id));
 
   //polling
   const activeConfig = document.querySelector(".activeConfig");
@@ -289,7 +288,9 @@ window.addEventListener("load", async (e) => {
       const currentlyActive = document.querySelector(".activeConfig");
       //set to storage so that it can be loaded on refresh
       localStorage.setItem("mostRecentConfig", target.id);
-      if(!target.id){localStorage.setItem('mostRecentConfig', document.querySelectorAll('.configListEntry')[0])}
+      if (!target.id) {
+        localStorage.setItem("mostRecentConfig", document.querySelectorAll(".configListEntry")[0]);
+      }
       if (currentlyActive !== e.target) {
         //change active
         activeToggle(currentlyActive);

@@ -28,7 +28,7 @@ exports.getDevices = catchAsync(async (req, res, next) => {
 
   //Get the associated config
   const assocConfig = await Config.find({ _id: req.params.id });
-  if(!assocConfig) return next(new AppError('This config does not exist', 400))
+  if (!assocConfig) return next(new AppError("This config does not exist", 400));
   //build the url for that config | prettier-ignore
   const url = urlHelper.buildURL(
     assocConfig[0].type,
@@ -41,6 +41,7 @@ exports.getDevices = catchAsync(async (req, res, next) => {
   const resData = [];
   //make request
   const hubResponse = await hubRequest(url);
+  if (!hubResponse) return next(new AppError("An error occurred", 400));
   //create a doc to upload to db for each device
   hubResponse.forEach(async (item, i) => {
     const device = {
@@ -168,7 +169,7 @@ exports.changeDeviceState = catchAsync(async function (req, res, next) {
   const newStatus = newStatusFromHub.attributes.find((attr) => attr.name == "switch");
   const statusUpdateDB = await Device.findOneAndUpdate(
     { configID: req.params.configID, deviceID: req.params.deviceID },
-    { status: newStatus.currentValue, $inc: {'interactions': 1}}// increment interactions by 1
+    { status: newStatus.currentValue, $inc: { interactions: 1 } } // increment interactions by 1
   );
 
   return res.status(200).json({ status: "success", data: newStatusFromHub });

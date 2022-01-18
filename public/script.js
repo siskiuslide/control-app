@@ -1,7 +1,7 @@
-const ls = window.localStorage
+const ls = window.localStorage;
 //Script.js is for generic code that is shared between multiple pages that isn't large enough to warrant their own script.
 //set localstorage defaults
-ls.setItem('mostRecentPage', '/config.html')
+ls.setItem("mostRecentPage", "/config.html");
 
 const emptyText = `<div class="error">
   <span class="material-icons">error</span>
@@ -115,15 +115,15 @@ const getDevices = async (config) => {
   const data = await fetch(`/config/${config}/devices`)
     .then((res) => res.json())
     .then((data) => {
-      console.log(data)
+      console.log(data);
       return data;
     })
     .catch((err) => console.log(err));
 
-    if(data.status !== 'success'){throwError('.deviceListSection', 'beforeend', 'That network does not exist', 'deviceListError' )}
+  if (data.status === "Failed") {
+    throwError(".deviceListSection", "beforeend", "Unable to make request", "deviceListError");
+  }
   return data;
-
-
 };
 
 //Favouriting (on load)

@@ -58,6 +58,7 @@ exports.createConfig = catchAsync(async function (req, res, next) {
     target: req.body.target,
     APIKey: req.body.APIKey,
     appID: req.body.appID,
+    type: req.body.type,
   });
   res.status(200).json({ status: "success", data: config });
 });
