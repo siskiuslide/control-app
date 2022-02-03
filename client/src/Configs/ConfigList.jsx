@@ -1,5 +1,6 @@
 import React from 'react';
 import Config from './Config';
+import './ConfigList.css'
 
 const ConfigList = props =>{
     const {configs} = props
@@ -8,7 +9,11 @@ const ConfigList = props =>{
         // configs.map(conf=>{
         //     <Config name={conf.name}/>
         // })
-        <h1>test</h1>
+       <div className="configListContainer">
+           <Config></Config>
+           <Config></Config>
+           <Config></Config>
+       </div>
     )
 }
 

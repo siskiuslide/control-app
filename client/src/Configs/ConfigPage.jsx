@@ -9,7 +9,6 @@ const ConfigPage = props => {
         // const configs = fetch('http://127.0.0.1:5500/config').then(res=>res.json()).catch(err=> console.log(err))
     })
 
-
     return (
         <>
         <Navbar /> 

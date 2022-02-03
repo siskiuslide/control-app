@@ -1,0 +1,10 @@
+.configListContainer{
+    display: flex;
+    flex-direction: column;
+    /* background: white; */
+    border-radius: 10px;
+    margin-inline: 5vw;
+    min-width:50vw;
+    width: auto;
+    margin-top: 5%;
+}

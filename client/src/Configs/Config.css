@@ -1,0 +1,12 @@
+.config{
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: center;
+    background:white;
+    width: 50%;
+    margin:1vh auto;
+}
+.config > * {
+    padding: 0.2em
+}
