@@ -6,12 +6,12 @@ const router = express.Router();
 
 router
   .route("/:configID")
-  .get(authController.protectRoute, deviceControllers.getSingleDevice)
-  .delete(authController.protectRoute, deviceControllers.deleteDevice)
-  .patch(authController.protectRoute, deviceControllers.updateDevice);
+  .get( deviceControllers.getSingleDevice)
+  .delete( deviceControllers.deleteDevice)
+  .patch( deviceControllers.updateDevice);
 
-router.route("/:configID/:deviceID").get(authController.protectRoute, deviceControllers.getSingleDevice);
+router.route("/:configID/:deviceID").get( deviceControllers.getSingleDevice);
 
-router.route("/:configID/:deviceID/:status").get(authController.protectRoute, deviceControllers.changeDeviceState);
+router.route("/:configID/:deviceID/:status").get( deviceControllers.changeDeviceState);
 
 module.exports = router;

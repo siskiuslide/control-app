@@ -52,7 +52,7 @@ app.use("/config", configRouter);
 
 app.use("/devices", deviceRouter);
 
-app.use("/users", userRouter);
+// app.use("/users", userRouter);
 
 app.all("*", (req, res, next) => {
   next(new AppError(`Can't find ${req.originalUrl} on the server`, 404));

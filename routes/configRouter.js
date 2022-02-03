@@ -5,14 +5,16 @@ const authController = require("./../controllers/authController");
 
 const router = express.Router();
 
+
+//add authcontroller.protectroute to all of these 
 router
   .route("/")
-  .get(authController.protectRoute, configController.getConfig)
-  .post(authController.protectRoute, configController.createConfig)
-  .patch(authController.protectRoute, configController.updateConfig)
-  .delete(authController.protectRoute, configController.deleteConfig);
+  .get(configController.getConfigNoneAuth)
+  .post(configController.createConfig)
+  .patch(configController.updateConfig)
+  .delete(configController.deleteConfig);
 
-router.route("/:id").get(authController.protectRoute, configController.getSingleConfig);
+router.route("/:id").get(configController.getSingleConfig);
 module.exports = router;
 
-router.route("/:id/devices").get(authController.protectRoute, deviceController.getDevices);
+router.route("/:id/devices").get(deviceController.getDevices);
