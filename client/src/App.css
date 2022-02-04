@@ -5,3 +5,24 @@ html{
   background-repeat: none;
 }
 
+:root{
+
+  --LowerOpacityWhite: rgba(255, 255, 255, 0.233);
+  --higherOpacityWhite: rgba(255, 255, 255, 0.466);
+  --mainGradient: linear-gradient(to bottom, #0f2027, #203a43, #2c5364);
+  --peachGradient: linear-gradient(to left, #f2709c, #ff9472);
+  --peachGradientToBottom: linear-gradient(to bottom, #f2709c, #ff9472);
+  --peachGradientToBottomHover: linear-gradient(to bottom, #f2709bd8, #ff9372d8);
+  --peachGradientReverse: linear-gradient(to right, #f2709c, #ff9472);
+  --peachGradientLowOpacity: linear-gradient(to left, #f2709bca, #ff9372ca);
+  --peachGradientVeryLowOpacity: linear-gradient(to left, #f2709b91, #ff937291);
+  --lightBlueAccent: #00a8be;
+  --lightBlueAccentHover: rgba(0, 158, 179, 0.842);
+  --lightBlueAccentLowOpac: rgba(0, 143, 161, 0.685);
+  --midAccent: #0082be;
+  --midAccentHover: #0080bbdf;
+  --boxShadow: 2px 1px 3px rgb(77, 76, 76);
+  --boxShadowHover: 3px 1px 5px #4e4c4c;
+  --textShadow: 1px 1px 5px #4e4c4c;
+  --textShadowDark: 1px 2px 5px #363636;
+}

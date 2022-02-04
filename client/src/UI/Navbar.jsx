@@ -4,13 +4,13 @@ const Navbar = props =>{
     return(
     <nav>
         <ul className="nav-list">
-            <li className="nav-item">About</li>
-            <li className="nav-item">Networks</li>
-            <li className="nav-item">Devices</li>
-            <li className="nav-item">Sharing</li>
+            <li className="nav-item"><a href='#' className="nav-item-text">About</a></li>
+            <li className="nav-item"><a href='#' className="nav-item-text">Networks</a></li>
+            <li className="nav-item"><a href='#' className="nav-item-text">Devices</a></li>
+            <li className="nav-item"><a href='#' className="nav-item-text">Sharing</a></li>
         </ul>
         <ul className="login-section">
-            <li>x</li>
+            <li><a href="#" className="nav-item-text">x</a></li>
         </ul>
     </nav>
     )

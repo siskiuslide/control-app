@@ -8,6 +8,9 @@ function App() {
 
   return (
     <ConfigPage /> 
+    // <DevicePage /> 
+    // <SharingPage /> 
+    // <DashboardPage /> 
   );
 }
 
