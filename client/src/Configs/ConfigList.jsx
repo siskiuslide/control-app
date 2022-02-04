@@ -4,16 +4,13 @@ import './ConfigList.css'
 
 const ConfigList = props =>{
     const {configs} = props
-    console.log(configs)
     return(
-        // configs.map(conf=>{
-        //     <Config name={conf.name}/>
-        // })
-       <div className="configListContainer">
-           <Config></Config>
-           <Config></Config>
-           <Config></Config>
-       </div>
+        <div className="configListContainer">
+            <h1>Network list</h1>
+            {configs.map(conf=>{
+                return <Config name={conf.name} type={conf.type} key={Math.random()}/>
+            })}
+        </div>
     )
 }
 

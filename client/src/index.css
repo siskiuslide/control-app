@@ -11,3 +11,12 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+h1{
+  font-family: Oswald;
+  font-size: 3em;
+}
+
+h2{
+  font-family: Oswald;
+}

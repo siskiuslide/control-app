@@ -3,10 +3,22 @@
     flex-direction: row;
     justify-content: start;
     align-items: center;
-    background:white;
+    background: var(--LowerOpacityWhite);
     width: 50%;
-    margin:1vh auto;
+    margin:0.5vh auto;
+    transition: all 80ms
 }
 .config > * {
-    padding: 0.2em
+    padding: 0.1em 0.3em;
+    color: white;
+    text-shadow: var(--textShadow)
+}
+.config > .material-icons {
+    color: #ffffff;
+
+}
+
+.config:hover{
+    background: var(--higherOpacityWhite);
+    transform: scale(1.02)
 }

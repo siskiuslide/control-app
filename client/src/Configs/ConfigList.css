@@ -1,10 +1,12 @@
 .configListContainer{
     display: flex;
     flex-direction: column;
-    /* background: white; */
     border-radius: 10px;
-    margin-inline: 5vw;
-    min-width:50vw;
-    width: auto;
+    min-width: 75%;
     margin-top: 5%;
+}
+
+.configListContainer > h1{
+    text-align: center;
+    color: white;
 }

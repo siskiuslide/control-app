@@ -1,0 +1,15 @@
+.button{
+    background: var(--lightBlueAccent);
+    color: white;
+    padding: 1vh;
+    outline: none;
+    border-radius: 10px;
+    border:none;
+    font-size: 1.25em;
+}
+.button:hover{
+    background: var(--lightBlueAccentHover);
+    cursor: pointer;
+
+
+}
