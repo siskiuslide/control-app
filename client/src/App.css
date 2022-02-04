@@ -3,7 +3,9 @@ html{
   #0f2027, #203a43, #2c5364);
   background-size:cover;
   height: 100%;
- 
+  font-family: 'Open sans';
+  font-weight: 400;
+
 }
 
 :root{
@@ -46,4 +48,7 @@ html{
 }
 .favourite-icon:hover{
   color: #eeff00 !important
+}
+.edit-icon{
+  
 }
