@@ -26,7 +26,7 @@
 .configInfo > h3 {
     width: 40%;
 }
-.config > * > a > .material-icons {
+.config > *  > .material-icons {
     color: #ffffff;
 
 }
@@ -51,6 +51,6 @@
 .config:hover .configIcons{
     transform: translateX(-15px)
 }
-.config:hover > .configIcons > a > .chevron-icon{
+.config:hover > .configIcons > .chevron-icon{
     opacity: 1;
 }

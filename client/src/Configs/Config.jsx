@@ -11,10 +11,10 @@ const Config = props =>{
                 <p>App: <b>{appID}</b></p>   
             </div>
             <div className="configIcons">
-                <a href='#'><span className="material-icons favourite-icon" style={favourite ==='true' ? {color:'#eeff00'} : {color: 'white'}}>{favourite =='true' ? 'star' : 'star_outline'}</span></a>
-                <a href='#'><span className="material-icons edit-icon">edit</span></a>
-                <a href='#'><span className="material-icons delete-icon">delete</span></a>
-                <a href='#'><span className="material-icons chevron-icon">chevron_right</span></a>
+                <span className="material-icons favourite-icon" style={favourite ==='true' ? {color:'#eeff00'} : {color: 'white'}}>{favourite =='true' ? 'star' : 'star_outline'}</span>
+                <span className="material-icons edit-icon">edit</span>
+                <span className="material-icons delete-icon">delete</span>
+                <span className="material-icons chevron-icon">chevron_right</span>
             </div>
         </a>
     )
