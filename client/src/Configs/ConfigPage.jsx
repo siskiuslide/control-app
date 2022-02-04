@@ -7,9 +7,9 @@ import './ConfigPage.css'
 
 const ConfigPage = props => {
     const [ configsList, setConfigsList ]=useState([
-        {name: 'test network', type: 'cloud'},
-        {name: 'upstairs', type: 'cloud'},
-        {name: 'downstairs', type: 'local'},
+        {name: 'test network', type: 'cloud', appID: '1442', favourite:'true'},
+        {name: 'upstairs', type: 'cloud', appID: '1450', favourite:'false'},
+        {name: 'downstairs', type: 'local', appID: '1445', favourite:'true'},
     ])
     
     useEffect(()=>{

@@ -1,11 +1,13 @@
 html{
   background: linear-gradient(to bottom,
   #0f2027, #203a43, #2c5364);
-  height: 100vh;
-  background-repeat: none;
+  background-size:cover;
+  height: 100%;
+ 
 }
 
 :root{
+ 
 
   --LowerOpacityWhite: rgba(255, 255, 255, 0.233);
   --higherOpacityWhite: rgba(255, 255, 255, 0.466);
@@ -25,4 +27,23 @@ html{
   --boxShadowHover: 3px 1px 5px #4e4c4c;
   --textShadow: 1px 1px 5px #4e4c4c;
   --textShadowDark: 1px 2px 5px #363636;
+}
+
+.material-icons{
+  transition: all 80ms;
+
+}
+.material-icons:hover{
+  transform: scale(1.01)
+}
+.chevron-icon{
+  opacity: 0;
+  color: white;
+}
+.delete-icon:hover{
+  color: red !important
+
+}
+.favourite-icon:hover{
+  color: #eeff00 !important
 }

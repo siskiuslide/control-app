@@ -20,7 +20,7 @@ const NewConfigForm = props =>{
             <label>API Key</label>
             <input type="text"></input>
             <div className='configFormBtns'>
-                <Button text="Cancel"/>
+                <Button text="Cancel" onClick={props.onCancel} style={{background: 'white', color: 'black'}}/>
                 <Button text="Submit"/>
             </div>
         </form>

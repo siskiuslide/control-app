@@ -5,15 +5,23 @@ import './NewConfigSection.css'
 
 const NewConfigSection = props =>{
     const [addNew, setAddNew] = useState(false)
+    
 
     const addConfigHandler = () =>{
         setAddNew(true)
-        console.log(addNew)
+    }
+    const cancelConfigForm = () =>{
+        console.log('x')
+        setAddNew(false)
+
+    }
+    const submitConfigForm = () =>{
+
     }
     return (
         <div className="NewConfigSection">
-            {!addNew && <Button text={'Create new'} onClick={addConfigHandler}/> }
-            {addNew && <NewConfigForm />}
+            {!addNew && <Button text={'Create new'} onClick={addConfigHandler} style={{marginTop:'2vh'}}/> }
+            {addNew && <NewConfigForm onCancel={cancelConfigForm} onSubmit={submitConfigForm}/>}
         </div>
     )
 }

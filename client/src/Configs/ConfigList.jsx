@@ -8,7 +8,7 @@ const ConfigList = props =>{
         <div className="configListContainer">
             <h1>Network list</h1>
             {configs.map(conf=>{
-                return <Config name={conf.name} type={conf.type} key={Math.random()}/>
+                return <Config name={conf.name} type={conf.type} appID={conf.appID} favourite={conf.favourite} key={Math.random()}/>
             })}
         </div>
     )
