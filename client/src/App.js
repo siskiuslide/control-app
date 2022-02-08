@@ -3,11 +3,13 @@ import './App.css';
 import {useEffect} from 'react'
 
 import ConfigPage from './Configs/ConfigPage';
+import PortalPage from './Portal/PortalPage'
 
 function App() {
 
   return (
-    <ConfigPage /> 
+    <PortalPage />
+    // <ConfigPage /> 
     // <DevicePage /> 
     // <SharingPage /> 
     // <DashboardPage /> 

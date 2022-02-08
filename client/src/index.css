@@ -12,11 +12,34 @@ code {
     monospace;
 }
 
-h1{
-  font-family: Oswald;
-  font-size: 3em;
+
+.peachGradient {
+  background-image: var(--peachGradientReverse);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 5px 5px #fff;
+}
+.peachGradientText {
+  background-image: var(--peachGradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 3px 3px #fff;
+  letter-spacing: 2px;
 }
 
-h2{
-  font-family: Oswald;
+.textLink {
+  text-decoration: underline;
+  transition: transform 50ms;
+  color: var(--lightBlueAccent);
+}
+.textLink:hover {
+  color: var(--midAccent);
+}
+.error {
+  font-family: "open sans";
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  opacity: 0;
 }

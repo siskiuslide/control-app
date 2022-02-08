@@ -1,0 +1,71 @@
+
+.portalForm{
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+width: 450px;
+}
+.portalForm > * {
+    display: block;
+}
+.portalForm > h1 {
+    font-family: "oswald";
+    color: rgb(71, 64, 64);
+    font-size: 50px;
+}
+.portalForm > label{
+    font-size: 1.5em;
+    color: white;
+    margin-block: 2%;
+}
+.portalForm > label::after{
+    content: ':';
+    display: inline;
+}
+.portalForm > input {
+    width: 45%;
+    padding-block: 5px;
+}
+.portalButtons{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: flex-end;
+    margin-top: 3%;
+}
+
+.portalButtons > a{
+    text-decoration: none;
+    color: white;
+    width: 45%;
+}
+.portalButtons > a:hover{
+    color: rgb(108, 189, 216)
+} 
+
+
+.portalButtons > *{
+    margin: 10px;
+}
+
+
+
+@media screen and (max-width: 992px) {
+    .portalForm > input {
+        width: 60%;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .portalForm > input {
+        width: 70%;
+    }
+    .portalButtons {
+        display: flex;
+        flex-direction: column;
+        align-content: center;
+        justify-content: space-around;
+        width: 100%;
+    }
+}

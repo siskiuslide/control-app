@@ -4,7 +4,7 @@ import './Config.css'
 const Config = props =>{
     const {name, type, appID, favourite} = props
     return(
-        <a href='#' class="config" >
+        <a href='/configs/:id/devices' class="config" >
             <div className="configInfo">
                 <span className="material-icons" alt={type}>{type==="cloud"? 'cloud' : 'network_ping'}</span>
                 <h3>{name}</h3>
