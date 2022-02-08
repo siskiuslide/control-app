@@ -6,10 +6,7 @@ import './PortalPage.css'
 const PortalPage = () =>{
 return(
     <div class="PortalPage">
-
-    <Card>
         <Portal /> 
-    </Card>
     </div>
 )
 }

@@ -8,11 +8,14 @@ width: 450px;
 }
 .portalForm > * {
     display: block;
+    font-family: 'Asap';
+    font-weight: 100;
 }
 .portalForm > h1 {
     font-family: "oswald";
     color: rgb(71, 64, 64);
     font-size: 50px;
+    margin-block: 3vh;
 }
 .portalForm > label{
     font-size: 1.5em;
@@ -25,14 +28,15 @@ width: 450px;
 }
 .portalForm > input {
     width: 45%;
-    padding-block: 5px;
+    padding-block: 8px;
+    border-radius: 5px;
 }
 .portalButtons{
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
     align-items: flex-end;
-    margin-top: 3%;
+    margin-top: 6%;
 }
 
 .portalButtons > a{

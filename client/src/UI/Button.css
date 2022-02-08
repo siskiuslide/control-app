@@ -7,10 +7,12 @@
     border:none;
     font-size: 1.25em;
     width: auto;
+    transition: all 80ms;
 }
 .button:hover{
     background: var(--lightBlueAccentHover);
     cursor: pointer;
+    border-radius: 5px;
 
 
 }

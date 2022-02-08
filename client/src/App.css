@@ -3,7 +3,6 @@ html{
   #0f2027, #203a43, #2c5364);
   background-size:cover;
   height: 100%;
-  font-family: 'Open sans';
   font-weight: 400;
 
 }
@@ -37,6 +36,7 @@ h2{
   --boxShadowHover: 3px 1px 5px #4e4c4c;
   --textShadow: 1px 1px 5px #4e4c4c;
   --textShadowDark: 1px 2px 5px #363636;
+
 }
 
 .material-icons{

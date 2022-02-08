@@ -23,7 +23,7 @@ const Portal = ()=>{
         passwordConfirm: passwordConfirm
        })
        console.log(formData)
-        const outcome = await fetch(`${endpoint}`, {        
+        const outcome = await fetch(`http://127.0.0.1:5500/${endpoint}`, {        
             method: 'POST',
             body:  JSON.stringify(formData)
         })
