@@ -6,13 +6,13 @@ const xss = require("xss-clean");
 const hpp = require("hpp");
 const morgan = require("morgan");
 const helmet = require("helmet");
-const cors = require('cors')
+const cors = require("cors");
 const AppError = require("./utils/error");
 const globalErrorHandler = require("./controllers/errorController");
 const authController = require("./controllers/authController");
 const app = express();
 
-app.use(cors({origin: '127.0.0.1:3000'}))
+app.use(cors());
 app.use(helmet()); //security headers are the first middleware
 
 // if (process.env.NODE_ENV === "development") {

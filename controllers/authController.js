@@ -56,23 +56,22 @@ exports.login = catchAsync(async (req, res, next) => {
   await User.findByIdAndUpdate(user.id, { lastLoggedIn: Date.now() });
   //send token back if ^ = true
   createAndSendToken(user, 200, res);
-
 });
 
-exports.logout = catchAsync( async(req,res,next)=>{
-  console.log(res.cookie)
-  req.user = undefined
-  res.clearCookie('jwt')
-  res.status(200).json({status: 'success', message: 'Logged out of account'})
-})
+exports.logout = catchAsync(async (req, res, next) => {
+  console.log(res.cookie);
+  req.user = undefined;
+  res.clearCookie("jwt");
+  res.status(200).json({ status: "success", message: "Logged out of account" });
+});
 
 exports.protectRoute = catchAsync(async (req, res, next) => {
   let token;
   //get token from user
   if (req.headers.authorization && req.headers.authorization.startsWith("Bearer")) {
     token = req.headers.authorization.split(" ")[1];
-  }else if (req.cookies.jwt){
-    token = req.cookies.jwt
+  } else if (req.cookies.jwt) {
+    token = req.cookies.jwt;
   }
   if (!token) {
     // return res.redirect(`http://127.0.0.1:5500/portal.html`)
