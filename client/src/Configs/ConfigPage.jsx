@@ -6,15 +6,17 @@ import NewConfigSection from "./NewConfigSection";
 import "./ConfigPage.css";
 
 const ConfigPage = (props) => {
-  const [configsList, setConfigsList] = useState([
-    { name: "test network", type: "cloud", appID: "1442", favourite: "true" },
-    { name: "upstairs", type: "cloud", appID: "1450", favourite: "false" },
-    { name: "downstairs", type: "local", appID: "1445", favourite: "true" },
-  ]);
+  const [configsList, setConfigsList] = useState([]);
 
   useEffect(() => {
-    // const configs = fetch('http://127.0.0.1:5500/config').then(res=>res.json()).catch(err=> console.log(err))
-  });
+    const configs = fetch("config")
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        setConfigsList(data.body);
+      });
+  }, []);
+
   const createNewConfig = () => {};
 
   return (
