@@ -4,11 +4,13 @@ import './ConfigList.css'
 
 const ConfigList = props =>{
     const {configs} = props
+    const setActiveConfig = (e) =>{
+        window.localStorage.setItem('activeConfig', e.target.id)
+    }
     return(
         <div className="configListContainer">
-            <h1>Network list</h1>
             {configs.map(conf=>{
-                return <Config name={conf.name} type={conf.type} appID={conf.appID} favourite={conf.favourite} key={Math.random()}/>
+                return <Config name={conf.name} type={conf.type} appID={conf.appID} favourite={conf.favourite} id={conf._id} key={conf._id} />
             })}
         </div>
     )

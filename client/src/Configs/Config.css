@@ -5,10 +5,12 @@
     align-items: center;
     background: var(--LowerOpacityWhite);
     width: 50%;
+    height: 10vh;
     margin:0.5vh auto;
     transition: all 80ms;
     border-radius: 4px;
     text-decoration: none;
+    position: relative;
 }
 .configInfo{
     display: flex;
@@ -24,7 +26,7 @@
     text-shadow: var(--textShadow)
 }
 .configInfo > h3 {
-    width: 40%;
+    width: 45%;
 }
 .config > *  > .material-icons {
     color: #ffffff;
@@ -42,6 +44,10 @@
 .configIcons > *{
     margin-inline: 0.25vw;
 }
+.config-appid{
+    position: absolute;
+    left: 50%;
+}
 .config:hover{
     background: var(--higherOpacityWhite);
     transform: scale(1.03)
@@ -53,4 +59,29 @@
 }
 .config:hover > .configIcons > .chevron-icon{
     opacity: 1;
+}
+
+@media screen and (max-width: 1400px) {
+    .config{
+        width: 75%;
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    .config{
+        width: 85%;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .config{
+        width: 95%;
+    }
+   
+}
+
+@media screen and (max-width: 600px){
+    .config-appid{
+        display: none;
+    }
 }
