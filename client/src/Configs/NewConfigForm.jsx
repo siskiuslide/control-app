@@ -9,12 +9,10 @@ const NewConfigForm = (props) => {
   const [appID, setAppID] = useState();
   const [APIKey, setAPIKey] = useState();
 
-  const [formData, setFormData] = useState({});
+  const [formData, setFormData] = useState({type: 'Local'});
 
   const submitConfigForm = (e) => {
     e.preventDefault();
-    setFormData({ name: name, type: type, target: target, appID: appID, APIKey: APIKey });
-    console.log(formData)
     const newConfig = fetch('/config', {
       method: 'POST',
       headers:{
@@ -31,18 +29,18 @@ const NewConfigForm = (props) => {
     <form action="/config" method="post" className="ConfigForm">
       <h1>Connect to a network</h1>
       <label>Name</label>
-      <input type="text" onChange={(e) => setName(e.target.value)}></input>
+      <input type="text" onChange={(e) => setFormData({...formData, name: e.target.value})}></input>
       <label>Type</label>
-      <select onChange={(e) => setType(e.target.value)}>
+      <select onChange={(e) => setFormData({...formData, type: e.target.value})}>
         <option value="Local">Local</option>
         <option value="Cloud">Cloud</option>
       </select>
       <label>Cloud Address</label>
-      <input type="text" onChange={(e) => setTarget(e.target.value)}></input>
+      <input type="text" onChange={(e) => {setFormData({...formData, target:e.target.value})}}></input>
       <label>App ID</label>
-      <input type="text" onChange={(e) => setAppID(e.target.value)}></input>
+      <input type="text" onChange={(e) => setFormData({...formData, appID: e.target.value})}></input>
       <label>API Key</label>
-      <input type="text" onChange={(e) => setAPIKey(e.target.value)}></input>
+      <input type="text" onChange={(e) => setFormData({...formData, APIKey: e.target.value})}></input>
       <div className="configFormBtns">
         <Button text="Cancel" onClick={props.onCancel} style={{ background: "white", color: "black" }} />
         <Button text="Submit" onClick={submitConfigForm} />
