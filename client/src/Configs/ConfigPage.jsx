@@ -12,12 +12,12 @@ const ConfigPage = (props) => {
  
   
   useEffect(() => {
-    const configs = fetch("config")
-    .then((res) => res.json())
+    const configs = fetch("/config")
+    .then((res) => {return res.json()})
     .then((data) => {
-      console.log(data);
       setConfigsList(data.body);
-    });
+    })
+    .catch(err=>console.log(err));
   }, []);
 
   const createNewConfig = () => {};

@@ -3,7 +3,7 @@
     color: white;
     padding: 1vh 1vw;
     outline: none;
-    border-radius: 10px;
+    border-radius: 5px;
     border:none;
     font-size: 1.25em;
     width: auto;
@@ -12,7 +12,7 @@
 .button:hover{
     background: var(--lightBlueAccentHover);
     cursor: pointer;
-    border-radius: 5px;
+    border-radius: 10px;
 
 
 }

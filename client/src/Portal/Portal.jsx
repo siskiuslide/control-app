@@ -22,7 +22,6 @@ const Portal = () => {
       password: password,
       passwordConfirm: passwordConfirm,
     });
-    console.log(JSON.stringify(formData));
     const outcome = await fetch(`${endpoint}`, {
       headers: {
         "content-type": "application/json",
