@@ -2,6 +2,7 @@ html{
   background: linear-gradient(to bottom,
   #0f2027, #203a43, #2c5364);
   background-size:cover;
+  min-height: 100%;
   height: auto;
   font-weight: 400;
 

@@ -4,7 +4,7 @@ import NewConfigForm from "./NewConfigForm";
 import "./NewConfigSection.css";
 
 const NewConfigSection = (props) => {
-  const [addNew, setAddNew] = useState(false);
+  const [addNew, setAddNew] = useState(false); //if true, show the form to create new config
 
   const addConfigHandler = () => {
     setAddNew(true);

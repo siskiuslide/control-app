@@ -14,11 +14,21 @@ const NewConfigForm = (props) => {
   const submitConfigForm = (e) => {
     e.preventDefault();
     setFormData({ name: name, type: type, target: target, appID: appID, APIKey: APIKey });
-    console.log(formData);
+    console.log(formData)
+    const newConfig = fetch('/config', {
+      method: 'POST',
+      headers:{
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(formData)
+    })
+    .then(res=>{return res.json()})
+    .then(data=>console.log(data))
+    .catch(err=>console.log(err))
   };
 
   return (
-    <form action="http://127.0.0.1:5500/config" method="post" className="ConfigForm">
+    <form action="/config" method="post" className="ConfigForm">
       <h1>Connect to a network</h1>
       <label>Name</label>
       <input type="text" onChange={(e) => setName(e.target.value)}></input>

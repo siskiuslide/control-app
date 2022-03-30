@@ -22,13 +22,20 @@ const ConfigPage = (props) => {
 
   const createNewConfig = () => {};
 
+  const deleteHandler = (e) => {
+    e.preventDefault()
+    const target = e.target.closest('.config').id
+    const deletedNetwork = fetch(`/config`, {method: 'DELETE', body: JSON.stringify({id: target}), headers:{'Content-Type': 'application/json'}}).then(res=>{return res.json()}).then(data=>{return data}).catch(err=>{console.log(err)})
+    setConfigsList(configsList.filter(conf=> conf._id !== target))
+  }
+
   return (
     <>
       <Navbar />
       <div className="configPage">
         <h1 style={{color: 'white'}}>Network List</h1>
         <NewConfigSection onCreate={createNewConfig} />
-       <ConfigList configs={configsList} />
+        <ConfigList configs={configsList} onDelete={deleteHandler}/>
       </div>
     </>
   );
