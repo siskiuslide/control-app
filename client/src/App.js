@@ -13,7 +13,7 @@ function App() {
     {/* <PortalPage /> */}
       <ConfigPage />
     </>
-    // <DevicePage />
+    // <DevicesPage />
     // <SharingPage />
     // <DashboardPage />
   );

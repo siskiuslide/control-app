@@ -29,7 +29,10 @@ const ConfigPage = (props) => {
   const deleteHandler = (e) => {
     e.preventDefault()
     const target = e.target.closest('.config').id
-    const deletedNetwork = fetch(`/config`, {method: 'DELETE', body: JSON.stringify({id: target}), headers:{'Content-Type': 'application/json'}}).then(res=>{return res.json()}).then(data=>{return data}).catch(err=>{console.log(err)})
+    const deletedNetwork = fetch(`/config`, {method: 'DELETE', body: JSON.stringify({id: target}), headers:{'Content-Type': 'application/json'}})
+    .then(res=>{return res.json()})
+    .then(data=>{return data})
+    .catch(err=>{console.log(err)})
     setConfigsList(configsList.filter(conf=> conf._id !== target))
   }
 
