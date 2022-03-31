@@ -4,19 +4,13 @@ import NewConfigForm from "./NewConfigForm";
 import "./NewConfigSection.css";
 
 const NewConfigSection = (props) => {
-  const [addNew, setAddNew] = useState(false); //if true, show the form to create new config
-
-  const addConfigHandler = () => {
-    setAddNew(true);
-  };
-  const cancelConfigForm = () => {
-    console.log("x");
-    setAddNew(false);
-  };
+  const {addNew, addNewHandler, cancelHandler} = props
+  console.log(props)
+  
   return (
     <div className="NewConfigSection">
-      {!addNew && <Button text={"Create new"} onClick={addConfigHandler} style={{ marginTop: "2vh" }} />}
-      {addNew && <NewConfigForm onCancel={cancelConfigForm} />}
+      {!addNew && <Button text={"Create new"} onClick={addNewHandler} style={{ marginTop: "2vh" }} />}
+      {addNew && <NewConfigForm onCancel={cancelHandler} />}
     </div>
   );
 };

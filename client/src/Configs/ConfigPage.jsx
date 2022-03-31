@@ -8,9 +8,16 @@ import Loading from "../UI/Loading";
 
 const ConfigPage = (props) => {
   const [configsList, setConfigsList] = useState([]);
-  const [isLoading, setIsLoading] = useState(true)
- 
-  
+  const [isLoading, setIsLoading] = useState(true)  
+  const [addNew, setAddNew] = useState(false); //if true, show the form to create new config
+
+  const addConfigHandler = () => {
+    setAddNew(true);
+  };
+  const cancelConfigForm = () => {
+    setAddNew(false);
+  };
+
   useEffect(() => {
     const configs = fetch("/config")
     .then((res) => {
@@ -40,8 +47,8 @@ const ConfigPage = (props) => {
     <>
       <Navbar />
       <div className="configPage">
-        <h1 style={{color: 'white'}}>Network List</h1>
-        <NewConfigSection onCreate={createNewConfig} />
+        { !addNew && <h1 style={{color: 'white'}}>Network List</h1>}
+        <NewConfigSection onCreate={createNewConfig} addNewHandler={addConfigHandler} cancelHandler={cancelConfigForm} addNew={addNew}  />
         <ConfigList configs={configsList} onDelete={deleteHandler}/>
       </div>
     </>
