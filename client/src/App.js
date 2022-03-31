@@ -10,8 +10,8 @@ function App() {
   
   return (
     <>
-    {/* <PortalPage /> */}
-      <ConfigPage />
+    <PortalPage />
+      {/* <ConfigPage /> */}
     </>
     // <DevicePage />
     // <SharingPage />

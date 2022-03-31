@@ -13,12 +13,16 @@ const ConfigPage = (props) => {
   
   useEffect(() => {
     const configs = fetch("/config")
-    .then((res) => {return res.json()})
+    .then((res) => {
+      if(res.status === 401){throw new Error('Login to access your networks')}
+      return res.json()
+    })
     .then((data) => {
-      setConfigsList(data.body);
+      setConfigsList(data.body);      
     })
     .catch(err=>console.log(err));
   }, []);
+
 
   const createNewConfig = () => {};
 
