@@ -27,7 +27,7 @@ width: 450px;
     display: inline;
 }
 .portalForm > input {
-    width: 45%;
+    width: 60%;
     padding-block: 8px;
     border-radius: 5px;
 }
@@ -62,14 +62,37 @@ width: 450px;
 }
 
 @media screen and (max-width: 768px) {
+    .portalForm{
+        width: 90%;
+    }
+    .portalForm > h1{
+        font-size:45px;
+        margin-inline: 0;
+    }
     .portalForm > input {
         width: 70%;
     }
-    .portalButtons {
+    /* .portalButtons {
         display: flex;
         flex-direction: column;
         align-content: center;
         justify-content: space-around;
         width: 100%;
+    } */
+}
+
+@media screen and (max-width: 450px){
+    .portalForm{
+        width: 80%;
+    }
+    .portalForm > h1{
+        font-size:38px;
+        margin-inline: 0;
+    }
+    .portalForm > input {
+        width: 50%;
+    }
+    .portalForm > label{
+        font-size:1.25em
     }
 }

@@ -5,12 +5,14 @@ import "./Config.css";
 const Config = (props) => {
   const { name, type, appID, favourite, id } = props;
 
-  const deleteNetworkHandler = (e)=>{
-    e.preventDefault()
+  const setActiveNetwork = (e)=>{
+    const ls = window.localStorage
+    ls.setItem('activeNetwork', e.target.closest('.config').id)
+    //set the activenetwork so when devices page loads it can select the network you pressed.
   }
 
   return (
-    <a href="/configs/:id/devices" className="config" id={id}>
+    <a href="#devicespage" className="config" id={id} onClick={setActiveNetwork}>
       <div className="configInfo">
         <span className="material-icons" alt={type}>
           {type === "on" || 'Cloud' ? "cloud" : "network_ping"}
@@ -25,7 +27,7 @@ const Config = (props) => {
           className="material-icons favourite-icon"
           style={favourite === "true" ? { color: "#eeff00" } : { color: "white" }}
         >
-          {favourite == "true" ? "star" : "star_outline"}
+          {favourite === "true" ? "star" : "star_outline"}
         </span>
         <span className="material-icons edit-icon">edit</span>
         <span className="material-icons delete-icon" onClick={props.onDelete}>delete</span>
