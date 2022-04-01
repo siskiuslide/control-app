@@ -29,8 +29,7 @@ exports.getDevices = catchAsync(async (req, res, next) => {
   }
 
   //Get the associated config
-  const assocConfig = await Config.find({ _id: '61c21f3312323012ae204edf'
-  });
+  const assocConfig = await Config.find({ _id: req.params.id});
   if (!assocConfig) return next(new AppError("This config does not exist", 400));
   //build the url for that config | prettier-ignore
   const url = urlHelper.buildURL(
