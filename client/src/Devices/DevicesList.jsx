@@ -8,7 +8,7 @@ const DevicesList = (props) =>{
 
     // devices req
     useEffect(()=>{
-        const devices = fetch(`/devices/${activeConfig}`)
+        const devices = fetch(`/config/${activeConfig}/devices`)
             .then((res)=>{
                 if(res.status === 401){throw new Error('Login to access your networks')}
                 return res.json()

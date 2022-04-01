@@ -14,8 +14,7 @@ const AppError = require("./../utils/error");
 //    return await
 // }()
 exports.getDevices = catchAsync(async (req, res, next) => {
-
-  console.log(req.params)
+console.log(req.params)
   //queryParams first
   if (req.query.favourite) {
     if (req.query.favourite == "true") {
