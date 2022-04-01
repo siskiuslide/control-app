@@ -14,6 +14,8 @@ const AppError = require("./../utils/error");
 //    return await
 // }()
 exports.getDevices = catchAsync(async (req, res, next) => {
+
+  console.log(req.params)
   //queryParams first
   if (req.query.favourite) {
     if (req.query.favourite == "true") {
@@ -27,7 +29,8 @@ exports.getDevices = catchAsync(async (req, res, next) => {
   }
 
   //Get the associated config
-  const assocConfig = await Config.find({ _id: req.params.id });
+  const assocConfig = await Config.find({ _id: '61c21f3312323012ae204edf'
+  });
   if (!assocConfig) return next(new AppError("This config does not exist", 400));
   //build the url for that config | prettier-ignore
   const url = urlHelper.buildURL(

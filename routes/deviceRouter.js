@@ -6,7 +6,7 @@ const router = express.Router();
 
 router
   .route("/:configID")
-  .get( deviceControllers.getSingleDevice)
+  .get( deviceControllers.getDevices)
   .delete( deviceControllers.deleteDevice)
   .patch( deviceControllers.updateDevice);
 

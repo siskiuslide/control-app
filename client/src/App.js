@@ -5,15 +5,16 @@ import { useEffect, useState } from "react";
 import ConfigPage from "./Configs/ConfigPage";
 import PortalPage from "./Portal/PortalPage";
 import Loading from "./UI/Loading";
+import DevicesPage from './Devices/DevicesPage'
 
 function App() {
   
   return (
     <>
-    {/* <PortalPage /> */}
+      {/* <PortalPage /> */}
       <ConfigPage />
+      <DevicesPage />
     </>
-    // <DevicesPage />
     // <SharingPage />
     // <DashboardPage />
   );

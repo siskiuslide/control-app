@@ -9,7 +9,7 @@ import Loading from "../UI/Loading";
 const ConfigPage = (props) => {
   const [configsList, setConfigsList] = useState([]);
   const [isLoading, setIsLoading] = useState(true)  
-  const [addNew, setAddNew] = useState(false); //if true, show the form to create new config
+  const [addNew, setAddNew] = useState(false); //if true, show the form to create new config. 
 
   const addConfigHandler = () => {
     setAddNew(true);
