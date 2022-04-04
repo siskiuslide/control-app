@@ -6,6 +6,7 @@ import DevicesList from '../Devices/DevicesList'
 
 const DevicesPage = (props)=>{
     const [configs, setConfigsList] = useState()
+    const [devices, setDevicesList] = useState()
     const [activeConfig, setActiveConfig] = useState('')
 
     //configs req 
@@ -17,7 +18,19 @@ const DevicesPage = (props)=>{
             .then((data) => {setConfigsList(data.body);})
             .catch(err=>console.log(err));
         }, [])
-    
+
+        
+    useEffect(()=>{
+        const request = fetch(`/config/${window.localStorage.getItem('activeNetwork')}/devices`)
+             .then((res)=>{
+                 if(res.status === 401){throw new Error('Login to access your networks')}
+                 return res.json()
+            })      
+            .then((data)=>{ 
+                setDevicesList(data)
+            })
+             .catch(err=>{console.log(err)})
+    },[])
     
 
     return(
@@ -25,7 +38,7 @@ const DevicesPage = (props)=>{
             <Navbar></Navbar>
             <div className='DevicesPage'>
                 <ConfigQuickList configs={configs}/>
-                <DevicesList activeConfig={window.localStorage.getItem('activeNetwork')}/>
+                <DevicesList activeConfig={window.localStorage.getItem('activeNetwork')} devices={devices}/>
             </div>
         </>
     )

@@ -11,7 +11,7 @@ function App() {
   
   return (
     <>
-      {/* <PortalPage /> */}
+      <PortalPage />
       <ConfigPage />
       <DevicesPage />
     </>

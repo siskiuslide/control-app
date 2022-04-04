@@ -1,34 +1,16 @@
 import React, {useState, useEffect} from "react";
+import DeviceCard from './DeviceCard'
 
 
 const DevicesList = (props) =>{
-    const {activeConfig} = props
-
-    const [devicesList, setDevicesList] = useState({})
-
-    // devices req
-    useEffect(()=>{
-        const devices = fetch(`/config/${activeConfig}/devices`)
-            .then((res)=>{
-                if(res.status === 401){throw new Error('Login to access your networks')}
-                return res.json()
-            })      
-            .then((data)=>{ 
-                setDevicesList(data)
-                console.log(data)
-            })
-            .catch(err=>{console.log(err)})
-    },[])
+    const {activeConfig, devices} = props
 
 
-    return(
-        <></>
-    // {devicesList.map(dev=>{
-    //     <div>
-    //         <h1>{dev.label}</h1>
-    //     </div>
-    // })}
-    )
+    // return(
+    // <div className="deviceCardContainer">
+    //     {devices.map((dev)=>{return <DeviceCard props={dev}/>})} 
+    // </div>)
+return (<></>)
 }
 
 export default DevicesList
