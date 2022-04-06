@@ -4,6 +4,8 @@ import Navbar from '../UI/Navbar';
 import ConfigQuickList from '../Devices/ConfigQuickList'
 import DevicesList from '../Devices/DevicesList'
 
+import './DevicesPage.css'
+
 const DevicesPage = (props)=>{
     const [configs, setConfigsList] = useState()
     const [devices, setDevicesList] = useState()
@@ -27,7 +29,7 @@ const DevicesPage = (props)=>{
                  return res.json()
             })      
             .then((data)=>{ 
-                setDevicesList(data)
+                setDevicesList(data.data)
             })
              .catch(err=>{console.log(err)})
     },[])
