@@ -35,12 +35,16 @@ const DevicesPage = (props)=>{
     },[])
     
 
+    const updateDeviceState = ()=>{
+        console.log('x')
+    }
+
     return(
         <>
             <Navbar></Navbar>
             <div className='DevicesPage'>
                 <ConfigQuickList configs={configs}/>
-                <DevicesList activeConfig={window.localStorage.getItem('activeNetwork')} devices={devices}/>
+                <DevicesList activeConfig={window.localStorage.getItem('activeNetwork')} devices={devices} updateDeviceState={updateDeviceState}/>
             </div>
         </>
     )

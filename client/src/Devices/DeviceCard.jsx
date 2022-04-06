@@ -36,7 +36,7 @@ const DeviceCard = (props)=>{
                 <div className="cardHeader">
                 </div>
                 <div className="cardBody">
-                    <span className={'cardButton material-icons'}>{selectIconType(device)}</span>
+                    <span className={'cardButton material-icons'} onClick={props.updateDeviceState}>{selectIconType(device)}</span>
                 </div>
                 <div className="cardFooter">
                     <h1 className="cardLabel">{device.label}</h1> 
