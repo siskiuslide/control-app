@@ -7,8 +7,8 @@ import DevicesList from '../Devices/DevicesList'
 import './DevicesPage.css'
 
 const DevicesPage = (props)=>{
-    const [configs, setConfigsList] = useState()
-    const [devices, setDevicesList] = useState()
+    const [configs, setConfigsList] = useState([])
+    const [devices, setDevicesList] = useState([])
     const [activeConfig, setActiveConfig] = useState('')
 
     //configs req 

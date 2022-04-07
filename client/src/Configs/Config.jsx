@@ -3,7 +3,7 @@ import React from "react";
 import "./Config.css";
 
 const Config = (props) => {
-  const { name, type, appID, favourite, id } = props;
+  const { name, type, appID, favourite, id, smallFormat} = props;
 
   const setActiveNetwork = (e)=>{
     const ls = window.localStorage
@@ -12,17 +12,17 @@ const Config = (props) => {
   }
 
   return (
-    <a href="#devicespage" className="config" id={id} onClick={setActiveNetwork}>
+    <a href="#devicespage" className="config" id={id} onClick={setActiveNetwork} style={smallFormat? {width: '85%'} : {width:'505'}}>
       <div className="configInfo">
         <span className="material-icons" alt={type}>
           {type === "on" || 'Cloud' ? "cloud" : "network_ping"}
         </span>
-        <h3>{name}</h3>
-        <p className="config-appid">
+        <h3 title={name}>{smallFormat && name.length < 17 ? name : name.slice(0,14) + '...'}</h3>
+        {!smallFormat && <p className="config-appid">
           App: <b>{appID}</b>
-        </p>
+        </p>}
       </div>
-      <div className="configIcons">
+      <div className="configIcons" style={smallFormat ? {marginInline: '1%'}: {marginInline: '3%'}}>
         <span
           className="material-icons favourite-icon"
           style={favourite === "true" ? { color: "#eeff00" } : { color: "white" }}

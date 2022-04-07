@@ -1,7 +1,10 @@
 .deviceCardContainer{
     display: grid;
     grid-template-columns: repeat(5, 1fr);
+    align-items: stretch;
     height: auto;
+    width: 65%;
+    margin-top: 0.6%;
 
 }
 
@@ -12,14 +15,14 @@
     }
 }
 
-@media screen and (max-width: 1350px){
+@media screen and (max-width: 1700px){
     .deviceCardContainer{
         display: grid;
         grid-template-columns: repeat(4, 1fr);
     }
 }
 
-@media screen and (max-width: 1000px){
+@media screen and (max-width: 1500px){
     .deviceCardContainer{
         display: grid;
         grid-template-columns: repeat(3, 1fr);
