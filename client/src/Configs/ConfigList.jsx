@@ -12,7 +12,7 @@ const ConfigList = props =>{
     return(
         <div className="configListContainer">
             {configs.map(conf=>{
-                return <Config name={conf.name} type={conf.type} appID={conf.appID} favourite={conf.favourite} id={conf._id} key={conf._id} onDelete={props.onDelete} />
+                return <Config name={conf.name} type={conf.type} appID={conf.appID} favourite={conf.favourite} id={conf._id} key={conf._id} onDelete={props.onDelete} onClick={setActiveConfig}/>
             })}
         </div>
     )

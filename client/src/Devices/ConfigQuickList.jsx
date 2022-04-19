@@ -3,7 +3,6 @@ import Config from './../Configs/Config'
 import './ConfigQuickList.css'
 const ConfigQuickList = (props) =>{
     const {configs} = props
-    console.log(configs)
     
     const setActiveNetwork = (e)=>{
         const ls = window.localStorage

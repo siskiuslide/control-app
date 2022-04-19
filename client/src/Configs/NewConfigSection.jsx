@@ -5,7 +5,6 @@ import "./NewConfigSection.css";
 
 const NewConfigSection = (props) => {
   const {addNew, addNewHandler, cancelHandler} = props
-  console.log(props)
   
   return (
     <div className="NewConfigSection">

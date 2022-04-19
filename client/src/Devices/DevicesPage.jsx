@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Navbar from '../UI/Navbar';
+import Selection from '../UI/Selection'
 
 import ConfigQuickList from '../Devices/ConfigQuickList'
 import DevicesList from '../Devices/DevicesList'
@@ -13,7 +14,7 @@ const DevicesPage = (props)=>{
 
     //configs req 
     useEffect(()=>{  
-        const configs = fetch("/config")
+       fetch("/config")
             .then((res) => {
                 if(res.status === 401){throw new Error('Login to access your networks')}
                 return res.json()})
@@ -23,7 +24,7 @@ const DevicesPage = (props)=>{
 
         
     useEffect(()=>{
-        const request = fetch(`/config/${window.localStorage.getItem('activeNetwork')}/devices`)
+        fetch(`/config/${window.localStorage.getItem('activeNetwork')}/devices`)
              .then((res)=>{
                  if(res.status === 401){throw new Error('Login to access your networks')}
                  return res.json()
@@ -35,15 +36,20 @@ const DevicesPage = (props)=>{
     },[])
     
 
-    const updateDeviceState = ()=>{
-        console.log('x')
+    const updateDeviceState = (e)=>{
+        const target = e.target.closest('.DeviceCard').id
+        const targetDevice = devices.find(dev=>{ return dev._id === target})
+        console.log(targetDevice)
+        
+
     }
 
     return(
         <>
             <Navbar></Navbar>
-            <div className='DevicesPage'>
-                <ConfigQuickList configs={configs}/>
+            <div className='DevicesPage' style={props.pageWidth < 900 ? {flexDirection: 'column'}:{flexDirection: 'row'} }>
+                {props.pageWidth > 900 && <ConfigQuickList configs={configs} />}
+                {/* {props.pageWidth < 900 && <Selection options={configs} />} */}
                 <DevicesList activeConfig={window.localStorage.getItem('activeNetwork')} devices={devices} updateDeviceState={updateDeviceState}/>
             </div>
         </>

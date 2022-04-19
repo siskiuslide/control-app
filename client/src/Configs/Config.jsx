@@ -12,7 +12,7 @@ const Config = (props) => {
   }
 
   return (
-    <a href="#devicespage" className="config" id={id} onClick={setActiveNetwork} style={smallFormat? {width: '85%'} : {width:'505'}}>
+    <a id={props.id} href="devicespage" className="config" onClick={setActiveNetwork} style={smallFormat? {width: '85%'} : {width:'505'}}>
       <div className="configInfo">
         <span className="material-icons" alt={type}>
           {type === "on" || 'Cloud' ? "cloud" : "network_ping"}
