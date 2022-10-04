@@ -29,6 +29,14 @@ exports.getConfig = catchAsync(async function (req, res, next) {
   return res.status(200).json({ status: "success", body: configs });
 });
 
+exports.getConfigNoneAuth = catchAsync(async function (req, res, next) {
+  //if no query
+  const configs = await Config.find();
+
+  //send configs back
+  return res.status(200).json({ status: "success", body: configs });
+});
+
 //
 //------------------
 //

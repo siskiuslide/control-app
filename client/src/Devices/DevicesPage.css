@@ -1,0 +1,8 @@
+.DevicesPage{
+    display: flex;
+    flex-direction: row; /* changes to column if screen width is small*/
+    margin: auto;
+    /* justify-content: center; */
+    align-items: start;
+    height: 100vh;
+}

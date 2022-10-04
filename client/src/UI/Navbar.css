@@ -1,0 +1,37 @@
+nav{
+    position: relative;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background: #202020;
+    font-family: 'Open sans'
+}
+nav > ul {
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    align-self: flex-start;
+    margin: 0;
+  }
+  nav> ul > li {
+    list-style: none;
+    text-align: center;
+    color: white;
+    font-size: 1.5em;
+    padding: 0.75em;
+    height: 100%;
+  }
+  .nav-item-text{
+    position: relative;
+    display: inline;
+    text-decoration: none;
+    color:white;
+  }
+  nav > ul > li:hover {
+    background: #2f2f2f91
+  }
+
+  nav > ul > li:hover .nav-item-text{
+    color: var(--midAccent)
+  }

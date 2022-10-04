@@ -1,0 +1,8 @@
+.NewConfigSection{
+    display: flex;
+    flex-direction: column;
+    min-width: 75%;
+    margin-bottom: 0.65vh;
+    justify-content: center;
+    align-items:center;
+}

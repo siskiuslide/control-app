@@ -1,0 +1,55 @@
+.deviceCardContainer{
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    align-items: stretch;
+    height: auto;
+    width: 65%;
+    margin-top: 0.6%;
+    margin-inline: 1%;
+
+}
+
+@media screen and (min-width: 2000px){
+    .deviceCardContainer{
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+    }
+}
+
+@media screen and (max-width: 1700px){
+    .deviceCardContainer{
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+@media screen and (max-width: 1475px){
+    .deviceCardContainer{
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media screen and (max-width: 1100px){
+    .deviceCardContainer{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        height: 100%
+    }
+}
+
+@media screen and (max-width: 900px){
+    .deviceCardContainer{
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        height: 100%;
+    }
+}
+
+@media screen and (max-width: 740px){
+    .deviceCardContainer{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        height: 100%;
+    }
+}

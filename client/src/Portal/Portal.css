@@ -1,0 +1,98 @@
+
+.portalForm{
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+width: 450px;
+}
+.portalForm > * {
+    display: block;
+    font-family: 'Asap';
+    font-weight: 100;
+}
+.portalForm > h1 {
+    font-family: "oswald";
+    color: rgb(71, 64, 64);
+    font-size: 50px;
+    margin-block: 3vh;
+}
+.portalForm > label{
+    font-size: 1.5em;
+    color: white;
+    margin-block: 2%;
+}
+.portalForm > label::after{
+    content: ':';
+    display: inline;
+}
+.portalForm > input {
+    width: 60%;
+    padding-block: 8px;
+    border-radius: 5px;
+}
+.portalButtons{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: flex-end;
+    margin-top: 6%;
+}
+
+.portalButtons > a{
+    text-decoration: none;
+    color: white;
+    width: 45%;
+}
+.portalButtons > a:hover{
+    color: rgb(108, 189, 216)
+} 
+
+
+.portalButtons > *{
+    margin: 10px;
+}
+
+
+
+@media screen and (max-width: 992px) {
+    .portalForm > input {
+        width: 60%;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .portalForm{
+        width: 90%;
+    }
+    .portalForm > h1{
+        font-size:45px;
+        margin-inline: 0;
+    }
+    .portalForm > input {
+        width: 70%;
+    }
+    /* .portalButtons {
+        display: flex;
+        flex-direction: column;
+        align-content: center;
+        justify-content: space-around;
+        width: 100%;
+    } */
+}
+
+@media screen and (max-width: 450px){
+    .portalForm{
+        width: 80%;
+    }
+    .portalForm > h1{
+        font-size:38px;
+        margin-inline: 0;
+    }
+    .portalForm > input {
+        width: 50%;
+    }
+    .portalForm > label{
+        font-size:1.25em
+    }
+}
